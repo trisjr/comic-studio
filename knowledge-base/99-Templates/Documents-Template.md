@@ -3,8 +3,18 @@ id: RULE-001
 type: rule
 status: approved
 created: 2026-02-05
-updated: 2026-03-03
+updated: 2026-08-23
 ---
+
+<!--
+Nhật ký thay đổi (chỉ ghi thay đổi ĐỔI CONTRACT, không ghi sửa chính tả):
+- 2026-08-23: thêm một hàng `MVP Scope → docs/010-Planning/MVP-Scope.md` vào bảng Document
+  Type Mapping. Thay đổi ADDITIVE: không đổi naming convention nào, không đổi cấu trúc thư mục
+  nào, không đường dẫn nào đang tồn tại bị ảnh hưởng. Được duyệt tại gate của run
+  `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio`. Lý do: loại tài liệu này được yêu cầu
+  tạo nhưng không tra được trong bảng, mà quy tắc #7 cấm tạo tài liệu chưa tra bảng.
+-->
+
 
 # Quy tắc Cấu trúc Tài liệu (Documentation Structure Rule)
 
@@ -71,6 +81,7 @@ updated: 2026-03-03
 | | WBS | `docs/010-Planning/Estimates/` | `WBS-{ProjectName}.xlsx` |
 | | ETA / Timeline | `docs/010-Planning/Estimates/` | `ETA-{ProjectName}.xlsx` |
 | | Risk Register | `docs/010-Planning/` | `Risk-Register.md` |
+| | MVP Scope | `docs/010-Planning/` | `MVP-Scope.md` |
 | | Budget / Cost Estimate | `docs/010-Planning/Estimates/` | `Budget-{ProjectName}.xlsx` |
 | | Status Report | `docs/010-Planning/` | `Status-Report-{Date}.md` |
 | | Retrospective | `docs/010-Planning/Sprints/` | `Retro-Sprint-{NNN}.md` |
