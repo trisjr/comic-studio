@@ -17,6 +17,7 @@ updated: 2026-08-23
 - [Chữ & trình bày](#chữ--trình-bày)
 - [Quy trình & vận hành](#quy-trình--vận-hành)
 - [SaaS & multi-tenancy](#saas--multi-tenancy)
+- [Planning, thị trường & quản trị](#planning-thị-trường--quản-trị)
 - [Tài liệu tham khảo](#tài-liệu-tham-khảo)
 
 ---
@@ -92,12 +93,35 @@ updated: 2026-08-23
 - **hold reaper**: Job dọn các hold quá hạn (`expires_at`). Thiếu nó là rỉ chậm thành *"có credit mà không generate được"* — loại lỗi khó chẩn đoán nhất.
 - **`usage_event`**: Bảng append-only ghi mọi lần tiêu tài nguyên. Append-only là điều kiện để nó dùng được làm căn cứ đối soát.
 - **seam kinh tế vs seam kỹ thuật**: Đường cắt hệ thống theo **chi phí và fairness** (worker process riêng, fairness per-tenant khi claim job, `usage_event` tách bạch) khác với đường cắt theo **module kỹ thuật** (microservices). Với một dev, seam kinh tế đáng làm; seam kỹ thuật thì không.
-- **GRR (Gross Revenue Retention)**: Tỉ lệ giữ doanh thu, chưa tính upsell. Ở phân khúc AI budget-tier con số ngành là **23%** — thấp tới mức làm subscription trở thành mô hình sai với một dev không có ngân sách marketing.
+- **GRR (Gross Revenue Retention)**: Tỉ lệ giữ doanh thu, chưa tính upsell. Ở phân khúc AI-native band `<$50/tháng`, con số đo được là **23%** (NRR 32%) `[OFF]` — ChartMogul, ~3.500 công ty, dữ liệu **2025** — thấp tới mức làm subscription trở thành mô hình sai với một dev không có ngân sách marketing.
+  > ⚠️ **Ba caveat bắt buộc đi kèm con số 23%, trích nó mà bỏ ba dòng này là trích sai:** (a) cohort AI-native chỉ **~200 công ty** và band `<$50` là một tập con, **n của riêng band không được công bố**; (b) bộ lọc **≥$250K ARR loại bỏ toàn bộ quy mô indie** — tức loại đúng nhóm `comic-studio` thuộc về; (c) đây là **dữ liệu 2025**. Kết luận chịu lực không phải *"AI churn"* mà là **giá**: cùng dataset, sản phẩm AI trên $250/tháng đạt GRR **70%**. Chi tiết: [Analysis-Market-Competitor-Landscape §5.1](../050-Research/Analysis-Market-Competitor-Landscape.md#51-23-grr--chartmogul-và-ba-caveat-bắt-buộc).
+
+---
+
+## Planning, thị trường & quản trị
+
+*Nhóm này được bổ sung ở run `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio`, khi tầng 010-Planning được khởi tạo.*
+
+- **TAM / SAM / SOM**: Ba tầng quy mô thị trường. **TAM** = toàn bộ thị trường; **SAM** = phần thị trường sản phẩm thực sự phục vụ được; **SOM** = phần thực tế chiếm được. ⚠️ Với `comic-studio`, ba con số này chênh nhau **3–4 bậc độ lớn** vì TAM webtoon đo **tiêu thụ nội dung** còn sản phẩm bán **công cụ cho tác giả**. Dùng TAM để biện minh cho một dự án bán công cụ là **lỗi logic**, không phải sự lạc quan.
+- **NRR (Net Revenue Retention)**: Tỉ lệ giữ doanh thu **đã tính** upsell/expansion. Khác **GRR** ở chỗ NRR có thể vượt 100%, GRR thì không.
+- **payer retention**: Tỉ lệ người trả tiền còn ở lại sau một khoảng thời gian. ⚠️ **KHÔNG phải GRR** — GRR đo *đồng doanh thu*, payer retention đo *đầu người*. Hai metric này không cộng, không lấy trung bình, không so trực tiếp; gộp chúng là một lỗi đọc số phổ biến.
+- **RACI**: Ma trận phân vai — **R**esponsible (người làm) · **A**ccountable (người chịu trách nhiệm cuối, chỉ một) · **C**onsulted (được hỏi ý kiến) · **I**nformed (được thông báo). ⚠️ Với đội một người, RACI dễ suy biến thành "Founder ở mọi ô" — khi đó giá trị của nó nằm ở việc **nêu thẳng lỗ hổng** (bus factor = 1, vai trò C không tồn tại) chứ không ở bảng.
+- **OKR / Objective / Key Result**: **Objective** định tính, mô tả thành công trông như thế nào; **Key Result** định lượng, có số + cách đo + tần suất đo. Một Objective là con số thì đó là KR bị đặt sai chỗ.
+- **anti-goal**: Điều **cố ý không làm** trong một chu kỳ, kèm lý do. Khác với "chưa ưu tiên" — anti-goal là quyết định đã cân nhắc, ghi ra để không ai âm thầm làm nó.
+- **Go/No-Go gate**: Điểm quyết định có tiêu chí **đo được** và hành động định sẵn cho **cả hai** nhánh. Một gate không có nhánh FAIL thì không phải gate.
+- **kill criteria**: Điều kiện dừng hẳn dự án. Đây là mục mà tài liệu planning hay né nhất, và cũng là mục làm cho các gate còn lại có nghĩa.
+- **canonical facts**: Bảng sự thật chung được PM chốt trước khi nhiều writer chạy song song, để mọi tài liệu copy từ **một nguồn** thay vì mỗi người tự suy ra số của mình. Mỗi số đi kèm **nhãn nguồn** như một cặp không tách rời.
+- **nhãn nguồn `[OFF]` / `[BCN]` / `[TC]` / `[EM]`**: Hạng của một con số — official · báo cáo ngành · thứ cấp · **ước lượng/phép nhân**. ⚠️ Nhãn `[EM]` **phải đi theo con số qua mọi phép tính**; bỏ nhãn khi nhân một con số ước lượng sẽ **rửa sạch** khoảng trống và biến giả định thành sự thật đo được.
+- **rủi ro nhị phân**: Rủi ro mà trả lời sai không làm sản phẩm *kém hơn* mà làm nó **bất hợp pháp hoặc không tồn tại**. Nó không nằm chung thang Probability × Impact với rủi ro thường, vì thang đó giả định hậu quả liên tục.
+- **bus factor**: Số người rời khỏi dự án là dự án dừng. Với `comic-studio` con số đó là **1**.
+- **build-in-public**: Chiến lược phân phối bằng cách công khai quá trình xây sản phẩm trên mạng xã hội. Với sản phẩm indie, đây là kênh có tiền lệ đạt doanh thu ở **$0 marketing spend**.
+- **disclosure-first positioning**: Nêu rõ sản phẩm dùng AI ngay từ đầu thay vì để bị phát hiện. Với ngách comic, đây **không phải lựa chọn đạo đức mà là ràng buộc phân phối** — cộng đồng đã có tiền lệ boycott khi phát hiện AI không được khai báo.
 
 ---
 
 ## Tài liệu tham khảo
 
 - [Analysis-Comic-Studio-Concept](../050-Research/Analysis-Comic-Studio-Concept.md) — nguồn của toàn bộ thuật ngữ domain trong file này; mỗi term đều truy được về một mục cụ thể ở đó.
+- [Analysis-Market-Competitor-Landscape](../050-Research/Analysis-Market-Competitor-Landscape.md) — nguồn của nhóm *Planning, thị trường & quản trị*.
 - [Request.md](./Request.md) — thiết kế ý tưởng gốc, nơi phần lớn thuật ngữ được đặt tên lần đầu.
 - [Documents-Template.md](../../knowledge-base/99-Templates/Documents-Template.md) — RULE-001, quy ước tài liệu của dự án.
