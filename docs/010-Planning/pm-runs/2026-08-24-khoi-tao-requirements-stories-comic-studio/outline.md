@@ -31,17 +31,20 @@
 
 > ⚠️ **Sáu file mang dấu ⚠️ được tick bằng CHECK CƠ HỌC CỦA PM, không bằng Worker Contract.** Bốn lô L1, L2, L4, L5b bị **terminate giữa chừng do session limit** (`resets 2:50am`) — cả bốn đã ghi xong file rồi mới chết ở bước tự-verify, nên **không lô nào trả về khối `STATUS`/`FILES_TOUCHED`**. Guardrail `pm-core.md` cấm tick thay worker khi chưa đọc `FILES_TOUCHED`, nên PM **thay thế bằng năm check cơ học** trước khi tick: (1) `git status` — đúng 10 file mới, **0 vi phạm ownership**, 0 file bị modify; (2) `tail` từng file — cả 10 kết thúc bằng block signature đầy đủ, **0 file bị cắt giữa**; (3) `grep "\[\["` — **0 wiki-link**; (4) `grep "030-Specs"` trong link — **0 link chết**; (5) frontmatter — cả 10 đủ `id`/`type`/`status: draft`/`created: 2026-08-24`, id đúng dãy `PRD-001`, `SRS-001`, `BRD-001…008`.
 > **Hệ quả còn lại**: PM **không có** `SUMMARY` tự báo của 4 lô đó, nên **không biết chúng có tự phát hiện `PARTIAL` nào không**. Cụ thể: L1 (PRD) được ràng buộc phải báo `PARTIAL` vì khoảng trống persona — PM đã xác minh §3.3 *có* mục `TBD` đúng yêu cầu, nhưng nợ `PARTIAL` này phải được **verify khẳng định lại ở L21**, không coi là đã đóng.
-| 11 | `UC-01-Upload-And-Ingest-Chapter.md` | **Use Case** | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [ ] |
-| 12 | `UC-02-Review-And-Edit-Story-Bible.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [ ] |
-| 13 | `UC-03-Review-Panel-Script.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [ ] |
-| 14 | `UC-04-Human-Gate-Speaker-Attribution.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [ ] |
-| 15 | `UC-05-Human-Gate-Dialogue-Condensation.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [ ] |
-| 16 | `UC-06-Generate-Panel-And-Pick-Variant.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [ ] |
-| 17 | `UC-07-Edit-Bubble-And-Dialogue-In-Panel.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [ ] |
-| 18 | `UC-08-Arrange-Page-And-Preview.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [ ] |
-| 19 | `UC-09-Export-Chapter.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #5 | L8 | [ ] |
-| 20 | `UC-10-Manage-Credit-And-BYOK.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #5 | L8 | [ ] |
-| 21 | `UC-11-Handle-Takedown-Request.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #5 | L8 | [ ] |
+| 11 | `UC-01-Upload-And-Ingest-Chapter.md` | **Use Case** | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [x] 10 bước · 6 exc |
+| 12 | `UC-02-Review-And-Edit-Story-Bible.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [x] 12 bước · 7 exc |
+| 13 | `UC-03-Review-Panel-Script.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [x] 12 bước · 6 exc |
+| 14 | `UC-04-Human-Gate-Speaker-Attribution.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #4 | L6 | [x] 10 bước · 7 exc |
+| 15 | `UC-05-Human-Gate-Dialogue-Condensation.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [x] 10 bước · 6 exc |
+| 16 | `UC-06-Generate-Panel-And-Pick-Variant.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [x] 12 bước · 7 exc |
+| 17 | `UC-07-Edit-Bubble-And-Dialogue-In-Panel.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [x] 11 bước · 8 exc |
+| 18 | `UC-08-Arrange-Page-And-Preview.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `product-designer` | L7 | [x] 13 bước · 7 exc |
+| 19 | `UC-09-Export-Chapter.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #5 | L8 | [x] 11 bước · 5 exc |
+| 20 | `UC-10-Manage-Credit-And-BYOK.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #5 | L8 | [x] 12 bước · 6 exc |
+| 21 | `UC-11-Handle-Takedown-Request.md` | Use Case | `docs/020-Requirements/Use-Cases/` | `business-analyst` #5 | L8 | [x] 10 bước · 5 exc |
+
+> **L6 và L7 trả `PARTIAL`, L8 trả `DONE`** — cả ba đều có `FILES_TOUCHED` đầy đủ. Hai `PARTIAL` là **hợp lệ và đúng kỳ vọng**: L6 vì khoảng trống persona `KT-1` **kế thừa từ PRD** (không phải thiếu sót của lô); L7 vì **5 điểm `TBD`** mà nguồn thật sự không trả lời (thứ tự giữa hai gate · chia một dòng thoại thành 2 bubble · danh mục kiểu bubble · SFX/narration box · hành vi typeset khi ảnh panel bị thay) — writer **từ chối tự thiết kế thêm**, đúng ràng buộc *"KHÔNG thiết kế thêm tính năng"*.
+> **Không exception flow nào rỗng** trên cả 11 UC — đây là tiêu chí *"rỗng là không đạt"* của `outline.md` §2.4, đạt 11/11.
 
 ### 1.2 Tầng 022-User-Stories — 8 Epic + 41 Story
 
@@ -49,14 +52,20 @@
 
 | # | Tài liệu | BRD cha | Lô | Xong |
 |---|----------|---------|----|------|
-| 22 | `Epic-Image-Generation-Pipeline.md` | BRD-001 | L9 | [ ] |
-| 23 | `Epic-Story-Intelligence.md` | BRD-002 | L9 | [ ] |
-| 24 | `Epic-Comic-Director-And-Layout.md` | BRD-003 | L9 | [ ] |
-| 25 | `Epic-Minimum-Editor.md` | BRD-004 | L9 | [ ] |
-| 26 | `Epic-Multi-Tenancy-And-Platform.md` | BRD-005 | L10 | [ ] |
-| 27 | `Epic-Credit-And-Unit-Economics.md` | BRD-006 | L10 | [ ] |
-| 28 | `Epic-Legal-And-Compliance.md` | BRD-007 | L10 | [ ] |
-| 29 | `Epic-Quality-And-Operations.md` | BRD-008 | L10 | [ ] |
+| 22 | `Epic-Image-Generation-Pipeline.md` | BRD-001 | L9 | [x] 5 Story trong / 2 ngoài |
+| 23 | `Epic-Story-Intelligence.md` | BRD-002 | L9 | [x] 4 / 0 |
+| 24 | `Epic-Comic-Director-And-Layout.md` | BRD-003 | L9 | [x] 7 / 0 |
+| 25 | `Epic-Minimum-Editor.md` | BRD-004 | L9 | [x] 5 / 2 |
+| 26 | `Epic-Multi-Tenancy-And-Platform.md` | BRD-005 | L10 | [x] 5 / 2 |
+| 27 | `Epic-Credit-And-Unit-Economics.md` | BRD-006 | L10 | [x] 3 (1 có đk) / 3 |
+| 28 | `Epic-Legal-And-Compliance.md` | BRD-007 | L10 | [x] 6 / 0 |
+| 29 | `Epic-Quality-And-Operations.md` | BRD-008 | L10 | [x] 6 / 1 |
+
+> **L9 và L10 đều `DONE`.** Số Story ở mục 3 khớp đúng plan: **5/4/7/5** và **5/3/6/6** = **41 trong horizon**; mục 4 gồm **10 Story ngoài horizon** với cột *Trạng thái tài liệu* = `chưa có file`. Epic-B, Epic-C, Epic-G ghi tường minh *"không có"* thay vì bỏ trống mục.
+>
+> **Anchor Epic → PRD: đạt 8/8, PM đã verify bằng `grep`.** Hai writer suy ra **cùng một quy tắc slugify** một cách độc lập, và cả hai đều **từ chối tự suy đoán**: L9 đối chiếu với link nội bộ mà chính PRD §8.1/§8.2 đã viết ra; L10 đối chiếu với TOC của `BRD-005` và link nội bộ PRD. Quy tắc thu được: bỏ ký tự không phải chữ/số, **giữ dấu tiếng Việt**, space → hyphen, nên `&` để lại **hai** hyphen. Kết quả: `#a-pipeline-sinh-ảnh` · `#b-story-intelligence` · `#c-comic-director--layout` · `#d-editor--ui` · `#e-multi-tenancy--hạ-tầng` · `#f-kinh-tế--credit` · `#g-pháp-lý--compliance` · `#h-chất-lượng--vận-hành`.
+>
+> **L10 tự verify 26/26 tên file Story bằng `grep` đối chiếu findings §4.5–§4.8, character-exact** — không bằng mắt. Đây là điều kiện để 41 link của wave 3 không chết.
 
 **Story** (`docs/022-User-Stories/Backlog/`) — 41 file **trong horizon**, cắt lô theo Epic:
 
