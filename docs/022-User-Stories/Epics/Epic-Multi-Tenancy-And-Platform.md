@@ -80,8 +80,8 @@ Implements: [PRD-Comic-Studio §4 — E. Multi-tenancy & hạ tầng](../../020-
 
 | Story (link) | Mốc | Vì sao nằm ngoài horizon | Trạng thái tài liệu |
 |---|---|---|---|
-| [Story-Buy-Billing-Provider](../Backlog/Story-Buy-Billing-Provider.md) | MVP3 | `FR-E-04` đạt `✅ +billing` ở MVP3. Gói trả phí **CÓ image gen** (Tầng 2/Tầng 3) rơi ra khỏi horizon ([Roadmap §5.1](../../010-Planning/Roadmap.md#51-cái-gì-rơi-ra-khỏi-092026022027)) ⇒ billing provider chưa cần trong horizon. **Mua, không tự viết** — *"không tự xây một hệ thống tiền tệ"* | **chưa có file** |
-| [Story-Worker-As-Separate-Process-Same-Codebase](../Backlog/Story-Worker-As-Separate-Process-Same-Codebase.md) | MVP3 | `FR-E-06`: 2 entrypoint, **CÙNG codebase**. Là **seam kinh tế**, không phải seam kỹ thuật — worker chết mà API vẫn sống. Exit criterion **M3-4** (test kill process) nằm ở MVP3 | **chưa có file** |
+| `Story-Buy-Billing-Provider` | MVP3 | `FR-E-04` đạt `✅ +billing` ở MVP3. Gói trả phí **CÓ image gen** (Tầng 2/Tầng 3) rơi ra khỏi horizon ([Roadmap §5.1](../../010-Planning/Roadmap.md#51-cái-gì-rơi-ra-khỏi-092026022027)) ⇒ billing provider chưa cần trong horizon. **Mua, không tự viết** — *"không tự xây một hệ thống tiền tệ"* | **chưa có file** |
+| `Story-Worker-As-Separate-Process-Same-Codebase` | MVP3 | `FR-E-06`: 2 entrypoint, **CÙNG codebase**. Là **seam kinh tế**, không phải seam kỹ thuật — worker chết mà API vẫn sống. Exit criterion **M3-4** (test kill process) nằm ở MVP3 | **chưa có file** |
 
 > ⚠️ **Hai Story này không được "kéo vào cho đủ"**: `MVP-Scope` §4.2 xếp *1 process* là một phần của quyết định modular monolith. Tách worker sớm là mở lại một quyết định đã chốt, không phải làm sớm một việc tốt.
 

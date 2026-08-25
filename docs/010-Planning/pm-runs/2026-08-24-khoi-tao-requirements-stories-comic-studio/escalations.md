@@ -126,6 +126,38 @@ Guardrail `pm-core.md` — *"Không tick `outline.md` thay worker khi chưa đ�
 
 > ⚠️ **Chuyển cho verify**: `grep` mọi nhãn `[* suy luận]` trong 41 Story. Mỗi chỗ phải (a) là Story thật sự có `⚠️` ở §4.x, và (b) có lý do đọc được, không phải câu rỗng. Đây là **nợ có chủ đích** — nó hợp lệ vì được đánh dấu, không phải vì nó đúng.
 
+### E-5b — Định nghĩa nhãn `[* suy luận]` được NỚI sau verify L22
+
+**Kết quả verify L22**: `grep "suy luận]"` trả **22 hit** đúng như PM ghi. Trong đó **1 false positive** (`Story-Opt-Out-Check-At-Ingest` — câu văn *phủ định* việc dùng nhãn), **21 lần áp dụng thật trên 10 Story**, và **9/10 truy được về `⚠️` thật** ở §4.5–§4.8 với lý do là đoạn văn đầy đủ, không rỗng.
+
+**Một Story dùng nhãn NGOÀI định nghĩa gốc**: `Story-Record-Readability-Human-Judgement` gắn `[QA suy luận]` **3 lần** nhưng §4.8 chấm nó `I=✅ / S=✅` — **không có `⚠️` nào**. Nhãn ở đó đánh dấu một việc khác: **writer tự neo anchor `MVP-Scope`/`Roadmap`** vì §4.8 chỉ trích `Analysis §3.2`, không cho hạng mục hay exit criterion nào.
+
+**Quyết định của PM (tầng 2): NỚI định nghĩa, không coi đây là vi phạm.** Nhãn `[* suy luận]` từ nay có **hai** nghĩa hợp lệ:
+1. **Lý do `I`/`S` vỡ** mà §4.10 không phủ — nghĩa gốc.
+2. **Anchor không truy được** — writer tự neo vì nguồn không đặt tên hạng mục/exit criterion.
+
+**Căn cứ**: cả hai trường hợp là **cùng một hành vi** — writer gặp khoảng trống trong nguồn, tự bù, và **khai ra thay vì im lặng**. Nhãn tồn tại để chỗ bù đó `grep` được. Thu hẹp nhãn về nghĩa (1) sẽ khiến loại (2) **không còn cách nào đánh dấu**, và writer buộc phải chọn giữa im lặng và bịa — đúng cái nhãn này được lập ra để tránh. `L15`, `L17`, `L18` đều đã dùng nhãn theo nghĩa (2) một cách độc lập; ba lô hội tụ vào cùng một cách dùng là dấu hiệu nghĩa (2) là cách đọc tự nhiên, không phải lệch chuẩn.
+
+> Đây là lần **thứ ba** trong run này quy ước của PM hẹp hơn thực tế writer gặp (E-4 id, E-4 phụ lục schema `Backlog-Priority`, và đây). Cả ba lần writer khai báo thay vì im lặng nên chi phí thấp. Mẫu chung: **PM viết ràng buộc từ hình dung về nguồn, không từ nguồn.**
+
+---
+
+## E-6 — Ba finding của verify được CHẤP NHẬN, không sửa. Lý do ghi ở đây để không ai tưởng PM bỏ sót.
+
+**1. `E_hitl = TBD` không kèm ngưỡng escalate ở 2 Story `[MVP0]`** (L22 MINOR #1 — `Story-Generate-Panel-With-Reference-And-VLM-Select`, `Story-Typeset-Layer-And-Bubble-Overlay`).
+
+Verify chỉ ra 4/6 Story có `E_hitl = TBD` ghi *"vượt 2h/chapter ⇒ escalate cho Founder"*, còn 2 Story này chỉ ghi *"MVP0 là chi phí đo một lần, không phải nghĩa vụ lặp lại"* — **không nhất quán về hình thức**.
+
+**PM không sửa.** Trần `E_hitl ≤ 2h/chapter` là một đại lượng **lặp theo chapter**. Với một lát MVP0 chạy **một lần để đo**, *"giờ-người mỗi chapter"* **không phải đơn vị đúng** — nên trần không áp, và hai file **đã nói đúng lý do đó**. Chính verify đề xuất phương án thay thế là *"ghi rõ vì sao trần không áp cho lát MVP0 một-lần"*; hai file đang làm đúng việc ấy. Thêm một ngưỡng escalate cho một đại lượng không áp dụng là **thêm một số vô nghĩa để bảng trông đều** — ngược hẳn kỷ luật *"không bịa số"* của cả run. Đây là **nhất quán có chủ đích**, không phải thiếu sót ngầm.
+
+**2. Ba link chết tiền nhiệm trong RULE-001** (L24 NOTE #4 — `../../OS-Handbook.md`, `../../README.md`, `../../AGENTS.md` ở mục *Tài liệu tham khảo*).
+
+**PM không sửa.** Verify tự truy `git show bacc5a3` và chứng minh cả ba **có từ commit khởi tạo**, nằm **ngoài mọi hunk** PM chạm ở `b204e2c`. Sửa chúng là mở rộng scope sang một run Shape B (dọn dẹp) mà không ai yêu cầu, trên một file `status: approved`. Đã có tiền lệ đúng cách xử: `Template-Daily-Report.md` trong `Resources-MOC.md` — **ghi nhận, không xoá, chuyển cho run dọn dẹp**.
+
+**3. Hai hàng nợ kỹ thuật #3/#4 của `000-Index.md`** (L24 NOTE #5).
+
+**PM không sửa.** Verify tự kiểm 5 MOC khác và tìm thấy `Manuals-MOC.md` **vẫn còn 2 link chết thật**; các MOC `QA`/`Operations`/`Deployment` vẫn là placeholder 12–23 dòng. Hai hàng nợ viết *"một số MOC"* / *"phần lớn MOC"* — **vẫn đúng ở cấp toàn repo**, chỉ không còn mô tả đúng riêng cho hai MOC vừa viết lại. Hạ chúng xuống hoặc xoá sẽ **che một khoản nợ vẫn đang tồn tại** ở 9 MOC còn lại.
+
 ---
 
 ## Không phải escalation — ghi lại để không ai đi tìm

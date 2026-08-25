@@ -15,8 +15,23 @@
 | L17 | `security-auditor` | 6 Story (Epic-G) | 224.921 | 53 | 999 | 37.487 |
 | L18 | `quality-assurance` | 6 Story (Epic-H) | 221.194 | 32 | 909 | 36.866 |
 | **Tổng wave 3 (Story)** | | **41 Story** | **1.549.977** | **274** | — | **37.804** |
-| L19 | `product-owner` | `Backlog-Priority.md` | _đang chờ_ | | | |
-| L20 | `business-analyst` | `Glossary.md` (sửa) | _đang chờ_ | | | |
+| L19 | `product-owner` | `Backlog-Priority.md` | 249.212 | **66** ⚠️ | 1.267 | — |
+| L20 | `business-analyst` | `Glossary.md` (+15 term) | 163.919 | 34 | 560 | — |
+| **Tổng wave 3 (đủ)** | | **41 Story + 2 hạng mục** | **1.963.108** | **374** | — | — |
+
+### Bốn lô verify
+
+| Lô | Vai | Phạm vi | Output token | Tool call | Thời gian (s) | Kết quả |
+|----|-----|---------|-------------:|----------:|--------------:|---------|
+| L21 | `context-auditor` | tầng 020 — 21 tài liệu | 188.518 | 54 | 325 | **0 defect** |
+| L22 | `context-auditor` | tầng 022 — 50 tài liệu | 217.491 | 43 | 512 | 0 MAJOR · 1 MINOR · 2 NOTE |
+| L23 | `context-auditor` | xuyên tầng — 72 file (tiêu chí 4/5/6) | 187.231 | 45 | 752 | **2 MAJOR** · 1 NOTE |
+| L24 | `context-auditor` | close-step của PM — 5 file | 120.560 | 41 | 603 | **1 MAJOR** · 2 MINOR · 2 NOTE |
+| **Tổng verify** | | | **713.800** | **183** | — | **3 MAJOR** |
+
+> **Verify tốn 713.800 token — bằng 36% chi phí ghi (1.963.108) — và tìm ra 3 MAJOR mà không check cơ học nào của PM bắt được.** Con số này là câu trả lời cho câu hỏi *"verify có đáng không"*: ba MAJOR đó gồm **một số hiệu pháp lý gán sai văn bản trong PRD** (sẽ được copy xuống code), **10 link chết trong 8 Epic**, và **một mục tài liệu bị PM xoá im lặng** (không còn ở đâu trong repo). Không lỗi nào trong ba lỗi ấy lộ ra qua `grep`.
+>
+> ⚠️ **L19 vượt trần budget: 66/60 tool call.** Nguyên nhân đọc được và **chi tiêu đúng chỗ**: writer đối chiếu **65/65** link character-exact bằng `Glob` thật thay vì tin tên file trong findings — chính nó tạo ra kết quả `diff` rỗng khi PM kiểm lại 41 link.
 
 > **Số của wave 1 và wave 2 KHÔNG có trong file này.** Chúng nằm trong notification của các lô L1–L10, và context PM đã bị compaction **hai lần** trước khi `cost.md` được khởi tạo. Đây là **mất dữ liệu thật, không phải bỏ sót** — và nó chính là lý do bảng trên được ghi sớm thay vì để tới cuối run. Bài học đã có ngay: **khởi tạo `cost.md` cùng lúc với `outline.md`, không phải ở close-step.**
 

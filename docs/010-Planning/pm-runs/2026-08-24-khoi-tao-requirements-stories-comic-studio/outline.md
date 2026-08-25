@@ -273,3 +273,45 @@
 | `docs/999-Resources/Glossary.md` | Là deliverable của run (L20), **nằm trong phạm vi verify** — không để PM sửa ở close-step. Đây chính là cách lỗi `M-1` của run trước phát sinh | Có writer + verify |
 | `docs/030-Specs/Specs-MOC.md` (0 byte) | **Không** thuộc scope run này. SRS bị cấm link tới 030 nên không sinh link chết mới | Ghi vào *Nợ lại* của báo cáo |
 | `openspec/` | Không bị chạm | Không làm gì |
+
+## 7. Kết quả verify (L21–L24) và những gì PM đã sửa sau đó
+
+Bốn lô `context-auditor` chạy **sau khi close-step của PM đã xong hẳn** — thứ tự này là điều kiện để lô L24 nhìn thấy được việc của PM. **Không lô nào verify việc của chính mình.**
+
+| Lô | Phạm vi | Tool call | Kết quả |
+|----|---------|----------:|---------|
+| L21 | tầng 020 — 21 tài liệu | 54 | **0 defect** |
+| L22 | tầng 022 — 50 tài liệu | 43 | 0 MAJOR · 1 MINOR · 2 NOTE |
+| L23 | xuyên tầng — 72 file (tiêu chí 4/5/6) | 45 | **2 MAJOR** · 1 NOTE |
+| L24 | **close-step của PM** — 5 file | 41 | **1 MAJOR** · 2 MINOR · 2 NOTE |
+
+### Ba MAJOR — tất cả đã sửa
+
+| # | Lô | Vấn đề | Cách sửa |
+|---|----|--------|----------|
+| M-1 | L23 | **`PRD-Comic-Studio.md` gán `Điều 198b` vào hàng `NĐ 134/2026/NĐ-CP`.** `Điều 198b` thuộc `Luật số 07/2022/QH15`; NĐ 134/2026 chỉ có `5a`/`37a`/`37b`. Verify chứng minh bằng bảng canon `BRD-007:352-353`, `Story-Safe-Harbour-Checklist-Article-198b:27`, và việc hai nguồn được cite trong hàng lỗi **chỉ nói về NĐ 134/2026** | Tách thành **ba hàng** cho ba văn bản, thêm callout `⛔ BA văn bản riêng biệt` và chỉ định `BRD-007` là **nguồn canon duy nhất** cho ánh xạ điều luật ↔ văn bản |
+| M-2 | L23 | **10 markdown link chết trong 5 file Epic**, trỏ tới 10 Story ngoài horizon không có file. Cả 10 tự dán nhãn *"chưa có file"* ở cột trạng thái — writer biết, nhưng link vẫn chết về mặt cơ học | Đổi cả 10 thành **inline code**, đúng cách `Backlog-Priority.md` đã làm cho **cùng 10 Story ấy** — cách đúng đã tồn tại song song trong cùng run |
+| M-3 | L24 | **PM xoá im lặng mục *"Quy Trình Làm Việc (BA Workflow)"*** khỏi `Requirements-MOC.md` khi ghi lại toàn file. `grep` toàn `docs/` + `knowledge-base/` → **0 kết quả ở bất kỳ đâu khác**. `outline.md` §5 **không** giao PM xoá nó | **Khôi phục**, kèm ghi chú `♻️` xác nhận đây là nội dung giữ từ bản trước, cộng hai điều chỉnh thực tế (bước *Validation* chưa từng chạy vì đội 1 người; bước *Elicitation* đã hoàn tất trước tầng 020) |
+
+> **M-3 là lỗi nặng nhất của run, và nó thuộc PM.** Trong **cùng commit** đó PM ghi chú tường minh cho **3 link chết** mình gỡ (`> ⚠️ Link chết đã gỡ...`) — nghĩa là PM áp guardrail *"không xoá im lặng"* cho ba dòng link rồi vi phạm chính nó với một mục 9 dòng. Lỗi này **chỉ lộ ra vì có một lô verify nhắm riêng vào close-step của PM** (L24), và lô đó tồn tại vì bài học `M-1` của run trước. Nếu run này bỏ L24 để tiết kiệm, mục BA Workflow biến mất khỏi repo mà không ai biết.
+
+### Ba MINOR / NOTE khác đã sửa
+
+| Lô | Vấn đề | Cách sửa |
+|----|--------|----------|
+| L24 | Change-log RULE-001 **overclaim**: PM viết `type: backlog-priority` *"khớp nguyên văn"* tên loại `Prioritized Backlog` — sai nghĩa đen. Verify lấy mẫu 6 hàng và tìm ra **tiền lệ `User Story` → `type: story`**, kết luận quy ước `type:` của bảng **vốn không phải slug nghĩa đen** ⇒ giá trị PM dùng **đúng**, chỉ câu PM viết là sai | Sửa câu change-log, ghi rõ *"khớp theo quy ước lỏng đã có"* + nêu tiền lệ |
+| L22 | Công thức `⭐` ở `Backlog-Priority §2.3` không nêu ngoại lệ `Story-Fix-Narrative-Time-Key` (`Scope-Label = —` nhưng vẫn `⭐`); phải đọc chéo §3.1 mới thấy | Thêm callout ngoại lệ **ngay dưới công thức** để nó tự đủ |
+| L23 | `UC-11` viết `198b / NĐ 17 / NĐ 134` dạng gạch chéo — dễ đọc nhầm `198b` thuộc `NĐ 134` | Tách rõ **ba văn bản**, thêm cảnh báo `⚠️ Điều 198b KHÔNG thuộc NĐ 134` |
+| L22 | Nhãn `[* suy luận]` được dùng cho **anchor không truy được**, ngoài định nghĩa gốc (`I`/`S` vỡ) | **Nới định nghĩa** — xem `escalations.md` **E-5b** |
+
+**Ba finding được chấp nhận không sửa, lý do ở `escalations.md` E-6**: `E_hitl = TBD` ở 2 Story `[MVP0]` (trần *"mỗi chapter"* không áp cho lát chạy một lần) · 3 link chết **tiền nhiệm** trong RULE-001 (ngoài hunk của PM, verify tự truy `git show bacc5a3` chứng minh) · hai hàng nợ kỹ thuật `000-Index` (**vẫn đúng ở cấp toàn repo** — `Manuals-MOC` còn 2 link chết thật).
+
+### Những gì verify xác nhận SẠCH
+
+- **0/41 dòng AC-1 không falsifiable** (L22 đọc toàn bộ ~140 dòng, không lấy mẫu; grep riêng các cụm hedge)
+- **Nợ session limit đã đóng bằng số đếm thật**: `BRD-004` 7/7 · `BRD-005` 8/8 · `BRD-006` 6/6 · `BRD-008` 6/6 hàng `MVP-Scope §3` — **0 hàng rơi**; PRD §3.3 có `TBD-1…TBD-5` và **0 persona bịa**
+- **0 khuyến nghị bị rơi**: `architect §4` 18/18 · `business-analyst §6.1` 7/7 mâu thuẫn · `§6.2` 14/14 khoảng trống · `outline §5` 5/5
+- **CF sweep**: Anifusion (`CẤM-07`) giữ **cả hai** số ở cả 2 vị trí · `$12,06` `C7` đủ caveat *"SÀN không phải trần"* ở **9/9** vị trí · `23% GRR` đủ 3 caveat ở cả 2 vị trí · **0** chỗ `[EM]` bị dùng như số đo
+- **0 file orphan** / **0 wiki-link thật** / **0 link thật tới `030-Specs`** / **8/8 anchor Epic→PRD** khớp
+- **`Glossary.md`**: đúng **30 dòng thêm / 1 dòng xoá**, 54 term cũ nguyên vẹn từng ký tự, mục *Xác thực & bảo mật* còn nguyên
+- **41/41 id** liên tục và **khớp thứ tự hàng Epic cha ở cả 8/8 Epic**

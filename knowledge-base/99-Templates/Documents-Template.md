@@ -9,7 +9,10 @@ updated: 2026-08-24
 #     022-User-Stories › Prioritized Backlog › docs/022-User-Stories/ › Backlog-Priority.md
 #     Lý do: loại tài liệu này được yêu cầu tường minh nhưng chưa được đăng ký, và quy tắc #7
 #     ("KHÔNG ĐƯỢC tạo tài liệu mà không kiểm tra bảng Mapping trước") chặn việc tạo nó.
-#     `type: backlog-priority` trong frontmatter của file thật khớp nguyên văn tên loại ở hàng này.
+#     `type: backlog-priority` trong frontmatter file thật trỏ đúng về hàng này, KHÔNG nhập nhằng —
+#     nhưng nó KHÔNG phải slug nghĩa đen của tên loại ("Prioritized Backlog" → "prioritized-backlog").
+#     Nó khớp theo quy ước LỎNG đã có sẵn của bảng này; tiền lệ: hàng "User Story" ứng với `type: story`.
+#     (Câu gốc ở đây viết "khớp nguyên văn" — overclaim, verify L24 bắt được và đã sửa.)
 #     Chỉ THÊM, không sửa/xoá hàng nào đang có. Tiền lệ: hàng `MVP Scope` thêm ở run 2026-08-23.
 #     Nguồn: docs/010-Planning/pm-runs/2026-08-24-khoi-tao-requirements-stories-comic-studio/
 ---

@@ -72,8 +72,8 @@ Epic này **vắt biên horizon 09/2026 → 02/2027** `[CHỐT]` CF-8.1: bốn S
 
 | Story (link) | Mốc | I | S | Trạng thái tài liệu |
 |---|---|:-:|:-:|---|
-| [Story-Fairness-Per-Tenant-Job-Claim](../Backlog/Story-Fairness-Per-Tenant-Job-Claim.md) | MVP3 | ⚠️ | ✅ | chưa có file |
-| [Story-Whole-Page-Render-Granularity](../Backlog/Story-Whole-Page-Render-Granularity.md) | MVP3 (🟡) → hoàn tất MVP4 | ✅ | ⚠️ | chưa có file |
+| `Story-Fairness-Per-Tenant-Job-Claim` | MVP3 | ⚠️ | ✅ | chưa có file |
+| `Story-Whole-Page-Render-Granularity` | MVP3 (🟡) → hoàn tất MVP4 | ✅ | ⚠️ | chưa có file |
 
 **2/2 Story ngoài horizon có mặt.** Tổng Epic-A = **7 Story** (5 trong / 2 ngoài).
 

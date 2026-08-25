@@ -82,8 +82,8 @@ Epic-D **vắt biên horizon** `[CHỐT]` CF-8.1: một thành phần ở **MVP1
 
 | Story (link) | Mốc | I | S | Trạng thái tài liệu |
 |---|---|:-:|:-:|---|
-| [Story-Panel-Card-With-Variant-Picker](../Backlog/Story-Panel-Card-With-Variant-Picker.md) — TP `#1`, **5–7%** `[EM]` | MVP3 | ✅ | ⚠️ | chưa có file |
-| [Story-Character-Expression-Sheet](../Backlog/Story-Character-Expression-Sheet.md) — hàng `D7` | MVP3 (🟡) → hoàn tất Full Scope | ✅ | ✅ | chưa có file |
+| `Story-Panel-Card-With-Variant-Picker` — TP `#1`, **5–7%** `[EM]` | MVP3 | ✅ | ⚠️ | chưa có file |
+| `Story-Character-Expression-Sheet` — hàng `D7` | MVP3 (🟡) → hoàn tất Full Scope | ✅ | ✅ | chưa có file |
 
 **2/2 Story ngoài horizon có mặt.** Tổng Epic-D = **7 Story** (5 trong / 2 ngoài).
 

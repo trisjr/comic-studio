@@ -195,7 +195,7 @@ created: 2026-08-24
 | [findings/business-analyst.md](../../010-Planning/pm-runs/2026-08-24-khoi-tao-requirements-stories-comic-studio/findings/business-analyst.md) | **§3.1** nguyên tắc 4 (*"nghĩa vụ pháp lý có actor NGOÀI hệ thống thì phải có UC riêng"*) · **§3.2** hàng `UC-11` · §5.2 CF-7.6, CF-7.8/7.9, CF-8.11a, CF-10.2 · §5.3 `CẤM-10`, `CẤM-13`, `CẤM-14`, `CẤM-18` · §6.2 `KT-5`, `KT-6` |
 | [Documents-Template.md](../../../knowledge-base/99-Templates/Documents-Template.md) | `RULE-001` — thư mục `docs/020-Requirements/Use-Cases/`, naming `UC-{NN}-{Title}.md`, frontmatter, **standard markdown link** (quy tắc #5) |
 
-> ⛔ **`CẤM-18`**: không sửa [`Analysis-Comic-Studio-Concept.md`](../../050-Research/Analysis-Comic-Studio-Concept.md) — nó là **dấu vết quyết định tại thời điểm viết**. Tài liệu này **link sang**, không sửa. Nội dung Điều 198b / NĐ 17 / NĐ 134 được dẫn **QUA repo**, ⛔ **không tra lại nguồn ngoài** (`CẤM-15`).
+> ⛔ **`CẤM-18`**: không sửa [`Analysis-Comic-Studio-Concept.md`](../../050-Research/Analysis-Comic-Studio-Concept.md) — nó là **dấu vết quyết định tại thời điểm viết**. Tài liệu này **link sang**, không sửa. Nội dung của **ba văn bản riêng biệt** — **Điều 198b** (thuộc `Luật số 07/2022/QH15`), **`NĐ 17/2023/NĐ-CP`**, và **`NĐ 134/2026/NĐ-CP`** (Điều 5a/37a/37b) — được dẫn **QUA repo**, ⛔ **không tra lại nguồn ngoài** (`CẤM-15`). ⚠️ **Điều 198b KHÔNG thuộc NĐ 134** — bản trước viết ba tham chiếu này dạng gạch chéo `198b / NĐ 17 / NĐ 134`, dễ đọc nhầm thành một; verify L23 nêu và đã tách rõ.
 >
 > ⛔ **Không link tới `docs/030-Specs/`** — tầng technical spec chưa tồn tại và nằm ngoài scope của run này.
 

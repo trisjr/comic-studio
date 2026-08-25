@@ -92,7 +92,7 @@ Implements: [PRD-Comic-Studio §4 — H. Chất lượng & vận hành](../../02
 
 | Story (link) | Mốc | I | S | Vì sao ngoài horizon + ràng buộc phải giữ nguyên | Trạng thái tài liệu |
 |---|---|:-:|:-:|---|---|
-| [Story-Continuity-Checker-As-N-Candidate-Selection](../Backlog/Story-Continuity-Checker-As-N-Candidate-Selection.md) | MVP4 | ⚠️ | ⚠️ | `H3` đạt `✅` ở **MVP4**; MVP3 và MVP4 **rơi ra ngoài** horizon ([Roadmap §5.1](../../010-Planning/Roadmap.md#51-cái-gì-rơi-ra-khỏi-092026022027)). ⭐ **Chỉ có MỘT nghĩa: QA-based selection giữa N candidate** — *"trong N cái này, cái nào consistent hơn"*. ⛔ **KHÔNG** phải gắn nhãn ✓/✗ từng attribute rồi autofix (`CẤM-12`). ⚠️ Độ phủ **40–60% số panel** `[EM]` CF-6.11 — **phải nói rõ với user** (**M4-2**). Hệ quả trong horizon: checker chưa có ⇒ **chưa được hứa gì với user về nó** | **chưa có file** |
+| `Story-Continuity-Checker-As-N-Candidate-Selection` | MVP4 | ⚠️ | ⚠️ | `H3` đạt `✅` ở **MVP4**; MVP3 và MVP4 **rơi ra ngoài** horizon ([Roadmap §5.1](../../010-Planning/Roadmap.md#51-cái-gì-rơi-ra-khỏi-092026022027)). ⭐ **Chỉ có MỘT nghĩa: QA-based selection giữa N candidate** — *"trong N cái này, cái nào consistent hơn"*. ⛔ **KHÔNG** phải gắn nhãn ✓/✗ từng attribute rồi autofix (`CẤM-12`). ⚠️ Độ phủ **40–60% số panel** `[EM]` CF-6.11 — **phải nói rõ với user** (**M4-2**). Hệ quả trong horizon: checker chưa có ⇒ **chưa được hứa gì với user về nó** | **chưa có file** |
 
 > ⚠️ **Không tách UC riêng cho checker.** Nó là **N-candidate selection bên trong** [UC-06](../../020-Requirements/Use-Cases/UC-06-Generate-Panel-And-Pick-Variant.md), không phải một luồng người dùng riêng — [findings §3.3](../../010-Planning/pm-runs/2026-08-24-khoi-tao-requirements-stories-comic-studio/findings/business-analyst.md).
 

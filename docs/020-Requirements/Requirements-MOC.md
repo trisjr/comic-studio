@@ -77,6 +77,23 @@ Không có file riêng — NFR nằm trong [SRS](./SRS-Comic-Studio.md) mục *O
 4. **Không link tới `030-Specs/`** — tầng đó rỗng. Cần trỏ sang design thì viết văn bản thuần *"sẽ được đặc tả tại tầng 030-Specs"*.
 5. Liên kết dùng **standard markdown relative link** — **KHÔNG** wiki-link `[[...]]` (RULE-001 quy tắc #5).
 
+## 📝 Quy Trình Làm Việc (BA Workflow)
+
+> ♻️ **Mục này được GIỮ LẠI từ bản MOC trước run `2026-08-24`.** Khi PM ghi lại toàn bộ file này ở close-step, mục đã bị **xoá im lặng** — verify L24 phát hiện và `grep` chứng minh nội dung không còn ở bất kỳ đâu trong repo. Đã khôi phục. Đây là vi phạm guardrail *"không xoá im lặng"* của chính PM, ghi lại vì **lý do tài liệu cũ sai cũng là dữ liệu** — và ở đây tài liệu cũ **không** sai.
+
+Mọi tài liệu trong thư mục này tuân thủ quy trình kiểm soát chất lượng của BA:
+
+1. **Elicitation** — thu thập yêu cầu thô, lưu vào `Meeting-Notes/` hoặc draft.
+2. **Analysis** — phân tích và cấu trúc hoá → tạo PRD/BRD.
+3. **Validation** — review với stakeholder → chuyển `status: approved`.
+4. **Specification** — chuyển thành User Story tại [`022-User-Stories`](../022-User-Stories/Stories-MOC.md).
+
+> **Luôn đảm bảo tính Nhất quán (Consistency) và Khả thi (Feasibility) với đội ngũ Technical.**
+
+⚠️ **Quy trình này áp vào thực tế `comic-studio` với hai điều chỉnh, không phải nguyên khuôn:**
+- **Bước 3 chưa từng chạy.** Đội là **1 người + AI assist** — không có stakeholder committee. `Validation` ở đây nghĩa là Founder ra quyết định tại một trong ba **gate Go/No-Go** của [MVP-Scope §7](../010-Planning/MVP-Scope.md). Đó cũng là lý do **cả 21 tài liệu của tầng này đang `status: draft`**, không phải sơ suất.
+- **Bước 1 đã hoàn tất trước tầng này.** Yêu cầu thô không nằm trong `Meeting-Notes/` (thư mục rỗng) mà ở [Request.md](../999-Resources/Request.md) → [Analysis-Comic-Studio-Concept](../050-Research/Analysis-Comic-Studio-Concept.md) → tầng [010-Planning](../010-Planning/Planning-MOC.md). Tầng 020 bắt đầu từ **bước 2**.
+
 ## 📚 Tài liệu liên quan
 
 - [User Stories MOC](../022-User-Stories/Stories-MOC.md) — 8 Epic + 41 Story + Backlog đã xếp ưu tiên, dẫn xuất từ tầng này

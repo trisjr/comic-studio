@@ -618,7 +618,11 @@ Nguồn: **[MVP-Scope §7](../010-Planning/MVP-Scope.md#7-gono-go-decision)**. P
 |---|---|---|
 | **N=3** best-of-N — *"performance saturates at N=3"* | [arXiv 2604.13452](https://arxiv.org/html/2604.13452v1) | `[OFF]` |
 | CogCanvas **ID-Sim** theo số nhân vật — *"near-complete failure beyond three subjects"* | [arXiv 2606.15867](https://arxiv.org/html/2606.15867) | `[OFF]` |
-| **Nghị định 134/2026/NĐ-CP** — Điều 5a / 37a / 37b / 198b | [Cục Bản quyền tác giả](https://cov.gov.vn/tin-tuc/gioi-thieu-nghi-dinh-so-1342026ndcp-quy-dinh-ve-quyen-tac-gia-quyen-lien-quan-168925.html) · [Baker McKenzie](https://www.bakermckenzie.com/en/insight/publications/2026/05/vietnam-redefining-copyright-for-ai) | `[OFF]` — ⚠️ **Điều 37a hiện chỉ biết qua bản TÓM TẮT, không phải nguyên văn** |
+| **Nghị định 134/2026/NĐ-CP** — Điều 5a · Điều 37a · Điều 37b (hiệu lực 09/04/2026) | [Cục Bản quyền tác giả](https://cov.gov.vn/tin-tuc/gioi-thieu-nghi-dinh-so-1342026ndcp-quy-dinh-ve-quyen-tac-gia-quyen-lien-quan-168925.html) · [Baker McKenzie](https://www.bakermckenzie.com/en/insight/publications/2026/05/vietnam-redefining-copyright-for-ai) | `[OFF]` — ⚠️ **Điều 37a hiện chỉ biết qua bản TÓM TẮT, không phải nguyên văn** |
+| **Luật SHTT sửa đổi 2022 — Luật số 07/2022/QH15** — Điều 198b (miễn trừ trung gian, chuyển hoá từ Điều 12.55 EVFTA) | xem bảng canon tại [BRD-007 §3](./BRD/BRD-007-Legal-And-Compliance.md#3-yêu-cầu-nghiệp-vụ) | `[OFF]` |
+| **Luật Trí tuệ nhân tạo 2025 — Luật số 134/2025/QH15** — Điều 11 · khoản 4 Điều 11 · Điều 8 (hiệu lực 01/03/2026) | xem bảng canon tại [BRD-007 §3](./BRD/BRD-007-Legal-And-Compliance.md#3-yêu-cầu-nghiệp-vụ) | `[OFF]` |
+
+> ⛔ **BA văn bản pháp lý riêng biệt, KHÔNG được gộp — hai trong số đó cùng số 134.** `NĐ 134/2026/NĐ-CP` (Điều 5a/37a/37b) ≠ `Luật số 134/2025/QH15` (Điều 11, khoản 4 Điều 11, Điều 8) ≠ `Luật số 07/2022/QH15` (Điều 198b). **Điều 198b KHÔNG thuộc NĐ 134/2026** — bảng này từng gộp nó vào hàng NĐ 134/2026 và đã được sửa sau verify L23. Nguồn canon duy nhất cho ánh xạ điều luật ↔ văn bản là [BRD-007](./BRD/BRD-007-Legal-And-Compliance.md); mọi tài liệu khác **dẫn lại**, không tự gán.
 | Kỳ vọng gross margin **50–60%** | ICONIQ 52% · Bessemer 50–60% | `[BCN]` |
 
 ---

@@ -111,6 +111,8 @@ Không nhân, không cộng, **không có điểm tổng**. So khoá 1 trước;
 ### 2.3 Đánh dấu `⭐` MVP Story — quy tắc suy ra được từ cột
 
 > **`⭐` ⟺ `Mốc ∈ {Pre-cycle/MVP0, MVP1, MVP2}` VÀ `Scope-Label ∈ {✅, 🟡}` VÀ `G ∈ {G2, G1}`.**
+>
+> ⚠️ **Đúng MỘT ngoại lệ, xem footnote tại [§3.1](#31-pre-cyclemvp0)**: hàng `Story-Fix-Narrative-Time-Key` có `Scope-Label = —` (ô giao `B4` × MVP0 trong `MVP-Scope §3` thật sự là `—`, không thuộc enum `{✅,🟡,⛔,❌}` — copy nguyên theo quy tắc *"cấm chấm lại"*) nhưng **vẫn** được `⭐` vì `P-4`/`B4` là `I2`/`B2`/`G2`. Ngoại lệ này **cần Founder xác nhận** tại lần chấm lại đầu tiên. Ghi ở đây để công thức tự đủ — verify L22 nêu rằng phải đọc chéo §3.1 mới phát hiện được.
 
 Nghĩa là: *"Story bắt buộc phải xong để một exit criterion của một mốc trong horizon đạt được"*. Horizon = `Pre-cycle/MVP0` + `MVP1` + `MVP2` (Roadmap §1.2: MVP3/MVP4 nằm ngoài horizon — xem `Roadmap.md` cho khung thời gian chính xác, không lặp lại ở đây). Mọi hàng trong [mục 3](#3-backlog-theo-mốc) đã nằm trong horizon nên điều kiện 1 luôn đúng ở đó; `⭐` do đó phụ thuộc thuần vào `Scope-Label` và `G`.
 
