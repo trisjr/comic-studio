@@ -80,6 +80,46 @@ Guardrail `pm-core.md` — *"Không tick `outline.md` thay worker khi chưa đ�
 
 ---
 
+## E-4 — File Epic KHÔNG có id tường minh cho từng Story, writer phải tự suy `STORY-{X}-nn`
+
+| | |
+|---|---|
+| **Tầng** | 2 — PM tự quyết |
+| **Ai nêu** | **Ba** writer độc lập trong cùng một wave: `product-owner` L11, L12, L14. L11 nói thẳng *"đề nghị PM chuẩn hoá cách đánh số này xuyên các lô L11–L18"* |
+| **Nội dung nêu** | `outline.md` §2.6 và prompt dispatch đều yêu cầu frontmatter `id: STORY-{X}-nn` và nói *"`nn` đúng theo Epic cha"*, nhưng **8 file Epic của wave 2 không chứa cột id nào** — mục 3 của Epic chỉ liệt kê tên file Story theo hàng. Không writer nào có nguồn để đọc ra `nn`. |
+
+**Quyết định của PM: `nn` = thứ tự hàng Story trong mục 3 của Epic cha, đánh số từ `01`. Không sửa file Epic để thêm cột id.**
+
+**Căn cứ**: ba writer, làm việc song song và không thấy nhau, **suy ra cùng một quy ước** và đều **khai rằng đó là suy luận** thay vì trình bày như thể đọc được từ nguồn. Sự hội tụ đó là bằng chứng quy ước này là cách đọc tự nhiên duy nhất của cấu trúc mục 3. Thêm cột id vào 8 file Epic đã commit sẽ mở lại deliverable của wave 2 để lấy một thứ có thể suy ra không nhập nhằng — đổi một sửa chữa thật lấy một tiện lợi.
+
+**Lỗi này thuộc PM, không thuộc writer.** `outline.md` §2.6 viết *"`nn` đúng theo Epic cha"* như thể Epic có sẵn con số đó. PM chưa bao giờ kiểm rằng nó có. Cụm chữ ấy mô tả một thứ không tồn tại trong suốt 4 lô đầu của wave 3.
+
+**Hành động đã áp**: từ L15 trở đi, prompt cấp quy ước **thành văn** ở khối *"BA QUYẾT ĐỊNH PM ĐÃ CHỐT — áp dụng, không cần suy lại"*, nên L15–L18 không phải suy lần nữa. PM đã kiểm cơ học 21 file của L11–L14: `A-01…05` · `B-01…04` · `C-01…07` · `D-01…05` — **liên tục, không trùng, không nhảy số**.
+
+> ⚠️ **Chuyển cho verify + L19**: `Backlog-Priority.md` sẽ tham chiếu chính 41 id này. Verify phải kiểm **cả 41** id liên tục trong từng Epic và **khớp thứ tự hàng của Epic cha** — không chỉ kiểm chúng tồn tại. Một id lệch thứ tự sẽ làm `Backlog-Priority` trỏ sai Story mà không có link nào chết để lộ ra.
+
+---
+
+## E-5 — Khối `[!WARNING]` trong file Epic lệch với bảng `findings` §4.10
+
+| | |
+|---|---|
+| **Tầng** | 2 — PM tự quyết |
+| **Ai nêu** | `product-owner` L13 (Epic-C), trong `SUMMARY`, **không** trả `BLOCKED` — nó chọn một hướng, ghi rõ vì sao chọn, rồi tiếp tục |
+| **Nội dung nêu** | Hai lệch cụ thể: (a) khối `[!WARNING]` của `Epic-Comic-Director-And-Layout` gán `Story-Comic-IR-Panel-Specification` vào §4.10, nhưng **bảng §4.10 gốc không có hàng đó**; (b) hàng gate trong §4.10 chỉ ghi vỡ ở `I`, còn §4.3 **và** bảng mục 3 của Epic cha đánh dấu **cả `I` và `S`** là ⚠️. |
+
+**Quyết định của PM: bảng `findings` §4.x + bảng mục 3 của Epic cha THẮNG khối `[!NOTE]`/`[!WARNING]` trong Epic, khi lệch nhãn `I`/`S`.**
+
+**Căn cứ**: hai nguồn thắng là hai nguồn **đã được verify character-exact** — L10 tự `grep` đối chiếu 26/26 tên file Story với §4.5–§4.8, và L9/L10 dựng bảng mục 3 từ chính §4.x. Khối `[!WARNING]` là **văn xuôi diễn giải** mà writer wave 2 thêm vào để cảnh báo người đọc; nó hữu ích nhưng nó là tầng thứ hai, không phải nguồn. Khi một bảng đã verify lệch với một đoạn văn diễn giải, bảng thắng.
+
+**Trường hợp (a) là dấu hiệu tốt, không phải lỗi**: writer wave 2 nhận ra `Comic-IR` **thực sự** vỡ `Independent`/`Small` và cảnh báo, dù lens chưa đưa nó vào §4.10. Nhận định đó có lý — `Comic-IR` là `[MVP0]`, `E_build ~20h` vượt trần. Nhưng **INVEST không áp cho Story `[MVP0]`** ngay từ đầu, nên việc nó có nằm trong §4.10 hay không **không đổi nội dung file**: mục 6 vẫn ghi `INVEST không áp` + DoD 5 tiêu chí gate G1. Lệch này vô hại về đầu ra, chỉ đáng ghi vì nó cho thấy §4.10 chưa phủ hết.
+
+**Hành động đã áp**: L15–L18 nhận quy tắc ưu tiên nguồn này thành văn, **kèm** hướng xử lý cho trường hợp còn lại — Story có `⚠️` ở §4.x nhưng **không** có hàng chi tiết §4.10 thì writer tự suy lý do và **gắn nhãn** `[PO suy luận]` / `[Kiến trúc suy luận]` / `[Security suy luận]` / `[QA suy luận]` ngay tại chỗ. Nhãn đó tồn tại để verify **grep được** ra mọi chỗ suy luận thay vì phải đọc tay 41 file.
+
+> ⚠️ **Chuyển cho verify**: `grep` mọi nhãn `[* suy luận]` trong 41 Story. Mỗi chỗ phải (a) là Story thật sự có `⚠️` ở §4.x, và (b) có lý do đọc được, không phải câu rỗng. Đây là **nợ có chủ đích** — nó hợp lệ vì được đánh dấu, không phải vì nó đúng.
+
+---
+
 ## Không phải escalation — ghi lại để không ai đi tìm
 
 - **`Story-Change-Log-On-Every-Editor-Action` giữ ở CẢ HAI chỗ** (một Story riêng trong Epic-D mục 3 **và** một mục DoD cấp Epic). Lens đề xuất chuyển hẳn thành DoD; PM bác vì nó là `KC-2` trong danh sách *"không được cắt"*, và một ràng buộc chỉ tồn tại trong DoD thì **không có ai tick nó**. Quyết định đã ghi ở `outline.md` §2.5, writer đã thực hiện đúng.

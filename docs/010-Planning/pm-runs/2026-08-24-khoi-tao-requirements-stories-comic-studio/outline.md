@@ -71,14 +71,22 @@
 
 | Lô | Epic | Số Story | Writer | Xong |
 |----|------|---------:|--------|------|
-| L11 | Epic-Image-Generation-Pipeline | 5 | `product-owner` #2 | [ ] |
-| L12 | Epic-Story-Intelligence | 4 | `product-owner` #3 | [ ] |
-| L13 | Epic-Comic-Director-And-Layout | 7 | `product-owner` #4 | [ ] |
-| L14 | Epic-Minimum-Editor | 5 | `product-owner` #5 | [ ] |
-| L15 | Epic-Multi-Tenancy-And-Platform | 5 | `architect` #2 | [ ] |
-| L16 | Epic-Credit-And-Unit-Economics | 3 | `product-owner` #6 | [ ] |
-| L17 | Epic-Legal-And-Compliance | 6 | `security-auditor` #2 | [ ] |
-| L18 | Epic-Quality-And-Operations | 6 | `quality-assurance` #2 | [ ] |
+| L11 | Epic-Image-Generation-Pipeline | 5 | `product-owner` #2 | [x] `DONE` · `STORY-A-01…05` |
+| L12 | Epic-Story-Intelligence | 4 | `product-owner` #3 | [x] `DONE` · `STORY-B-01…04` |
+| L13 | Epic-Comic-Director-And-Layout | 7 | `product-owner` #4 | [x] `DONE` · `STORY-C-01…07` |
+| L14 | Epic-Minimum-Editor | 5 | `product-owner` #5 | [x] `DONE` · `STORY-D-01…05` |
+| L15 | Epic-Multi-Tenancy-And-Platform | 5 | `architect` #2 | [x] `DONE` · `STORY-E-01…05` |
+| L16 | Epic-Credit-And-Unit-Economics | 3 | `product-owner` #6 | [x] `DONE` · `STORY-F-01…03` |
+| L17 | Epic-Legal-And-Compliance | 6 | `security-auditor` #2 | [x] `DONE` · `STORY-G-01…06` |
+| L18 | Epic-Quality-And-Operations | 6 | `quality-assurance` #2 | [x] `DONE` · `STORY-H-01…06` |
+
+> **Cả 8 lô `DONE`, đủ 41/41 file.** PM đã check cơ học toàn bộ: 41/41 đúng **6 H2** và **4 khối AC**; id liên tục và không trùng ở cả 8 dãy; **0** wiki-link · **0** link `030-Specs` · **0** Gherkin.
+>
+> **Một vi phạm thật, PM tự bắt và tự sửa trước verify**: `Story-Golden-Dataset-For-Regression.md` dòng 35 dùng chữ *"kỷ luật spike"* trong một dòng AC-1 — vi phạm `CẤM-11` — trong khi dòng 74 của **chính file đó** trích nguyên lệnh cấm ấy. Đã đổi thành *"kỷ luật code dùng một lần của MVP0"*. Bốn match còn lại của cùng grep là **false positive**: chúng là văn bản trích chính lệnh cấm. Bài học: `grep` từ bị cấm phải đọc **dòng**, không đọc **số đếm** — đúng như wave 2.
+>
+> **Nợ có chủ đích, greppable**: **22 nhãn `[* suy luận]` trên 11 file** (`[PO suy luận]` / `[Kiến trúc suy luận]` / `[Security suy luận]` / `[QA suy luận]`). Mỗi nhãn = một chỗ writer suy lý do `I`/`S` vỡ mà §4.10 không phủ, hoặc neo anchor mà nguồn không đặt tên. Xem `escalations.md` E-5.
+>
+> **PM đã tự xác minh khẳng định nặng nhất của L17**: hai văn bản cùng số 134 **không bị trộn ở đâu** — `Luật số 134/2025/QH15` chỉ ở `Story-AI-Disclosure-Article-11`, `NĐ 134/2026/NĐ-CP` chỉ ở hai Story provenance/opt-out, callout phân biệt nằm đúng chỗ giao nhau.
 
 > **Danh sách tên file chính xác của 41 Story nằm ở `findings/business-analyst.md` §4.1–§4.8**, cột đầu mỗi bảng. Writer **đọc bảng của đúng Epic mình được giao** và tạo đúng những tên file đó — **cấm tự đặt tên mới, cấm bỏ sót, cấm thêm Story không có trong bảng**.
 
