@@ -315,3 +315,19 @@ Bốn lô `context-auditor` chạy **sau khi close-step của PM đã xong hẳn
 - **0 file orphan** / **0 wiki-link thật** / **0 link thật tới `030-Specs`** / **8/8 anchor Epic→PRD** khớp
 - **`Glossary.md`**: đúng **30 dòng thêm / 1 dòng xoá**, 54 term cũ nguyên vẹn từng ký tự, mục *Xác thực & bảo mật* còn nguyên
 - **41/41 id** liên tục và **khớp thứ tự hàng Epic cha ở cả 8/8 Epic**
+
+### Re-check L25 — bắt buộc, vì PM đã sửa file SAU khi verify chạy
+
+Một `context-auditor` **thứ năm** (không thuộc L21–L24, không phải writer) đọc `git show 2933969` và kiểm **7 mục**, với nhiệm vụ tường minh là **tìm lỗi MỚI do việc sửa sinh ra** — không phải xác nhận lại lỗi cũ đã hết. *"Một fix sai còn tệ hơn defect gốc, vì nó đã được đánh dấu là đã sửa."*
+
+**Kết quả: `DONE`, 0 defect.** Ba chỗ PM tự đánh giá là rủi ro nhất, cả ba sạch:
+
+| Rủi ro PM tự nêu | Kết quả L25 |
+|---|---|
+| PM **sửa lỗi số hiệu bằng cách viết thêm số hiệu** — hai hàng mới mang hiệu lực `09/04/2026` và `01/03/2026` | **Khớp canon `BRD-007` tuyệt đối** (BRD-007:352 và :103,354). Không sinh lỗi mới |
+| PM đổi 10 link → inline code, **có bỏ nhầm link của Story CÓ file?** | **41 link còn lại khớp 1:1 với 41 file thật** (diff rỗng). Đúng 10 chỗ đổi (3+2+2+2+1). Nội dung cột giữ nguyên |
+| PM **thêm hai khẳng định thực tế** vào mục BA Workflow khôi phục — đó là suy luận của PM, không phải nội dung gốc | **Cả hai đúng**: `Charter` xác nhận *"1 người + AI assist"*; `Meeting-Notes/` rỗng thật (chỉ `.gitkeep`). L25 còn tự đối chiếu con số *"21 tài liệu draft"* = 22 file tầng 020 − 1 MOC `live` |
+
+Thêm: **guardrail cấm ngày tháng của `Backlog-Priority.md` vẫn 0 match** dù PM thêm chữ vào file · ô giao `B4` × MVP0 trong `MVP-Scope:125` **thật sự là `—`** đúng như callout nói · tiền lệ `User Story` → `type: story` **có thật** · bảng Document Type Mapping **không** bị đổi trong commit fix · và L25 kiểm cả **số học `cost.md`** (183 call · 713.800 token · 3 MAJOR · 1.963.108 token wave 3 · 374 call — khớp hết).
+
+**L25 cũng được yêu cầu đánh giá lại ba finding PM chọn KHÔNG sửa** (`escalations.md` E-6), với câu hỏi thẳng *"ba lý do đó có đứng vững không, hay là biện hộ cho việc bỏ qua?"*. Nó đọc trực tiếp hai file Story và kết luận lý do #1 *"nhất quán, không phải biện hộ suông"*; #2 và #3 *"hợp lý về phạm vi, không mở rộng scope run"*.
