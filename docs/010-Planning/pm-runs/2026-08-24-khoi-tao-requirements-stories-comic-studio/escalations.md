@@ -96,7 +96,15 @@ Guardrail `pm-core.md` — *"Không tick `outline.md` thay worker khi chưa đ�
 
 **Hành động đã áp**: từ L15 trở đi, prompt cấp quy ước **thành văn** ở khối *"BA QUYẾT ĐỊNH PM ĐÃ CHỐT — áp dụng, không cần suy lại"*, nên L15–L18 không phải suy lần nữa. PM đã kiểm cơ học 21 file của L11–L14: `A-01…05` · `B-01…04` · `C-01…07` · `D-01…05` — **liên tục, không trùng, không nhảy số**.
 
-> ⚠️ **Chuyển cho verify + L19**: `Backlog-Priority.md` sẽ tham chiếu chính 41 id này. Verify phải kiểm **cả 41** id liên tục trong từng Epic và **khớp thứ tự hàng của Epic cha** — không chỉ kiểm chúng tồn tại. Một id lệch thứ tự sẽ làm `Backlog-Priority` trỏ sai Story mà không có link nào chết để lộ ra.
+> ⚠️ ~~**Chuyển cho verify + L19**: `Backlog-Priority.md` sẽ tham chiếu chính 41 id này. Verify phải kiểm **cả 41** id liên tục trong từng Epic và **khớp thứ tự hàng của Epic cha** — không chỉ kiểm chúng tồn tại. Một id lệch thứ tự sẽ làm `Backlog-Priority` trỏ sai Story mà không có link nào chết để lộ ra.~~
+>
+> ❌ **NGHĨA VỤ NÀY DỰA TRÊN TIỀN ĐỀ SAI — đã sửa sau khi L19 về.** PM giả định `Backlog-Priority.md` định danh Story bằng id. **Nó không.** Schema 15 cột ở `findings/product-owner.md` §3.2/§3.3 định danh Story bằng **link tới file**; `grep 'STORY-[A-H]-[0-9][0-9]'` trên `Backlog-Priority.md` trả về **0**.
+>
+> ⇒ **Rủi ro PM lo không tồn tại, và thiết kế thật MẠNH HƠN giả định của PM**: mọi tham chiếu sai trong `Backlog-Priority` **là** một link chết, phát hiện được bằng máy. PM đã kiểm: `diff` giữa danh sách link (`grep -o` + `sed`) và `ls docs/022-User-Stories/Backlog/` = **rỗng**, tức **41/41 khớp character-exact**; 8/8 link Epic cũng khớp.
+>
+> ⇒ **Nghĩa vụ verify được THU HẸP, không xoá**: vẫn kiểm 41 id trong frontmatter Story là đúng và liên tục — chúng sẽ được dùng về sau (sprint planning, tham chiếu chéo). Nhưng **bỏ** phần *"kiểm khớp thứ tự hàng vì `Backlog-Priority` phụ thuộc"*: không có phụ thuộc đó.
+>
+> **Bài học cho PM, cùng loại với chính lỗi E-4**: PM viết một nghĩa vụ verify dựa trên một giả định về **schema của một file chưa được viết**, thay vì đọc schema đã có sẵn trong `findings/product-owner.md` §3.2. Đây là lần thứ **hai** trong cùng escalation này PM khẳng định một thứ về cấu trúc mà không kiểm — lần đầu là *"`nn` đúng theo Epic cha"*. Cả hai lần chi phí thấp vì writer khai báo suy luận thay vì im lặng. Nhưng cái sửa được là **PM kiểm cấu trúc trước khi viết ràng buộc về cấu trúc**, không phải trông vào writer bắt lỗi hộ.
 
 ---
 

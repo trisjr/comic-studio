@@ -4,7 +4,7 @@ type: index
 status: live
 project: comic-studio
 created: 2026-08-23
-updated: 2026-08-23
+updated: 2026-08-24
 ---
 
 # 📚 Documentation Master Index — comic-studio
@@ -69,11 +69,27 @@ Thư mục con: `Sprints/` · `Estimates/` · `Implementation-Plans/` — *(chư
 
 ### 020 · Requirements — [Requirements-MOC](./020-Requirements/Requirements-MOC.md)
 
-*(chưa có tài liệu)* — thư mục con `BRD/`, `Use-Cases/` đã sẵn sàng.
+**21 tài liệu.** Trục phân rã: **8 module `A–H`** lấy nguyên từ [MVP-Scope §3](./010-Planning/MVP-Scope.md), quan hệ **1 module ↔ 1 BRD ↔ 1 Epic** là 1:1:1.
+
+| Tài liệu | Nội dung |
+|---|---|
+| [PRD-Comic-Studio](./020-Requirements/PRD-Comic-Studio.md) | Yêu cầu sản phẩm theo 8 module, ranh giới scope, success metrics. ⚠️ Mục *Người dùng & vấn đề* mở bằng `TBD` — repo **không có persona/JTBD** |
+| [SRS-Comic-Studio](./020-Requirements/SRS-Comic-Studio.md) | Yêu cầu kỹ thuật + 17 NFR có số + 14 NFR `TBD` + mục **negative requirements** |
+| `BRD/` — **8 file** | Một BRD cho mỗi module: [001 Pipeline sinh ảnh](./020-Requirements/BRD/BRD-001-Image-Generation-Pipeline.md) · [002 Story Intelligence](./020-Requirements/BRD/BRD-002-Story-Intelligence.md) · [003 Comic Director](./020-Requirements/BRD/BRD-003-Comic-Director-And-Layout.md) · [004 Editor](./020-Requirements/BRD/BRD-004-Minimum-Editor.md) · [005 Multi-tenancy](./020-Requirements/BRD/BRD-005-Multi-Tenancy-And-Platform.md) · [006 Credit](./020-Requirements/BRD/BRD-006-Credit-And-Unit-Economics.md) · [007 Pháp lý](./020-Requirements/BRD/BRD-007-Legal-And-Compliance.md) · [008 Chất lượng](./020-Requirements/BRD/BRD-008-Quality-And-Operations.md) |
+| `Use-Cases/` — **11 file** | `UC-01`…`UC-11`: upload chapter → Story Bible → hai human gate → sinh trang → chọn panel → edit bubble → xếp trang → export → credit/BYOK → takedown. **Không UC nào có Exception flow rỗng** |
 
 ### 022 · User Stories — [Stories-MOC](./022-User-Stories/Stories-MOC.md)
 
-*(chưa có tài liệu)* — thư mục con `Epics/`, `Active-Sprint/`, `Backlog/` đã sẵn sàng.
+**50 tài liệu**: 8 Epic (1:1 với module `A–H`) + 41 User Story trong horizon + 1 backlog đã xếp ưu tiên.
+
+| Tài liệu | Nội dung |
+|---|---|
+| [Backlog-Priority](./022-User-Stories/Backlog-Priority.md) | **51 hàng** = 41 Story có file + 10 ngoài horizon. Framework **`UNLOCK-ORDER`** — **không** phải RICE/MoSCoW (cả hai bị bác tại gate: RICE cần `Reach`/`Confidence` mà sản phẩm chưa có người dùng không thể chấm; MoSCoW trùng vai với `MVP-Scope §3`) |
+| `Epics/` — **8 file** | [Pipeline sinh ảnh](./022-User-Stories/Epics/Epic-Image-Generation-Pipeline.md) · [Story Intelligence](./022-User-Stories/Epics/Epic-Story-Intelligence.md) · [Comic Director](./022-User-Stories/Epics/Epic-Comic-Director-And-Layout.md) · [Editor](./022-User-Stories/Epics/Epic-Minimum-Editor.md) · [Multi-tenancy](./022-User-Stories/Epics/Epic-Multi-Tenancy-And-Platform.md) · [Credit](./022-User-Stories/Epics/Epic-Credit-And-Unit-Economics.md) · [Pháp lý](./022-User-Stories/Epics/Epic-Legal-And-Compliance.md) · [Chất lượng](./022-User-Stories/Epics/Epic-Quality-And-Operations.md) |
+| `Backlog/` — **41 file** | `STORY-A-01`…`STORY-H-06`. AC là **checklist 4 khối, không Gherkin**; `Small` neo vào **giờ-người** (`E_build ≤ 16h`, `E_hitl ≤ 2h/chapter`); INVEST **không áp** cho 5 Story `[MVP0]` |
+| `Active-Sprint/` | *(chưa có tài liệu; chưa có sprint nào chạy)* |
+
+> **`Backlog-Priority` KHÔNG phải nguồn sự thật thứ tư về thời gian.** Nó trả lời *"trong một mốc đã cho, Story nào làm trước"*; [Roadmap](./010-Planning/Roadmap.md) sở hữu *"mốc nào đến khi nào"*. Lệch nhau ⇒ **sửa hàng backlog, không sửa Roadmap**. File này có guardrail cơ học: `grep` thấy bất kỳ ngày tháng nào trong đó là **đã drift**.
 
 ### 030 · Specs — [Specs-MOC](./030-Specs/Specs-MOC.md)
 
@@ -118,7 +134,7 @@ Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *
 
 | Mục | Nội dung |
 |---|---|
-| [Glossary](./999-Resources/Glossary.md) | 40 thuật ngữ, 7 nhóm — kiến trúc pipeline, mô hình dữ liệu, sinh ảnh, SaaS & multi-tenancy… |
+| [Glossary](./999-Resources/Glossary.md) | **69 thuật ngữ, 10 nhóm** — kiến trúc pipeline, mô hình dữ liệu, sinh ảnh, SaaS & multi-tenancy, requirements & tài liệu hoá, backlog & story engineering… |
 | [Request.md](./999-Resources/Request.md) | Concept gốc 894 dòng |
 | `Meeting-Notes/` | *(chưa có tài liệu)* |
 
@@ -136,6 +152,7 @@ Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *
 |---|---|
 | `2026-08-23-danh-gia-y-tuong-comic-studio` | Thẩm định ý tưởng → sinh ra [Analysis-Comic-Studio-Concept](./050-Research/Analysis-Comic-Studio-Concept.md) |
 | `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio` | Khởi tạo 7 artifact planning → sinh ra toàn bộ tầng 010-Planning + cấu trúc Dewey + file này |
+| `2026-08-24-khoi-tao-requirements-stories-comic-studio` | Khởi tạo tầng 020-Requirements (21 tài liệu) + tầng 022-User-Stories (50 tài liệu) + 15 thuật ngữ Glossary. **72 deliverable, 20 lô writer** |
 
 ---
 

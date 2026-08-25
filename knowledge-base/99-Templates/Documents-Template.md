@@ -3,7 +3,15 @@ id: RULE-001
 type: rule
 status: approved
 created: 2026-02-05
-updated: 2026-08-23
+updated: 2026-08-24
+# change-log:
+#   2026-08-24 — thêm MỘT hàng additive vào Document Type Mapping:
+#     022-User-Stories › Prioritized Backlog › docs/022-User-Stories/ › Backlog-Priority.md
+#     Lý do: loại tài liệu này được yêu cầu tường minh nhưng chưa được đăng ký, và quy tắc #7
+#     ("KHÔNG ĐƯỢC tạo tài liệu mà không kiểm tra bảng Mapping trước") chặn việc tạo nó.
+#     `type: backlog-priority` trong frontmatter của file thật khớp nguyên văn tên loại ở hàng này.
+#     Chỉ THÊM, không sửa/xoá hàng nào đang có. Tiền lệ: hàng `MVP Scope` thêm ở run 2026-08-23.
+#     Nguồn: docs/010-Planning/pm-runs/2026-08-24-khoi-tao-requirements-stories-comic-studio/
 ---
 
 <!--
@@ -94,6 +102,7 @@ Nhật ký thay đổi (chỉ ghi thay đổi ĐỔI CONTRACT, không ghi sửa 
 | **022-User-Stories** | Epic | `docs/022-User-Stories/Epics/` | `Epic-{Title}.md` |
 | | User Story | `docs/022-User-Stories/Backlog/` | `Story-{Title}.md` |
 | | Active Story | `docs/022-User-Stories/Active-Sprint/` | `Story-{Title}.md` |
+| | Prioritized Backlog | `docs/022-User-Stories/` | `Backlog-Priority.md` |
 | **030-Specs** | ADR | `docs/030-Specs/Architecture/` | `ADR-{NNN}-{Title}.md` |
 | | RFC | `docs/030-Specs/Architecture/` | `RFC-{NNN}-{Title}.md` |
 | | SDD (System Design) | `docs/030-Specs/Architecture/` | `SDD-{ProjectName}.md` |
