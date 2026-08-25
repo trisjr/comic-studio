@@ -96,8 +96,32 @@
 
 | # | Tài liệu | Loại | Đích | Writer | Lô | Xong |
 |---|----------|------|------|--------|----|------|
-| 30 | `Backlog-Priority.md` | **Prioritized Backlog** ⚠️ chưa có trong Mapping | `docs/022-User-Stories/` | `product-owner` #7 | L19 — **tuần tự sau L11–L18** | [ ] |
-| 31 | `Glossary.md` (**sửa**) | Glossary | `docs/999-Resources/` | `business-analyst` #6 | L20 | [ ] |
+| 30 | `Backlog-Priority.md` | **Prioritized Backlog** ⚠️ chưa có trong Mapping | `docs/022-User-Stories/` | `product-owner` #7 | L19 — **tuần tự sau L11–L18** | [x] `DONE` · 51 hàng · 8 H2 |
+
+> **PM đã check cơ học, đạt toàn bộ**: `grep` ngày tháng = **0 match** (guardrail cứng nhất của file này) · **0** wiki-link · **0** link `030-Specs` · **41/41** link Story phân giải **chính xác** (`diff` danh sách link vs `ls` thực tế = rỗng) · **8/8** link Epic khớp tên file thật · **10** hàng `chưa có file` đúng số Story ngoài horizon · `type: backlog-priority` trong frontmatter — **chuỗi này là chuỗi PM phải dùng nguyên văn ở hàng additive RULE-001**.
+>
+> ⚠️ **Cảnh báo E-4 của PM dựa trên tiền đề SAI — đã sửa.** PM ghi ở E-4 rằng *"`Backlog-Priority.md` sẽ tham chiếu chính 41 id này"* và giao verify nhiệm vụ kiểm id khớp thứ tự, với lý do *"một id lệch thứ tự làm backlog trỏ sai Story mà không có link nào chết để lộ ra"*. **Schema §3.2/§3.3 thực tế định danh Story bằng LINK TỚI FILE, không bằng id** — `grep 'STORY-[A-H]-[0-9][0-9]'` trên file này trả về **0**. Nghĩa là rủi ro PM lo **không tồn tại**: mọi tham chiếu sai ở đây **là** một link chết, phát hiện được bằng máy. Thiết kế này **mạnh hơn** giả định của PM.
+> ⇒ Nghĩa vụ verify về id được **thu hẹp**: vẫn kiểm 41 id trong frontmatter Story đúng và liên tục (để dùng về sau), nhưng **bỏ** phần *"kiểm khớp thứ tự vì Backlog-Priority phụ thuộc"* — nó không phụ thuộc.
+>
+> **Ba khai báo giới hạn của writer, PM chấp nhận cả ba:**
+> 1. **Tie-break `T4` không dùng được** — nó đòi hỏi hỏi Founder, mà worker không có kênh hai chiều. Writer dùng quy ước *"giá trị đã biết xếp trước `TBD`"* cho `T3` và **ghi rõ đó là quy ước đọc, không phải phép toán**. Đúng cách xử một công cụ không dùng được: khai báo, không giả vờ đã dùng.
+> 2. **Một ô `Scope-Label` = `—`** ở hàng `Story-Fix-Narrative-Time-Key`: ô giao (`B4` × MVP0) trong `MVP-Scope §3` thật sự là `—`, không thuộc enum `{✅,🟡,⛔,❌}`. Writer **copy nguyên `—`** theo quy tắc *"cấm chấm lại"* thay vì suy thành `🟡` cho gọn bảng, vẫn gắn `⭐` kèm footnote giải thích, và **đánh dấu cần Founder xác nhận**. Đây là hành vi đúng: giữ một ô "xấu" mà thật, thay vì một ô "đẹp" mà bịa.
+> 3. **Sửa 3 cụm chữ để qua guardrail ngày tháng**, trong đó có đổi *"hàng tuần"* → *"chu kỳ 7 ngày"* ở mục *Lịch chấm lại*. Writer nêu rõ nó **ưu tiên guardrail cơ học hơn chữ gốc của `outline.md`** và mời PM khôi phục nếu muốn. **PM giữ nguyên bản sửa**: guardrail tồn tại để chặn file này thành nguồn sự thật thứ tư về thời gian, và *"chu kỳ 7 ngày"* giữ đúng nghĩa mà không cần nới regex. Nới regex để cứu một cụm chữ là làm yếu guardrail vì lý do thẩm mỹ.
+>
+> **Vượt trần budget**: 66 tool call / trần 60. Nguyên nhân đọc được: writer đối chiếu **65/65** link character-exact bằng `Glob` thật thay vì tin tên file trong findings. Đây là chi tiêu đúng chỗ — chính nó tạo ra kết quả `diff` rỗng ở trên.
+| 31 | `Glossary.md` (**sửa**) | Glossary | `docs/999-Resources/` | `business-analyst` #6 | L20 | [x] `DONE` · +15 term |
+
+> **L20 — hạng mục duy nhất của run chạm một file `status: live`, và là chỗ duy nhất một lỗi ghi có thể phá dữ liệu đang tồn tại.** Vì `business-analyst` **không có Bash**, writer không tự `git diff` được và **nói thẳng điều đó** kèm đề nghị PM xác minh, thay vì khẳng định "54 term nguyên vẹn" bằng cách đọc mắt.
+>
+> **PM đã xác minh bằng bằng chứng, không bằng lời tự báo**: `git diff --stat` = **30 dòng thêm / 1 dòng xoá**, và dòng xoá duy nhất là `updated: 2026-08-23`. ⇒ 54 term cũ và mục *Xác thực & bảo mật* nguyên vẹn **theo định nghĩa của diff**, không cần đọc tay. Thêm: **0** wiki-link mới · **0** link `030-Specs` · Mục lục đồng bộ **11/11** H2 thực tế, hai nhóm mới dùng đúng quy ước slugify của repo.
+>
+> **15 mục thêm**: 4 ở nhóm mới *Requirements & tài liệu hoá* · 10 ở nhóm mới *Backlog & Story engineering* · 1 (`human gate`) chèn cạnh `HITL gate` trong nhóm có sẵn để làm rõ quan hệ (`human gate` = 2 gate cụ thể không bypass được; `HITL gate` = khái niệm chung).
+>
+> **Writer BỎ 3 term trong danh sách gợi ý của PM vì chúng đã tồn tại** (`canonical fact` · hệ nhãn `[OFF]`/`[BCN]`/`[TC]`/`[EM]` · `attribute binding`) thay vì thêm trùng cho đủ danh sách. Với `[CHỐT]` — nhãn bị thiếu trong entry *"nhãn nguồn"* cũ — nó **không sửa entry cũ** mà làm rõ trong một term MỚI (*"Mức độ rắn"*). Đúng tinh thần add-only: một khoảng trống trong dữ liệu cũ được lấp **bên cạnh**, không phải bằng cách mở dữ liệu cũ ra.
+>
+> **Hai term writer tự thêm ngoài gợi ý**: *"Mức độ rắn"* (`CHỐT`/`MẶC ĐỊNH`/`CHƯA QUYẾT`/`LAI` — hệ nhãn độ cứng requirement dùng xuyên SRS, **khác** nhãn nguồn; hai hệ nhãn này rất dễ bị đọc lẫn) và *"Acceptance Criteria (AC)"* tách riêng khỏi *User Story* cho dễ tra.
+>
+> ⚠️ **Writer nêu trước một điều verify sẽ gặp**: `UNLOCK-ORDER` / `Scope-Label` / `Rank` mô tả contract của `Backlog-Priority.md`, nhưng file đó **chưa tồn tại** khi L20 chạy (writer đã `Glob` để kiểm). PM giữ 3 term này vì L19 chạy song song và sẽ tạo file. Chúng xuất hiện dạng inline code, **không phải link**, nên không có link chết nào — nhưng nếu L19 thất bại thì ba term này thành mô tả cho một file không tồn tại.
 
 ## 2. Outline theo LOẠI tài liệu
 
