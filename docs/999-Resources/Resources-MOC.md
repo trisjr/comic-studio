@@ -4,6 +4,7 @@ type: moc
 status: live
 project: TNMCORE-OS
 created: 2026-02-26
+updated: 2026-08-24
 ---
 
 # 📂 999-Resources Map of Content (MOC)
@@ -40,7 +41,8 @@ Chào mừng tới danh mục Tài Nguyên của dự án. Đây là nơi chứa
 > ⚠️ **`Template-Daily-Report.md` KHÔNG tồn tại** dù MOC này từng trỏ tới nó. Ghi nhận thay vì xoá — theo guardrail *"không xoá tài liệu, lý do tài liệu cũ sai cũng là dữ liệu"*. Tạo mẫu đó hoặc gỡ tham chiếu là việc của một run dọn dẹp riêng.
 
 ## 📂 Glossary (Thuật ngữ)
-- [Glossary](./Glossary.md) — 40 thuật ngữ, 7 nhóm: xác thực & bảo mật · kiến trúc pipeline · mô hình dữ liệu & thời gian · sinh ảnh & kiểm tra nhất quán · chữ & trình bày · quy trình & vận hành · SaaS & multi-tenancy.
+- [Glossary](./Glossary.md) — **69 thuật ngữ, 10 nhóm**: xác thực & bảo mật · kiến trúc pipeline · mô hình dữ liệu & thời gian · sinh ảnh & kiểm tra nhất quán · chữ & trình bày · quy trình & vận hành · SaaS & multi-tenancy · planning, thị trường & quản trị · **requirements & tài liệu hoá** · **backlog & story engineering**.
+  > Con số ở dòng trên từng ghi **40 thuật ngữ / 7 nhóm** — lệch **29 term** so với thực tế, tích luỹ qua hai run trước mà không ai sửa MOC. Đã hiệu chỉnh và **đếm bằng `grep`**, không bằng ước lượng. Hai nhóm cuối là bổ sung của run `2026-08-24-khoi-tao-requirements-stories-comic-studio` (+15 term), trong đó `E_build` / `E_hitl` / `UNLOCK-ORDER` / `human gate` là thuật ngữ mà tầng 022 **phụ thuộc để đọc đúng**.
 
 ## 📂 Request (Concept gốc)
 - [Request.md](./Request.md) — concept gốc 894 dòng của `comic-studio`, kiến trúc 18 mục. Là **input** của [Analysis-Comic-Studio-Concept](../050-Research/Analysis-Comic-Studio-Concept.md), không phải kết luận.
