@@ -22,7 +22,7 @@ description: PM tiếp nhận yêu cầu code, triage ra tier, điều phối sp
 3. Chấm **4 câu hỏi triage** của lane code:
 
    | # | Câu hỏi |
-      |---|---------|
+   |---|---------|
    | Q1 | Yêu cầu chạm nhiều hơn một domain (BE / FE / Design / Infra / Data)? |
    | Q2 | Cần quyết định kiến trúc, hoặc thay đổi contract (API, DB schema, spec đã publish)? |
    | Q3 | Yêu cầu mơ hồ — chưa có acceptance criteria rõ ràng, hoặc có nhiều cách hiểu? |
@@ -33,9 +33,9 @@ description: PM tiếp nhận yêu cầu code, triage ra tier, điều phối sp
 4. Ánh xạ điểm sang tier theo bảng trong `pm-core.md`, với đường đi cụ thể của lane code:
 
    | Tier | Đường đi |
-      |------|----------|
+   |------|----------|
    | **T0** | PM tự code. 0 spawn. Bỏ qua Bước 2 và 4; vẫn đi qua Bước 5 theo lane T0. |
-   | **T1** | `/opsx-ff` + 1 implementer. Bỏ qua Bước 2. |
+   | **T1** | `/opsx:ff` + 1 implementer. Bỏ qua Bước 2. |
    | **T2** | Analysis fan-out → implement → verify bởi agent khác. Đủ 6 bước. |
    | **T3** | Full OpenSpec path: đủ 6 bước + delta specs + design + archive. |
 
@@ -48,7 +48,7 @@ description: PM tiếp nhận yêu cầu code, triage ra tier, điều phối sp
 1. Chọn lens phân tích theo tín hiệu trong yêu cầu — chỉ chọn lens thực sự cần, mỗi lens thừa là một lần nạp lại toàn bộ context tốn kém:
 
    | Tín hiệu trong yêu cầu | Agent |
-      |------------------------|-------|
+   |------------------------|-------|
    | Mơ hồ, thiếu acceptance criteria, cần user story | `business-analyst` |
    | Có UI, màn hình, luồng người dùng, cần wireframe | `product-designer` |
    | Đổi contract / schema / tích hợp hệ thống / NFR | `architect` |
@@ -67,10 +67,10 @@ Theo đúng thủ tục GATE trong `pm-core.md`. Riêng lane code, phần *File 
 
 ### Bước 4 — Planning artifacts (T1, T2, T3)
 
-- **T1, T2**: chạy `/opsx-ff` để scaffold change và sinh đủ artifact tới mức apply-ready.
+- **T1, T2**: chạy `/opsx:ff` để scaffold change và sinh đủ artifact tới mức apply-ready.
 - **T3**: như trên, cộng thêm delta specs trong `openspec/changes/<name>/specs/` và `design.md`.
-- **KHÔNG chạy `/opsx-new`.** `ff` đã bao trùm nó (`new` chỉ scaffold rồi dừng). Chạy cả hai là bước thừa.
-- **KHÔNG chạy `/opsx-explore` như một phase.** Theo chính định nghĩa của nó, explore là *một vị thế, không phải workflow, không có output bắt buộc*. Bước 1 và Bước 2 đã thay thế nó bằng phase có output cụ thể.
+- **KHÔNG chạy `/opsx:new`.** `ff` đã bao trùm nó (`new` chỉ scaffold rồi dừng). Chạy cả hai là bước thừa.
+- **KHÔNG chạy `/opsx:explore` như một phase.** Theo chính định nghĩa của nó, explore là *một vị thế, không phải workflow, không có output bắt buộc*. Bước 1 và Bước 2 đã thay thế nó bằng phase có output cụ thể.
 
 ### Bước 5 — Implementation
 
@@ -95,7 +95,7 @@ Theo đúng thủ tục GATE trong `pm-core.md`. Riêng lane code, phần *File 
 
 1. **Verify phải do agent KHÁC agent đã implement.** Mặc định `quality-assurance`.
    - **T0, T1**: PM tự đối chiếu acceptance criteria. Không spawn.
-   - **T2, T3**: dispatch `quality-assurance` chạy theo tiêu chí của `/opsx-verify` (Completeness / Correctness / Coherence).
+   - **T2, T3**: dispatch `quality-assurance` chạy theo tiêu chí của `/opsx:verify` (Completeness / Correctness / Coherence).
 
 2. **Verify cũng phải cắt lô — nó KHÔNG được miễn trần.** Đây là chỗ tốn kém nhất và lâu nay không có gì chặn: trần cũ đếm theo file *được ghi*, mà verify read-only nên trần rỗng nghĩa. Đo run `2026-08-22-google-account-set-password`: một lô verify duy nhất chạy 90 tool call / 164 turn / **26.5M token — 19% chi phí toàn run**, đắt hơn mọi lô implementation.
    - Cắt thành **các pass rời nhau**, mỗi pass một dispatch riêng với ngân sách tool call riêng. Mặc định cắt theo 3 tiêu chí (Completeness / Correctness / Coherence); change chạm nhiều tầng thì cắt theo tầng (BE / FE / specs). Chọn cách nào cho ra các pass **thật sự rời nhau** — cắt mà hai pass cùng đọc lại một bộ file thì đó là nhân đôi chi phí, không phải cắt.
@@ -105,7 +105,7 @@ Theo đúng thủ tục GATE trong `pm-core.md`. Riêng lane code, phần *File 
 
 3. Ghi kết quả vào `docs/010-Planning/pm-runs/<run-id>/verdict.md`.
 4. Có lỗi CRITICAL → quay lại Bước 5 với worker mới, kèm nguyên văn lỗi. Không tự vá rồi tuyên bố xong.
-5. **T3**: sau khi verdict sạch, chạy `/opsx-archive`.
+5. **T3**: sau khi verdict sạch, chạy `/opsx:archive`.
 6. Chạy **close-step đo chi phí** trong `pm-core.md`, ghi `cost.md`.
 7. Báo cáo tổng kết cho anh theo mục *Output* trong `pm-core.md`.
 

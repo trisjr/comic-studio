@@ -42,7 +42,7 @@ Yêu cầu lai (viết mới + dọn cái cũ liên quan) → xử theo **Shape 
 3. Chấm **4 câu hỏi triage** của lane doc:
 
    | # | Câu hỏi |
-      |---|---------|
+   |---|---------|
    | Q1 | Yêu cầu chạm nhiều hơn một tầng tài liệu (Planning / Requirements / Stories / Specs / QA / Design / Research / Manuals / Deployment / Operations / Marketing)? |
    | Q2 | Cần sửa tài liệu đang ở `status: approved`, hoặc đổi taxonomy / naming convention / template dùng chung? |
    | Q3 | Yêu cầu mơ hồ — chưa rõ độc giả đích, phạm vi, hoặc thế nào là "xong"? |
@@ -55,7 +55,7 @@ Yêu cầu lai (viết mới + dọn cái cũ liên quan) → xử theo **Shape 
 4. Ánh xạ điểm sang tier theo bảng trong `pm-core.md`, với đường đi cụ thể của lane doc:
 
    | Tier | Đường đi |
-      |------|----------|
+   |------|----------|
    | **T0** | PM tự viết/sửa. 0 spawn. Bỏ qua Bước 2 và 4; vẫn làm Bước 6 close-step. |
    | **T1** | 1 writer duy nhất. Bỏ qua Bước 2, nhưng vẫn viết `outline.md` ở Bước 4. |
    | **T2** | Analysis (hoặc inventory) fan-out → soạn thảo → verify bởi `context-auditor`. Đủ 6 bước. |
@@ -93,7 +93,7 @@ Theo đúng thủ tục GATE trong `pm-core.md`, cộng thêm hai mục riêng c
 
 ### Bước 4 — Doc plan (T1, T2, T3)
 
-Thay cho `/opsx-ff` bên lane code. Viết `docs/010-Planning/pm-runs/<run-id>/outline.md`:
+Thay cho `/opsx:ff` bên lane code. Viết `docs/010-Planning/pm-runs/<run-id>/outline.md`:
 
 ```markdown
 # Doc Plan: <run-id>
@@ -156,7 +156,7 @@ Thay cho `/opsx-ff` bên lane code. Viết `docs/010-Planning/pm-runs/<run-id>/o
    - Thêm `quality-assurance` **chỉ khi** yêu cầu có acceptance criteria kiểm chứng được (ví dụ test plan, test case).
 2. Ghi kết quả vào `docs/010-Planning/pm-runs/<run-id>/verdict.md`.
 3. Có lỗi CRITICAL → quay lại Bước 5 với worker mới, kèm nguyên văn lỗi. Không tự vá rồi tuyên bố xong.
-4. **Close-step — PM tự làm, bắt buộc mọi tier.** Đây là tương đương `/opsx-archive` của lane doc:
+4. **Close-step — PM tự làm, bắt buộc mọi tier.** Đây là tương đương `/opsx:archive` của lane doc:
    - Cập nhật **MOC của thư mục cha** cho từng tài liệu mới/đổi tên.
    - Cập nhật `docs/000-Index.md` nếu là tài liệu lớn (PRD, SDD, MTP, Roadmap).
    - Tài liệu bị thay thế → chuyển `docs/090-Archive/` và đặt `status: deprecated`, **không xóa**. Thư mục này chưa tồn tại trong repo — lần đầu cần dùng thì tạo mới theo đúng RULE-001, đừng dựng thư mục khác thay thế.
