@@ -81,7 +81,7 @@ tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
 
 ### Role Assets
 
-Reference material and tooling at `.agent/skills/senior-architect/` (asset-only directory, not a registered skill):
+Reference material and tooling at `.claude/skills/senior-architect/` (asset-only directory, not a registered skill):
 
 | Path | Purpose |
 |------|---------|

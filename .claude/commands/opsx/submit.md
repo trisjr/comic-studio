@@ -9,6 +9,11 @@ author: trisjr
 
 Automated workflow from code completion to opening a fully formatted Pull Request.
 
+**Dependent Skills:**
+
+- `clickup-commenter` — Posts Markdown comments to ClickUp tasks.
+- `github-mcp-server` — Posts Markdown comments to GitHub Issues (`add_issue_comment`).
+
 > **⚡ Performance contract (read first):** This workflow is optimized to minimize sequential tool round-trips. Two rules:
 >
 > 1. **Batch read-only Git into ONE call**, then reason locally over the combined output. Never split `rev-parse`, `remote -v`, `status -s`, `diff` into separate turns.
@@ -28,7 +33,7 @@ Automated workflow from code completion to opening a fully formatted Pull Reques
 > - Types: `feat | fix | refactor | chore | docs | ci`
 > - Commit format: `<type>(<scope>): <description>` — lowercase, no trailing period
 > - PR title format: `<Scope> — Capitalized description` — e.g., `Auth — Fix token api`
-> - **TITLE QUALITY (applies to commit descriptions, PR titles and `tnm task log --title`):** state the **outcome the change delivers**, not the mechanical steps taken. A reader who never opens the diff must understand what is now true that was not true before. Name the business capability, the risk closed or the guarantee added — not the files touched.
+> - **TITLE QUALITY (applies to commit descriptions, PR titles):** state the **outcome the change delivers**, not the mechanical steps taken. A reader who never opens the diff must understand what is now true that was not true before. Name the business capability, the risk closed or the guarantee added — not the files touched.
 >   - ✅ `Rate Limit — Harden storage resilience, trust proxy and admin plane tracking`
 >   - ✅ `Payment — Close Paddle money-path P0/P1/P2 findings`
 >   - ✅ `Content Studio — Enforce AI skill entitlement, conflicts and cap in FE`
@@ -187,4 +192,30 @@ git -C <repo> push -u origin HEAD
 
 ---
 
-_Note: If Step 1 detects ≥ 2 Repositories, execute **Steps 2 through 4** in **PARALLEL (concurrently)** for all involved Repositories — one batched context call and one chained mutation call **per repo**, run at the same time (do not flatten the per-repo chains into a single command). Wait for all parallel operations to complete before proceeding to **Steps 5 and 6**._
+## Step 5: Update Task (Automated — Conditional)
+
+**ONLY execute this step if the User provided a Task URL in Step 1** (not `[N/A]`). If `[N/A]` → skip completely.
+
+1. Wait until **ALL** repos have successfully created their PRs.
+2. **ClickUp path — render + post in ONE chained call** (skip the `clickup-commenter` Preview/Confirm; AUTO-PROCEED). Extract `task_id` from the URL:
+
+   ```bash
+   node scripts/render-task-comment.js --summary "<1-2 sentence summary>" --pr "<repo|number|url>" --out "/tmp/task_comment.md" && \
+   python3 .agent/skills/clickup-commenter/scripts/clickup_comment_md.py <task_id> --file /tmp/task_comment.md
+   ```
+
+   _(Use multiple `--pr` flags for multiple PRs. Requires `CLICKUP_API_KEY` in `.env`.)_
+
+3. **GitHub Issue path:** If the URL contains `github.com`, first render the comment:
+
+   ```bash
+   node scripts/render-task-comment.js --summary "<summary>" --pr "<repo|number|url>" --out "/tmp/task_comment.md"
+   ```
+
+   then extract `owner`/`repo`/`issue_number` from the URL, read `/tmp/task_comment.md`, and post via the GitHub MCP tool `add_issue_comment` (MCP handles the long markdown body cleanly).
+
+4. **Other / Unsupported Tracker:** Skip automated posting; notify the User that the markdown is available in `/tmp/task_comment.md` for manual copy-paste.
+
+---
+
+_Note: If Step 1 detects ≥ 2 Repositories, execute **Steps 2 through 4** in **PARALLEL (concurrently)** for all involved Repositories — one batched context call and one chained mutation call **per repo**, run at the same time (do not flatten the per-repo chains into a single command). Wait for all parallel operations to complete before proceeding to **Steps 5**._

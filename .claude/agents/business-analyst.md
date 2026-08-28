@@ -72,7 +72,7 @@ tools: Read, Glob, Grep, Edit, Write, SendMessage
 
 ### Role Assets
 
-Templates and guides at `.agent/skills/business-analyst/` (asset-only directory, not a registered skill):
+Templates and guides at `.claude/skills/business-analyst/` (asset-only directory, not a registered skill):
 
 | Path | Purpose |
 |------|---------|

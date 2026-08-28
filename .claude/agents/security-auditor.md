@@ -72,7 +72,7 @@ tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
 
 ### Role Assets
 
-Reference material at `.agent/skills/security-auditor/` (asset-only directory, not a registered skill):
+Reference material at `.claude/skills/security-auditor/` (asset-only directory, not a registered skill):
 
 | Path | Purpose |
 |------|---------|
