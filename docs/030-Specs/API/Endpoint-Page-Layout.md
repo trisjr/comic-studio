@@ -4,6 +4,7 @@ type: spec
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # Endpoint: Page Layout
@@ -201,7 +202,7 @@ Bề mặt API của **bố cục trang**. Toàn bộ file này xoay quanh một
 | Mã | Khoảng trống | Ai đóng | Khi nào |
 |---|---|---|---|
 | ~~`T-PL-REORDER-CL`~~ ⇒ ✅ **ĐÃ ĐÓNG** bởi **phán quyết BA lô `L29`**: `#4 reorder` dùng giá trị **RIÊNG** `reorder_panel`, ⛔ **không** tái dụng `swap_panel`. Danh mục `action_type` của [`DB-Entity-Provenance-And-Usage.md`](../Schema/DB-Entity-Provenance-And-Usage.md) đã mở giá trị này ⇒ hai tầng **khớp nhau**. ⛔ Không còn hành vi nào của file này bị chặn bởi hàng này | — (đã đóng) | — |
-| `T-PL-BUDGET-UNIT` | **Đơn vị của `text_budget`** (ký tự hay từ) và **hàm tính từ diện tích** — hàng đã đăng ký ở [`DB-Entity-Comic-IR.md`](../Schema/DB-Entity-Comic-IR.md) | **BA + Architect** | Trước gate `M2-3` |
+| `T-PL-BUDGET-UNIT` | **Đơn vị của `text_budget`** (ký tự hay từ) và **hàm tính từ diện tích** — hàng đã đăng ký ở [`DB-Entity-Comic-IR.md`](../Schema/DB-Entity-Comic-IR.md). ⭐ **Hàm tính PHỤ THUỘC metric của font render** ⇒ phải đóng **SAU** `TBD-FONT` của [`ADR-013`](../Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §*Thứ tự đóng hai `TBD`*. ⚠️ Đóng ngược thứ tự ⇒ hàm phải calibrate lại ⇒ `text_budget` đổi ⇒ **reset gate #2**, mà ⛔ **không trigger nào bắt được** vì diện tích panel ⛔ không đổi *(phần **đơn vị** thì ⛔ không phụ thuộc font — chốt độc lập được)* | **BA + Architect** | Trước gate `M2-3`, ⭐ **sau `G1-e`** |
 | `T-PL-AFFECTED` | Quy tắc xác định *"panel bị ảnh hưởng"* khi apply template: mọi panel của page, hay chỉ panel có diện tích thực sự đổi. ⚠️ Chọn sai theo chiều rộng ⇒ reset thừa (phiền); theo chiều hẹp ⇒ **để lọt một gate PASS trên `text_budget` cũ** — đúng thứ `INV-6` của [`DB-Entity-Dialogue-And-Gate.md`](../Schema/DB-Entity-Dialogue-And-Gate.md) dò được. ⛔ Lô này không tự chọn | **Architect + Engineer** | Trước khi hiện thực `#2` |
 | `T-API-ERR` | ⭐ Chuẩn `error_code` + error envelope (⛔ **chưa chốt**). ✅ **Tiền tố đường dẫn đã chốt `/v1/…`** (lô `L28a`) — chi tiết ở [`Endpoint-Panel-Script.md`](./Endpoint-Panel-Script.md) | **Architect** (một lô quét toàn thư mục) | Trước file API đầu tiên được implement |
 
