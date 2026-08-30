@@ -24,7 +24,15 @@ created: 2026-08-30
 ## 2. Năm bài học đắt nhất — đưa vào `pm-core.md`
 
 ### `L-1` ⛔ Không dispatch lô SỬA nguồn-sự-thật song song với lô ĐỌC nguồn đó
-L0 (sửa `SRS`) chạy cùng L1/L2 (đọc `SRS`) ⇒ **ba hệ toạ độ số dòng** ⇒ tốn **7 lô** dọn. Chi phí: ~7× một lô, cho một lỗi lập lịch mất 10 giây để tránh.
+`L0` (sửa `SRS`) chạy cùng `L1`/`L2` (đọc `SRS`) ⇒ **ba hệ toạ độ số dòng**.
+
+⚠️ **Đính chính (đo lại 2026-08-30): tốn 8 lô, ⛔ không phải 7 — vì phải dọn HAI đợt.**
+- **Đợt 1 — 7 lô** (`L23a`…`L23f` + `L24`): xác định phạm vi bằng một `grep` **chỉ bắt `SRS`**.
+- **Đợt 2 — 1 lô**: sau khi một lô audit đếm ra **217 chỗ còn sót trên 10 file** (trích dẫn tới `MVP-Scope` và file khác), `L36` phải quét lại — **202 turn, 160 tool call, $24: lô đắt nhất toàn run**.
+
+> ⚠️ Lô audit phát hiện ra 217 chỗ ⛔ **không** được tính vào con số 8 lô này: ⛔ không tách được nó khỏi các lô verify bằng bằng chứng (`grep "217"` trúng gần như mọi transcript nên vô dụng), và nếu nó là `L21` thì đã nằm ở nhóm **verify** của §6.3.
+
+⇒ Tổng **≈ $90 = 20,9% chi phí subagent**, cho một lỗi lập lịch mất 10 giây để tránh. ⭐ Và đợt dọn đầu tiên **tự nó phạm `L-2`**: phạm vi lấy từ một grep hẹp, ⛔ không đo lại sau khi sửa.
 
 ### `L-2` ⛔ PM chỉ được khẳng định về nội dung file SAU khi đã tự đọc file đó
 Vi phạm **4 lần**: `E9` (suýt quyết gate trên tiền đề sai) · `E12` (truyền bảng mapping chưa verify cho 3 lô) · `E15` · và `E23` (grep **phân biệt hoa/thường** ⇒ đếm sót 4/5 vị trí, ra lệnh sai cho worker).
@@ -46,7 +54,7 @@ PM đã tick *"Security Spec đã được Security Auditor review"* trong khi c
 - `C-3` là **lời hứa**: nó giao cho *"lô API"* đóng danh sách *"mọi đường đọc"*; lô API chạy xong mà 4 file ⛔ không nhắc `access_state` ⇒ **nội dung đã takedown vẫn đọc được theo đặc tả**.
 ⭐ ⛔ Cùng một agent role ⛔ **không tự review được đầu ra của chính nó** — ⛔ không phải vì cẩu thả, mà vì **giả định của nó là điểm mù của nó**.
 
-## 3. ⭐ Bốn lần worker ĐÚNG hơn PM — mẫu hành vi cần giữ
+## 3. ⭐ Năm lần worker ĐÚNG hơn PM — mẫu hành vi cần giữ
 
 | Lô | Nó làm gì |
 |---|---|
@@ -77,8 +85,68 @@ PM đã tick *"Security Spec đã được Security Auditor review"* trong khi c
 
 ⚠️ **Tiêu chí #3 chưa trọn.** Hai bước hở ⛔ không phải lỗi ẩn — chúng có mã, có chủ, và nằm ở chỗ findings §4.1 ⛔ không liệt kê resource nào phục vụ. Quyết định mở/đóng gate là của **Founder**, ⛔ không phải của PM.
 
-## 6. Tài liệu tham khảo
+## 6. Post-mortem token — đo lại 2026-08-30
+
+> ⚠️ Mục này ⛔ không có lúc đóng run. Nó phải dựng lại từ transcript ở một session sau, vì close-step *"đo chi phí thật (BẮT BUỘC)"* của `pm-core.md` đã **bị bỏ qua** — file đó bị xoá nhầm ở commit `90a990f`. Đã khôi phục và bổ sung công cụ đo.
+
+### 6.1 Tiền thật ≈ $710 — con số hiển thị chỉ phủ 39%
+
+| Tầng | Nguồn | Chi phí |
+|---|---|---:|
+| PM main loop | `cost-state` — **đo được** | $193,95 |
+| `advisor` (93 lần, `fable-5`) | `cost-state` — **đo được** | $84,91 |
+| **46 subagent** | ⛔ **không có trong `cost-state`** — ước lượng | **≈ $431** |
+| | | **≈ $710** |
+
+`cost-state` ghi `totalCostUSD: 278,85`, và $193,95 + $84,91 khớp **chính xác** con số đó ⇒ nó chỉ phủ main loop + `advisor`. ⭐ **61% chi phí thật nằm ở subagent và ⛔ không được kế toán.**
+
+Đơn giá hiệu chuẩn ngược từ chính `cost-state`: `$5/$25/$0,5/$6,25` per MTok (in/out/cache-read/cache-write), sai số dư **2,3%**. Thời gian: 15 giờ wall-clock, 8,76 giờ API.
+
+### 6.2 Vì sao tốn — `turns × context mỗi turn`
+
+| | turns | context `p50` | context `p90` | cache-read | **$ / turn** |
+|---|--:|--:|--:|--:|--:|
+| PM main loop | 613 | **272k** | 428k | 164,8M | **0,316** |
+| 46 worker | 3.705 | 106k | 199k | 415,3M | 0,115 |
+| | | | | **580M** | |
+
+580 triệu token đọc lại, để giữ 58 file / 16.441 dòng. **PM đắt gấp 2,75 lần worker mỗi turn**, và tự làm **210 tool call tay chân** (129 `Bash` · 53 `Edit` · 28 `Read`) so với chỉ 46 `Agent` ⇒ ước **$67** chỉ để tự `grep`/`Edit`.
+
+### 6.3 415M token của worker đi đâu
+
+| Nhóm | cache-read | output | **chi phí** | Đánh giá |
+|---|--:|--:|--:|---|
+| Sản xuất nội dung | 202,0M (48,7%) | 1,64M | **$214** | Bắt buộc |
+| **Dọn trích dẫn số dòng** | 88,4M (21,3%) | 0,52M | **$90** | ⛔ **Lãng phí thuần** — xem `L-1` |
+| Rework sau escalation | 96,1M (23,1%) | 0,42M | **$99** | Một phần tránh được |
+| Verify độc lập | 28,7M (6,9%) | 0,11M | **$28** | ⭐ **ROI cao nhất run** |
+
+> ⛔ **KHÔNG đọc "51% ⛔ không sinh nội dung mới" thành "cắt đi".** $28 verify là khoản **sinh lời nhất**: `L31` tìm ra lỗ `C-3` (nội dung đã takedown vẫn đọc được theo đặc tả) và bề mặt operator xuyên tenant. Cắt verify là cách rẻ nhất để phá hỏng run sau.
+
+### 6.4 ⭐ Run này PHỦ ĐỊNH luật `turns^1.74` của `pm-core.md`
+
+Hồi quy log-log trên 46 subagent: **`k = 0,94`, `R² = 0,50`** (bỏ outlier: `k = 0,92`). Chi phí mỗi turn gần **hằng số**: 0,119 / 0,122 / 0,110 / 0,110 qua bốn nhóm kích thước.
+
+⇒ Chi phí là **hai chế độ**, ⛔ không phải một luật: **lô ⛔ không cắt ⇒ `turns^1.74`** (lane code, agent 621 turn) · **lô cắt ngắn ⇒ gần tuyến tính** (lane doc, context worker `p50` 106k / `p90` 199k). `pm-core.md` đã được sửa thành hai chế độ.
+
+⭐ **Cơ chế là việc CẮT LÔ, ⛔ không phải việc thi hành trần.** Bằng chứng quyết định: cả **3 lô của nhóm ≥130 turn đều VƯỢT trần** (77 · 77 · 160 tool call) mà `$/turn` vẫn **thấp nhất bảng** (0,110) ⇒ tuyến tính giữ được **ngay cả trong lô phá trần**. Trần là **tín hiệu dừng**; cắt lô mới là thứ bẻ đường cong.
+
+⚠️ Và **cấp trần ≠ thi hành trần**: ngân sách có mặt trong **46/46 dispatch prompt** (đã grep), vậy mà **8/46 lô vượt trần**, tiêu **$102 = 24% chi phí subagent**, ⛔ không lô nào bị chặn hay báo `PARTIAL`.
+
+### 6.5 Năm đòn bẩy — ước tiết kiệm ~$220 (31%)
+
+| # | Đòn bẩy | Tiết kiệm |
+|---|---|--:|
+| 1 | PM ⛔ không tự làm việc cơ học — mọi `grep`/sweep → worker context sạch | ~$60 |
+| 2 | Freeze nguồn trước fan-out (`L-1`) | ~$90 |
+| 3 | Lô quét cắt theo **số chỗ sửa** (≲50), ⛔ không theo số file; đo lại sau khi sửa | Tránh đợt dọn thứ 2 |
+| 4 | `advisor` theo chính sách: lô quyết định có, lô cơ học ⛔ không | ~$40 |
+| 5 | PM `/compact` sớm hơn — `p90` = 428k là quá muộn | ~$30 |
+
+⛔ **KHÔNG khuyến nghị**: giảm số lô hay gộp worker. 46 worker × 106k rẻ hơn nhiều so với một PM 272k ôm hết — kiến trúc fan-out **đúng**; cái sai là PM ôm việc tay chân và lịch dispatch.
+
+## 7. Tài liệu tham khảo
 
 - [escalations.md](./escalations.md) — 25 mục `E1`…`E25`
-- [outline.md](./outline.md) — bảng tick 61 hạng mục
+- [outline.md](./outline.md) — bảng tick 63 hạng mục
 - [Specs-MOC](../../../030-Specs/Specs-MOC.md) — bản đồ 57 tài liệu
