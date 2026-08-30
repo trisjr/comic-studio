@@ -399,7 +399,7 @@ export default {
 
 ### ⛔ Ba màu KHÔNG đạt 3:1 — và vì sao vẫn được dùng
 
-> ⚠️ **Ba màu dưới đây nằm NGOÀI bảng 27 hàng ở trên.** Bảng 27 hàng là các cặp của luồng chính và **cả 27 đều đạt ngưỡng**; ba màu này được tách riêng vì chúng **cố ý không đạt** và chỉ hợp lệ trong phạm vi hẹp đã ghi ở cột cuối. ⛔ Đừng gộp hai bảng khi trích dẫn — chúng trả lời hai câu hỏi khác nhau.
+> ⚠️ **Ba màu dưới đây nằm NGOÀI bảng 27 hàng ở trên.** Bảng 27 hàng là các cặp của luồng chính và **cả 27 đều đạt ngưỡng**; ba màu này được tách riêng vì chúng **cố ý không đạt** và chỉ hợp lệ trong phạm vi hẹp đã ghi ở cột *Được dùng cho* (⚠️ ⛔ **không phải** cột cuối — cột cuối là *⛔ CẤM dùng cho*, nghĩa ngược lại). ⛔ Đừng gộp hai bảng khi trích dẫn — chúng trả lời hai câu hỏi khác nhau.
 
 | Màu | Nền | **Tỷ lệ** | Được dùng cho | ⛔ CẤM dùng cho |
 |---|---|:--:|---|---|

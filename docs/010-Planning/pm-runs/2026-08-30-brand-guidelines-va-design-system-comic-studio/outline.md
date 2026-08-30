@@ -106,7 +106,8 @@ updated: 2026-08-30
 ### 7. `Glossary.md` — bổ sung (L5)
 
 - **Độc giả đích**: mọi agent về sau.
-- **Cấu trúc**: **append một nhóm mới** vào cấu trúc 10 nhóm sẵn có. ⛔ **Không sửa 69 thuật ngữ đang có.**
+- **Cấu trúc**: **append một nhóm mới** vào cấu trúc 10 nhóm sẵn có. ⛔ **Không sửa các thuật ngữ đang có.**
+  > ⚠️ **Đính chính sau Lô 5** (`escalations.md` `E9`): bản đầu của dòng này ghi *"69 thuật ngữ"* — con số **trích lại từ `000-Index.md`**, ⛔ không đếm tại nguồn. Đếm cơ học thật: **90 headword / 10 nhóm** trước Lô 5, **123 / 11** sau.
 - **Nguồn sự thật**: 6 file Design System **đã viết xong** (L1–L4 phải đóng trước) + `findings/product-designer.md` §7.
 - **Tiêu chí xong**: (a) mọi thuật ngữ rút từ **file đã tồn tại**, mỗi mục trỏ về file định nghĩa nó; (b) ⛔ **0 thuật ngữ nào được thêm mà không xuất hiện trong 6 file đó**; (c) `updated:` bump sang `2026-08-30`; (d) ⛔ không đụng nhóm cũ.
 

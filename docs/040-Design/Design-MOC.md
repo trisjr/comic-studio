@@ -14,7 +14,7 @@ updated: 2026-08-30
 > Hồ sơ quyết định của run nằm ở [pm-runs/2026-08-30-brand-guidelines-va-design-system-comic-studio](../010-Planning/pm-runs/2026-08-30-brand-guidelines-va-design-system-comic-studio/escalations.md) — mọi mã `G-{n}` và `E{n}` trong các file design đều trỏ về đó.
 
 > [!WARNING]
-> **Phase 3 CHƯA đóng.** Run này cố ý chỉ làm **bộ nền** (Brand Guidelines + Design System). Ba artifact còn lại của Phase 3 — **Wireframes**, **User Flow**, **UI Specs** — thuộc run sau. Xem [Còn thiếu gì](#còn-thiếu-gì-để-đóng-phase-3).
+> **Phase 3 CHƯA đóng.** Run này cố ý chỉ làm **bộ nền** (Brand Guidelines + Design System). **Bốn** artifact còn lại của Phase 3 — **Wireframes**, **User Flow**, **UI Specs**, **Assets** — thuộc run sau. Xem [Còn thiếu gì](#còn-thiếu-gì-để-đóng-phase-3).
 
 ## Mục lục
 
@@ -29,7 +29,7 @@ updated: 2026-08-30
 
 | Bạn là ai | Đọc gì trước |
 |---|---|
-| **AI assist sắp sinh code UI** | [Foundations](#1-design-system--6-file) trước tất cả — nó định nghĩa hợp đồng token mà 4 file kia tuân theo → rồi file tương ứng với việc đang làm |
+| **AI assist sắp sinh code UI** | [Foundations](./Design-System/Foundations.md) trước tất cả — nó định nghĩa hợp đồng token mà 4 file kia tuân theo → rồi file tương ứng với việc đang làm |
 | Người **implement compositor / typeset layer** | ⭐ [Typography](./Design-System/Typography.md) §*HAI HỆ FONT* — bỏ qua mục này là lỗi **chỉ lộ ra sau khi đã sinh ảnh và tốn tiền** |
 | Người **dựng màn hình human gate** | [Components](./Design-System/Components.md) §*Ba pattern đặc thù* `P-1` → [SDD](../030-Specs/Architecture/SDD-Comic-Studio.md) §6.3 `SDD-HG-01` |
 | Người viết **microcopy / nội dung hiển thị** | [Brand-Guidelines](./Design-System/Brand-Guidelines.md) §*Điều CẤM* — có những câu **không được phép nói**, vì lý do pháp lý chứ không phải thẩm mỹ |
