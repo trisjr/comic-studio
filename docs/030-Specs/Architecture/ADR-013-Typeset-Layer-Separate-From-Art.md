@@ -117,14 +117,28 @@ Hệ quả ràng buộc — ⚠️ **phải giữ đúng biên**: preview **read
 |:--:|---|---|
 | **R-1** | ⭐ **Đơn trị** — **một** họ font, resolve ra **một** file font xác định. ⛔ Không dấu phẩy, ⛔ không generic family, ⛔ không *"nếu thiếu thì dùng cái kia"* | Điều **6** ở trên (*wrap phải đo bằng **chính font sẽ render***) + [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Decision` điều **8**. Fallback stack ⇒ ⛔ không biết trước font nào thực sự đo ⇒ wrap ⛔ không tái lập được ⇒ phá điều **8** ở trên (*preview **là** export*) |
 | **R-2** | ⭐ **Phủ đủ dấu tiếng Việt**, gồm **dấu chồng hai tầng** (`ế`, `ữ`, `ợ`) — phủ bằng **glyph dựng sẵn hoặc mark positioning đúng**, ⛔ không phải vẽ chồng tuỳ ý | §*Vì sao tách* lý do **#2** + nghiệm thu MVP0 của [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Consequences` **#5** (corpus có dấu chồng, cả NFC và NFD) |
-| **R-3** | 🆕 **License cho phép NHÚNG và dùng SERVER-SIDE** trong image được phân phối | Hệ quả bắt buộc của điều **6** (font phải nằm **cùng runtime** với compositor) + [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Decision` điều **2** (*một image, hai command* — file font đi theo image, build một lần, push lên registry) ⇒ đây là **nhúng server-side**, ⛔ **không phải webfont**. ⚠️ Có license font cho phép dùng trên web nhưng **hạn chế** nhúng vào sản phẩm phân phối ⇒ ⛔ không suy ra *"miễn phí ⇒ dùng được"* |
+| **R-3** | 🆕 **License cho phép NHÚNG và dùng SERVER-SIDE** trong image được phân phối | Hệ quả bắt buộc của [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Decision` điều **8** (font phải nằm **cùng runtime** với compositor — nhắc lại ở điều **6** của ADR này) + [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Decision` điều **2** (*một image, hai command* — file font đi theo image, build một lần, push lên registry) ⇒ đây là **nhúng server-side**, ⛔ **không phải webfont**. ⚠️ Có license font cho phép dùng trên web nhưng **hạn chế** nhúng vào sản phẩm phân phối ⇒ ⛔ không suy ra *"miễn phí ⇒ dùng được"* |
 | **R-4** | 🆕 ⭐ **Metric ổn định giữa các version**, và version font **PHẢI ĐƯỢC PIN**. Đổi version xử lý **như đổi font** | Font là **tham số đầu vào của thuật toán wrap** ([ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Consequences` **#5**: *wrap đúng = segmentation **+** đo bằng chính font sẽ render*). Một bản cập nhật đổi advance width hay vertical metric làm **mọi phép đo cũ hết hiệu lực IM LẶNG** — mọi bubble đã duyệt phải đo lại |
 
-⚠️ **`R-4` là ràng buộc dễ mất nhất trong bốn — và là ràng buộc DUY NHẤT không có trigger nào bắt được.**
-`R-1`…`R-3` hỏng **lúc build**: thiếu file font, sai license, thiếu glyph — đều lộ ra ngay. `R-4` hỏng lúc một lần `docker build` kéo về một patch version mới: ⛔ không có lỗi, ⛔ không có test đỏ, chỉ có bubble ngắt dòng **khác đi so với lần người dùng đã duyệt**.
+⚠️ **`R-4` là ràng buộc mà ⛔ KHÔNG đường reset gate nào chạm tới được.**
 
-⭐ **Đây là cùng dạng hỏng với `T1` của điều 9, nhưng ⛔ KHÔNG được `T1` bắt.** `T1` kích hoạt khi **diện tích panel** đổi; ở đây diện tích ⛔ **không đổi một pixel** — thứ đổi là **phép đo**. ⇒ ⛔ Không có đường reset gate #2 nào chạy, và bản nén vẫn mang trạng thái `PASS` trên một phép đo **đã khác**. Đúng hình dạng mà điều **9** gọi là *"khẳng định một điều nó không còn biết là đúng"*.
-⇒ **Pin version font là hạng mục của Dockerfile**, ⛔ không phải một khuyến nghị. ⚠️ Nếu buộc phải đổi version font, xử lý **như đổi font**: đo lại toàn bộ, ⛔ không giữ trạng thái gate cũ.
+⛔ **Đừng đọc thành *"ba ràng buộc kia đều lộ ra lúc build"*** — ⛔ không đúng, và mỗi cái hỏng ở một thời điểm khác nhau:
+
+| | Hỏng khi nào | Ai/cái gì bắt được |
+|---|---|---|
+| `R-1` | Lúc composite | ⚠️ **Chỉ khi đã tuân thủ `R-1`.** Nếu bị vi phạm (có fallback stack) thì đúng là ⛔ **không báo lỗi** — nó âm thầm rơi xuống font kế tiếp và đo sai. Đó chính là lý do `R-1` tồn tại |
+| `R-2` | Lúc render panel đầu tiên có dấu chồng | ⚠️ **Kiểm THỦ CÔNG từng panel** — hàng `TBD` ở trên ghi rõ ⛔ **không có benchmark định lượng nào** |
+| `R-3` | Lúc review pháp lý, hoặc lúc nhận thư khiếu nại | ⛔ **`docker build` không thẩm định license.** Đây là ràng buộc lộ ra **muộn nhất** trong bốn |
+| ⭐ `R-4` | Lúc một lần `docker build` kéo về patch version mới | ⛔ **Không gì cả** — ⛔ không lỗi, ⛔ không test đỏ, chỉ có bubble ngắt dòng **khác đi so với lần người dùng đã duyệt** |
+
+⭐ **`R-4` khác ba cái kia ở chỗ: nó là ca DUY NHẤT mà trạng thái human gate #2 đã `PASS` trở nên sai mà ⛔ không trigger nào của điều 9 chạy.** `T1` kích hoạt khi **diện tích panel** đổi; ở đây diện tích ⛔ **không đổi một pixel** — thứ đổi là **phép đo**. ⇒ Bản nén vẫn mang `PASS` trên một phép đo **đã khác** — đúng hình dạng mà điều **9** gọi là *"khẳng định một điều nó không còn biết là đúng"*.
+
+⇒ **Hai việc bắt buộc, ⛔ không phải khuyến nghị** — lấy nguyên khuôn của [ADR-016](./ADR-016-Image-Provider-Adapter-And-Version-Pinning.md), nơi **cùng hình dạng vấn đề này đã được giải cho image provider**:
+
+1. **Pin version font tường minh** — hạng mục của **Dockerfile**. ⛔ Không alias, ⛔ không "bản mới nhất". Đối chiếu [ADR-016](./ADR-016-Image-Provider-Adapter-And-Version-Pinning.md) §Alternatives **(d)** (*⛔ LOẠI alias `latest`*).
+2. ⭐ **Ghi `font_version` vào provenance** để **truy vết được** khi nghi ngờ drift. [ADR-016](./ADR-016-Image-Provider-Adapter-And-Version-Pinning.md) `## Decision` chốt đúng cơ chế này cho `model_version`, với lý do nguyên văn: *"để **phát hiện được silent model drift**"* — provider đổi weights dưới cùng một tên model thì hệ thống ⛔ không tự phát hiện được, *"nhưng adapter phải ghi `model_version` để về sau **có thể truy vết**"*. **Font drift là cùng một bài toán**, và `R-4` ⛔ không được chỉ lấy nửa đầu.
+
+⚠️ Nếu buộc phải đổi version font: xử lý **như đổi font** — đo lại toàn bộ, ⛔ không giữ trạng thái gate cũ.
 
 > ⚠️ **Nguồn đối chiếu ở tầng 040**: [Typography](../../040-Design/Design-System/Typography.md) §*Bốn ràng buộc mà font render phải thoả* phát biểu **cùng bốn ràng buộc này**. ⛔ **Không phải hai nguồn sự thật** — **ADR-013 sở hữu `TBD`**, tầng 040 **trỏ về đây**. Lệch nhau ⇒ sửa **cả hai trong cùng một run**, ⛔ không sửa một bên.
 
@@ -140,13 +154,21 @@ Hệ quả ràng buộc — ⚠️ **phải giữ đúng biên**: preview **read
 
 **Phụ thuộc — tách làm hai nửa, ⛔ không gộp:**
 
-1. **Phần *đơn vị*** (ký tự hay từ) **⛔ không phụ thuộc font** — chốt được độc lập, bất kỳ lúc nào.
+1. **Phần *đơn vị*** (ký tự hay từ) **gần như độc lập với font** — chốt được trước, bất kỳ lúc nào.
+   ⚠️ ⛔ **Không phải độc lập tuyệt đối**: với font **tỷ lệ** (proportional), *"ký tự"* là proxy tồi cho diện tích (`i` và `W` rộng khác nhau); với font **đều** (monospace) thì tuyến tính. ⇒ **Loại** font vẫn ảnh hưởng gián tiếp lên việc chọn đơn vị. ⛔ Không đủ để lật thứ tự bên dưới, nhưng ⛔ đừng đọc thành *"đơn vị chốt xong là xong"*.
 2. ⭐ **Phần *hàm tính từ diện tích* PHỤ THUỘC metric của font.** Câu hỏi *"bao nhiêu ký tự vừa trong diện tích này"* ⛔ không trả lời được nếu chưa biết **một ký tự chiếm bao nhiêu** — mà đó chính là advance width và vertical metric của **font sẽ render** (`R-4` ở trên). ⇒ **Hàm tính phải đóng SAU `TBD-FONT`.**
 
 ✅ **Lịch hiện tại đã đúng chiều phụ thuộc** — `G1-e` (cuối 09/2026) đứng trước `M2-3` (01–02/2027). ⚠️ Ghi ra đây vì nó **đúng do trùng hợp về lịch, ⛔ không do ai ràng buộc**; ⛔ không có gì ngăn một run sau chốt hàm tính sớm cho tiện.
 
-⛔ **Hệ quả nếu đóng ngược thứ tự** — ⛔ không phải phiền phức, là **mất trạng thái gate**:
-hàm tính `text_budget` calibrate trên một font giả định ⇒ khi `TBD-FONT` đóng thật, hàm **phải calibrate lại** ⇒ **`text_budget` của mọi panel đổi giá trị**. Theo đúng lập luận của điều **9** (`T1` + [UC-08](../../020-Requirements/Use-Cases/UC-08-Arrange-Page-And-Preview.md) **EX-2**), bản nén đã duyệt **không còn được duyệt trên đúng ràng buộc** ⇒ mọi dòng đã `PASS` gate #2 phải **reset về `OPEN`**.
+⛔ **Hệ quả nếu đóng ngược thứ tự:**
+hàm tính `text_budget` calibrate trên một font giả định ⇒ khi `TBD-FONT` đóng thật, hàm **phải calibrate lại** ⇒ **`text_budget` của mọi panel đổi giá trị**.
+
+⚠️ **Thiệt hại thật phụ thuộc lúc đó đã có dòng nào PASS gate #2 chưa** — ⛔ đừng đọc thành một mức duy nhất:
+
+| Kịch bản | Thiệt hại |
+|---|---|
+| ⭐ **Nhiều khả năng hơn** — đóng sớm trong 10–12/2026, khi hai human gate **chưa được cưỡng chế** (`M2-4` thuộc MVP2, 01–02/2027) | ⛔ Chưa có dòng nào để reset. Thiệt hại là **calibration sai bị nướng vào spec và code**, rồi mọi thứ dựng lên trên nó |
+| Đóng sau khi gate #2 đã chạy thật | Theo đúng lập luận của điều **9** (`T1` + [UC-08](../../020-Requirements/Use-Cases/UC-08-Arrange-Page-And-Preview.md) **EX-2**), bản nén đã duyệt **không còn được duyệt trên đúng ràng buộc** ⇒ mọi dòng đã `PASS` gate #2 phải **reset về `OPEN`** |
 ⚠️ **Sắc thái phải đọc kỹ**: `T1` được phát biểu cho **diện tích panel đổi**. Ở đây diện tích ⛔ **không đổi** — thứ đổi là **hàm**. ⇒ Đây là **cùng lập luận, ⛔ không phải cùng trigger**; ⛔ **không có đường code nào tự động bắt được ca này**, đúng như `R-4`.
 
 ⇒ **Quy tắc rút ra**: đóng `TBD-FONT` trước. Nếu vì lý do nào đó phải chốt hàm tính trước, thì hàm đó mang nhãn **tạm**, ⛔ không được để `text_budget` sinh ra từ nó đi qua human gate #2.

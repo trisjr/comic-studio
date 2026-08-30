@@ -11,8 +11,13 @@ Thuat toan slug tuan theo github-slugger: ha chu thuong, loai bo dau cau
 (bao gom em-dash U+2014, nam trong dai U+2000-U+206F), khoang trang -> gach noi.
 Giu lai combining mark de anchor tieng Viet resolve dung.
 
+Gioi han da biet:
+  - Chi kiem anchor TRONG-FILE; anchor lien-file (file.md#anchor) chua kiem.
+  - Chua mo hinh hoa quy tac heading trung ten cua github-slugger (append -1, -2).
+  => Con so bao ra la CAN DUOI, khong phai tong.
+
 Cach dung:
-    python scripts/check-doc-anchors.py [thu-muc]     # mac dinh: docs
+    python3 scripts/check-doc-anchors.py [thu-muc]    # mac dinh: docs
 Exit code 1 neu con loi, 0 neu sach - dung duoc trong CI.
 """
 
