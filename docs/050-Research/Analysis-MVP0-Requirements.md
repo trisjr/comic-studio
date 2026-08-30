@@ -22,6 +22,7 @@ updated: 2026-08-30
 - [3. Điều kiện ra — hai lớp không thay thế nhau](#3-điều-kiện-ra--hai-lớp-không-thay-thế-nhau)
 - [4. Ma trận truy vết Story × tiêu chí](#4-ma-trận-truy-vết-story--tiêu-chí)
 - [5. Sẵn sàng thực thi](#5-sẵn-sàng-thực-thi)
+  - [5.4 Phiếu chọn chapter — tiêu chí `C-1…C-8`](#54-phiếu-chọn-chapter--tiêu-chí-c-1c-8)
 - [6. Nhất quán tài liệu — 6 phát hiện](#6-nhất-quán-tài-liệu--6-phát-hiện)
 - [7. Câu hỏi mở cần Founder đóng](#7-câu-hỏi-mở-cần-founder-đóng)
 - [8. Tài liệu tham khảo](#8-tài-liệu-tham-khảo)
@@ -188,6 +189,31 @@ Rank 1  Fix-Narrative-Time-Key ──► P-4   (⭐ ĐỘC LẬP với nhánh si
 
 ⭐ **`Story-Fix-Narrative-Time-Key` không nằm trên đường găng sinh ảnh.** Nó phục vụ `P-4` và chặn **mọi bảng timeline của MVP1**, ⛔ không chặn `G1`. Xếp nó rank 1 là đúng theo `UNLOCK-ORDER`, nhưng ⛔ **không có nghĩa phải làm xong trước** khi bắt đầu nhánh sinh ảnh.
 
+
+### 5.4 Phiếu chọn chapter — tiêu chí `C-1…C-8`
+
+> Soạn để đóng [`Q-1`](#7-câu-hỏi-mở-cần-founder-đóng). ⭐ **Mỗi tiêu chí rút ra từ một tiêu chí `G1` cụ thể** — ⛔ không tiêu chí nào là sở thích biên tập. Chapter trượt `C-1`…`C-5` ⇒ MVP0 vẫn chạy được nhưng **gate `G1` thiếu tiêu chí đo**, tức `P-2` ⛔ không đạt.
+
+| # | Chapter phải có | Phục vụ | Trượt thì hỏng gì |
+|:-:|---|---|---|
+| **C-1** | **≥2 nhân vật xuất hiện trong CÙNG một cảnh**, lặp lại đủ nhiều lần để chấm được tỉ lệ | `G1-d` (panel 2 nhân vật **≥60%**) | ⛔ `G1-d` **không có dữ liệu để đo** ⇒ gate thiếu 1/5 tiêu chí. Đây là **hàng load-bearing** (`CF-6.4`) |
+| **C-2** | **≥1 cảnh có 3 nhân vật** cùng khung | `G1-d` phần *"đo và báo cáo, không đặt ngưỡng chặn"* | Không có ⇒ phải **ghi rõ là không đo được**, ⛔ không được im lặng bỏ qua. `CF-6.5` `[OFF]`: ID-Sim sụp 42.33 → 27.21 khi lên 3 người — đây chính là chỗ cần số |
+| **C-3** | **2–3 nhân vật tái xuất hiện xuyên chapter**, đủ để có **8 panel liền nhau** cùng một nhân vật | `G1-a` (**≥70%**) — cách đo nguyên văn là *"nhìn 8 panel liền nhau"* | Nhân vật chỉ xuất hiện một lần ⇒ ⛔ **không đo được consistency**, vì consistency là thuộc tính **giữa các lần xuất hiện** |
+| **C-4** | **Có thoại** — đối thoại thật, ⛔ không phải chapter thuần tự sự | `G1-e` (**100%** panel có thoại dùng overlay) | Chapter không thoại ⇒ `G1-e` đạt **một cách rỗng** (0/0 = 100%). `CF-8.11c`: typeset *"nổ ngay ở panel có thoại đầu tiên"* — không có thoại thì rủi ro ⛔ **không bị chạm tới**, chỉ bị hoãn |
+| **C-5** | Thoại chứa **dấu chồng hai tầng** (`ế`, `ữ`, `ợ`) | Nghiệm thu bắt buộc của [ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Consequences` **#5**: corpus **cả NFC và NFD**, render 300 DPI, kiểm (a) ký tự ⛔ không tách khỏi dấu khi xuống dòng · (b) dấu ⛔ không bị mép bubble cắt cụt · (c) NFD và NFC cho **cùng** kết quả ngắt dòng | Corpus không có dấu chồng ⇒ ba phép kiểm (a)(b)(c) **chạy qua mà không chạm lỗi** ⇒ `TBD-FONT` bị đóng trên dữ liệu ⛔ không đại diện |
+| **C-6** | **Kể trọn trong ≤30 panel** | `Roadmap §2` (~8–30 panel) + quyết định phủ trọn | ⭐ **Phần thưởng kèm theo**: cho ra **số panel/chapter THẬT**, thay được giả định **60 ảnh/chapter** `[EM]` `CF-3.3` — *"thừa số gốc của toàn bộ mô hình chi phí"* (`Charter §8 A1`), đóng luôn `G-07` của [Risk-Register](../010-Planning/Risk-Register.md) |
+| **C-7** | Nội dung ⛔ **không chạm content policy** của provider (bạo lực đồ hoạ, tình dục, nhân vật có thật) | `G1-c` `reject_rate` sạch | Provider từ chối nhiều ⇒ `reject_rate` **trộn hai nguyên nhân khác loại** (VLM chọn tệ vs provider chặn) ⇒ verdict `G1-c` mất nghĩa. `D-67` ([SRS](../020-Requirements/SRS-Comic-Studio.md) `SRS-NFR-20`) bắt **ghi lại mọi lần từ chối** — nhưng ghi lại ⛔ không sửa được một mẫu đã nhiễm |
+| **C-8** | ⭐ **Bằng chứng đồng ý bằng văn bản của tác giả**, lưu **cùng chỗ** với golden dataset | Nghĩa vụ phái sinh từ `H6` | Xem cảnh báo ngay dưới |
+
+> [!IMPORTANT]
+> ⭐ **Phạm vi đồng ý phải phủ việc DÙNG LẠI, ⛔ không chỉ việc chạy thử một lần.**
+>
+> Kỷ luật MVP0 nói **code bị vứt** — nhưng golden dataset thì ⛔ **không**: `MVP-Scope §3` hạng mục **`H6` = `✅` ở MỌI mốc MVP0–MVP4**, và [Epic-Quality-And-Operations](../022-User-Stories/Epics/Epic-Quality-And-Operations.md) gọi nó là *"tài sản dùng suốt vòng đời, không phải artifact của MVP0"*. `Roadmap §6.2` xác nhận nó là đầu vào của **eval kit `M1-6`**.
+>
+> ⇒ Chapter của người khác sẽ **sống trong repo lâu hơn chính MVP0**. Một lời đồng ý miệng cho *"thử một lần"* ⛔ **không** phủ được việc dataset đó còn được đọc ở MVP1, MVP2 và mọi lần chạy regression về sau. ⚠️ Đây ⛔ **không phải** câu hỏi `G0`: `G0` đo rủi ro **thương mại hoá** (`Roadmap §6.1` — MVP0 không có khách, không thu tiền). Đây là rủi ro **tài sản**: nếu đồng ý bị rút, thứ mất đi là **baseline đo lường** của mọi mốc sau.
+
+**Cách dùng phiếu**: chấm `C-1`…`C-8` **trước** khi viết dòng Story Bible đầu tiên. `C-1`, `C-3`, `C-4` là **ba tiêu chí không thương lượng** — trượt bất kỳ cái nào thì đổi chapter, ⛔ đừng đổi ngưỡng.
+
 ---
 
 ## 6. Nhất quán tài liệu — 6 phát hiện
@@ -238,7 +264,7 @@ Story ⛔ không sai — nó đã tách DoD của lát MVP0 xuống mục 6 và 
 
 | # | Câu hỏi | Vì sao chặn | Chủ |
 |:-:|---|---|---|
-| **Q-1** | **Chapter nào?** Truyện nào, bản quyền thuộc ai, bao nhiêu chữ | Ba điều kiện tiên quyết cứng đều phái sinh từ đây; ⛔ không Story nào sở hữu | **Founder** |
+| **Q-1** | **Chapter nào?** Truyện nào, bản quyền thuộc ai, bao nhiêu chữ | Ba điều kiện tiên quyết cứng đều phái sinh từ đây; ⛔ không Story nào sở hữu. ⇒ Chấm bằng **phiếu `C-1…C-8`** tại [§5.4](#54-phiếu-chọn-chapter--tiêu-chí-c-1c-8) | **Founder** |
 | **Q-2** | Ký nhận ba ngưỡng `[EM]` (`G1-c`, `G1-d`, `E_hitl`) **trước** khi đo | `MVP-Scope §7`: ngưỡng chốt sau khi nhìn kết quả ⇒ gate thành nghi lễ | **Founder** |
 | **Q-3** | Chốt **vendor** image + VLM cho MVP0 | Số đo trên provider A ⛔ không chuyển giao sang provider B ⇒ mất giá trị của cả `G1` | **Founder + Architect** |
 | **Q-4** | `E_build` của **riêng lát cắt MVP0** là bao nhiêu | ~90h khai báo ⛔ không so được với trần 1–2 tuần (`F-1`) | **PM + Founder** |
