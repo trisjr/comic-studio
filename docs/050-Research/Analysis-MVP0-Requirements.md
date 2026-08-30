@@ -23,7 +23,7 @@ updated: 2026-08-30
 - [4. Ma trận truy vết Story × tiêu chí](#4-ma-trận-truy-vết-story--tiêu-chí)
 - [5. Sẵn sàng thực thi](#5-sẵn-sàng-thực-thi)
   - [5.4 Phiếu chọn chapter — tiêu chí `C-1…C-8`](#54-phiếu-chọn-chapter--tiêu-chí-c-1c-8)
-- [6. Nhất quán tài liệu — 6 phát hiện](#6-nhất-quán-tài-liệu--6-phát-hiện)
+- [6. Nhất quán tài liệu — 7 phát hiện](#6-nhất-quán-tài-liệu--7-phát-hiện)
 - [7. Câu hỏi mở cần Founder đóng](#7-câu-hỏi-mở-cần-founder-đóng)
 - [8. Tài liệu tham khảo](#8-tài-liệu-tham-khảo)
 
@@ -216,7 +216,7 @@ Rank 1  Fix-Narrative-Time-Key ──► P-4   (⭐ ĐỘC LẬP với nhánh si
 
 ---
 
-## 6. Nhất quán tài liệu — 6 phát hiện
+## 6. Nhất quán tài liệu — 7 phát hiện
 
 > Mọi phát hiện dưới đây đều kèm **bằng chứng kiểm được bằng lệnh**. ⛔ Không suy diễn.
 
@@ -257,6 +257,36 @@ Story ⛔ không sai — nó đã tách DoD của lát MVP0 xuống mục 6 và 
 **Bằng chứng**: mục 6 của cả năm Story `n/a [MVP0]` đều liệt kê **cùng 5 tiêu chí `G1-a…G1-e`** làm Definition of Done, kèm chú thích ai *sở hữu* tiêu chí nào.
 
 **Hệ quả vận hành**: tiến độ MVP0 ⛔ **không theo dõi được ở tầng Story** — một Story chỉ chuyển `done` khi cả gate `G1` có số. ⇒ Đơn vị theo dõi đúng của MVP0 là **gate `G1` + `P-1…P-6`**, ⛔ không phải bảng Story. Đây là hệ quả trực tiếp của kỷ luật *"MVP0 mua thông tin, không giao tính năng"* — ghi ra đây để ⛔ không ai cố ép Story MVP0 vào một sprint board thông thường.
+
+
+### F-7 — Chữ *"spike"* có 3 cách dùng khác nhau; chỉ **7 chỗ** thật sự nằm trong vùng `CẤM-11` phải phán
+
+`CẤM-11` ([Glossary](../999-Resources/Glossary.md) headword `MVP0`): *"Một tên duy nhất cho khái niệm này — không dùng **'phase 0'**, **'spike'**, **'PoC'**."*
+
+**Bằng chứng** — grep toàn `docs/`, ⛔ **trừ `pm-runs/`** (là *"sổ tay điều phối của PM, không phải deliverable"*, `pm-runs/README.md`). ⛔ Không hit nào cho *"phase 0"* hay *"PoC"* ngoài chính các dòng ban lệnh cấm.
+
+| Nhóm | Cách dùng | Số chỗ | Phán được ngay chưa |
+|:-:|---|:-:|---|
+| **C** | *"một **spike riêng**"* (canvas — `MVP-Scope §5.3` #6, `PRD` `D2`, `UC-08`), *"**nghiệm thu spike**"* (verify vendor Clerk — `ADR-003`, `SRS-NFR-08`) | ~13 | ✅ **Ngoài phạm vi.** Đây là **spike KHÁC**, ⛔ không phải MVP0 — `CẤM-11` cấm gọi *MVP0* là spike, ⛔ không cấm từ *"spike"* tồn tại trong repo |
+| **B** | *"**code của spike** KHÔNG phải nền của sản phẩm"*, *"MVP0 **là spike bị vứt**"* (`MVP-Scope §3.1`, `Roadmap §3.1`, `SRS:153,291`, `PRD:336`, `BRD-007:77`, `Spec-Security-Legal-Compliance:346`) | 8 | ✅ **Hợp lệ — có bằng chứng nội tại**, xem ngay dưới |
+| **A** | ⭐ *"**spike MVP0**"* / *"**Spike MVP0**"* / *"Sau **spike MVP0**"* — dùng như một **cụm định danh** | **7** | ⚠️ **Vùng mờ — cần phán** |
+
+> [!NOTE]
+> ⭐ **Vì sao nhóm B hợp lệ, ⛔ không cần ai phán**: `SRS-Comic-Studio.md` dòng `153` dùng cụm *"code của spike"* **ngay bên trong chính câu ban lệnh cấm** — nguyên văn: *"Đây là chủ ý: **'code của spike KHÔNG phải nền của sản phẩm'**. […] ⛔ Không dùng tên khác cho MVP0 — không 'phase 0', không 'spike', không 'PoC' (`CẤM-11`)."*
+>
+> ⇒ Chính tác giả `CẤM-11` đọc *"code của spike"* là **danh từ chung mô tả tính chất**, ⛔ không phải một tên gọi thay thế. ⇒ Nhóm B **đóng**, ⛔ không mở lại.
+
+**Bảy chỗ thuộc nhóm A** (4 file): [`ADR-001`](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `:67`, `:69`, `:127` · [`SRS`](../020-Requirements/SRS-Comic-Studio.md) `:258` · [`Spec-Security-Threat-Model`](../030-Specs/Security/Spec-Security-Threat-Model.md) `:293`, `:522` · [`Typography`](../040-Design/Design-System/Typography.md) `:259` *(trích lại từ `ADR-001`)*.
+
+⛔ **Tài liệu này KHÔNG kết luận đây là vi phạm** — hai cách đọc đều đứng được, và chọn giữa chúng ⛔ không thuộc thẩm quyền của một tài liệu phân tích:
+
+| Đọc chặt | Đọc lỏng |
+|---|---|
+| *"Một tên duy nhất"* ⇒ **`spike MVP0` là tên thứ hai** cho cùng khái niệm, đúng thứ `CẤM-11` sinh ra để chặn | Tên **MVP0 vẫn nguyên vẹn**; *"spike"* chỉ là danh từ mô tả đứng trước — cùng loại với nhóm B đã được chính tác giả chấp nhận |
+
+**Chủ**: **PO** hoặc **context-auditor**.
+
+⭐ **Điều quan trọng hơn cả kết luận**: dù phán theo hướng nào, kết quả phải được **ghi thành ngoại lệ tường minh tại headword `MVP0` của `Glossary`**. Nếu không, lần rà nhất quán tiếp theo sẽ **tốn lại đúng công này** và có thể ra kết luận ngược — đó mới là chi phí thật. Chi phí sửa nếu phán là vi phạm: **7 chỗ / 4 file**, thấp; `Typography:259` là **trích dẫn** nên sửa `ADR-001` trước, ⛔ đừng sửa rời.
 
 ---
 

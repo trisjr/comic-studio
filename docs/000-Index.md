@@ -131,7 +131,7 @@ Thư mục con: `Sprints/` · `Estimates/` · `Implementation-Plans/` — *(chư
 |---|---|
 | [Analysis-Comic-Studio-Concept](./050-Research/Analysis-Comic-Studio-Concept.md) | Thẩm định ý tưởng — tài liệu nền tảng của cả dự án |
 | [Analysis-Market-Competitor-Landscape](./050-Research/Analysis-Market-Competitor-Landscape.md) | TAM/SAM/SOM, đối thủ, pricing, retention, kênh phân phối |
-| [Analysis-MVP0-Requirements](./050-Research/Analysis-MVP0-Requirements.md) | Phân tích yêu cầu **MVP0** — sẵn sàng thực thi, ma trận Story × tiêu chí `G1`, 6 phát hiện lệch tài liệu |
+| [Analysis-MVP0-Requirements](./050-Research/Analysis-MVP0-Requirements.md) | Phân tích yêu cầu **MVP0** — sẵn sàng thực thi, ma trận Story × tiêu chí `G1`, 7 phát hiện lệch tài liệu |
 
 Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *(chưa có tài liệu)*
 
