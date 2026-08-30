@@ -4,6 +4,7 @@ type: spec
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # DB Entity: Tenancy
@@ -92,7 +93,7 @@ Một dòng = **một ánh xạ tới định danh do vendor auth sở hữu**. 
 
 ⚠️ **⛔ Bảng này KHÔNG có `tenant_id`.** Đó là **có chủ đích**: một `user` có thể thuộc nhiều `tenant` (chính là lý do `membership` tồn tại từ ngày đầu, `SRS-FR-01`). Hệ quả phải đọc kỹ ở [RLS Policy](#rls-policy) và [`INV-T-5`](#constraint--invariant).
 
-⚠️ **Danh sách trường đồng bộ từ vendor (email, tên hiển thị, avatar…) = `TBD`.** `SRS-NFR-08` để **vendor** ở trạng thái `TBD`; [ADR-003](../Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md) chốt **nguyên tắc** (ta chỉ giữ ánh xạ) chứ ⛔ không chốt danh sách trường. ⛔ **File này không tự thêm cột `email`** — thêm một cột dữ liệu cá nhân là tạo nghĩa vụ mà ⛔ chưa ai xác định (`SRS` §5.2 `b-4`). **Ai đóng**: PM + Architect khi chốt vendor.
+⚠️ **Danh sách trường đồng bộ từ vendor (email, tên hiển thị, avatar…) = `TBD`.** `SRS-NFR-08` nay để **vendor auth** ở trạng thái **MẶC ĐỊNH (Clerk), ⛔ CHƯA MUA**; [ADR-003](../Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md) chốt **nguyên tắc** (ta chỉ giữ ánh xạ) chứ ⛔ không chốt danh sách trường. ⛔ **File này không tự thêm cột `email`** — thêm một cột dữ liệu cá nhân là tạo nghĩa vụ mà ⛔ chưa ai xác định (`SRS` §5.2 `b-4`). **Ai đóng**: PM + Architect khi chốt vendor.
 
 ---
 
@@ -309,7 +310,7 @@ erDiagram
 | `TBD` | Ai đóng | Khi nào |
 |---|---|---|
 | **Ngưỡng số** của rate limit (`upload` và `generate`) + độ dài cửa sổ | **PM / Founder**, sau số đo MVP0 (`SRS-NFR-20`) | Trước khi bật cưỡng chế thật |
-| Danh sách **trường đồng bộ từ vendor auth** vào `public."user"` | PM + Architect ([ADR-003](../Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md), `SRS-NFR-08`) | Khi chốt vendor |
+| Danh sách **trường đồng bộ từ vendor auth** vào `public."user"` | PM + Architect ([ADR-003](../Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md), `SRS-NFR-08`) | Khi spike Clerk đạt/trượt 3 tiêu chí — **kickoff MVP1** |
 | Xoá dòng ánh xạ `user` khi ⛔ không còn `membership` — chạm nghĩa vụ **dữ liệu cá nhân** | **PM + luật sư** (`SRS` §5.2 `b-4`) | Trước khi có người dùng ngoài |
 | Xác nhận **cách đo `D3`** kèm allowlist hai bảng định danh | Người viết test `M1-1` (PM/QA) | Khi duyệt file này |
 | Cột `role` trên `membership` | Lô sau, khi `E8` vào scope | ⛔ Chưa có mốc |

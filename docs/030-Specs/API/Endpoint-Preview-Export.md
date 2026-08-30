@@ -4,6 +4,7 @@ type: spec
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # Endpoint: Preview & Export (kèm provenance readout)
@@ -197,7 +198,7 @@ Bề mặt API của **đường thành phẩm**: preview là composite **read-o
 | `API-PE-7` | ⚠️ **Vị từ được đánh giá TẠI THỜI ĐIỂM GHI**, ⛔ không phải lúc client đọc màn hình. Một lần reset gate commit **sau** khi export đã commit là một **trạng thái mới**, ⛔ không phải một lần bypass. ⇒ Artifact đã ra khỏi hệ thống thì ⛔ **không thu hồi được** | `INV-4` của [`DB-Entity-Comic-IR.md`](../Schema/DB-Entity-Comic-IR.md) · `SDD-HG-01.5` |
 | `API-PE-8` | ⛔ **Preview ⛔ không mở đường xuất bản.** Một lần preview thành công ⛔ **không** là bằng chứng gate đã PASS, ⛔ không rút ngắn bất kỳ điều kiện nào của `E-PE-3` | [UC-08](../../020-Requirements/Use-Cases/UC-08-Arrange-Page-And-Preview.md) bước 10 |
 | `API-PE-9` | ⛔ **Export ⛔ KHÔNG tiêu thụ `preview_render`.** Export chạy compositor **trực tiếp** trên dữ liệu nguồn; preview là **cache để xem** | Quyết định #2 lý do 3 |
-| ⭐ `API-PE-10` | ⭐ **Compositor render DỮ LIỆU KHÔNG TIN CẬY ⇒ an toàn render là ràng buộc bắt buộc, ⛔ không phải tuỳ chọn.** Hai endpoint `POST` của file này là **bề mặt API kích hoạt** compositor, và cái compositor vẽ vào ảnh gồm **văn bản do người dùng nhập** (thoại, tên nhân vật, tên file). ⇒ Mọi lựa chọn cơ chế render phải thoả ràng buộc của `C-10`. ⚠️ ⛔ **File này ⛔ KHÔNG chốt cơ chế** — cơ chế phụ thuộc `SRS-NFR-09` còn `TBD` ⇒ xem [`TBD` còn lại](#tbd-còn-lại) | ⭐ `C-10` · `TM-F6-3` của [`Spec-Security-Threat-Model.md`](../Security/Spec-Security-Threat-Model.md) |
+| ⭐ `API-PE-10` | ⭐ **Compositor render DỮ LIỆU KHÔNG TIN CẬY ⇒ an toàn render là ràng buộc bắt buộc, ⛔ không phải tuỳ chọn.** Hai endpoint `POST` của file này là **bề mặt API kích hoạt** compositor, và cái compositor vẽ vào ảnh gồm **văn bản do người dùng nhập** (thoại, tên nhân vật, tên file). ⇒ Mọi lựa chọn cơ chế render phải thoả ràng buộc của `C-10`. ⚠️ ⛔ **File này ⛔ KHÔNG chốt cơ chế** — cơ chế phụ thuộc **[ADR-001](../Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) §`TBD` (*thư viện compositor + sinh PDF*, và `worker_threads` hay tách job)**, ⛔ **không phải** `SRS-NFR-09` — việc chọn ngôn ngữ/framework đã được `ADR-001` đóng ⇒ xem [`TBD` còn lại](#tbd-còn-lại) | ⭐ `C-10` · `TM-F6-3` của [`Spec-Security-Threat-Model.md`](../Security/Spec-Security-Threat-Model.md) |
 
 ### ⭐ `input_digest` — đóng `CO-EX-4` ở mức API contract
 
@@ -246,7 +247,7 @@ Bề mặt API của **đường thành phẩm**: preview là composite **read-o
 | **Tập giá trị `machine_readable_marking`** — phụ thuộc `SRS-NFR-16` và phạm vi khoản 4 Điều 11 | **Luật sư** → PM → Architect | Trước mốc tuân thủ theo `GP-4` |
 | **Thời hạn signed URL** — ⛔ không quyết ở đây; dùng **đúng một** hằng số của [ADR-004](../Architecture/ADR-004-Object-Storage-Vendor-And-Signed-URL.md) điều 4 | **Founder + dev** | Theo ADR-004 |
 | Hình dạng chính xác của `disclosure` trong response `E-PE-5` (cái gì phải hiển thị cho người đọc cuối) | **Luật sư + PM** | Cùng lúc với `machine_readable_marking` |
-| ⭐ **Cơ chế render an toàn của compositor** (`C-10`) — ⛔ chưa chọn được vì `SRS-NFR-09` (framework) còn `TBD`. ⚠️ Ràng buộc lên lựa chọn tương lai **đã chốt sẵn** ở `C-10` của [`Spec-Security-Threat-Model.md`](../Security/Spec-Security-Threat-Model.md); ⛔ **lô này ⛔ không thiết kế lại chúng**, chỉ **nhận chủ sở hữu** qua `API-PE-10` | **Architect** (bề mặt API kích hoạt compositor nằm ở file này) | **Phase 4** — trước khi compositor đầu tiên chạy |
+| ⭐ **Cơ chế render an toàn của compositor** (`C-10`) — ⛔ chưa chọn được vì **[ADR-001](../Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) §`TBD` chưa chọn *thư viện compositor + sinh PDF*** (và chưa chốt `worker_threads` hay tách job), ⛔ **không phải** vì `SRS-NFR-09`. ⚠️ Ràng buộc lên lựa chọn tương lai **đã chốt sẵn** ở `C-10` của [`Spec-Security-Threat-Model.md`](../Security/Spec-Security-Threat-Model.md); ⛔ **lô này ⛔ không thiết kế lại chúng**, chỉ **nhận chủ sở hữu** qua `API-PE-10` | ⭐ Tách đôi: **tập ràng buộc — Architect**, đã CHỐT tại `C-10` · **chọn thư viện — Dev** | ⭐ **MVP0 (spike)** — `C-10` là **tiêu chí nghiệm thu của spike**, trước khi compositor đầu tiên chạy |
 
 ---
 

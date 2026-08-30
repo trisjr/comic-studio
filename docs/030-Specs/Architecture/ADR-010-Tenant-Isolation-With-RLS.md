@@ -4,6 +4,7 @@ type: adr
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-010: Cô lập tenant bằng `tenant_id` toàn cục + Postgres RLS
@@ -173,7 +174,7 @@ Ghi ở đây **chỉ để chặn việc mở lại**, ⛔ không lặp lại l
 |---|---|---|
 | Danh sách đầy đủ **bảng nghiệp vụ** để test `M1-1` phủ hết (DoD là toàn cục ⇒ danh sách phải đóng) | Lô `docs/030-Specs/Schema/DB-Entity-*.md` (architect) + [ADR-005](./ADR-005-Platform-Table-Schema-Placement.md) cho nhóm P | Trước khi viết test `M1-1` — tức trước **migration số 1** |
 | **Thông báo cho tenant bị takedown** — `TBD` trong nguồn | PM / `security-auditor`; xem [findings/architect §7 G10](../../010-Planning/pm-runs/2026-08-28-phase-2-architecture-design-comic-studio/findings/architect.md) — *"Thông báo cho tenant bị takedown là `TBD`"* | Trước khi `Story-Safe-Harbour-Checklist-Article-198b` vào Active Sprint (SLA **72 giờ** phải có người nhận) |
-| **Vendor auth** sở hữu định danh `user` (`SRS-NFR-08`) | [ADR-003](./ADR-003-Auth-And-Billing-Vendor-Selection.md) | Khi `ADR-003` chuyển khỏi `draft` — trước MVP1 (`E4` = `✅ auth` từ MVP1) |
+| **Vendor auth** sở hữu định danh `user` (`SRS-NFR-08`) | [ADR-003](./ADR-003-Auth-And-Billing-Vendor-Selection.md) | `ADR-003` nay `accepted`, nhưng Clerk mới ở mức **MẶC ĐỊNH, ⛔ chưa mua** ⇒ điều kiện còn lại là **spike verify ba tiêu chí nghiệm thu** của `ADR-003` — kickoff MVP1 (`E4` = `✅ auth` từ MVP1) |
 
 ## Đã quyết ở đâu
 

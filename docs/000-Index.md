@@ -93,7 +93,7 @@ Thư mục con: `Sprints/` · `Estimates/` · `Implementation-Plans/` — *(chư
 
 ### 030 · Specs — [Specs-MOC](./030-Specs/Specs-MOC.md)
 
-⭐ **57 tài liệu** — sản phẩm của **SDLC Phase 2 — Architecture Design**. Toàn bộ `status: draft`.
+⭐ **57 tài liệu** — sản phẩm của **SDLC Phase 2 — Architecture Design**. Trạng thái: **53 `draft`** + ⭐ **4 `accepted`** (`ADR-001`…`ADR-004`, duyệt ở run `2026-08-30-dong-bo-srs-nfr-voi-adr`) *(đếm cơ học `grep -rln '^status: accepted' docs/030-Specs/` ngày 2026-08-30, ⛔ không trích lại)*.
 
 | Nhóm | Số file | Nội dung |
 |---|:--:|---|
@@ -175,6 +175,7 @@ Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *
 | `2026-08-24-khoi-tao-requirements-stories-comic-studio` | Khởi tạo tầng 020-Requirements (21 tài liệu) + tầng 022-User-Stories (50 tài liệu) + 15 thuật ngữ Glossary. **72 deliverable, 20 lô writer** |
 | `2026-08-28-phase-2-architecture-design-comic-studio` | Phase 2 — Architecture Design → toàn bộ tầng [030-Specs](./030-Specs/Specs-MOC.md) (57 tài liệu). **46 lô writer** |
 | `2026-08-30-brand-guidelines-va-design-system-comic-studio` | Phase 3 (phần nền) — [Brand Guidelines + Design System](./040-Design/Design-MOC.md) (6 tài liệu) + `Design-MOC` viết từ số 0 + 33 thuật ngữ Glossary. **5 lô writer**, 4 quyết định `G-1`…`G-4` của Founder tại gate |
+| `2026-08-30-dong-bo-srs-nfr-voi-adr` | ⭐ Đồng bộ lệch tầng **020 ↔ 030** — `SRS-NFR-07`/`08`/`09` hạ khỏi `CHƯA QUYẾT` theo `ADR-001`…`ADR-004`; 4 ADR đó chuyển `accepted`. **21 điểm ở `SRS` + 15 điểm ripple nội dung tầng 030 + 4 ADR chuyển `accepted` + 4 điểm MOC/Index** *(đếm cơ học từ `git diff` ngày 2026-08-30, ⛔ không trích lại)*. **3 lô writer** + 2 pass verify. ⚠️ Đọc [`escalations.md` `E1`](./010-Planning/pm-runs/2026-08-30-dong-bo-srs-nfr-voi-adr/escalations.md) **trước khi** báo `ADR-001:16`/`:173` là lỗi — chúng ⛔ không phải lỗi |
 
 ---
 
@@ -216,7 +217,7 @@ Ghi ở đây để minh bạch thay vì che giấu.
 | **2** | ⭐ **`TBD` font render vào ảnh chưa đóng** ([ADR-013](./030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) sở hữu). [Typography](./040-Design/Design-System/Typography.md) đã ghi 4 ràng buộc phải thoả (đơn trị · phủ dấu chồng · license nhúng server-side · metric ổn định + pin version), nhưng ⚠️ **`ADR-013` mới nêu họ font + glyph coverage, CHƯA nêu hai ràng buộc sau** | **Cao** | Architect + Founder |
 | **3** | ⚠️ **`ADR-013` ⛔ không cross-link tới `T-PL-BUDGET-UNIT`** (`Endpoint-Page-Layout`), dù **cỡ chữ bubble phụ thuộc CẢ HAI `TBD`**. Hai `TBD` này phải đóng **theo thứ tự**, và hiện ⛔ **không tài liệu nào nói ra thứ tự đó** | Trung bình | Architect + BA |
 | **4** | **Bảng 27 hàng audit contrast trong [Color-Tokens](./040-Design/Design-System/Color-Tokens.md) được tính TAY** theo công thức relative luminance WCAG (làm tròn xuống). ✅ Verify pass đã **tính lại độc lập 15/27 hàng** (chọn mọi hàng sát ngưỡng: 4.34 · 4.41 · 4.75 · 4.79 · 4.82) — **khớp delta 0.00, 0 sai ngưỡng**. Vẫn nên **chạy lại bằng công cụ tự động khi init** cho 12 hàng còn lại, màu chồng alpha, và text trên ảnh preview | Thấp *(hạ từ Trung bình sau verify)* | — |
-| **5** | ⚠️ **`SRS-NFR-09` (tầng 020) vẫn ghi framework frontend `CHƯA QUYẾT → TBD`** trong khi `ADR-001` (tầng 030) đã chốt `shadcn/ui + Tailwind`. Lệch tầng, cần run đồng bộ 020↔030 | Trung bình | Architect + BA |
+| **5** | ~~⚠️ **`SRS-NFR-09` (tầng 020) vẫn ghi framework frontend `CHƯA QUYẾT → TBD`** trong khi `ADR-001` (tầng 030) đã chốt. Lệch tầng, cần run đồng bộ 020↔030~~ ✅ **ĐÓNG** ở run `2026-08-30-dong-bo-srs-nfr-voi-adr`. Phạm vi thật rộng hơn: **cả ba** `SRS-NFR-07`/`08`/`09` cùng lệch ⇒ đồng bộ chung. ⚠️ **Đọc kỹ**: `ADR-001` xếp `shadcn/ui + Tailwind` ở tầng **MẶC ĐỊNH**, ⛔ **không phải CHỐT** — nên `SRS` nay ghi nhãn **LAI**, ⛔ cố ý không ghi CHỐT. ⚠️ Đường lui của `ADR-001` chỉ có ở mức **đổi cả cụm frontend**; ⛔ **riêng UI kit chưa có đường lui lẫn alternatives** — nợ để mở có chủ đích, xem [`escalations.md` `E7` #2](./010-Planning/pm-runs/2026-08-30-dong-bo-srs-nfr-voi-adr/escalations.md) | ~~Trung bình~~ **đóng** | Architect + BA |
 | **6** | ⚠️ **`UC-09`, `UC-10`, `UC-11` bị lọt tag XML** của tool call vào cuối file (`</content>`) | Thấp | — |
 | **7** | Mâu thuẫn `X-1` — độ rắn `D-45` (polling 2s) đọc ra hai kiểu: `SRS`+`ADR-015` ghi **MẶC ĐỊNH**, `ADR-001` xếp dưới *"⛔ không mở lại"*. ⛔ Không chặn Design System (trạng thái mô tả theo `job_status`, ⛔ không theo chu kỳ polling) | Thấp | Architect |
 | **8** | ⛔ **Không có template cho Design System** trong `999-Resources/Templates/` (13 khuôn, ⛔ không khuôn nào hợp). 6 file Phase 3 tự dựng cấu trúc ⇒ nếu muốn tái dùng, cần rút một `Template-Design-System.md` | Thấp | — |
