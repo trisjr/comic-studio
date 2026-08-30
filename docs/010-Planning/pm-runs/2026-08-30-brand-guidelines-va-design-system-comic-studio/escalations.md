@@ -61,3 +61,34 @@
 - **Quyết định**: `Brand-Guidelines.md` ghi `TBD` **có chủ** (Founder) tại mục tên hiển thị, và ⛔ **không** suy ra logo/wordmark/typography thương hiệu từ một cái tên chưa có.
 - **Lý do**: `comic-studio` là **project name** (`Charter` §1), ⛔ không phải tên sản phẩm. Tên thương mại là quyết định **kinh doanh + pháp lý** (khả năng đăng ký nhãn hiệu), ⛔ ngoài thẩm quyền của cả PM lẫn agent. Bịa tên ⇒ mọi asset phái sinh sau này phải làm lại.
 - **Sai thì hỏng ở đâu**: nếu anh thật ra đã có tên trong đầu, `Brand-Guidelines.md` chỉ cần sửa **một mục** — rẻ. Ngược lại, bịa một tên rồi để nó lan vào wordmark + favicon + microcopy thì đắt gấp nhiều lần.
+
+## E8 — Mã `E4` va chạm namespace giữa hai tài liệu
+
+- **Tầng**: 2 (PM tự quyết)
+- **Worker**: `business-analyst` tại Lô 5, báo dạng report-only (⛔ không sửa vì `docs/040-Design/**` ngoài ownership của nó)
+- **QUESTION**: `Components.md:56` dùng `E4` = *"vendor billing — mua, ⛔ không tự viết"*, trong khi `escalations.md` §`E4`, `Components.md:384` và `Brand-Guidelines.md:271` đều gloss `E4` = **takedown**. Một mã, hai nghĩa.
+- **PM verify**: ⭐ **Writer ⛔ KHÔNG trích sai.** `grep` ra `docs/010-Planning/MVP-Scope.md:147` — `E4` ở đó thật sự là *"Mua auth + billing (không tự viết)"*, một trong các điều kiện khả thi. Vậy đây ⛔ **không phải lỗi trích dẫn** mà là **va chạm namespace giữa hai hệ mã** cùng ký hiệu, thuộc hai tài liệu khác nhau. Cả hai dòng đều **đúng trong ngữ cảnh riêng**.
+- **Quyết định**: **Giữ cả hai nghĩa, khử nhập nhằng bằng cách ghi kèm tên tài liệu.** PM đã sửa `Components.md:56` thành `[MVP-Scope](...) E4` và thêm một dòng cảnh báo va chạm ngay tại chỗ: trong file đó, `E4` **trần** luôn mang nghĩa escalation.
+- **Vì sao PM tự sửa thay vì dispatch writer mới**: đúng **một dòng**. Overhead spawn ~23,6k token lớn hơn nhiều lần việc sửa, và context PM lúc này vẫn còn dùng được. Đây đúng là trường hợp T0 mà `pm-core.md` mô tả.
+- **Đánh giá mức**: ⛔ **không phải CRITICAL** — ⛔ không có khẳng định nào sai, chỉ có nguy cơ đọc nhầm. ⇒ ⛔ không quay lại Bước 5.
+
+## E9 — Con số "69 thuật ngữ / 10 nhóm" đã lạc hậu
+
+- **Tầng**: 2
+- **Worker**: `business-analyst` tại Lô 5
+- **Phát hiện**: `brief.md` (PM viết) và `findings/product-designer.md` §7 đều ghi **69 thuật ngữ**. Đếm cơ học trước khi Lô 5 sửa: **90 headword** (vẫn đúng 10 nhóm, 177 dòng). Con số 69 lấy từ `docs/000-Index.md`, ⛔ không phải đếm trực tiếp.
+- **PM đọc được gì**: đây là **cùng một loại lỗi** với `X-4` (BA đính chính con số *"14 NFR TBD"* mà PM cũng lấy từ `000-Index.md`). Hai lần trong một run ⇒ ⛔ **`000-Index.md` không dùng được làm nguồn cho số đếm**; nó là **lớp điều hướng**, và số trong đó trôi ngay khi tầng dưới đổi.
+- **Quyết định**: ⛔ **Không sửa `brief.md`** — nó là dấu vết quyết định tại thời điểm chạy, và con số đó ⛔ không ảnh hưởng quyết định nào của run. Nhưng **`000-Index.md` phải sửa ở close-step** thành số đúng sau Lô 5 (**123 mục, 11 nhóm**).
+- **Bài học ghi lại**: mọi con số đếm trong `000-Index.md` cần được **đếm lại tại nguồn** trước khi dùng, ⛔ không trích lại. Đề nghị đưa vào `/memo` cuối run.
+
+## E10 — Hai CRITICAL của verify pass, cả hai là lỗi ĐẾM (⭐ một là lỗi của PM)
+
+- **Tầng**: 2 (PM tự quyết cách vá)
+- **Worker**: `context-auditor` tại Lô 6 (verify), 54/60 tool call
+- **CRITICAL #1** — `Color-Tokens.md:400`: tiêu đề `### ⛔ Hai màu KHÔNG đạt 3:1` nhưng bảng ngay dưới có **BA** hàng. Hàng bị đếm rơi là `#94A3B8` (2.56:1, chữ disabled) — **hàng có hệ quả a11y lớn nhất** trong ba.
+- **CRITICAL #2** ⭐ — **lỗi của PM**, ở `Design-MOC.md:48` **và** `000-Index.md:119`: PM viết *"27 hàng audit contrast có số, gồm 3 hàng FAIL có chủ ý"*. Kiểm cơ học: bảng đánh số đúng 1→27, **cả 27 đều ✅**, `grep -c '❌'` toàn file = **0**. Ba màu không đạt nằm ở **bảng KHÁC**, ⛔ không được đánh số trong 27.
+- **PM verify lại độc lập trước khi sửa**: `grep -c "❌" Color-Tokens.md` → **0**; bảng phụ đếm được **3 hàng**. ⇒ Auditor **đúng hoàn toàn** ở cả hai điểm.
+- **Nguồn gốc lỗi #2**: PM **trích lại con số từ `SUMMARY` của Lô 2** (*"27 hàng … trong đó 3 hàng là FAIL có chủ ý"*) mà ⛔ **không đếm tại nguồn**. ⚠️ Đây **đúng là cái bẫy PM vừa ghi thành bài học ở `E9` một bước trước đó** — và vẫn mắc lại. Bài học thật rút ra: *"⛔ không trích lại số"* phải áp cho **mọi nguồn thứ cấp**, kể cả `SUMMARY` của worker mình vừa đọc, ⛔ không chỉ áp cho `000-Index.md`.
+- **Quyết định**: PM tự vá **3 chỗ** (đều là câu tóm tắt một dòng, kiểm được bằng `grep`), và **⛔ KHÔNG tự tuyên bố xong** — dispatch một **verify pass thứ hai** (agent khác PM) chỉ để xác nhận 2 CRITICAL đã đóng. Lý do ⛔ không dispatch writer mới để vá: 2/3 chỗ là `Design-MOC.md` và `000-Index.md` — **file PM độc quyền, ⛔ không cấp cho worker nào được**.
+- **Sửa gì**: (1) `Color-Tokens.md` — *"Hai màu"* → *"Ba màu"*, **thêm callout nói rõ ba màu này nằm NGOÀI bảng 27 hàng**, để chặn đúng kiểu đọc nhầm đã sinh ra CRITICAL #2; (2) `Design-MOC.md:48` và (3) `000-Index.md:119` — sửa thành *"cả 27 đều ĐẠT; 3 màu cố ý không đạt nằm ở bảng tách biệt"*.
+- **Ngoài ra**: hạ nợ #4 (`000-Index.md`) từ **Trung bình → Thấp**, vì verify pass đã tính lại độc lập **15/27 hàng** sát ngưỡng, khớp **delta 0.00**.

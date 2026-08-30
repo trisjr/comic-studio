@@ -12,10 +12,10 @@
 | 3 | Color Tokens | Design System | `docs/040-Design/Design-System/Color-Tokens.md` | — | `draft` | `product-designer` | L2 | **[x]** |
 | 4 | Spacing & Layout | Design System | `docs/040-Design/Design-System/Spacing-And-Layout.md` | — | `draft` | `product-designer` | L2 | **[x]** |
 | 5 | ⭐ Typography | Design System | `docs/040-Design/Design-System/Typography.md` | — | `draft` | `product-designer` | L3 | **[x]** |
-| 6 | Components | Design System | `docs/040-Design/Design-System/Components.md` | — | `draft` | `product-designer` | L4 | [ ] |
-| 7 | Glossary (bổ sung nhóm design) | Glossary | `docs/999-Resources/Glossary.md` | — | `live` (giữ nguyên) | `business-analyst` | L5 | [ ] |
-| 8 | Design MOC | *(MOC — hiện **0 byte**)* | `docs/040-Design/Design-MOC.md` | theo MOC khác trong repo | `live` | **PM** | close | [ ] |
-| 9 | Index | Index | `docs/000-Index.md` | — | `live` (giữ nguyên) | **PM** | close | [ ] |
+| 6 | Components | Design System | `docs/040-Design/Design-System/Components.md` | — | `draft` | `product-designer` | L4 | **[x]** |
+| 7 | Glossary (bổ sung nhóm design) | Glossary | `docs/999-Resources/Glossary.md` | — | `live` (giữ nguyên) | `business-analyst` | L5 | **[x]** |
+| 8 | Design MOC | *(MOC — hiện **0 byte**)* | `docs/040-Design/Design-MOC.md` | theo MOC khác trong repo | `live` | **PM** | close | **[x]** |
+| 9 | Index | Index | `docs/000-Index.md` | — | `live` (giữ nguyên) | **PM** | close | **[x]** |
 
 > ⚠️ **`docs/999-Resources/Templates/` ⛔ KHÔNG có template nào cho Design System** (13 khuôn, đã liệt kê ở `000-Index.md`, không khuôn nào hợp). Writer tự dựng cấu trúc theo outline dưới đây — ⛔ **không** ép vào `Template-Spec.md` cho có.
 

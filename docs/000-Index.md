@@ -4,7 +4,7 @@ type: index
 status: live
 project: comic-studio
 created: 2026-08-23
-updated: 2026-08-24
+updated: 2026-08-30
 ---
 
 # 📚 Documentation Master Index — comic-studio
@@ -110,8 +110,20 @@ Thư mục con: `Sprints/` · `Estimates/` · `Implementation-Plans/` — *(chư
 
 ### 040 · Design — [Design-MOC](./040-Design/Design-MOC.md)
 
-⚠️ **MOC hiện là file rỗng 0 byte** — chưa dùng được.
-*(chưa có tài liệu)* — thư mục con `Wireframes/`, `Design-System/`, `Specs/`, `Assets/` đã sẵn sàng.
+⭐ **6 tài liệu** — sản phẩm của **SDLC Phase 3 — Product Design** (run `2026-08-30`). Toàn bộ `status: draft`.
+
+| Tài liệu | Nội dung |
+|---|---|
+| [Foundations](./040-Design/Design-System/Foundations.md) | ⭐ **Đọc trước tiên.** Hợp đồng phát biểu token — **CSS variable là NGUỒN, Tailwind THAM CHIẾU**, một chiều. Kèm **checklist 14 mục `grep`** dùng nghiệm thu cơ học 5 file kia |
+| [Brand-Guidelines](./040-Design/Design-System/Brand-Guidelines.md) | Tone, hướng màu, 4 actor có căn cứ. ⚠️ **Tên hiển thị vẫn `TBD`** (chủ: Founder) — `comic-studio` là project name, ⛔ không phải tên sản phẩm |
+| [Color-Tokens](./040-Design/Design-System/Color-Tokens.md) | 17 cặp semantic nền/chữ đủ 2 cột light/dark · **27 hàng audit contrast có số — cả 27 đều ĐẠT**; 3 màu cố ý không đạt 3:1 nằm ở **bảng tách biệt** kèm phạm vi hẹp |
+| [Typography](./040-Design/Design-System/Typography.md) | ⭐ **HAI hệ font, token ⛔ KHÔNG chung namespace**: font UI là CSS variable ở `apps/web`; font render vào ảnh là **tham số config của `apps/api`**, phải **đơn trị** |
+| [Spacing-And-Layout](./040-Design/Design-System/Spacing-And-Layout.md) | Thang spacing, radius, elevation, breakpoint, z-index đặt tên + ranh giới với hệ toạ độ **0–1** của `ADR-013` |
+| [Components](./040-Design/Design-System/Components.md) | 16 component không hoãn được `C-01`…`C-16` + ma trận state + **mục CẤM 8 hàng** |
+
+> ⚠️ **Phase 3 CHƯA đóng — đạt 1/4 tiêu chí chuyển Phase.** Run `2026-08-30` cố ý chỉ làm bộ nền. `Wireframes/`, `Specs/` (User Flow + UI Spec), `Assets/` **chưa có tài liệu**, thuộc run sau.
+
+> ⭐ **Ba ràng buộc xuyên suốt của tầng này**: (1) **hai hệ font ⛔ không được gộp** — gộp thì hỏng im lặng, chỉ lộ **sau khi đã sinh ảnh và tốn tiền**; (2) ⛔ **không có component bulk approve** (`API-HG-6` + `SDD-HG-01.1`); (3) **AI-disclosure indicator là BẮT BUỘC** (`SRS-FR-40`, CHỐT) — bằng chứng tuân thủ chỉ tồn tại dưới dạng UI.
 
 ### 050 · Research — [Research-MOC](./050-Research/Research-MOC.md)
 
@@ -142,7 +154,7 @@ Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *
 
 | Mục | Nội dung |
 |---|---|
-| [Glossary](./999-Resources/Glossary.md) | **69 thuật ngữ, 10 nhóm** — kiến trúc pipeline, mô hình dữ liệu, sinh ảnh, SaaS & multi-tenancy, requirements & tài liệu hoá, backlog & story engineering… |
+| [Glossary](./999-Resources/Glossary.md) | **123 thuật ngữ, 11 nhóm** *(đếm cơ học `grep -c '^- \*\*'` ngày 2026-08-30, ⛔ không trích lại)* — kiến trúc pipeline, mô hình dữ liệu, sinh ảnh, SaaS & multi-tenancy, requirements & tài liệu hoá, backlog & story engineering, **Design System & thương hiệu** (33 mục thêm ở Phase 3)… |
 | [Request.md](./999-Resources/Request.md) | Concept gốc 894 dòng |
 | `Meeting-Notes/` | *(chưa có tài liệu)* |
 
@@ -161,6 +173,8 @@ Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *
 | `2026-08-23-danh-gia-y-tuong-comic-studio` | Thẩm định ý tưởng → sinh ra [Analysis-Comic-Studio-Concept](./050-Research/Analysis-Comic-Studio-Concept.md) |
 | `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio` | Khởi tạo 7 artifact planning → sinh ra toàn bộ tầng 010-Planning + cấu trúc Dewey + file này |
 | `2026-08-24-khoi-tao-requirements-stories-comic-studio` | Khởi tạo tầng 020-Requirements (21 tài liệu) + tầng 022-User-Stories (50 tài liệu) + 15 thuật ngữ Glossary. **72 deliverable, 20 lô writer** |
+| `2026-08-28-phase-2-architecture-design-comic-studio` | Phase 2 — Architecture Design → toàn bộ tầng [030-Specs](./030-Specs/Specs-MOC.md) (57 tài liệu). **46 lô writer** |
+| `2026-08-30-brand-guidelines-va-design-system-comic-studio` | Phase 3 (phần nền) — [Brand Guidelines + Design System](./040-Design/Design-MOC.md) (6 tài liệu) + `Design-MOC` viết từ số 0 + 33 thuật ngữ Glossary. **5 lô writer**, 4 quyết định `G-1`…`G-4` của Founder tại gate |
 
 ---
 
@@ -194,11 +208,24 @@ Ghi ở đây để minh bạch thay vì che giấu.
 | **7** | `INV-14` có nên nâng lên `CHECK` liên cột không — PM ⛔ **không tái lập được** lý do worker nêu; xem [`E25`](./010-Planning/pm-runs/2026-08-28-phase-2-architecture-design-comic-studio/escalations.md) | Thấp | Architect |
 | **8** | Còn **1 anchor gãy cứng + ~29 gãy mềm** ở `Architecture/` và `Schema/` (lô vá chỉ được cấp `API/` + `Security/`) | Thấp | — |
 
+### Từ Phase 3 — Product Design (run `2026-08-30`)
+
+| # | Nợ | Mức | Chủ |
+|---|---|---|---|
+| **1** | ⭐ **Tên hiển thị thương mại vẫn `TBD`.** `comic-studio` là **project name** (`Charter` §1), ⛔ không phải tên sản phẩm. Chặn dây chuyền: wordmark · favicon · microcopy · logo của bề mặt takedown công khai | **Cao** | Founder |
+| **2** | ⭐ **`TBD` font render vào ảnh chưa đóng** ([ADR-013](./030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) sở hữu). [Typography](./040-Design/Design-System/Typography.md) đã ghi 4 ràng buộc phải thoả (đơn trị · phủ dấu chồng · license nhúng server-side · metric ổn định + pin version), nhưng ⚠️ **`ADR-013` mới nêu họ font + glyph coverage, CHƯA nêu hai ràng buộc sau** | **Cao** | Architect + Founder |
+| **3** | ⚠️ **`ADR-013` ⛔ không cross-link tới `T-PL-BUDGET-UNIT`** (`Endpoint-Page-Layout`), dù **cỡ chữ bubble phụ thuộc CẢ HAI `TBD`**. Hai `TBD` này phải đóng **theo thứ tự**, và hiện ⛔ **không tài liệu nào nói ra thứ tự đó** | Trung bình | Architect + BA |
+| **4** | **Bảng 27 hàng audit contrast trong [Color-Tokens](./040-Design/Design-System/Color-Tokens.md) được tính TAY** theo công thức relative luminance WCAG (làm tròn xuống). ✅ Verify pass đã **tính lại độc lập 15/27 hàng** (chọn mọi hàng sát ngưỡng: 4.34 · 4.41 · 4.75 · 4.79 · 4.82) — **khớp delta 0.00, 0 sai ngưỡng**. Vẫn nên **chạy lại bằng công cụ tự động khi init** cho 12 hàng còn lại, màu chồng alpha, và text trên ảnh preview | Thấp *(hạ từ Trung bình sau verify)* | — |
+| **5** | ⚠️ **`SRS-NFR-09` (tầng 020) vẫn ghi framework frontend `CHƯA QUYẾT → TBD`** trong khi `ADR-001` (tầng 030) đã chốt `shadcn/ui + Tailwind`. Lệch tầng, cần run đồng bộ 020↔030 | Trung bình | Architect + BA |
+| **6** | ⚠️ **`UC-09`, `UC-10`, `UC-11` bị lọt tag XML** của tool call vào cuối file (`</content>`) | Thấp | — |
+| **7** | Mâu thuẫn `X-1` — độ rắn `D-45` (polling 2s) đọc ra hai kiểu: `SRS`+`ADR-015` ghi **MẶC ĐỊNH**, `ADR-001` xếp dưới *"⛔ không mở lại"*. ⛔ Không chặn Design System (trạng thái mô tả theo `job_status`, ⛔ không theo chu kỳ polling) | Thấp | Architect |
+| **8** | ⛔ **Không có template cho Design System** trong `999-Resources/Templates/` (13 khuôn, ⛔ không khuôn nào hợp). 6 file Phase 3 tự dựng cấu trúc ⇒ nếu muốn tái dùng, cần rút một `Template-Design-System.md` | Thấp | — |
+
 ### Từ các run trước
 
 | # | Nợ | Mức |
 |---|---|---|
-| 1 | ~~[Specs-MOC](./030-Specs/Specs-MOC.md)~~ ✅ **đã viết** ở Phase 2 (57 tài liệu, 0 link gãy). [Design-MOC](./040-Design/Design-MOC.md) **vẫn là file 0 byte** | Cao |
+| 1 | ~~[Specs-MOC](./030-Specs/Specs-MOC.md)~~ ✅ **đã viết** ở Phase 2 (57 tài liệu, 0 link gãy). ~~[Design-MOC](./040-Design/Design-MOC.md) **vẫn là file 0 byte**~~ ✅ **đã viết** ở Phase 3 (run `2026-08-30`) | ~~Cao~~ **đóng** |
 | 2 | [Request.md](./999-Resources/Request.md) **thiếu hoàn toàn YAML frontmatter** — vi phạm RULE-001 quy tắc #3 | Trung bình |
 | 3 | Còn **link chết loại-file** trong một số MOC (trỏ tới tài liệu chưa được viết) | Thấp — là placeholder có chủ ý |
 | 4 | Phần lớn MOC chỉ có link thư mục, **chưa có mô tả nội dung** | Thấp |
