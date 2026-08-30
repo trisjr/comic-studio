@@ -243,6 +243,8 @@ theme: {
 
 ### Bốn ràng buộc mà font render phải thoả (khi `TBD` được đóng)
 
+> ⭐ **Cả bốn ràng buộc dưới đây nay đã được ghi vào chính [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §*Bốn ràng buộc mà font render phải thoả*** *(đồng bộ `2026-08-30`)*. ⭐ **ADR-013 là nguồn sở hữu**; bảng này là **bản đối chiếu ở tầng 040**, ⛔ không phải nguồn thứ hai. Lệch nhau ⇒ sửa **cả hai trong cùng một run**.
+
 | # | Ràng buộc | Suy ra từ đâu |
 |:--:|---|---|
 | **R-1** | ⭐ **Đơn trị** — một họ font, resolve xác định, ⛔ không fallback stack | [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) điều **8** (*"⛔ không được wrap bằng font khác font sẽ render"*) + `## Consequences` **#5** |
@@ -347,7 +349,7 @@ Cỡ chữ render trong một bubble bị **ràng buộc đồng thời** bởi 
 | Khoảng trống | Trạng thái | **Chủ** | Khi nào |
 |---|---|---|---|
 | **Đơn vị của `text_budget`** (ký tự hay từ) và **hàm tính từ diện tích panel** — `T-PL-BUDGET-UNIT` | ⛔ **`TBD`** | ⭐ **BA + Architect** | Trước gate `M2-3` |
-| **Ánh xạ `text_budget` → cỡ chữ render** | ⛔ **`TBD`** — phụ thuộc **cả** hàng trên **và** `TBD-FONT` ([Hệ 2](#hệ-2-—-font-render-vào-ảnh)) | **Architect** (sau khi hai `TBD` kia đóng) | Sau MVP0 |
+| **Ánh xạ `text_budget` → cỡ chữ render** | ⛔ **`TBD`** — phụ thuộc **cả** hàng trên **và** `TBD-FONT` ([Hệ 2](#hệ-2-—-font-render-vào-ảnh)). ⭐ **Thứ tự đóng đã được chốt**: `TBD-FONT` **TRƯỚC**, hàm tính `text_budget` **SAU** — [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §*Thứ tự đóng hai `TBD`* | **Architect** (sau khi hai `TBD` kia đóng) | Sau MVP0 |
 
 ⚠️ ⛔ **Không bịa một công thức ở đây.** Một công thức bịa sẽ được tầng code và tầng QA dùng làm **chuẩn nghiệm thu** — và nó sẽ sai theo đúng kiểu im lặng đã mô tả ở [mục hai hệ font](#-hai-hệ-font-—--không-gộp).
 
@@ -382,6 +384,7 @@ Cỡ chữ render trong một bubble bị **ràng buộc đồng thời** bởi 
 - ⭐ [ADR-013 — Typeset Layer Separate From Art](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) — `## Decision` điều **1**, **2**, **6**, **8**, **9** · §Alternatives **(e)**, **(f)** · bảng `TBD` hàng *Font sẽ render*
 - [DB-Entity-Typeset-Layer](../../030-Specs/Schema/DB-Entity-Typeset-Layer.md) — `T-9` (NFC tại biên ingest) · `TBD-FONT`
 - [Endpoint-Page-Layout](../../030-Specs/API/Endpoint-Page-Layout.md) — `API-PL-12` (`text_budget` là dẫn xuất) · `T-PL-BUDGET-UNIT` (đơn vị + hàm tính = `TBD`, chủ **BA + Architect**)
+- ⭐ [ADR-013 — Typeset layer tách khỏi art](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) — **sở hữu `TBD-FONT`**; §*Bốn ràng buộc mà font render phải thoả* (`R-1`…`R-4`) · §*Thứ tự đóng hai `TBD`* (`TBD-FONT` **trước** `T-PL-BUDGET-UNIT`)
 - [Glossary](../../999-Resources/Glossary.md) — mục *typeset layer* · *`text_budget`* · *dialogue condensation*
 - [SRS — Comic Studio](../../020-Requirements/SRS-Comic-Studio.md) — §5.2 hàng `b-6` (i18n/l10n = `TBD`)
 - [RULE-001 — Documents Template](../../../knowledge-base/99-Templates/Documents-Template.md) — quy tắc **#5** (⛔ không wiki-link)
