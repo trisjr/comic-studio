@@ -152,5 +152,5 @@ Bảng dưới đây là **nhóm B của [MVP-Scope.md](../../010-Planning/MVP-S
 
 ---
 
-_Created by TNMCORE-OS — role `business-analyst`_
+_Created by Comic Studio — role `business-analyst`_
 _Author: trisjr_

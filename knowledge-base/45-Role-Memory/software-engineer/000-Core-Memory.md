@@ -32,4 +32,4 @@ Kinh nghiệm triển khai code tại `src/` đảm bảo Clean Code và tính P
 - **Tooling:** Luôn kiểm tra build status trước khi hoàn thành task.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

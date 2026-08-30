@@ -30,5 +30,5 @@ Sau khi viết code, AI Agent tự kiểm tra:
 ---
 
 ## Tài Liệu Tham Khảo
-1. [TNMCORE-OS README - Section 8: Knowledge Base](../../README.md#8-hệ-thống-tri-thức-knowledge-base)
-2. [SOP TNMCORE-OS - Section 3.3: Development Flow](../../SOP_TNMCORE-OS.md#33-giai-đoạn-3-development--openspec-execution-thực-thi)
+1. [Knowledge Base Master Index](../00-Index.md)
+2. [Universal Workflow - Bước 4: Implementation](../20-Project/Universal-Workflow.md)

@@ -102,5 +102,5 @@ Giá trị nằm ở chỗ hai câu trả lời đó đến **trước** khi b�
 
 ---
 
-_Created by TNMCORE-OS — role `business-analyst`_
+_Created by Comic Studio — role `business-analyst`_
 _Author: trisjr_

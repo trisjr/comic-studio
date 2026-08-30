@@ -2,7 +2,7 @@
 id: MOC-999
 type: moc
 status: live
-project: TNMCORE-OS
+project: comic-studio
 created: 2026-02-26
 updated: 2026-08-24
 ---

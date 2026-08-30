@@ -209,5 +209,5 @@ Sổ rủi ro là [Risk-Register.md](../../010-Planning/Risk-Register.md). ⛔ *
 
 ---
 
-_BRD by TNMCORE-OS — role `business-analyst`._
+_BRD by Comic Studio — role `business-analyst`._
 _Author: trisjr_

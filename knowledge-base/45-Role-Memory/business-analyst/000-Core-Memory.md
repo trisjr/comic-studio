@@ -32,4 +32,4 @@ Bộ nhớ cốt lõi giúp BA làm sạch yêu cầu, loại bỏ sự mơ hồ
 - **Ngôn ngữ:** Dùng Tiếng Việt, giữ thuật ngữ chuyên ngành chuẩn.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

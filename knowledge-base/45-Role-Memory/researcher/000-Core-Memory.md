@@ -25,11 +25,11 @@ Tri thức về cách thu thập, phân tích và cung cấp insights giá trị
 
 ## ⚠️ 3. Bẫy sai lầm & Cách tránh
 - **Lỗi đã gặp:** Tổng hợp thông tin quá dài dòng, không có Actionable Insights.
-- **Cách phòng ngừa:** Luôn có phần "Khuyến nghị cho TNMCORE-OS" ở đầu mỗi báo cáo.
+- **Cách phòng ngừa:** Luôn có phần "Khuyến nghị cho Comic Studio" ở đầu mỗi báo cáo.
 
 ## 🎯 4. Ưu tiên của người dùng
 - **Authenticity:** Chỉ tin dùng các nguồn tin chính thống và có bằng chứng dữ liệu.
 - **Precision:** Thông tin phải được trình bày gãy gọn, tập trung vào điểm mấu chốt.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

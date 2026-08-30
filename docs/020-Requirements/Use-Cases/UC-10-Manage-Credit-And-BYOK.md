@@ -185,6 +185,6 @@ Nhìn từ phía nền tảng, cùng một luồng có một mục tiêu thứ h
 
 ---
 
-_Use Case by TNMCORE-OS — role `business-analyst`._
+_Use Case by Comic Studio — role `business-analyst`._
 _Author: trisjr_
 </content>

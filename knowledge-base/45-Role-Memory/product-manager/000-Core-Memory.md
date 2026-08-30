@@ -32,4 +32,4 @@ Tư duy quản trị tập trung vào giá trị kinh doanh và sự ổn địn
 - **Resource:** Luôn cập nhật tiến độ vào `docs/010-Planning/`.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

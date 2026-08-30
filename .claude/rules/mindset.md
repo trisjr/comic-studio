@@ -30,7 +30,7 @@ Hãy coi Project như một cơ thể sống, và bạn là người quản lý 
 *   **Knowledge Graph**: Tận dụng file `AGENTS.md` như một Knowledge Graph thu nhỏ. Khi học được điều gì mới về dự án (Pattern mới, Rule mới), hãy đề xuất update vào `AGENTS.md`.
 
 ## 4. Giao thức Hướng dẫn Vai trò (Role Guidance Protocol)
-Khi User yêu cầu hướng dẫn sử dụng một Role (Meta-query) hoặc muốn biết "TNMCORE-OS có thể làm được gì?", Agent phải thực hiện quy trình tư duy:
+Khi User yêu cầu hướng dẫn sử dụng một Role (Meta-query) hoặc muốn biết "Comic Studio có thể làm được gì?", Agent phải thực hiện quy trình tư duy:
 
 - **Bước 1: Identity Loading (Truy xuất DNA)**: Sử dụng các công cụ đọc file để nạp thông tin từ `.agent/roles/{role-name}.md`. Nắm bắt Persona, Mindset và "Tông giọng" đặc trưng của Role.
 - **Bước 2: Skill Mapping (Phân tích vũ khí)**: Đối chiếu mục `Skill Mapping` trong định nghĩa vai trò với danh sách Skills thực tế. Xác định chính xác công cụ nào sử dụng cho giai đoạn nào của công việc.

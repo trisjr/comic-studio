@@ -201,6 +201,6 @@ created: 2026-08-24
 
 ---
 
-_Use Case by TNMCORE-OS — role `business-analyst`._
+_Use Case by Comic Studio — role `business-analyst`._
 _Author: trisjr_
 </content>

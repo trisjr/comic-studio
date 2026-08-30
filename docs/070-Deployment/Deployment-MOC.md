@@ -20,4 +20,4 @@ Quản lý quá trình đóng gói, phát hành và triển khai phần mềm l�
 - [Runbooks/](./Runbooks/)
 
 ---
-*TNMCORE-OS Deployment Management.*
+*Comic Studio Deployment Management.*

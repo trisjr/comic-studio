@@ -43,7 +43,6 @@ Thumbs.db
 .temp/
 tmp/
 out/
-.TNMCORE-OS-Slides/
 __pycache__/
 *.pyc
 dev/

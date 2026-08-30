@@ -45,7 +45,7 @@ Automated workflow from code completion to opening a fully formatted Pull Reques
 
 ## Step 1: Gather Context & Evaluate Pause Conditions (Conditional Pause)
 
-1. **Resolve HUB_ROOT:** Save the absolute path to the TNMCORE-OS root directory. This value is used throughout the workflow.
+1. **Resolve HUB_ROOT:** Save the absolute path to the Hub root directory. This value is used throughout the workflow.
 
 2. **Read `.env` ONCE and cache it.** A single read of `<HUB_ROOT>/.env` provides every key used across the whole workflow — `GITHUB_USERNAME`, `ALLOW_COMMIT_HUB_ROOT`, `CLICKUP_API_KEY`, `PROJECT_SHORT_NAME`, `TNMCORE_HUB_DIR`. Never re-read `.env` in later steps.
    - **GITHUB_USERNAME** (needed for the branch name): use `.env` value. _Fallback only if empty → `gh api user --jq '.login'`, save to env. If `gh api user` fails due to missing auth: Warn and fall back to `git config user.name`. Do NOT interact with GitHub CLI auth._ Assignment in Step 4 uses `@me`, so this value is only required for branch naming.

@@ -3,7 +3,7 @@ author: trisjr
 description: Mandatory formatting guidelines when interacting with ClickUp through the MCP Layer (mcp_clickup).
 ---
 
-# ClickUp MCP Formatting Rule (TNMCORE-OS Standard)
+# ClickUp MCP Formatting Rule (Comic Studio Standard)
 
 > [!IMPORTANT]
 > This is a **MANDATORY** rule (System Constitution) for every Agent and Role (PO, Architect, Engineer...) when creating or updating Tickets (Tasks) on ClickUp via the MCP protocol (`mcp_clickup`).
@@ -17,7 +17,7 @@ When using content manipulation tools like `clickup_create_task` or `clickup_upd
 
 ## 2. Formatting Standards (Markdown Blueprints)
 
-Any content (payload) passed to `markdown_description` **MUST MAP 1:1 WITH DEFINED TEMPLATES** of TNMCORE-OS. Depending on the nature of the Work Item, the Agent must select the appropriate template:
+Any content (payload) passed to `markdown_description` **MUST MAP 1:1 WITH DEFINED TEMPLATES** of Comic Studio. Depending on the nature of the Work Item, the Agent must select the appropriate template:
 
 ### A. For Task/Feature (New feature, Plan, Infrastructure)
 

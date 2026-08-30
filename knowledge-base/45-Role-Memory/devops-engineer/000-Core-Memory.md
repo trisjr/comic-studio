@@ -32,4 +32,4 @@ Tri thức về hạ tầng, bảo mật và tính ổn định của môi trư�
 - **Security:** Ưu tiên "Principle of Least Privilege".
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

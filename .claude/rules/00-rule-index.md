@@ -14,7 +14,7 @@
 
 | File | Nội dung |
 |---|---|
-| [`communication.md`](./communication.md) | Định danh TNMCORE-OS, ngôn ngữ hội thoại, gate phê duyệt, chống ảo giác |
+| [`communication.md`](./communication.md) | Định danh Comic Studio, ngôn ngữ hội thoại, gate phê duyệt, chống ảo giác |
 | [`mindset.md`](./mindset.md) | Dual-System Thinking, Systems Thinking, Role Guidance Protocol |
 | [`clean-code.md`](./clean-code.md) | SOLID/DRY/KISS/YAGNI, header `AI Coding`, naming, giới hạn độ dài file |
 | [`security.md`](./security.md) | Phạm vi hoạt động, quản lý secret, thao tác nhạy cảm |

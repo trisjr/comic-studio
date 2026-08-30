@@ -4,7 +4,7 @@ trigger: always_on
 
 # Quy tắc Vòng lặp Học hỏi (Learning Loop Rule)
 
-Để hệ thống TNMCORE-OS thực sự mang tính tác nhân (Agentic) và có khả năng tự tiến hóa, mọi agent role BẮT BUỘC phải tuân thủ kỷ luật học hỏi sau mỗi Task.
+Để hệ thống Comic Studio thực sự mang tính tác nhân (Agentic) và có khả năng tự tiến hóa, mọi agent role BẮT BUỘC phải tuân thủ kỷ luật học hỏi sau mỗi Task.
 
 ## 📌 1. Kỷ luật đúc kết (The /memo Discipline)
 - **Khi nào kích hoạt:** Ngay sau khi hoàn thành một Implementation quan trọng, fix được một bug khó, hoặc nhận được những phản hồi (preferences) đặc thù từ USER.
@@ -26,4 +26,4 @@ Agent phải tập trung vào 4 nhóm tri thức:
 - Trước khi bắt đầu bất kỳ task nào, Agent theo role **PHẢI** đọc memory cũ của Role đó để không hỏi lại những điều USER đã feedback hoặc không lặp lại lỗi cũ.
 
 ---
-*Quy tắc này đảm bảo TNMCORE-OS không chỉ là một công cụ thực thi mà là một cộng sự thông minh biết rút kinh nghiệm.*
+*Quy tắc này đảm bảo Comic Studio không chỉ là một công cụ thực thi mà là một cộng sự thông minh biết rút kinh nghiệm.*

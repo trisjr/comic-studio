@@ -128,5 +128,5 @@ Con số làm gate này thành nghĩa vụ chứ không phải một tính năng
 
 ---
 
-_Created by TNMCORE-OS — role `business-analyst`_
+_Created by Comic Studio — role `business-analyst`_
 _Author: trisjr_
