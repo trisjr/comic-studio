@@ -1,9 +1,10 @@
 ---
 id: ADR-002
 type: adr
-status: draft
+status: accepted
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-002: Hosting platform, mô hình triển khai và region
@@ -81,7 +82,7 @@ Nhờ điều 6 (portability guardrail), cả ba bậc đều là **thay đổi 
 | Uptime/availability SLA · RPO/RTO/backup retention · throughput job/giờ · ngưỡng cảnh báo queue depth | `SRS` §5.2 **cấm gán số** cho nhóm NFR này; ràng buộc gần nhất chỉ là **định tính**: *"worker chết mà API vẫn sống"* (`SRS` `SRS-NFR-03`) | Founder + dev, sau khi MVP0 có số đo | Sau MVP0 |
 | **Nghĩa vụ lưu trữ dữ liệu trong lãnh thổ Việt Nam** theo pháp luật an ninh mạng | ⛔ **Không tài liệu nào trong repo trả lời**, và em ⛔ không khẳng định nội dung pháp lý | **Luật sư SHTT/tuân thủ** — nhập vào cùng gói câu hỏi của `SRS-NFR-17` (`SRS` §3.G) | Trước khi có khách hàng trả tiền |
 | Có cần CDN trước ảnh không | Phụ thuộc vendor storage | Dev | [ADR-004](./ADR-004-Object-Storage-Vendor-And-Signed-URL.md) + số đo MVP0 |
-| **Mã hoá dữ liệu (at rest / in transit) + quản lý secret** · **mục tiêu scalability/capacity** · **stack observability** | `SRS` §5.2 hàng `b-1`, `b-5`, `b-7` ghi rõ ba hạng mục này **phụ thuộc `SRS-NFR-07`** — tức phụ thuộc chính ADR này. ⚠️ **ADR này đóng việc CHỌN platform, ⛔ KHÔNG đóng ba hàng đó**: điều 6 chỉ quyết *cách nạp cấu hình* (biến môi trường), ⛔ không quyết nghĩa vụ mã hoá hay ngưỡng quy mô | Dev (`b-1`, `b-7`) · Founder + dev (`b-5`) | Sau khi platform được mua và MVP0 có số đo |
+| **Mã hoá dữ liệu (at rest / in transit) + quản lý secret** · **mục tiêu scalability/capacity** · **stack observability** | `SRS` §5.2: hàng `b-1` và `b-5` neo vào **`SRS-NFR-07`** — tức neo vào chính ADR này; hàng `b-7` thì ⛔ **không** neo vào `SRS-NFR-07` (`SRS` ghi *"chưa ai phát biểu observability thành một hạng mục"*), nhưng ADR này vẫn được nêu tên ở đó vì nó **tuyên bố ⛔ không đóng** hàng ấy. ⚠️ **ADR này đóng việc CHỌN platform, ⛔ KHÔNG đóng ba hàng đó**: điều 6 chỉ quyết *cách nạp cấu hình* (biến môi trường), ⛔ không quyết nghĩa vụ mã hoá hay ngưỡng quy mô | Dev (`b-1`, `b-7`) · Founder + dev (`b-5`) | Sau khi platform được mua và MVP0 có số đo |
 
 > ⚠️ Hàng thứ hai là **reopen trigger duy nhất được ghi trước** của ADR này: nếu luật sư trả lời *"dữ liệu phải nằm trong lãnh thổ Việt Nam"*, thì **cả ADR-002 và ADR-004 phải mở lại**. Ghi trước để việc mở lại là *thực thi kế hoạch*, không phải *sự cố*.
 

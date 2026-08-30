@@ -4,6 +4,7 @@ type: spec
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # Spec Integration: Auth Provider
@@ -186,7 +187,7 @@ File này đặc tả **bề mặt tiếp xúc giữa hệ thống và vendor au
 ## Tài liệu tham khảo
 
 **Tầng 020 — Requirements**
-- [SRS-Comic-Studio](../../020-Requirements/SRS-Comic-Studio.md) — `SRS-FR-01` (`D-11`) · `SRS-FR-03` (`D-12`) · `SRS-NFR-01` (`D-09`) · `SRS-NFR-08` (vendor `TBD`) · `SRS-NFR-15` · `SRS-NFR-26` (`D-08`) · §5.2 hàng `b-1`, `b-2`, `b-4`
+- [SRS-Comic-Studio](../../020-Requirements/SRS-Comic-Studio.md) — `SRS-FR-01` (`D-11`) · `SRS-FR-03` (`D-12`) · `SRS-NFR-01` (`D-09`) · `SRS-NFR-08` (vendor auth = MẶC ĐỊNH, billing `TBD`) · `SRS-NFR-15` · `SRS-NFR-26` (`D-08`) · §5.2 hàng `b-1`, `b-2`, `b-4`
 
 **Tầng 022 — User Stories**
 - [Story-Buy-Authentication-Provider](../../022-User-Stories/Backlog/Story-Buy-Authentication-Provider.md)

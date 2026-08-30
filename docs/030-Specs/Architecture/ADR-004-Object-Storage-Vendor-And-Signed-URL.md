@@ -1,9 +1,10 @@
 ---
 id: ADR-004
 type: adr
-status: draft
+status: accepted
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-004: Vendor object storage, chiến lược phát hành signed URL và luồng ingest

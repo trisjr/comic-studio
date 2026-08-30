@@ -4,7 +4,7 @@ type: srs
 status: draft
 project: comic-studio
 created: 2026-08-24
-updated: 2026-08-29
+updated: 2026-08-30
 ---
 
 # 📐 SRS — Comic Studio (Software Requirements Specification)
@@ -12,7 +12,7 @@ updated: 2026-08-29
 Implements: [PRD-Comic-Studio](./PRD-Comic-Studio.md)
 
 > [!IMPORTANT]
-> Tài liệu này khẳng định **những gì đã được quyết** ở tầng Planning/Analysis và **không đảo được rẻ**. Mọi chi tiết hiện thực còn lại (DDL đầy đủ, API contract, thuật toán, tham số hoá, lựa chọn vendor) **sẽ được đặc tả tại tầng 030-Specs** — tầng đó chưa tồn tại tại thời điểm viết, nên SRS này **không tạo bất kỳ link nào** trỏ vào đó.
+> Tài liệu này khẳng định **những gì đã được quyết** ở tầng Planning/Analysis và **không đảo được rẻ**. Mọi chi tiết hiện thực còn lại (DDL đầy đủ, API contract, thuật toán, tham số hoá, lựa chọn vendor) **đã được đặc tả tại tầng 030-Specs** — tầng đó đã tồn tại, nên SRS này **được phép link** vào `ADR-001`…`ADR-004` ở **những hàng đã được đóng**.
 
 ## Mục lục
 
@@ -36,7 +36,7 @@ Mục tiêu của tài liệu:
 
 1. **Cố định các quyết định không backfill được** — `tenant_id`, provenance, credit hold, khoá thời gian. Đây là nhóm *rẻ khi làm từ đầu, không thể sửa về sau*.
 2. **Ghi ra tường minh những gì đã bị cắt** (mục 6), để một khoảng trống trong tài liệu không bị đọc thành *"chưa quyết"*.
-3. **Không lấn sang tầng design** — mọi thứ thuộc 030-Specs được nêu bằng văn bản thuần, không link.
+3. **Không lấn sang tầng design** — SRS **dẫn chiếu** quyết định của 030-Specs (được phép link tới `ADR-001`…`ADR-004` ở những hàng đã đóng), nhưng **không tự ra quyết định thay** tầng đó.
 
 ### 1.2 Document Conventions
 
@@ -55,9 +55,9 @@ Mục tiêu của tài liệu:
 
 Hệ quả về cách viết: **khi copy một con số, copy cả nhãn nguồn** — nhãn `[EM]` phải đi theo con số qua mọi phép tính; bỏ nhãn khi nhân một ước lượng sẽ **rửa sạch** khoảng trống và biến giả định thành sự thật đo được (`Glossary` mục *nhãn nguồn*).
 
-#### b. Năm hàng **LAI** — cơ chế CHỐT, tham số bên trong chưa quyết
+#### b. Tám hàng **LAI** — cơ chế CHỐT, tham số bên trong chưa quyết
 
-`SRS-FR-20` · `SRS-FR-23` · `SRS-FR-26` · `SRS-NFR-17` · `SRS-NFR-20`. Cách đọc đúng: **cơ chế đã khẳng định**, `TBD` **chỉ áp cho tham số**. Không hàng nào trong năm hàng này bị hạ xuống `TBD` toàn phần, và **không tham số nào được tự chọn giúp**.
+`SRS-FR-20` · `SRS-FR-23` · `SRS-FR-26` · `SRS-NFR-17` · `SRS-NFR-20` · `SRS-NFR-07` · `SRS-NFR-08` · `SRS-NFR-09`. Cách đọc đúng: **cơ chế đã khẳng định**, `TBD` **chỉ áp cho tham số**. Không hàng nào trong tám hàng này bị hạ xuống `TBD` toàn phần, và **không tham số nào được tự chọn giúp**.
 
 #### c. Quy ước anchor
 
@@ -69,7 +69,7 @@ Hệ quả về cách viết: **khi copy một con số, copy cả nhãn nguồn
 
 ⚠️ **Không dùng phép chia "WHAT vs HOW"** — nó sai ở đúng repo này. `FOR UPDATE SKIP LOCKED` (`SRS-FR-25`) và storage key `tenant/{tenant_id}/{sha256}` (`SRS-FR-02`) đều là *"how"*, nhưng **phải** ở trong SRS, vì retrofit sau là **migration xuyên hệ thống**.
 
-⛔ **Tài liệu này không chứa link nào tới `docs/030-Specs/`.** Tầng đó rỗng và không thuộc scope run tạo tài liệu này; mọi chỗ cần trỏ sang design được viết dạng văn bản thuần *"sẽ được đặc tả tại tầng 030-Specs"*.
+✅ **Tài liệu này được phép link tới `docs/030-Specs/`** ở **những hàng đã được đóng bằng ADR** (`ADR-001`…`ADR-004`). Tầng đó **đã tồn tại và đã ra quyết định**; những chỗ **chưa** có ADR đóng vẫn được viết dạng văn bản thuần, ⛔ không link để tránh trỏ vào chỗ chưa có nội dung.
 
 #### e. Ba lệnh cấm số học áp cho toàn tài liệu
 
@@ -92,7 +92,7 @@ Hai định nghĩa canon phải dùng nguyên nghĩa ở mọi chỗ trong tài 
 
 | Ngoài phạm vi | Vì sao |
 |---|---|
-| Lựa chọn vendor (auth / billing / object storage), hosting / PaaS / region, ngôn ngữ & framework | Không tài liệu nào quyết. Chọn giúp ở SRS làm tầng design mất quyền quyết định thật và tạo một *"quyết định"* không ai chịu trách nhiệm ⇒ `TBD` (mục 5.2), **sẽ được đặc tả tại tầng 030-Specs** |
+| Lựa chọn vendor (auth / billing / object storage), hosting / PaaS / region, ngôn ngữ & framework | Không tài liệu nào quyết. Chọn giúp ở SRS làm tầng design mất quyền quyết định thật và tạo một *"quyết định"* không ai chịu trách nhiệm ⇒ `TBD` tại tầng 020 (mục 5.2), **đã được đặc tả tại tầng 030-Specs** ([ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md)…[ADR-004](../030-Specs/Architecture/ADR-004-Object-Storage-Vendor-And-Signed-URL.md)); riêng **vendor billing** vẫn `TBD` |
 | DDL đầy đủ, API contract, thuật toán chi tiết, error taxonomy, retry policy per provider | Thuộc tầng design — **sẽ được đặc tả tại tầng 030-Specs** |
 | Requirement cho phân khúc **hoạ sĩ**, subscription phẳng unlimited, free tier *"100 ảnh/ngày"* | ⛔ `CẤM-17` — `CF-1.5` `[CHỐT]` phân khúc là **tác giả truyện chữ không biết vẽ**; `CF-2.7` cấm hai mô hình giá kia dưới bất kỳ dạng nào |
 
@@ -145,8 +145,8 @@ Nguyên tắc kiến trúc chi phối toàn bộ: **spec là dữ liệu chính,
 | Object storage | Tách khỏi DB **từ ngày đầu**, key `tenant/{tenant_id}/{sha256}`, signed URL có hạn | `SRS-FR-02` |
 | Compute sinh ảnh | **Không mua GPU** — API cho main path; self-host chỉ cho LoRA train, upscale, inpainting | `SRS-NFR-11` |
 | Vector search | `pgvector` **không bị cấm** nhưng ❌ trong toàn horizon MVP0–MVP4; ở MVP dùng **Story Bible là index của mình** + PostgreSQL full-text search | mục 6.2 |
-| Hosting / PaaS / container platform / region | `TBD` | `SRS-NFR-07` |
-| Ngôn ngữ / framework backend & frontend | `TBD` | `SRS-NFR-09` |
+| Hosting / PaaS / container platform / region | **Container PaaS được quản lý** (⛔ không Kubernetes) · **một image → hai process type** · **managed PostgreSQL có PITR + restore đã diễn tập** · **ĐÚNG MỘT region** gần Việt Nam nhất · portability guardrail (**CHỐT**) — cụ thể **Render, region Singapore** (**MẶC ĐỊNH**, thang đường lui 3 bậc) — [ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md) | `SRS-NFR-07` |
+| Ngôn ngữ / framework backend & frontend | **TypeScript trên Node.js LTS** — một ngôn ngữ cho API, worker và frontend (**CHỐT**) · **NestJS** · **Drizzle** dùng như query builder trên `node-postgres` · **Vite + React + TS + TanStack Query + shadcn/ui + Tailwind** (**MẶC ĐỊNH** — ba hạng mục này có đường lui ghi rõ) · **pnpm workspace** + **ESLint boundary rule** (**MẶC ĐỊNH**, ⛔ chưa ghi đường lui) — [ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) | `SRS-NFR-09` |
 | Multi-region | **Hoãn** khỏi horizon | `SRS-NFR-26` |
 
 > [!NOTE]
@@ -253,14 +253,14 @@ Module này ánh xạ 1:1 sang [BRD-005-Multi-Tenancy-And-Platform](./BRD/BRD-00
 | **SRS-FR-02** | Object storage **tách khỏi DB từ ngày đầu** (không bao giờ lưu ảnh blob trong Postgres); key **`tenant/{tenant_id}/{sha256}`**, content-address **TRONG phạm vi tenant**, **KHÔNG dedup chéo tenant**; signed URL có hạn, **không bao giờ** public bucket | `MVP-Scope §3 E3` · `Analysis §5.7 #4` | **CHỐT** |
 | **SRS-FR-03** | **Mua** auth và billing, **không tự viết** | `MVP-Scope §3 E4` · `Analysis §5.7` (*"tự viết auth là cách nhanh nhất để một dev đốt hai tháng và vẫn có lỗ hổng"*) | **CHỐT** |
 | **SRS-NFR-05** | Kỷ luật `ON DELETE CASCADE` + **một đường hard-delete tenant đã kiểm thử**, tách biệt khỏi soft-delete của takedown | `MVP-Scope §3 GP-5` · `Analysis §5.7 #5` | **CHỐT** |
-| **SRS-NFR-07** | Hosting / PaaS / container platform / region đặt máy | **Không anchor được** — grep toàn `docs/010-Planning/`, `Analysis`, `Glossary` không có quyết định nào. Phần đã quyết chỉ gồm: 2 entrypoint 1 image (`E7`), worker riêng, **không mua GPU** (`Analysis §9`), multi-region hoãn (`E8`) | **CHƯA QUYẾT** → `TBD` |
-| **SRS-NFR-08** | Vendor cụ thể của auth / billing / object storage | `MVP-Scope §3 E4` chỉ quyết *"mua"*; `E3` chỉ quyết **key schema**. Tên vendor không xuất hiện ở bất kỳ tài liệu nào | **CHƯA QUYẾT** → `TBD` |
-| **SRS-NFR-09** | Ngôn ngữ / framework backend & frontend | Không anchor được. `CF-1.3` `[OFF]`: *"chưa có dòng nào"* — `src/`, `test/`, `openspec/changes/` đều rỗng | **CHƯA QUYẾT** → `TBD` |
+| **SRS-NFR-07** | Hosting / PaaS / container platform / region đặt máy [ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md) (tầng 030). Trước đó tầng 010/020 **không anchor được** — phần đã quyết chỉ gồm: 2 entrypoint 1 image (`E7`), worker riêng, **không mua GPU** (`Analysis §9`), multi-region hoãn (`E8`) | **LAI** — **CHỐT**: container PaaS **được quản lý** (⛔ không Kubernetes, ⛔ không tự quản VM cho main path) · build một lần → **một image → hai process type** cùng digest · scheduled job chỉ **gọi subcommand của chính image đó** · **managed PostgreSQL có PITR + backup tự động + một đường restore ĐÃ DIỄN TẬP** (điều kiện phát hành) · **đúng MỘT region** gần Việt Nam nhất · **portability guardrail** (⛔ không queue/pub-sub vendor, ⛔ không SDK secret manager — cấu hình **chỉ** qua biến môi trường, ⛔ chỉ tập con S3, log ra `stdout`/`stderr`, ⛔ không lưu trạng thái trên đĩa cục bộ) · **MẶC ĐỊNH**: **Render, region Singapore** — **thang đường lui ghi rõ**: `1.` Fly.io · `2.` GCP Cloud Run + Cloud SQL (`asia-southeast1`) · `3.` AWS ECS Fargate + RDS (`ap-southeast-1`); ⛔ **chưa mua** — 3 hạng mục phải verify trước khi mua · ⚠️ **Reopen trigger đã ghi trước**: nếu luật sư trả lời *"dữ liệu phải nằm trong lãnh thổ Việt Nam"* thì **cả `ADR-002` lẫn `ADR-004` phải mở lại** |
+| **SRS-NFR-08** | Vendor cụ thể của auth / billing / object storage [ADR-003](../030-Specs/Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md) (auth, billing) · [ADR-004](../030-Specs/Architecture/ADR-004-Object-Storage-Vendor-And-Signed-URL.md) (object storage). Tầng 010 chỉ quyết *"mua"* (`MVP-Scope §3 E4`) và **key schema** (`E3`) | **LAI** — **CHỐT** (seam đổi vendor, đúng với MỌI vendor): vendor auth ⛔ **không** sở hữu `tenant` / `membership` / quyết định authorization · `user.external_auth_id` có `UNIQUE`, ⛔ không FK nghiệp vụ trỏ vào định danh vendor ⇒ **đổi vendor auth = remap ĐÚNG MỘT cột** · JWT verify qua **JWKS** chuẩn OIDC, ⛔ không SDK vendor trong đường xử lý request · ⭐ **custom claim của vendor ⛔ KHÔNG BAO GIỜ là nguồn sự thật cho `tenant_id` hay role** — tra từ bảng `membership` mỗi request · webhook là nguồn **SỰ KIỆN**, ⛔ không phải nguồn sự thật (verify chữ ký → inbox có khoá idempotency) · **vendor billing ⛔ KHÔNG sở hữu entitlement** — `credit_ledger` là nguồn sự thật duy nhất · ⛔ **không bao giờ chạm dữ liệu thẻ** · **MẶC ĐỊNH**: **auth = Clerk** (3 tiêu chí nghiệm thu spike; thang đường lui `1.` Auth0 · `2.` Supabase Auth / WorkOS · `3.` Keycloak/Ory self-host) và **object storage = Cloudflare R2** (thang đường lui `1.` AWS S3 · `2.` Backblaze B2 · `3.` object storage của chính PaaS) — ⛔ **cả hai đều CHƯA MUA**, còn hạng mục phải verify · ⭐ **CHƯA QUYẾT** → `TBD`: **vendor billing** — chặn bởi **quốc gia của pháp nhân bán hàng**, ⛔ **không phải** vì thiếu phân tích kỹ thuật; ⛔ không tài liệu nào trong repo trả lời. Ai đóng: **Founder** (quyết pháp nhân) + dev (verify khả dụng kỹ thuật) · Khi nào: **trước MVP3** — nhưng **seam phải có từ MVP1** (`D-62` cấm retrofit) |
+| **SRS-NFR-09** | Ngôn ngữ / framework backend & frontend [ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) (tầng 030) — viết khi `src/`, `test/`, `openspec/changes/` **còn rỗng** (`CF-1.3` `[OFF]`), tức tại thời điểm chi phí đảo ngược thấp nhất | **LAI** — **CHỐT** (tầng CHỐT của `ADR-001` gồm 8 điều; ⭐ **ba điều dưới đây được `ADR-001` tuyên bố tường minh là KHÔNG có đường lui** — đổi chúng là viết ADR mới thay thế): **một ngôn ngữ duy nhất TypeScript trên Node.js LTS** cho API/worker/frontend · **migration SQL thô, đánh số, append-only là NGUỒN SỰ THẬT của schema** (⛔ không ORM sở hữu schema) · **API là hợp đồng duy nhất** giữa web và dữ liệu (SPA thuần, ⛔ không SSR, ⛔ không server action) · **MẶC ĐỊNH**: **NestJS** · **Drizzle** dùng như query builder trên `node-postgres` · **Vite + React + TS + TanStack Query + shadcn/ui + Tailwind** — **đường lui ghi rõ** ở `ADR-001` §*Đường lui* (lùi về Fastify · Kysely hoặc `pg` thuần · đổi riêng frontend). ⚠️ **pnpm workspace** và **ESLint boundary rule** cũng thuộc tầng MẶC ĐỊNH nhưng **⛔ CHƯA có đường lui ghi rõ** — ⛔ không đọc thành *"toàn bộ tầng MẶC ĐỊNH đều có đường lui"* · **CHƯA QUYẾT** → `TBD`: **phiên bản Node LTS pin cụ thể** (dev đóng ở commit đầu tiên) và **thư viện compositor + sinh PDF** (dev đóng ở spike MVP0) |
 
 > [!WARNING]
 > ⛔ **Không được viết `tenant isolation` thành *"filter theo `tenant_id` ở tầng ứng dụng"***. App-layer filter **sẽ có lúc bị lọt** — một query quên `WHERE tenant_id`. Với **1 dev không có code review**, **RLS biến lỗi lập trình thành no-op thay vì rò rỉ dữ liệu chéo tenant** (`Analysis §5.7 #1`). ⚠️ Giới hạn đã biết của RLS: **không** bảo vệ được join thực hiện phía application — đó chính là lý do tách 2 database bị cắt hẳn ([mục 6.1](#61-cắt-hẳn--loại-khỏi-thiết-kế-không-mở-lại)).
 >
-> Ba hàng `TBD` ở trên **là câu trả lời đúng, không phải chỗ trống bị bỏ quên**: quyết định đã chốt chỉ gồm *"mua auth + billing, không tự viết"* (`E4`) và *"key schema object storage"* (`E3`). Lựa chọn vendor / hosting / framework **sẽ được đặc tả tại tầng 030-Specs**.
+> Ba hàng trên **đã được đóng ở tầng 030-Specs** ([ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md), [ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md), [ADR-003](../030-Specs/Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md), [ADR-004](../030-Specs/Architecture/ADR-004-Object-Storage-Vendor-And-Signed-URL.md)) — phần lớn ở mức **MẶC ĐỊNH**, ⛔ **không phải CHỐT**, và ⛔ **chưa vendor/platform nào được mua**. ⭐ **Phần duy nhất còn `TBD` thật là vendor billing** (`ADR-003`) — chặn bởi quyết định **quốc gia pháp nhân bán hàng** của Founder, ⛔ **không phải** bởi thiếu phân tích kỹ thuật. Ngoài ra `ADR-001` còn để mở hai tham số: **pin phiên bản Node LTS** và **thư viện compositor + sinh PDF**.
 
 ### 3.F. Kinh tế & credit
 
@@ -342,7 +342,7 @@ Module này ánh xạ 1:1 sang [BRD-008-Quality-And-Operations](./BRD/BRD-008-Qu
 | **Mục 6** (negative) | `SRS-NFR-21`…`SRS-NFR-26` | **6** |
 | **TỔNG** | `SRS-FR-01`…`42` + `SRS-NFR-01`…`26` | **68** |
 
-Phân bố theo mức độ rắn (`findings/architect.md §2.8`): **CHỐT** thuần **55** · **MẶC ĐỊNH** **6** (thuần 4: `SRS-NFR-06`, `SRS-FR-24`, `SRS-FR-33`, `SRS-NFR-25`; lai 2: `SRS-FR-20`, `SRS-FR-23`) · **CHƯA QUYẾT** → `TBD` **7** (thuần 4: `SRS-NFR-07`, `SRS-NFR-08`, `SRS-NFR-09`, `SRS-NFR-16`; lai 3: `SRS-FR-26`, `SRS-NFR-20`, `SRS-NFR-17`).
+Phân bố theo mức độ rắn (`findings/architect.md §2.1`, run `2026-08-30` — quy tắc: một hàng **LAI** được xếp vào rổ của **thành phần YẾU NHẤT** của nó và chỉ được đếm **đúng MỘT lần**): **CHỐT** thuần **55** · **MẶC ĐỊNH** **7** (thuần 4: `SRS-NFR-06`, `SRS-FR-24`, `SRS-FR-33`, `SRS-NFR-25`; lai 3: `SRS-FR-20`, `SRS-FR-23`, `SRS-NFR-07`) · **CHƯA QUYẾT** → `TBD` **6** (thuần 1: `SRS-NFR-16`; lai 5: `SRS-FR-26`, `SRS-NFR-20`, `SRS-NFR-17`, `SRS-NFR-08`, `SRS-NFR-09`). Kiểm: `55 + 7 + 6 = 68` ✅ khớp **TỔNG** ở bảng trên; tổng hàng **LAI** = `3 + 5 = 8` ✅ khớp danh sách ở mục **1.2b**.
 
 Bảy hàng phủ trọn `MVP-Scope §6` danh sách cứng — *"không mở ra thương lượng scope"*: `KC-1`→`SRS-FR-34` · `KC-2`→`SRS-FR-35` · `KC-3`→`SRS-FR-36` · `KC-4`→`SRS-NFR-13` · `KC-5`→`SRS-NFR-01` · `KC-6`→`SRS-FR-37` · `KC-7`→`SRS-FR-28`.
 
@@ -372,7 +372,7 @@ Bảy hàng phủ trọn `MVP-Scope §6` danh sách cứng — *"không mở ra 
 | Hạng mục | Trạng thái | Requirement |
 |---|---|---|
 | GPU | **Không mua.** API cho main path; self-host chỉ cho LoRA train, upscale, inpainting | `SRS-NFR-11` |
-| Hosting / container platform / region | `TBD` — **sẽ được đặc tả tại tầng 030-Specs** | `SRS-NFR-07` |
+| Hosting / container platform / region | Container PaaS **được quản lý**, một image → hai process type, managed Postgres có PITR, **đúng MỘT region** (**CHỐT**); cụ thể **Render · region Singapore** (**MẶC ĐỊNH**, thang đường lui 3 bậc, ⛔ **chưa mua**) — [ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md) | `SRS-NFR-07` |
 
 ### 4.3 Software Interfaces
 
@@ -382,8 +382,8 @@ Bảy hàng phủ trọn `MVP-Scope §6` danh sách cứng — *"không mở ra 
 | Chế độ gọi provider | **Batch API**, không realtime | `SRS-FR-24` |
 | Đầu vào adapter | Hai output của compiler: `text_prompt` **và** `conditioning_set` | `SRS-FR-18` |
 | VLM (QA-select giữa N candidate) | Cơ chế **CHỐT**; ⚠️ **chi phí VLM call để score N candidate là phần CHƯA TÍNH** của `CF-3.5` ⇒ không có số ([mục 5.2](#52-nfr-chưa-có-chỉ-tiêu--tbd)) | `SRS-FR-20`, `SRS-FR-21` |
-| Auth & billing | **Mua, không tự viết**; vendor `TBD` | `SRS-FR-03`, `SRS-NFR-08` |
-| Object storage | Key `tenant/{tenant_id}/{sha256}`, không dedup chéo tenant, signed URL có hạn, không public bucket; vendor `TBD` | `SRS-FR-02`, `SRS-NFR-08` |
+| Auth & billing | **Mua, không tự viết**; **vendor auth = Clerk** (**MẶC ĐỊNH**, ⛔ **chưa mua** — 3 tiêu chí nghiệm thu spike phải đạt) — [ADR-003](../030-Specs/Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md); ⭐ **vendor billing vẫn `TBD`** (chặn bởi quốc gia pháp nhân bán hàng) | `SRS-FR-03`, `SRS-NFR-08` |
+| Object storage | Key `tenant/{tenant_id}/{sha256}`, không dedup chéo tenant, signed URL có hạn, không public bucket; **vendor = Cloudflare R2** (**MẶC ĐỊNH**, ⛔ **chưa mua** — 4 hạng mục phải verify trước khi mua) — [ADR-004](../030-Specs/Architecture/ADR-004-Object-Storage-Vendor-And-Signed-URL.md) | `SRS-FR-02`, `SRS-NFR-08` |
 | Job queue | **Trong PostgreSQL** — không broker ngoài (`SELECT ... FOR UPDATE SKIP LOCKED`, transactional enqueue) | `SRS-FR-25` |
 | Giữa các module trong monolith | Package + interface, **KHÔNG HTTP nội bộ**; `comic` → `story` **chỉ** qua `resolveState()` và `getBible()`, có lint rule cưỡng chế | `SRS-NFR-02`, `SRS-NFR-04` |
 | Watermark của provider (SynthID) | `TBD` — **phải verify, không giả định** | `SRS-NFR-16` |
@@ -452,13 +452,13 @@ Bảy hàng phủ trọn `MVP-Scope §6` danh sách cứng — *"không mở ra 
 | Cache hit rate | `CF-6.13` chỉ có `[EM]` **vài % → ~10%**, `architect` **tự khai là ước lượng** ⇒ **không dùng làm chỉ tiêu** (`R-17`) | `SRS-NFR-12` |
 | Chi phí VLM call để score N candidate | `CF-3.5` ghi rõ đây là phần **chưa tính** ⇒ không có số | `SRS-FR-20` |
 | Tổng effort person-month | Trong toàn bảng CF **chỉ có ĐÚNG MỘT thời lượng tuyệt đối** (MVP0 = 1–2 tuần, `CF-8.4`); ước lượng bottom-up hiện là `TBD` | `CF-10.8` |
-| **`b-1`** — Mã hoá dữ liệu (at rest / in transit) + quản lý secret | Không tài liệu nào phát biểu nghĩa vụ này. Cơ chế mã hoá và nơi giữ secret phụ thuộc hosting platform (`SRS-NFR-07`) và vendor (`SRS-NFR-08`) — cả hai còn `TBD`. Phần đã quyết chỉ gồm: signed URL có hạn, **không bao giờ** public bucket | `SRS-FR-02`, `SRS-NFR-07`, `SRS-NFR-08` |
-| **`b-2`** — Cách lưu trữ và bảo vệ API key của khách trong BYOK | `SRS-FR-32` chốt **ba tầng ngay từ đầu, không retrofit** (tầng 3 = BYOK), nhưng chỉ ở mức mô hình kinh doanh — **không dòng nào nói key được lưu / mã hoá / thu hồi thế nào**. Phụ thuộc vendor secret manager còn `TBD` (`SRS-NFR-08`) | `SRS-FR-32`, `SRS-NFR-08` |
+| **`b-1`** — Mã hoá dữ liệu (at rest / in transit) + quản lý secret | Không tài liệu nào phát biểu nghĩa vụ này. ⚠️ **[ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md) tuyên bố tường minh ⛔ KHÔNG đóng hàng này**: điều 6 (portability guardrail) chỉ quyết **cách nạp cấu hình** — chỉ qua biến môi trường, ⛔ không SDK secret manager — ⛔ **không** quyết nghĩa vụ mã hoá. Ai đóng: **Dev** · Khi nào: **sau khi platform được mua**. Phần đã quyết chỉ gồm: signed URL có hạn, **không bao giờ** public bucket | `SRS-FR-02`, `SRS-NFR-07`, `SRS-NFR-08` |
+| **`b-2`** — Cách lưu trữ và bảo vệ API key của khách trong BYOK | `SRS-FR-32` chốt **ba tầng ngay từ đầu, không retrofit** (tầng 3 = BYOK), nhưng chỉ ở mức mô hình kinh doanh — **không dòng nào nói key được lưu / mã hoá / thu hồi thế nào**. Phụ thuộc **cơ chế giữ secret chưa được thiết kế**: [ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md) điều 6 **cấm SDK secret manager của vendor** (cấu hình **chỉ** qua biến môi trường), nên nơi giữ key BYOK ⛔ **chưa có lời giải**. ⭐ Đóng đúng nghĩa **cần một ADR MỚI**. Ai đóng: **Architect + Founder** | `SRS-FR-32`, `SRS-NFR-08` |
 | **`b-3`** — Chính sách lưu giữ / xoá dữ liệu nghiệp vụ (retention period) | ⚠️ **Khác hàng `RPO / RTO / backup retention` ở trên** — đó là **backup**, đây là **retention nghiệp vụ**. `SRS-FR-38` buộc giữ dữ liệu cho counter-notice nhưng **không nêu giữ bao lâu**: thời hạn là câu hỏi pháp lý **cùng nhóm chờ luật sư với `SRS-NFR-17`**. `SRS-NFR-05` có đường hard-delete đã kiểm thử nhưng **không có SLA**. Hệ quả: `change_log` (`SRS-FR-35`) và `usage_event` (`SRS-FR-30`) append-only **tăng vô hạn** nếu không có chính sách purge | `SRS-FR-38`, `SRS-NFR-05`, `SRS-NFR-17` |
 | **`b-4`** — Bảo vệ dữ liệu cá nhân / quyền riêng tư | Tầng pháp lý đã có **chỉ bao bản quyền và AI disclosure**; không văn bản pháp luật nào về dữ liệu cá nhân xuất hiện trong tài liệu ⇒ **chưa ai xác định nghĩa vụ nào áp dụng**. Trong khi đó `SRS-FR-38` **bắt buộc thu email + số điện thoại của người gửi takedown** — người NGOÀI hệ thống, không có tài khoản. ⛔ **Không nêu tên văn bản cụ thể ở đây**: thuộc cùng nhóm câu hỏi cho luật sư với `SRS-NFR-17` | `SRS-FR-38`, `SRS-FR-03`, `SRS-NFR-17` |
-| **`b-5`** — Mục tiêu scalability / capacity (số tenant, job đồng thời, dung lượng DB, kích thước chapter tối đa) | Không tài liệu nào đặt mục tiêu quy mô; trần tài nguyên chỉ xác định được **sau khi chọn hosting platform** (`SRS-NFR-07` còn `TBD`). Hệ quả: `SRS-NFR-02` (modular monolith 1 process) là **CHỐT** nhưng **chưa có con số quy mô nào để chứng minh nó đủ** | `SRS-NFR-02`, `SRS-NFR-07`, `SRS-FR-26` |
-| **`b-6`** — i18n / l10n | Artifact duy nhất là `SRS-FR-16` — một FR về **typesetting** (wrap tiếng Việt hiểu Unicode combining marks), **không phải NFR ngôn ngữ**. Nội dung đa ngôn ngữ hiện là **giả định vận hành** (tác giả web-novel dịch), chưa bao giờ được phát biểu thành requirement. Ảnh hưởng font / collation / full-text-search config — phụ thuộc ngôn ngữ & framework còn `TBD` (`SRS-NFR-09`) | `SRS-FR-16`, `SRS-NFR-09` |
-| **`b-7`** — Observability / logging / alerting như một hạng mục | Chỉ có **mảnh vụn gắn với FR cụ thể**: `SRS-NFR-20` yêu cầu ghi lại mọi lần provider từ chối, còn `queue depth alert threshold` là một hàng `TBD` ở trên. **Chưa ai phát biểu observability thành một hạng mục**; stack telemetry phụ thuộc hosting (`SRS-NFR-07`) và framework (`SRS-NFR-09`) còn `TBD` | `SRS-NFR-20`, `SRS-FR-25`, `SRS-NFR-09` |
+| **`b-5`** — Mục tiêu scalability / capacity (số tenant, job đồng thời, dung lượng DB, kích thước chapter tối đa) | Không tài liệu nào đặt mục tiêu quy mô; trần tài nguyên chỉ xác định được **sau khi có số đo thật trên platform đã chọn** ([ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md): Render · Singapore, **MẶC ĐỊNH**) — ⚠️ **`ADR-002` tuyên bố tường minh ⛔ KHÔNG đóng hàng này**. Ai đóng: **Founder + dev** · Khi nào: **sau MVP0**. Hệ quả: `SRS-NFR-02` (modular monolith 1 process) là **CHỐT** nhưng **chưa có con số quy mô nào để chứng minh nó đủ** | `SRS-NFR-02`, `SRS-NFR-07`, `SRS-FR-26` |
+| **`b-6`** — i18n / l10n | Artifact duy nhất là `SRS-FR-16` — một FR về **typesetting** (wrap tiếng Việt hiểu Unicode combining marks), **không phải NFR ngôn ngữ**. Nội dung đa ngôn ngữ hiện là **giả định vận hành** (tác giả web-novel dịch), chưa bao giờ được phát biểu thành requirement. Ảnh hưởng font / collation / full-text-search config. ⚠️ **[ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) — chính ADR đã đóng `SRS-NFR-09` — tuyên bố tường minh ⛔ KHÔNG đóng hàng này**: *"`D-30` là một FR về **typesetting**, ⛔ không phải NFR ngôn ngữ"*. Ai đóng: **Dev đề xuất, Founder duyệt** · Khi nào: **sau khi stack được dựng, trước MVP1** | `SRS-FR-16`, `SRS-NFR-09` |
+| **`b-7`** — Observability / logging / alerting như một hạng mục | Chỉ có **mảnh vụn gắn với FR cụ thể**: `SRS-NFR-20` yêu cầu ghi lại mọi lần provider từ chối, còn `queue depth alert threshold` là một hàng `TBD` ở trên. **Chưa ai phát biểu observability thành một hạng mục**. ⚠️ **Cả [ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) lẫn [ADR-002](../030-Specs/Architecture/ADR-002-Hosting-Platform-And-Region.md) đều tuyên bố tường minh ⛔ KHÔNG đóng hàng này** — chọn ngôn ngữ/framework và chọn platform ⛔ **không** tương đương với việc phát biểu observability thành một hạng mục. Ai đóng: **Dev** · Khi nào: **sau khi platform được mua và MVP0 có số đo** | `SRS-NFR-20`, `SRS-FR-25`, `SRS-NFR-09` |
 
 ### 5.3 Hai con số `[EM]` KHÔNG được nâng thành NFR chỉ tiêu
 

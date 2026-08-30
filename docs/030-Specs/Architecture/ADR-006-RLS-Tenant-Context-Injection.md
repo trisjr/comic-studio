@@ -4,6 +4,7 @@ type: adr
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-006: Cơ chế bơm tenant context vào session PostgreSQL cho RLS
@@ -253,9 +254,9 @@ Migration chạy dưới **role owner riêng**, tách khỏi `app_api` / `app_wo
 | Verify kỹ thuật `D4.5` (CTE + `set_config` một statement) | Cơ chế bảo mật không xây trên hành vi chưa được đảm bảo | Engineer | MVP1, bằng test thật |
 | Chi phí thực thi hàm helper `D2` | Chưa có bộ test tải | Engineer | MVP0/MVP1 |
 | Policy RLS cho `tenant` / `user` / `membership` | Thuộc mô hình dữ liệu, không thuộc cơ chế bơm context | Architect (lô DB Schema) | Trước khi `DB-Entity-Tenant.md` duyệt |
-| Vendor auth (nguồn của `user_id` ở `D3` bước 1) | `SRS-NFR-08` = `TBD` ([SRS](../../020-Requirements/SRS-Comic-Studio.md) §3.E) | `ADR-003` | Lô ADR-001…004 (song song) |
+| Vendor auth (nguồn của `user_id` ở `D3` bước 1) | `SRS-NFR-08` phần **auth = MẶC ĐỊNH (Clerk)** theo [ADR-003](./ADR-003-Auth-And-Billing-Vendor-Selection.md), ⛔ chưa mua; ⛔ phần **billing vẫn `TBD`** ([SRS](../../020-Requirements/SRS-Comic-Studio.md) §3.E) | `ADR-003` | Lô ADR-001…004 (song song) |
 | Tải khác của queue trong horizon (rollup `usage_daily`, extraction, composite preview/export — [findings §7 G5](../../010-Planning/pm-runs/2026-08-28-phase-2-architecture-design-comic-studio/findings/architect.md)): chạy dạng **job per tenant** (⇒ hợp `D4.2` nguyên trạng) hay cần một read carve-out riêng | Architect (lô DB Schema) | Khi đặc tả `DB-Entity-Job.md` / `DB-Entity-Usage-Daily.md` |
-| Chế độ pooling cụ thể (session-mode hay transaction-mode) | Phụ thuộc hosting, `SRS-NFR-07` = `TBD` ([SRS](../../020-Requirements/SRS-Comic-Studio.md) §3.E) | `ADR-002` | Lô ADR-001…004 (song song) — ⭐ **`SET LOCAL` an toàn với cả hai**, nên quyết định này **không bị chặn** bởi ADR-002 |
+| Chế độ pooling cụ thể (session-mode hay transaction-mode) | Phụ thuộc hosting — [ADR-002](./ADR-002-Hosting-Platform-And-Region.md) đã chọn **Render (MẶC ĐỊNH)**; chế độ pooling cụ thể vẫn chờ cấu hình thực tế ([SRS](../../020-Requirements/SRS-Comic-Studio.md) §3.E) | `ADR-002` | Lô ADR-001…004 (song song) — ⭐ **`SET LOCAL` an toàn với cả hai**, nên quyết định này **không bị chặn** bởi ADR-002 |
 
 ---
 
@@ -266,7 +267,7 @@ Migration chạy dưới **role owner riêng**, tách khỏi `app_api` / `app_wo
 | RLS là lớp phòng thủ thứ hai · `tenant_id NOT NULL` mọi bảng nghiệp vụ · cột đầu mọi composite index · shared DB + shared schema | `D-09` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-NFR-01` |
 | ⛔ Cấm tenant isolation bằng filter tầng ứng dụng; RLS biến lỗi lập trình thành no-op; RLS ⛔ không bảo vệ join phía application | `D-10` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) §3.E (khối `[!WARNING]`) |
 | `tenant` / `user` / `membership` ba entity riêng; dữ liệu nghiệp vụ trỏ `tenant_id`, ⛔ không trỏ `user_id` | `D-11` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-FR-01` |
-| Mua auth, ⛔ không tự viết (vendor `TBD`) | `D-12` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-FR-03` · `SRS-NFR-08` |
+| Mua auth, ⛔ không tự viết (vendor auth = **MẶC ĐỊNH Clerk** theo [ADR-003](./ADR-003-Auth-And-Billing-Vendor-Selection.md), ⛔ **chưa mua**) | `D-12` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-FR-03` · `SRS-NFR-08` |
 | Worker là **process triển khai riêng**, cùng codebase, 2 entrypoint ⇒ ⛔ không có HTTP request | `D-02` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-NFR-03` |
 | Job queue trong Postgres; claim `FOR UPDATE SKIP LOCKED`; transactional enqueue | `D-03` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-FR-25` |
 | Câu CLAIM phải chứa `in_flight_per_tenant < N`; **N = `TBD`** | `D-42` | [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-FR-26` · §5.2 |

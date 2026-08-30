@@ -1,9 +1,10 @@
 ---
 id: ADR-001
 type: adr
-status: draft
+status: accepted
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-001: Tech stack backend, frontend và tầng truy cập dữ liệu
@@ -55,7 +56,7 @@ ADR này là **nền của mọi ADR sau**: ADR-005 (vị trí schema bảng pla
 |---|---|---|
 | Backend framework | **NestJS** | Module system ánh xạ **1-1** vào ba module của `D-01`; `createApplicationContext()` là entrypoint worker **không mở HTTP** ⇒ `R2` là một file ngắn, không phải một composition root tự viết. Với `R1` (1 dev, ⛔ không code review), cấu trúc do framework cưỡng chế đáng giá hơn cấu trúc do kỷ luật |
 | Tầng DB | **Drizzle ORM** dùng như **query builder**, trên `node-postgres` | Giữ nguyên quyền viết SQL thô cho câu CLAIM; không che connection — điều kiện cần của ADR-006 |
-| Frontend | **Vite + React + TypeScript**, **TanStack Query** | Editor là ứng dụng trạng thái nặng (kéo bubble, so sánh side-by-side, layout 0–1); TanStack Query cho polling 2 s (`D-45`) là cấu hình, không phải code hạ tầng |
+| Frontend & UI | **Vite + React + TypeScript**, **TanStack Query**, **shadcn/ui + Tailwind CSS** | Editor là ứng dụng trạng thái nặng (kéo bubble, so sánh side-by-side, layout 0–1); TanStack Query cho polling 2 s (`D-45`) là cấu hình, không phải code hạ tầng. `shadcn/ui` (Radix Primitives) + Tailwind CSS quản lý toàn bộ UI Shell, Form (tích hợp Zod contracts), Modal, Review Gates; component code nằm trực tiếp trong repo, không vendor lock-in và tối ưu cho AI assist (`R1`) |
 | Repo | **pnpm workspace**: `apps/api` · `apps/web` · `packages/contracts` | Một Dockerfile cho `apps/api`; `apps/web` là bundle tĩnh |
 | Guardrail import | **ESLint boundary rule** (hoặc `dependency-cruiser`), fail build ở CI | Hiện thực trực tiếp của `D-04` |
 
@@ -114,6 +115,7 @@ ADR này là **nền của mọi ADR sau**: ADR-005 (vị trí schema bảng pla
 - Entrypoint thứ hai (`R2`) là một file ngắn dùng lại toàn bộ DI graph — ⛔ không có nhánh code riêng cho worker, nên không có chuyện worker và API lệch nhau về validation.
 - SQL thô là nguồn sự thật ⇒ mọi guardrail tầng DB (`D-10`, `D-21`, `D-51`, `D-60`) viết được **nguyên văn**, review được bằng mắt, và test được bằng cách cố tình vi phạm.
 - TypeScript + NestJS + React là vùng có mật độ dữ liệu huấn luyện cao nhất ⇒ phần *"AI assist"* của `R1` cho sản lượng cao nhất.
+- `shadcn/ui + Tailwind CSS` tích hợp trực tiếp với Zod schema từ `packages/contracts` qua React Hook Form, giúp validate form ở frontend dùng chung 100% type với backend mà không cần định nghĩa lại.
 
 ### Tiêu cực — cái gì trở nên KHÓ HƠN sau quyết định này
 

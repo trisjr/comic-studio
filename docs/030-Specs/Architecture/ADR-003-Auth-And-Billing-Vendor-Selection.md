@@ -1,9 +1,10 @@
 ---
 id: ADR-003
 type: adr
-status: draft
+status: accepted
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-003: Chọn vendor auth & billing và thiết kế seam để đổi vendor

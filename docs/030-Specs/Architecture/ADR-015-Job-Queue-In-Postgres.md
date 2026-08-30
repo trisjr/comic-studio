@@ -4,6 +4,7 @@ type: adr
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # ADR-015: Job queue nằm trong PostgreSQL
@@ -269,7 +270,7 @@ Cộng thêm: một hạ tầng nữa cho đội **1 người**, `bus factor = 1
 
 ### Tiêu cực — chi phí thật
 
-- **Queue đặt tải lên chính database nghiệp vụ.** Polling của worker + endpoint trạng thái (mỗi **2 giây**/job/client) đều chạm PostgreSQL. ⚠️ Trần chịu tải ⛔ **không đo được** cho tới khi chốt hosting (`SRS-NFR-07` còn `TBD`) — [SRS](../../020-Requirements/SRS-Comic-Studio.md) §5.2 (`b-5`) ghi thẳng: `SRS-NFR-02` là `CHỐT` nhưng **chưa có con số quy mô nào để chứng minh nó đủ**.
+- **Queue đặt tải lên chính database nghiệp vụ.** Polling của worker + endpoint trạng thái (mỗi **2 giây**/job/client) đều chạm PostgreSQL. ⚠️ Trần chịu tải ⛔ **không đo được** cho tới khi **có số đo thật trên platform đã chọn** ([ADR-002](./ADR-002-Hosting-Platform-And-Region.md): Render · Singapore, **MẶC ĐỊNH**) — [SRS](../../020-Requirements/SRS-Comic-Studio.md) §5.2 (`b-5`) vẫn `TBD`, ghi thẳng: `SRS-NFR-02` là `CHỐT` nhưng **chưa có con số quy mô nào để chứng minh nó đủ**.
 - **Câu CLAIM là điểm nóng nhất và cũng là điểm mong manh nhất.** Nó mang đồng thời: RLS predicate + subquery fairness + `SKIP LOCKED` + `ORDER BY`. ⭐ Và failure mode tệ nhất của nó là **im lặng** ([Q3](#q3--fairness-nằm-trong-câu-claim--và-nó-phụ-thuộc-adr-006-để-không-hỏng-im-lặng)) ⇒ ⛔ **không được refactor nó nếu chưa có test `W-2b`** của [ADR-006](./ADR-006-RLS-Tenant-Context-Injection.md).
 - **At-least-once, ⛔ không phải exactly-once.** Lease hết hạn có thể chạy lại một job vẫn đang chạy ⇒ **mọi handler phải idempotent**. Đây là nghĩa vụ thường trực đặt lên **mọi** job type sau này, ⛔ không phải việc làm một lần.
 - **⛔ Không có observability như một hạng mục.** [SRS](../../020-Requirements/SRS-Comic-Studio.md) §5.2 (`b-7`): *"Chưa ai phát biểu observability thành một hạng mục"*, và `queue depth alert threshold` là một hàng `TBD`. ⇒ Queue này chạy **mà chưa có ngưỡng cảnh báo** — lỗ **hợp lệ**, phải ghi ra chứ ⛔ không lấp bằng số bịa.

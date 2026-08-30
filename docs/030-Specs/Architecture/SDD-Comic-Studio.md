@@ -4,6 +4,7 @@ type: sdd
 status: draft
 project: comic-studio
 created: 2026-08-29
+updated: 2026-08-30
 ---
 
 # SDD: Comic Studio — System Design Document
@@ -454,7 +455,7 @@ Cả hai ở mức `dialogue_line`, tổng hợp lên mức `page` (`comic.human
 
 > [!WARNING]
 > ⚠️ **Stack observability (logging / metrics / alerting như một hạng mục) là `TBD`.**
-> [SRS §5.2](../../020-Requirements/SRS-Comic-Studio.md) hàng `b-7` ghi rõ hạng mục này **phụ thuộc `SRS-NFR-07` và `SRS-NFR-09`**; cả [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) lẫn [ADR-002](./ADR-002-Hosting-Platform-And-Region.md) đều tuyên bố **không đóng** hàng này.
+> [SRS §5.2](../../020-Requirements/SRS-Comic-Studio.md) hàng `b-7` ghi rõ **chưa ai phát biểu observability thành một hạng mục** — chỉ có **mảnh vụn gắn với FR cụ thể**; cả [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) lẫn [ADR-002](./ADR-002-Hosting-Platform-And-Region.md) đều tuyên bố **không đóng** hàng này.
 > *Ai đóng*: **Dev**. *Khi nào*: sau khi platform được mua và MVP0 có số đo.
 > ⛔ **Không có** ngưỡng alert queue depth, ⛔ **không có** uptime SLA, ⛔ **không có** RPO/RTO trong tài liệu này — bịa một con số ở đây là lỗi nặng hơn để trống (`R-5`).
 
@@ -808,7 +809,7 @@ Chạy bằng **subcommand của chính image** ([ADR-002](./ADR-002-Hosting-Pla
 ### 9.3 Ba quy tắc đọc hai bảng trên
 
 1. ⛔ **Một hàng `TBD` ⛔ KHÔNG phải giấy phép tự chọn.** `R-5` ([§1.1](#11-ràng-buộc-gốc--và-vì-sao-nó-chi-phối-mọi-mục-còn-lại)) và [SRS §5.2](../../020-Requirements/SRS-Comic-Studio.md) cấm tường minh: *"bịa một con số performance là **lỗi nghiêm trọng hơn để trống nó**"* — vì con số bịa sẽ được **tầng design và tầng QA dùng làm chuẩn nghiệm thu**.
-2. ⭐ **Cơ chế CHỐT ≠ tham số mở.** `SRS-FR-20`, `SRS-FR-23`, `SRS-FR-26`, `SRS-NFR-17`, `SRS-NFR-20` là **năm hàng LAI**: cơ chế **đã khẳng định**, `TBD` **chỉ áp cho tham số bên trong**. ⚠️ Đọc một hàng LAI thành *"cả cơ chế cũng chưa quyết"* là **mất một requirement** — và đó là cách `S-1` bị bỏ khỏi câu CLAIM.
+2. ⭐ **Cơ chế CHỐT ≠ tham số mở.** `SRS-FR-20`, `SRS-FR-23`, `SRS-FR-26`, `SRS-NFR-17`, `SRS-NFR-20`, `SRS-NFR-07`, `SRS-NFR-08`, `SRS-NFR-09` là **tám hàng LAI**: cơ chế **đã khẳng định**, `TBD` **chỉ áp cho tham số bên trong**. ⚠️ Đọc một hàng LAI thành *"cả cơ chế cũng chưa quyết"* là **mất một requirement** — và đó là cách `S-1` bị bỏ khỏi câu CLAIM.
 3. ⛔ **Không hàng nào ở [§9.1](#91-tbd-mà-phase-2-không-có-thẩm-quyền-hoặc-chưa-đủ-dữ-kiện-để-đóng) được đóng bởi một lô soạn thảo của Phase 2.** Nếu một lô sau thấy mình đang **điền số** vào một hàng §9.1, đó là dấu hiệu lô đó **đã ra khỏi thẩm quyền** — dừng lại và chuyển về đúng chủ ở cột *"Ai đóng"*.
 
 ---

@@ -4,12 +4,13 @@ type: moc
 status: live
 project: comic-studio
 created: 2026-08-30
+updated: 2026-08-30
 ---
 
 # Specs MOC — bản đồ tầng đặc tả (Phase 2)
 
 > [!NOTE]
-> **57 tài liệu** sinh ra ở **SDLC Phase 2 — Architecture Design**. Toàn bộ đang ở `status: draft`.
+> **57 tài liệu** sinh ra ở **SDLC Phase 2 — Architecture Design**. Trạng thái: **53 `draft`** + ⭐ **4 `accepted`** — [ADR-001](./Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md), [ADR-002](./Architecture/ADR-002-Hosting-Platform-And-Region.md), [ADR-003](./Architecture/ADR-003-Auth-And-Billing-Vendor-Selection.md), [ADR-004](./Architecture/ADR-004-Object-Storage-Vendor-And-Signed-URL.md) được duyệt ở run `2026-08-30-dong-bo-srs-nfr-voi-adr` vì tầng 020 hạ nhãn `SRS-NFR-07/08/09` dựa trên chúng.
 > Hồ sơ quyết định của run nằm ở [pm-runs/2026-08-28-phase-2-architecture-design-comic-studio](../010-Planning/pm-runs/2026-08-28-phase-2-architecture-design-comic-studio/escalations.md) — mọi mã `E{n}` trong các file spec đều trỏ về đó.
 
 ## Mục lục
