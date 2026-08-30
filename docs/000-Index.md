@@ -93,8 +93,16 @@ Thư mục con: `Sprints/` · `Estimates/` · `Implementation-Plans/` — *(chư
 
 ### 030 · Specs — [Specs-MOC](./030-Specs/Specs-MOC.md)
 
-⚠️ **MOC hiện là file rỗng 0 byte** — chưa dùng được, xem [Nợ kỹ thuật](#nợ-kỹ-thuật-đã-biết).
-*(chưa có tài liệu)* — thư mục con `Architecture/`, `API/`, `Schema/`, `Security/` đã sẵn sàng.
+⭐ **57 tài liệu** — sản phẩm của **SDLC Phase 2 — Architecture Design**. Toàn bộ `status: draft`.
+
+| Nhóm | Số file | Nội dung |
+|---|:--:|---|
+| `Architecture/` | **19** | 1 SDD (5 sơ đồ Mermaid) + 18 ADR. ⭐ `SDD` §6.3 `SDD-HG-01` là **nguồn duy nhất** của *"không đường nào bypass hai human gate"*; `ADR-017` là **nguồn duy nhất** của `KC-4` |
+| `Schema/` | **14** | `DB-Entity-*`, mỗi file có **ER diagram Mermaid**, invariant và RLS policy. `TEXT` + `CHECK` toàn tầng, ⛔ không Postgres enum type |
+| `API/` | **21** | 14 `Endpoint-*` (tiền tố `/v1/`) + 7 `Spec-Integration-*` |
+| `Security/` | **3** | Threat model · cô lập tenant · tuân thủ pháp lý. ⭐ Đã qua **review độc lập** (lô `L31`), ⛔ không phải tự tác giả duyệt |
+
+> ⚠️ **`SRS-NFR-15` là anti-feature CHỐT**: hệ thống **KHÔNG được** có copyright / similarity detection — nó **tự phá miễn trừ Điều 198b**. Lý do đầy đủ ở [Spec-Security-Legal-Compliance](./030-Specs/Security/Spec-Security-Legal-Compliance.md).
 
 ### 035 · QA — [QA-MOC](./035-QA/QA-MOC.md)
 
@@ -171,11 +179,26 @@ Thư mục con: `Competitor-Analysis/` · `User-Interviews/` · `Surveys/` — *
 
 ## Nợ kỹ thuật đã biết
 
-Ghi ở đây để minh bạch thay vì che giấu. Cả bốn mục thuộc một run `/pm-doc` **Shape B** riêng, không phải run nào ở trên.
+Ghi ở đây để minh bạch thay vì che giấu.
+
+### Từ Phase 2 — Architecture Design
+
+| # | Nợ | Mức | Chủ |
+|---|---|---|---|
+| **1** | ⭐ **`T-27` — lưu / mã hoá / THU HỒI API key BYOK của khách.** Lưu credential của **bên thứ ba** là hạng mục rủi ro cao nhất hệ thống. Seam phải có sớm (`SRS-FR-32` **cấm retrofit bằng chữ**) nhưng cơ chế thì ⛔ chưa có requirement nguồn ⇒ **cần một ADR mới** | **Cao** | Architect + Founder |
+| **2** | ⭐ **Role thứ năm `app_operator` chưa có trong `SDD` §7.4 và `ADR-006`.** Hai endpoint admin takedown (`TD-2`/`TD-3`) là **xuyên tenant** và ⚠️ **đang BỊ CHẶN** cho tới khi mô hình quyền được sửa. Đây là **thay đổi mô hình quyền**, ⛔ không phải ripple tài liệu | **Cao** | Architect |
+| **3** | `T-29` — nội dung/hình thức/thời hạn **thông báo cho tenant bị takedown**. ⚠️ Chính bước đó là **điều kiện tối thiểu để counter-notice tồn tại** | Cao | Founder + luật sư |
+| **4** | ⚠️ **4 khoảng trống pháp lý** (`GAP-1`…`GAP-4`) — để dạng **câu hỏi cho luật sư**, ⛔ **không** phải rủi ro đã đánh giá. `GAP-3` là **chân đỡ** của cả lập luận `SRS-NFR-15` | Cao | PM + luật sư SHTT |
+| **5** | `T-GEN-CL-ENQUEUE` — `SDD` §5.2 `F5` vẽ `INSERT change_log` lúc enqueue, nhưng danh mục `action_type` (**đóng**) ⛔ không có giá trị nào mang nghĩa *"ra lệnh generate"* | Trung bình | Architect + BA |
+| **6** | Chuẩn `error_code` + error envelope cho 14 file API (`TBD-API-ENV`) — casing còn lẫn `UPPER_SNAKE`/`lower_snake` | Trung bình | Architect |
+| **7** | `INV-14` có nên nâng lên `CHECK` liên cột không — PM ⛔ **không tái lập được** lý do worker nêu; xem [`E25`](./010-Planning/pm-runs/2026-08-28-phase-2-architecture-design-comic-studio/escalations.md) | Thấp | Architect |
+| **8** | Còn **1 anchor gãy cứng + ~29 gãy mềm** ở `Architecture/` và `Schema/` (lô vá chỉ được cấp `API/` + `Security/`) | Thấp | — |
+
+### Từ các run trước
 
 | # | Nợ | Mức |
 |---|---|---|
-| 1 | [Specs-MOC](./030-Specs/Specs-MOC.md) và [Design-MOC](./040-Design/Design-MOC.md) là **file 0 byte** — không có cả frontmatter | Cao |
+| 1 | ~~[Specs-MOC](./030-Specs/Specs-MOC.md)~~ ✅ **đã viết** ở Phase 2 (57 tài liệu, 0 link gãy). [Design-MOC](./040-Design/Design-MOC.md) **vẫn là file 0 byte** | Cao |
 | 2 | [Request.md](./999-Resources/Request.md) **thiếu hoàn toàn YAML frontmatter** — vi phạm RULE-001 quy tắc #3 | Trung bình |
 | 3 | Còn **link chết loại-file** trong một số MOC (trỏ tới tài liệu chưa được viết) | Thấp — là placeholder có chủ ý |
 | 4 | Phần lớn MOC chỉ có link thư mục, **chưa có mô tả nội dung** | Thấp |

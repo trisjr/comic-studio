@@ -4,6 +4,7 @@ type: srs
 status: draft
 project: comic-studio
 created: 2026-08-24
+updated: 2026-08-29
 ---
 
 # 📐 SRS — Comic Studio (Software Requirements Specification)
@@ -433,7 +434,7 @@ Bảy hàng phủ trọn `MVP-Scope §6` danh sách cứng — *"không mở ra 
 ### 5.2 NFR chưa có chỉ tiêu — `TBD`
 
 > [!CAUTION]
-> ⛔ **Không tự gán số cho bất kỳ hàng nào dưới đây.** Bịa một con số performance là **lỗi nghiêm trọng hơn để trống nó** — vì con số bịa sẽ được tầng design và tầng QA dùng làm chuẩn nghiệm thu. Mười bốn hàng dưới đây **ở lại `TBD`**.
+> ⛔ **Không tự gán số cho bất kỳ hàng nào dưới đây.** Bịa một con số performance là **lỗi nghiêm trọng hơn để trống nó** — vì con số bịa sẽ được tầng design và tầng QA dùng làm chuẩn nghiệm thu. Hai mươi mốt hàng dưới đây **ở lại `TBD`**.
 
 | NFR chưa có chỉ tiêu | Vì sao chưa có | Requirement liên quan |
 |---|---|---|
@@ -451,6 +452,13 @@ Bảy hàng phủ trọn `MVP-Scope §6` danh sách cứng — *"không mở ra 
 | Cache hit rate | `CF-6.13` chỉ có `[EM]` **vài % → ~10%**, `architect` **tự khai là ước lượng** ⇒ **không dùng làm chỉ tiêu** (`R-17`) | `SRS-NFR-12` |
 | Chi phí VLM call để score N candidate | `CF-3.5` ghi rõ đây là phần **chưa tính** ⇒ không có số | `SRS-FR-20` |
 | Tổng effort person-month | Trong toàn bảng CF **chỉ có ĐÚNG MỘT thời lượng tuyệt đối** (MVP0 = 1–2 tuần, `CF-8.4`); ước lượng bottom-up hiện là `TBD` | `CF-10.8` |
+| **`b-1`** — Mã hoá dữ liệu (at rest / in transit) + quản lý secret | Không tài liệu nào phát biểu nghĩa vụ này. Cơ chế mã hoá và nơi giữ secret phụ thuộc hosting platform (`SRS-NFR-07`) và vendor (`SRS-NFR-08`) — cả hai còn `TBD`. Phần đã quyết chỉ gồm: signed URL có hạn, **không bao giờ** public bucket | `SRS-FR-02`, `SRS-NFR-07`, `SRS-NFR-08` |
+| **`b-2`** — Cách lưu trữ và bảo vệ API key của khách trong BYOK | `SRS-FR-32` chốt **ba tầng ngay từ đầu, không retrofit** (tầng 3 = BYOK), nhưng chỉ ở mức mô hình kinh doanh — **không dòng nào nói key được lưu / mã hoá / thu hồi thế nào**. Phụ thuộc vendor secret manager còn `TBD` (`SRS-NFR-08`) | `SRS-FR-32`, `SRS-NFR-08` |
+| **`b-3`** — Chính sách lưu giữ / xoá dữ liệu nghiệp vụ (retention period) | ⚠️ **Khác hàng `RPO / RTO / backup retention` ở trên** — đó là **backup**, đây là **retention nghiệp vụ**. `SRS-FR-38` buộc giữ dữ liệu cho counter-notice nhưng **không nêu giữ bao lâu**: thời hạn là câu hỏi pháp lý **cùng nhóm chờ luật sư với `SRS-NFR-17`**. `SRS-NFR-05` có đường hard-delete đã kiểm thử nhưng **không có SLA**. Hệ quả: `change_log` (`SRS-FR-35`) và `usage_event` (`SRS-FR-30`) append-only **tăng vô hạn** nếu không có chính sách purge | `SRS-FR-38`, `SRS-NFR-05`, `SRS-NFR-17` |
+| **`b-4`** — Bảo vệ dữ liệu cá nhân / quyền riêng tư | Tầng pháp lý đã có **chỉ bao bản quyền và AI disclosure**; không văn bản pháp luật nào về dữ liệu cá nhân xuất hiện trong tài liệu ⇒ **chưa ai xác định nghĩa vụ nào áp dụng**. Trong khi đó `SRS-FR-38` **bắt buộc thu email + số điện thoại của người gửi takedown** — người NGOÀI hệ thống, không có tài khoản. ⛔ **Không nêu tên văn bản cụ thể ở đây**: thuộc cùng nhóm câu hỏi cho luật sư với `SRS-NFR-17` | `SRS-FR-38`, `SRS-FR-03`, `SRS-NFR-17` |
+| **`b-5`** — Mục tiêu scalability / capacity (số tenant, job đồng thời, dung lượng DB, kích thước chapter tối đa) | Không tài liệu nào đặt mục tiêu quy mô; trần tài nguyên chỉ xác định được **sau khi chọn hosting platform** (`SRS-NFR-07` còn `TBD`). Hệ quả: `SRS-NFR-02` (modular monolith 1 process) là **CHỐT** nhưng **chưa có con số quy mô nào để chứng minh nó đủ** | `SRS-NFR-02`, `SRS-NFR-07`, `SRS-FR-26` |
+| **`b-6`** — i18n / l10n | Artifact duy nhất là `SRS-FR-16` — một FR về **typesetting** (wrap tiếng Việt hiểu Unicode combining marks), **không phải NFR ngôn ngữ**. Nội dung đa ngôn ngữ hiện là **giả định vận hành** (tác giả web-novel dịch), chưa bao giờ được phát biểu thành requirement. Ảnh hưởng font / collation / full-text-search config — phụ thuộc ngôn ngữ & framework còn `TBD` (`SRS-NFR-09`) | `SRS-FR-16`, `SRS-NFR-09` |
+| **`b-7`** — Observability / logging / alerting như một hạng mục | Chỉ có **mảnh vụn gắn với FR cụ thể**: `SRS-NFR-20` yêu cầu ghi lại mọi lần provider từ chối, còn `queue depth alert threshold` là một hàng `TBD` ở trên. **Chưa ai phát biểu observability thành một hạng mục**; stack telemetry phụ thuộc hosting (`SRS-NFR-07`) và framework (`SRS-NFR-09`) còn `TBD` | `SRS-NFR-20`, `SRS-FR-25`, `SRS-NFR-09` |
 
 ### 5.3 Hai con số `[EM]` KHÔNG được nâng thành NFR chỉ tiêu
 
