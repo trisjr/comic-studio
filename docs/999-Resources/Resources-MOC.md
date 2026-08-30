@@ -12,9 +12,9 @@ updated: 2026-08-24
 Chào mừng tới danh mục Tài Nguyên của dự án. Đây là nơi chứa các mẫu, bảng thuật ngữ và ghi chép cuộc họp.
 
 ## 📋 Mục lục (Table of Contents)
-1. [Templates (Bản mẫu)](#templates-bản-mẫu)
-2. [Glossary (Thuật ngữ)](#glossary-thuật-ngữ)
-3. [Meeting Notes (Ghi chép cuộc họp)](#meeting-notes-ghi-chép-cuộc-họp)
+1. [Templates (Bản mẫu)](#-templates-bản-mẫu)
+2. [Glossary (Thuật ngữ)](#-glossary-thuật-ngữ)
+3. [Meeting Notes (Ghi chép cuộc họp)](#-meeting-notes-ghi-chép-cuộc-họp)
 
 ---
 

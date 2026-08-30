@@ -186,7 +186,7 @@ Chi phí VLM phải đo được, nhưng:
 - **Một khoản chi phí chưa biết độ lớn nằm trên main path của mọi panel.** Nó nhân theo **N** và theo **số panel**, tức là nhân theo đúng hai đại lượng lớn nhất của mô hình chi phí.
 - **Chưa chọn vendor ⇒ tiêu chí #1 của [Q5](#q5-nhưng-chốt-được-ngay-tiêu-chí-chọn-theo-thứ-tự) có thể làm hỏng giả định.** Nếu tất cả ứng viên đều **không** nhận nhiều ảnh trong một call, chi phí nhân N và bài toán đổi bản chất ⇒ phải quay lại `D-37` với PM. Đây là rủi ro **đã biết**, không phải rủi ro ẩn.
 - **Độ phủ 40–60%** (`D-39`, [SRS](../../020-Requirements/SRS-Comic-Studio.md) §5.1, nhãn `[EM]`) phải **công bố cho user** — ⚠️ nó là **FR minh bạch**, ⛔ **không phải chỉ tiêu chất lượng để đạt**. Đọc ngược nó thành KPI là hiểu sai `D-39`.
-- Mâu thuẫn `COUNT(*) = 3` ở [Q8](#q8-một-xung-đột-phải-chuyển-cho-lô-db-schema--adr-này-không-tự-quyết) là **nợ mở** — nếu lô Schema không xử lý, hoặc AC *"đúng 3 `usage_event` row"* FAIL, hoặc chi phí VLM lại không được đo.
+- Mâu thuẫn `COUNT(*) = 3` ở [Q8](#q8-một-xung-đột-phải-chuyển-cho-lô-db-schema---adr-này-không-tự-quyết) là **nợ mở** — nếu lô Schema không xử lý, hoặc AC *"đúng 3 `usage_event` row"* FAIL, hoặc chi phí VLM lại không được đo.
 
 ### Việc còn để `TBD` — ⛔ không được bịa
 
@@ -196,7 +196,7 @@ Chi phí VLM phải đo được, nhưng:
 | **Chi phí VLM per-call** và tổng khoản thiếu của `CF-3.5` | PM + Architect | Sau đo MVP0 |
 | **N tối thiểu** (`CF-8.5`, [SRS](../../020-Requirements/SRS-Comic-Studio.md) `SRS-FR-20`) — ⚠️ budget vẫn phải tính ở **N=3** | PM | Sau đo MVP0 |
 | **Human-reject rate sau VLM-select** ([SRS](../../020-Requirements/SRS-Comic-Studio.md) §5.2: *"chưa ai công bố con số này"*) | Engineer đo, PM đọc | MVP0 |
-| Mô hình đo chi phí VLM vs AC `COUNT(*) = 3` ([Q8](#q8-một-xung-đột-phải-chuyển-cho-lô-db-schema--adr-này-không-tự-quyết)) | Architect (lô DB Schema) | Trước khi `DB-Entity-Usage-Event.md` duyệt |
+| Mô hình đo chi phí VLM vs AC `COUNT(*) = 3` ([Q8](#q8-một-xung-đột-phải-chuyển-cho-lô-db-schema---adr-này-không-tự-quyết)) | Architect (lô DB Schema) | Trước khi `DB-Entity-Usage-Event.md` duyệt |
 | Bộ câu hỏi kiểm tra cụ thể của checker + cổng precision cho **từng** check | Architect + Engineer | Trước khi bật check đầu tiên, theo [SRS](../../020-Requirements/SRS-Comic-Studio.md) §5.1 |
 
 ---
