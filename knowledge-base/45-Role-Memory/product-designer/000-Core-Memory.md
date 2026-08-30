@@ -32,4 +32,4 @@ Tư duy thiết kế hệ thống, đảm bảo tính thẩm mỹ, nhất quán 
 - **Feedback:** Luôn sẵn sàng giải thích logic UX cho đội phát triển.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

@@ -104,5 +104,5 @@ Tác giả xác nhận hoặc sửa những gì hệ thống đã rút ra đư�
 
 ---
 
-_Created by TNMCORE-OS — role `business-analyst`_
+_Created by Comic Studio — role `business-analyst`_
 _Author: trisjr_

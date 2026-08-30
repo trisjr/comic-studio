@@ -109,5 +109,5 @@ Main flow dưới đây là **hình dạng ở MVP2** (Director tự động). N
 
 ---
 
-_Created by TNMCORE-OS — role `business-analyst`_
+_Created by Comic Studio — role `business-analyst`_
 _Author: trisjr_

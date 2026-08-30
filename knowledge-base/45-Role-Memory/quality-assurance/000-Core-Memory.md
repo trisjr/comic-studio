@@ -32,4 +32,4 @@ Tri thức về kiểm thử, phát hiện lỗi và duy trì tiêu chuẩn bàn
 - **Checklist:** Luôn dùng checklist khi review Code/Specs.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

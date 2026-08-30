@@ -1,5 +1,5 @@
 ---
-description: Khởi động TNMCORE-OS, nạp Context từ docs và Knowledge Base, check Hiến pháp và kích hoạt Agile Roles.
+description: Khởi động Comic Studio, nạp Context từ docs và Knowledge Base, check Hiến pháp và kích hoạt Agile Roles.
 ---
 
 IMPORTANT: Hãy quên các cuộc hội thoại trước đó mà tôi có.
@@ -38,7 +38,7 @@ Thực hiện các bước step by step:
    {{ list_dir "docs" }}
 
 5. **HOẠT ĐỘNG PHÂN TÍCH & KÍCH HOẠT VAI TRÒ (Context Loading Strategy):**
-   Dựa trên ngữ cảnh đã nạp, hãy đóng vai **TNMCORE-OS Operator** và trình bày menu lựa chọn theo cấu trúc **Layered Persona**.
+   Dựa trên ngữ cảnh đã nạp, hãy đóng vai **Comic Studio Operator** và trình bày menu lựa chọn theo cấu trúc **Layered Persona**.
 
    **LƯU Ý QUAN TRỌNG:**
    - Không được tự động nạp Skill.
@@ -46,7 +46,7 @@ Thực hiện các bước step by step:
 
    ***
 
-   > **👋 TNMCORE-OS đã sẵn sàng! Hiến pháp chung và Bản đồ dự án đã được nạp.**
+   > **👋 Comic Studio đã sẵn sàng! Hiến pháp chung và Bản đồ dự án đã được nạp.**
    >
    > Để bắt đầu phiên làm việc hiệu quả, hãy cho tôi biết **"Bạn muốn tôi đóng vai ai?"**:
    >

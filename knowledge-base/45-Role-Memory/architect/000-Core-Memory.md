@@ -10,7 +10,7 @@ updated: 2026-02-05
 # 🏗️ Core Memory: Architect Foundation
 
 ## 📌 1. Tóm tắt
-Tri thức nền tảng giúp Architect đưa ra các quyết định ổn định, dễ mở rộng và tuân thủ kỷ luật SDD của TNMCORE-OS.
+Tri thức nền tảng giúp Architect đưa ra các quyết định ổn định, dễ mở rộng và tuân thủ kỷ luật SDD của Comic Studio.
 
 ## 🧩 2. Mẫu hình & Giải pháp
 
@@ -32,4 +32,4 @@ Tri thức nền tảng giúp Architect đưa ra các quyết định ổn đị
 - **Mô tả:** Giải thích rõ lý do chọn giải pháp (The "Why") trong ADR.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

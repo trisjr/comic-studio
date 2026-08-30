@@ -8,7 +8,7 @@ updated: 2026-03-04
 
 # Quy trình Làm việc Vạn năng (Universal Workflow)
 
-Tài liệu này định nghĩa quy trình 6 bước tiêu chuẩn để triển khai mọi yêu cầu, từ tính năng mới đến sửa lỗi, đảm bảo tính nhất quán và chất lượng cao nhất cho TNMCORE-OS.
+Tài liệu này định nghĩa quy trình 6 bước tiêu chuẩn để triển khai mọi yêu cầu, từ tính năng mới đến sửa lỗi, đảm bảo tính nhất quán và chất lượng cao nhất cho Comic Studio.
 
 ## 📑 Mục lục
 

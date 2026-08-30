@@ -10,7 +10,7 @@ updated: 2026-02-05
 # 🤖 Core Memory: Senior AI Engineer OS Governance
 
 ## 📌 1. Tóm tắt
-Kinh nghiệm nòng cốt trong việc quản trị "Bộ não" của TNMCORE-OS và tối ưu hóa hiệu suất Agent.
+Kinh nghiệm nòng cốt trong việc quản trị "Bộ não" của Comic Studio và tối ưu hóa hiệu suất Agent.
 
 ## 🧩 2. Mẫu hình & Giải pháp
 
@@ -32,4 +32,4 @@ Kinh nghiệm nòng cốt trong việc quản trị "Bộ não" của TNMCORE-OS
 - **Innovation:** Luôn tìm cách biến các quy trình thủ công thành Workflows tự động.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

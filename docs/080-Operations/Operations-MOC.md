@@ -19,4 +19,4 @@ Quản lý các hoạt động vận hành hệ thống, xử lý sự cố và 
 - [SLAs/](./SLAs/)
 
 ---
-*TNMCORE-OS Operations Management.*
+*Comic Studio Operations Management.*

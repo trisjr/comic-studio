@@ -4,7 +4,7 @@ type: moc
 status: live
 created: 2026-02-04
 updated: 2026-08-24
-author: TNMCORE-OS (BA Role)
+author: Comic Studio (BA Role)
 ---
 
 # 📂 020-Requirements Map of Content

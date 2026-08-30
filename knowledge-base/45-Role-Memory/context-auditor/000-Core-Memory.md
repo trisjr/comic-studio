@@ -10,7 +10,7 @@ updated: 2026-03-02
 # 🔍 Core Memory: Context Auditor
 
 ## 📌 1. Tóm tắt
-Kinh nghiệm thực hiện Audit tính nhất quán Context trong hệ thống TNMCORE-OS.
+Kinh nghiệm thực hiện Audit tính nhất quán Context trong hệ thống Comic Studio.
 
 ## 🧩 2. Mẫu hình & Giải pháp
 
@@ -35,4 +35,4 @@ Kinh nghiệm thực hiện Audit tính nhất quán Context trong hệ thống 
 - **Fix Approach:** Trình kế hoạch Step-by-Step, chờ Approve trước khi sửa.
 
 ---
-*TNMCORE-OS Memory Bank.*
+*Comic Studio Memory Bank.*

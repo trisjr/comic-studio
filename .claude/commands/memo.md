@@ -4,7 +4,7 @@ description: Đúc kết kinh nghiệm và lưu vào Role-Memory sau khi hoàn t
 
 # Workflow: /memo - Cập nhật Bộ nhớ Vai trò (Role Memory Update)
 
-Quy trình này giúp TNMCORE-OS tự học hỏi và lưu trữ các bài học kinh nghiệm (Lesson Learned) để nâng cao năng lực tác nhân (Agentic capability) trong tương lai.
+Quy trình này giúp Comic Studio tự học hỏi và lưu trữ các bài học kinh nghiệm (Lesson Learned) để nâng cao năng lực tác nhân (Agentic capability) trong tương lai.
 
 ## Các bước thực hiện:
 
@@ -36,4 +36,4 @@ Quy trình này giúp TNMCORE-OS tự học hỏi và lưu trữ các bài học
    - Đề xuất cập nhật vào `AGENTS.md` (Active Brain) nếu đây là một kinh nghiệm cực kỳ quan trọng cần được nạp ngay lập tức ở lần sau.
 
 6. **Hoàn tất:**
-   Thông báo: "🧠 Role Memory đã được cập nhật. TNMCORE-OS đã thông minh hơn một chút!"
+   Thông báo: "🧠 Role Memory đã được cập nhật. Comic Studio đã thông minh hơn một chút!"
