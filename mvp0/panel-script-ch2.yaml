@@ -1,0 +1,325 @@
+# AI Coding
+# panel-script-ch2.yaml
+# Panel script VIET TAY cho MVP0 — chuong comic #2, 20 panel / 6 trang.
+# Tiep noi panel-script-ch1.yaml, hoan tat chuong chu 1.
+#
+# ⚠️ ⭐ BANG CHUNG SONG CHO F-8 — doc truoc khi nap vao schema:
+#   `page_no` o day chay TIEP TUC 7..12, ⛔ KHONG reset ve 1. Ly do co hoc:
+#   `comic.page` co UNIQUE (tenant_id, chapter_id, page_no) va `chapter_id`
+#   tro ve `story.chapter` — tuc CHUONG CHU. Hai chuong comic cung mot chuong
+#   chu ⇒ buoc phai dung chung day so trang.
+#   ⇒ Nguoi doc se thay "chuong 2 bat dau tu trang 7". Neu Architect quyet
+#   them mot entity chuong comic (Q-6), day so nay reset ve 1..6 va file nay
+#   phai sua theo. Ghi lai de quyet dinh do co du lieu that de doi chieu.
+
+meta:
+  chuong_comic: 2
+  tong_panel: 20
+  tong_trang: 6
+  page_no_range: "7-12 (xem canh bao F-8 o tren)"
+  emphasis_da_dung:
+    full_page: 1   # panel 42
+    large: 3       # panel 24, 29, 33
+  ngan_sach_uoc_tinh: "20 panel x N=3 = 60 anh x $0.134 ~= $8.04"
+  ngan_sach_ca_chuong_chu: "42 panel x N=3 = 126 anh ~= $16.88 — ⚠️ vuot ~$12, duoi tran thuc te ~$50"
+
+# ⚠️ Hai nhan vat NEN xuat hien o panel 39-40 (ong lao, co gai) ⛔ KHONG co
+# trong story-bible.yaml. Day la CHU Y: ho xuat hien DUNG MOT panel, khong tai
+# xuat hien ⇒ ⛔ khong do duoc consistency, nen ⛔ khong can canonical reference.
+# Consistency chi do duoc voi nhan vat XUAT HIEN NHIEU LAN.
+
+pages:
+
+  # ---------- TRANG 7 — Canh cua TA ----------
+  - page_no: 7
+    page_layout: { rows: [{ y: 0.00, h: 0.22, panels: [23] }, { y: 0.22, h: 0.55, panels: [24] }, { y: 0.77, h: 0.23, panels: [25] }] }
+    panels:
+      - panel_index: 23
+        action: "Mặt đất nghĩa địa rung mạnh, các bia đá nghiêng ngả, Lâm Uyên loạng choạng đứng thẳng"
+        camera: { shot: "medium_wide", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, xám, đỏ", state_ref: "tu_panel_20", motion: "rung chuyển" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.35, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 24
+        action: "Một cánh cửa khổng lồ hiện ra giữa hư không, chằng chịt xiềng xích to bằng thân người"
+        camera: { shot: "extreme_wide", angle: "low", subject: "cánh cửa" }
+        visual_constraints: { palette: "đen tuyền, ánh đỏ viền", scale: "cửa cao gấp trăm lần người", mood: "áp đảo" }
+        text_safe_zone: [{ x: 0.05, y: 0.03, w: 0.30, h: 0.14 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "large"
+        character_count: 0
+        characters: []
+
+      - panel_index: 25
+        action: "Cận chữ cổ khắc chính giữa cánh cửa: TÀ"
+        camera: { shot: "close_up", angle: "eye", subject: "chữ TÀ" }
+        visual_constraints: { palette: "đen, đỏ", detail: "nét khắc sâu, rỉ sét đọng trong nét chữ" }
+        text_safe_zone: []
+        text_safe_zone_warning: true
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+        negative_space_hint: "Chữ TÀ là phần ẢNH, ⛔ không phải overlay — không đặt bubble đè lên"
+
+  # ---------- TRANG 8 — Giao keo ----------
+  - page_no: 8
+    page_layout: { rows: [{ y: 0.00, h: 0.40, panels: [26] }, { y: 0.40, h: 0.30, panels: [27] }, { y: 0.70, h: 0.30, panels: [28] }] }
+    panels:
+      - panel_index: 26
+        action: "Lâm Uyên đứng nhỏ bé ở tiền cảnh, đối diện cánh cửa khổng lồ"
+        camera: { shot: "extreme_wide", angle: "high", subject: "lam_uyen và cánh cửa" }
+        visual_constraints: { palette: "đen, đỏ", scale: "nhân vật chiếm <5% khung", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.55, y: 0.05, w: 0.40, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 27
+        action: "Không gian tối, chỉ có Lâm Uyên đứng giữa khung, xung quanh là hắc khí cuộn"
+        camera: { shot: "medium", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, xám khói", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.90, h: 0.30 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+        dialogue:
+          - speaker: "ta_than"
+            text: "Ngươi muốn sống lại? Ngươi muốn báo thù?"
+            bubble_type: "voice_no_speaker"
+            typeset_note: >
+              ⭐⭐ CA KHO NHAT CUA G1-e. Ta Than ⛔ KHONG co than the — giong noi
+              vang TRUC TIEP trong linh hon. Bubble nay ⛔ khong co duoi tro ve
+              nguoi noi. Hinh dang de xuat: khung vien gai/rang cua, nen den,
+              chu trang. Day cham thang vao human gate speaker attribution
+              (MVP2) ngay tu MVP0.
+
+      - panel_index: 28
+        action: "Cận mặt Lâm Uyên, hai tay siết chặt, ánh mắt không dao động"
+        camera: { shot: "close_up", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, da tái", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.55, y: 0.60, w: 0.40, h: 0.30 }]
+        text_safe_zone_warning: false
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+        dialogue:
+          - speaker: "lam_uyen"
+            text: "Ngươi là ai?"
+            bubble_type: "speech"
+
+  # ---------- TRANG 9 — Con mat khong lo ----------
+  - page_no: 9
+    page_layout: { rows: [{ y: 0.00, h: 0.35, panels: [29] }, { y: 0.35, h: 0.35, panels: [30] }, { y: 0.70, h: 0.30, panels: [31, 32] }] }
+    panels:
+      - panel_index: 29
+        action: "Hàng vạn ngôi mộ đồng loạt nổ tung, oan hồn trắng bay vọt lên trời"
+        camera: { shot: "extreme_wide", angle: "low", subject: "nghĩa địa nổ tung" }
+        visual_constraints: { palette: "trắng, đen, đỏ", density: "oan hồn kín nửa trên khung", motion: "bay lên" }
+        text_safe_zone: [{ x: 0.05, y: 0.72, w: 0.35, h: 0.22 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "large"
+        character_count: 0
+        characters: []
+
+      - panel_index: 30
+        action: "Một con mắt khổng lồ mở ra phía sau lưng Lâm Uyên, chiếm gần trọn nền trời"
+        camera: { shot: "wide", angle: "low", subject: "con mắt và lam_uyen" }
+        visual_constraints: { palette: "đỏ máu, đen", scale: "con mắt lớn hơn cả ngọn núi", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.30, h: 0.18 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 31
+        action: "Lâm Uyên quay đầu nhìn thẳng vào con mắt, không lùi một bước"
+        camera: { shot: "medium", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, đỏ hắt", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.45, h: 0.35 }]
+        text_safe_zone_warning: false
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+        dialogue:
+          - speaker: "lam_uyen"
+            text: "Ta đã chết một lần. Ngươi nghĩ ta còn sợ chết sao?"
+            bubble_type: "speech"
+
+      - panel_index: 32
+        action: "Cực cận con ngươi của con mắt khổng lồ, thoáng một tia kinh ngạc"
+        camera: { shot: "extreme_close_up", angle: "eye", subject: "con mắt" }
+        visual_constraints: { palette: "đỏ, đen", detail: "mạch máu trong tròng mắt co lại" }
+        text_safe_zone: []
+        text_safe_zone_warning: true
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+  # ---------- TRANG 10 — Thuc tinh ----------
+  - page_no: 10
+    page_layout: { rows: [{ y: 0.00, h: 0.45, panels: [33] }, { y: 0.45, h: 0.27, panels: [34] }, { y: 0.72, h: 0.28, panels: [35] }] }
+    panels:
+      - panel_index: 33
+        action: "Một luồng hắc khí khổng lồ từ lòng đất lao thẳng vào ngực Lâm Uyên"
+        camera: { shot: "full_body", angle: "low", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen tuyền, viền đỏ", motion: "cột khí thẳng đứng", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.60, y: 0.05, w: 0.35, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "large"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 34
+        action: "Cận mặt và cổ Lâm Uyên, mạch máu nổi cuộn, hàm nghiến chặt, không kêu"
+        camera: { shot: "close_up", angle: "dutch", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, đỏ mạch máu", detail: "gân cổ nổi rõ", state_ref: "tu_panel_20" }
+        text_safe_zone: [{ x: 0.05, y: 0.70, w: 0.35, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 35
+        action: "Tia sáng bình minh đầu tiên. Lâm Uyên đứng thẳng dậy, mở mắt"
+        camera: { shot: "close_up", angle: "eye", subject: "lam_uyen" }
+        visual_constraints:
+          palette: "xám bình minh, đỏ"
+          state_ref: "sau_thuc_tinh"
+          detail: "⭐ Mắt TRÁI vẫn đen; mắt PHẢI đỏ như máu. Đây là mốc trạng thái mới."
+        text_safe_zone: [{ x: 0.55, y: 0.05, w: 0.40, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+  # ---------- TRANG 11 — Vong Tu ----------
+  - page_no: 11
+    page_layout: { rows: [{ y: 0.00, h: 0.33, panels: [36] }, { y: 0.33, h: 0.34, panels: [37] }, { y: 0.67, h: 0.33, panels: [38] }] }
+    panels:
+      - panel_index: 36
+        action: "Hàng vạn oan hồn xung quanh đồng loạt quỳ xuống, không ai ra lệnh"
+        camera: { shot: "wide", angle: "high", subject: "oan hồn và lam_uyen" }
+        visual_constraints: { palette: "trắng mờ, đen", state_ref: "sau_thuc_tinh", composition: "nhân vật đứng giữa vòng tròn quỳ" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.35, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 37
+        action: "Lâm Uyên nhìn hai bàn tay mình, một bảng chữ cổ hiện lên trong tầm mắt"
+        camera: { shot: "medium", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, chữ phát sáng đỏ nhạt", state_ref: "sau_thuc_tinh" }
+        text_safe_zone: [{ x: 0.45, y: 0.10, w: 0.50, h: 0.75 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+        dialogue:
+          - speaker: "system"
+            text: "[Tà Thần Chi Nhãn đã thức tỉnh.] [Cảnh giới: Phàm Nhân.] [Huyết mạch: Tà Thần — 1%.]"
+            bubble_type: "system_panel"
+            typeset_note: >
+              ⭐ CA TYPESET THU HAI. Bang trang thai la GIAO DIEN, ⛔ khong phai
+              loi thoai. Phai la OVERLAY LAYER (G1-e), ⛔ TUYET DOI khong nho
+              model render chu trong anh — day la cho de sai nhat vi model hay
+              tu ve "bang chu" thanh mot phan cua tranh.
+
+      - panel_index: 38
+        action: "Tầm nhìn của Lâm Uyên: cả thế giới chuyển thành màu xám, trên đầu mỗi sinh vật có một sợi dây đỏ"
+        camera: { shot: "wide", angle: "eye", subject: "phong cảnh qua mắt nhân vật" }
+        visual_constraints: { palette: "xám đơn sắc, chỉ dây đỏ có màu", pov: "point_of_view" }
+        text_safe_zone: [{ x: 0.05, y: 0.75, w: 0.40, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+  # ---------- TRANG 12 — Ke o cuoi soi day ----------
+  - page_no: 12
+    page_layout: { rows: [{ y: 0.00, h: 0.22, panels: [39, 40] }, { y: 0.22, h: 0.20, panels: [41] }, { y: 0.42, h: 0.58, panels: [42] }] }
+    panels:
+      - panel_index: 39
+        action: "Một ông lão cưỡi ngựa trên đường núi, trên đầu có sợi dây đỏ ngắn"
+        camera: { shot: "medium_wide", angle: "eye", subject: "ông lão" }
+        visual_constraints: { palette: "xám đơn sắc, dây đỏ", figurant: "nhân vật nền, ⛔ không cần canonical reference" }
+        text_safe_zone: [{ x: 0.55, y: 0.05, w: 0.40, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 1
+        characters: []
+        dialogue:
+          - speaker: "system"
+            text: "[Tử vong: 7 ngày.]"
+            bubble_type: "system_panel"
+
+      - panel_index: 40
+        action: "Một cô gái hái thuốc bên vách núi, sợi dây đỏ trên đầu rất dài"
+        camera: { shot: "medium_wide", angle: "eye", subject: "cô gái" }
+        visual_constraints: { palette: "xám đơn sắc, dây đỏ", figurant: "nhân vật nền, ⛔ không cần canonical reference" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.40, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 1
+        characters: []
+        dialogue:
+          - speaker: "system"
+            text: "[Tử vong: 43 năm.]"
+            bubble_type: "system_panel"
+
+      - panel_index: 41
+        action: "Sợi dây đỏ trên đầu Lâm Uyên kéo thẳng lên, xuyên qua tầng mây, không có điểm cuối"
+        camera: { shot: "wide", angle: "low", subject: "lam_uyen và sợi dây" }
+        visual_constraints: { palette: "xám, đỏ", state_ref: "sau_thuc_tinh" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.30, h: 0.30 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 42
+        action: "Một khuôn mặt khổng lồ ẩn sau tầng mây, đôi mắt từ từ mở ra nhìn xuống. Lâm Uyên đứng bất động, một giọt mưa rơi trên trán"
+        camera: { shot: "extreme_wide", angle: "low", subject: "khuôn mặt sau mây và lam_uyen" }
+        visual_constraints:
+          palette: "đen, xám, đỏ"
+          scale: "khuôn mặt chiếm trọn nền trời, nhân vật nhỏ ở góc dưới"
+          state_ref: "sau_thuc_tinh"
+          mood: "kết chương treo"
+        text_safe_zone: [{ x: 0.05, y: 0.03, w: 0.45, h: 0.16 }, { x: 0.50, y: 0.82, w: 0.45, h: 0.15 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "full_page"
+        character_count: 1
+        characters: ["lam_uyen"]
+        dialogue:
+          - speaker: "thien_dao"
+            text: "Cuối cùng… Ngươi cũng trở về."
+            bubble_type: "voice_no_speaker"
+          - speaker: "thien_dao"
+            text: "Nhưng lần này… Đừng mong ta để ngươi sống thêm lần nữa."
+            bubble_type: "voice_no_speaker"

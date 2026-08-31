@@ -21,15 +21,24 @@
 | File | Nội dung | Neo |
 |---|---|---|
 | [`story-bible.yaml`](./story-bible.yaml) | **3 nhân vật** viết tay + canonical reference + trạng thái theo thời điểm | `Roadmap §3.1` việc 2 |
-| [`panel-script.yaml`](./panel-script.yaml) | **22 panel / 6 trang**, tên trường khớp đúng cột `comic.panel` | `Roadmap §2` (~8–30 panel) · [DB-Entity-Comic-IR](../docs/030-Specs/Schema/DB-Entity-Comic-IR.md) |
+| [`panel-script-ch1.yaml`](./panel-script-ch1.yaml) | **22 panel / trang 1–6** — nghĩa địa → tỉnh dậy → bia đá → flashback → ký hiệu con mắt | `Roadmap §2` · [DB-Entity-Comic-IR](../docs/030-Specs/Schema/DB-Entity-Comic-IR.md) |
+| [`panel-script-ch2.yaml`](./panel-script-ch2.yaml) | **20 panel / trang 7–12** — cánh cửa TÀ → giao kèo → hắc khí → Vọng Tử → khuôn mặt sau mây | như trên |
+| [`typeset-corpus.json`](./typeset-corpus.json) | **5 mục** ở **cả NFC và NFD**, sinh bằng [`scripts/gen-typeset-corpus.py`](../scripts/gen-typeset-corpus.py) | `ADR-001` `## Consequences` **#5** |
+| [`threshold-signoff.md`](./threshold-signoff.md) | Phiếu ký nhận ngưỡng `[EM]` — **ký TRƯỚC khi đo** | `MVP-Scope §7` · `Q-2` |
 
-**Nguồn**: *Tà Nguyệt Vô Tận* — Chương 1 *(Người chết trở về)*, **chương comic #1**.
+**Nguồn**: *Tà Nguyệt Vô Tận* — Chương chữ 1 *(Người chết trở về)*, tách thành **hai chương comic**.
 
-⚠️ Chương chữ 1 được tách thành **hai chương comic**; file hiện tại phủ chương comic #1 (nghĩa địa → tỉnh dậy → bia đá → flashback → ký hiệu con mắt). Xem [`F-8`](../docs/050-Research/Analysis-MVP0-Requirements.md) — đơn vị `chapter` hiện nhập nhằng giữa chương chữ và chương comic.
+**Ràng buộc đã kiểm cơ học** (cả hai file): tổng **42 panel / 12 trang** · `character_count` max = **3** (trần `INV-2`) · emphasis quota **mỗi chương comic** = 1 full_page + 3 large (đúng `ADR-012 D-23`) · mọi toạ độ **0–1** (`INV-5`) · `panel_index` liên tục 1–42.
 
-**Ràng buộc đã kiểm cơ học**: 22 panel · `character_count` max = **3** (trần `INV-2`) · emphasis quota = **1 full_page + 3 large** (đúng `ADR-012 D-23`) · mọi toạ độ **0–1** (`INV-5`) · `panel_index` liên tục 1–22.
+> [!WARNING]
+> ⚠️ **Ngân sách vượt trần `~$12`.** Phủ trọn chương chữ = **42 panel × N=3 = 126 ảnh** × `$0.134` ≈ **$16,88** — vượt `~$12` (`CF-3.11`) khoảng **41%**, nhưng vẫn **dưới trần thực tế `~$50`** (`Analysis §10`).
+>
+> **Đường lui nếu cần ép về ngân sách**: chạy **chỉ chương comic #1** (22 panel ≈ **$8,84**). Đổi lại thì mất phần đo `G1-e` giàu nhất — 7 trong 9 panel có thoại nằm ở chương comic #2.
 
-**Ngân sách ước tính**: 22 panel × N=3 = **66 ảnh** × `$0.134` ≈ **$8,84** — dưới trần `~$12` (`CF-3.11`).
+> [!NOTE]
+> ⭐ **Điểm dữ liệu đầu tiên cho `G-07`**: chương chữ này ra **42 panel**, so với giả định **60 ảnh/chapter** `[EM]` `CF-3.3` — **thấp hơn 30%**.
+>
+> ⛔ **Chưa kết luận được gì**: `n = 1`, và đây là số panel do **người phân cảnh**, ⛔ không phải số đo từ hệ thống. Nhưng nó là điểm dữ liệu thật đầu tiên chạm vào thứ mà `Charter §8 A1` gọi là *"thừa số gốc của toàn bộ mô hình chi phí"*. Ghi lại để đối chiếu khi có chương thứ hai.
 
 ## ⚠️ Giới hạn đo lường đã biết — đọc trước khi chấm `G1`
 
@@ -39,10 +48,10 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 |:-:|:-:|---|
 | `C-1` ≥2 nhân vật cùng cảnh | ⛔ **TRƯỢT** | Xem cảnh báo dưới |
 | `C-2` ≥1 cảnh 3 nhân vật | 🟡 Mỏng | Đúng **một** panel (16) |
-| `C-3` 8 panel liền cùng nhân vật | ✅ | `lam_uyen` có mặt ở 9 panel, liền mạch |
-| `C-4` có thoại | ✅ | Panel 10, 17 |
+| `C-3` 8 panel liền cùng nhân vật | ✅ | `lam_uyen` có mặt ở **24/42** panel |
+| `C-4` có thoại | ✅ | **9 panel** có thoại, gồm **2 ca typeset khó** — xem dưới |
 | `C-5` dấu chồng hai tầng | ✅ | `ế`×25 · `ữ`×8 · `ợ`×8 · 30 loại / 283 lần |
-| `C-6` trọn trong ≤30 panel | ✅ | 22 panel, sau khi tách chương comic |
+| `C-6` trọn trong ≤30 panel | ✅ | **22 và 20 panel** — mỗi chương comic đều dưới trần |
 | `C-7` content policy | ⚠️ Rủi ro | Panel **18** (kiếm xuyên ngực + máu) là chỗ rủi ro cao nhất |
 | `C-8` bằng chứng đồng ý | — | Founder xác nhận đã có |
 
@@ -58,10 +67,20 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 >
 > **Đường xử lý**: bổ sung một chương có hội thoại nhiều người để nâng cỡ mẫu, hoặc chấp nhận và ghi `G1-d` là **đo-và-báo-cáo**, ⛔ không dùng làm điều kiện chặn.
 
+## ⭐ Hai ca typeset khó — nơi `G1-e` thật sự bị thử
+
+`G1-e` đòi **100%** panel có thoại dùng overlay và **0** panel nhờ model render chữ. Chín panel có thoại chứa **hai loại bubble mà một chương đối thoại thường ⛔ không có**:
+
+| Loại | Panel | Vì sao khó |
+|---|---|---|
+| `voice_no_speaker` | 27, 42 | Tà Thần và thiên đạo ⛔ **không có thân thể** — bubble ⛔ không có đuôi trỏ về người nói. Chạm thẳng vào **human gate speaker attribution** (MVP2) ngay từ MVP0 |
+| `system_panel` | 37, 39, 40 | Bảng trạng thái là **giao diện**, ⛔ không phải lời thoại. ⭐ Đây là chỗ dễ hỏng nhất: model rất hay **tự vẽ "bảng chữ" thành một phần của tranh** — mà đó chính là định nghĩa của việc **trượt `G1-e`** |
+
 ## Việc còn thiếu
 
-- [ ] ⭐ **Corpus NFD**: văn bản gốc là **NFC thuần** (kiểm cơ học: `t == NFC` → `True`). Nghiệm thu [ADR-001](../docs/030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `#5` đòi corpus **cả NFC và NFD** để test tiêu chí (c). ⇒ Phải **chủ động sinh** biến thể NFD từ thoại panel 10 và 17
-- [ ] Chương comic **#2** (cánh cửa TÀ → giao kèo → hắc khí → Vọng Tử → khuôn mặt sau mây)
-- [ ] Chốt **vendor** image + VLM — `Q-3`, số đo trên provider A ⛔ không chuyển giao sang provider B
-- [ ] Ký nhận ngưỡng `[EM]` `G1-c` / `G1-d` **trước** khi đo — `Q-2`
-- [ ] Bảng chấm golden dataset (`P-6`)
+- [ ] ⭐ Chốt **vendor** image + VLM — `Q-3`. ⛔ **Chưa chốt thì chưa sinh được ảnh nào**, và số đo trên provider A ⛔ không chuyển giao sang provider B
+- [ ] Ký nhận [`threshold-signoff.md`](./threshold-signoff.md) — `Q-2`, phải xong **trước** khi sinh ảnh đầu tiên
+- [ ] Bảng chấm golden dataset (`P-6`) — 15–20 panel có spec + ref + ảnh + đánh giá
+- [ ] Nâng cỡ mẫu `G1-d`, hoặc chấp nhận ghi nó là **đo-và-báo-cáo** thay vì điều kiện chặn
+
+**Đã xong**: ✅ Story Bible · ✅ panel script cả hai chương comic · ✅ corpus NFC/NFD
