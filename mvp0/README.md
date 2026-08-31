@@ -32,9 +32,12 @@
 **Ràng buộc đã kiểm cơ học** (cả hai file): tổng **42 panel / 12 trang** · `character_count` max = **3** (trần `INV-2`) · emphasis quota **mỗi chương comic** = 1 full_page + 3 large (đúng `ADR-012 D-23`) · mọi toạ độ **0–1** (`INV-5`) · `panel_index` liên tục 1–42.
 
 > [!WARNING]
-> ⚠️ **Ngân sách vượt trần `~$12`.** Phủ trọn chương chữ = **42 panel × N=3 = 126 ảnh** × `$0.134` ≈ **$16,88** — vượt `~$12` (`CF-3.11`) khoảng **41%**, nhưng vẫn **dưới trần thực tế `~$50`** (`Analysis §10`).
+> ⚠️ **Ngân sách phải tính lại theo giá Alibaba đã verify — ⛔ repo chưa có số chốt.** Công thức không đổi: phủ trọn chương chữ = **42 panel × N=3 = 126 ảnh** × giá/ảnh. Hai mốc để so:
 >
-> **Đường lui nếu cần ép về ngân sách**: chạy **chỉ chương comic #1** (22 panel ≈ **$8,84**). Đổi lại thì mất phần đo `G1-e` giàu nhất — 7 trong 9 panel có thoại nằm ở chương comic #2.
+> - Theo giá **Gemini cũ** (`$0.134`): ≈ **$16,88** — vượt trần `~$12` (`CF-3.11`) khoảng **41%**, dưới trần thực tế `~$50` (`Analysis §10`).
+> - Theo **dải giá Alibaba từ nguồn thứ ba** (`$0.02–$0.075`/ảnh — ⚠️ **chưa verify từ trang chính thức**, xem [Research-Alibaba-Model-Studio-For-MVP0 §4](../docs/050-Research/Research-Alibaba-Model-Studio-For-MVP0.md)): ≈ **$2,52–$9,45** — lần đầu nằm **trong** trần `~$12`. Free quota 90 ngày còn kéo số thật xuống nữa.
+>
+> ⇒ **Founder điền giá đã đọc từ console vào `.env`** (`MVP0_IMAGE_PRICE_T2I_USD` / `MVP0_IMAGE_PRICE_EDIT_USD`) **trước khi chạy thật**, rồi thay khối này bằng số đã verify — `SRS §5.2` cấm bịa số. **Đường lui nếu số thật vẫn vượt trần**: chạy **chỉ chương comic #1** (22 panel); đổi lại thì mất phần đo `G1-e` giàu nhất — 7 trong 9 panel có thoại nằm ở chương comic #2.
 
 > [!NOTE]
 > ⭐ **Điểm dữ liệu đầu tiên cho `G-07`**: chương chữ này ra **42 panel**, so với giả định **60 ảnh/chapter** `[EM]` `CF-3.3` — **thấp hơn 30%**.
@@ -75,24 +78,29 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 >
 > [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) `Q4` đã định sẵn: *"**Ai đóng**: PM + Architect. **Khi nào**: tại gate cuối **MVP0**, khi ba phép đo bắt buộc của MVP0 có kết quả."* Lý do là biến quyết định — chi phí per-call, `N` tối thiểu, human-reject rate — **chính là output của MVP0**. ⇒ Chốt trước là *"chọn mù"* (chữ của ADR).
 
+⭐ **Đổi provider vận hành `2026-08-31`** — Founder quyết định chạy MVP0 trên **Alibaba Cloud Model Studio** (region Singapore) thay cho Gemini, sau khi tự verify account + bảng giá console. Căn cứ, nguồn và giới hạn xác minh: [Research-Alibaba-Model-Studio-For-MVP0](../docs/050-Research/Research-Alibaba-Model-Studio-For-MVP0.md). ⚠️ Mọi con số chi phí trong tài liệu Phase 1–2 (`$0.134`, `$12,06`, `CF-3.5`) vẫn tính theo Gemini — chúng là **mốc lịch sử**, ⛔ không sửa hồi tố; mô hình chi phí cho `G2` dựng lại từ số **thực đo** của run này.
+
 | Vai trò | Dùng cho MVP0 | Căn cứ |
 |---|---|---|
-| **Sinh ảnh** | **Gemini 3 Pro Image** (Nano Banana Pro) — `$0.134` standard / `$0.067` batch | ⛔ **Không phải lựa chọn mới.** [Spec-Integration-Image-Provider §6.2](../docs/030-Specs/API/Spec-Integration-Image-Provider.md) và **mọi** con số chi phí trong repo (`~$12`, `$12,06`, `CF-3.11`, `CF-3.5`) đều **đã tính từ provider này** |
-| *Đường lui sinh ảnh* | FLUX.2 pro — `$0.03` | Đã ghi sẵn là *"đường lui"* ở cùng bảng giá |
-| **VLM-select** | ⭐ **Cùng Gemini**, nhưng qua **adapter RIÊNG** | Xem hai lý do dưới |
+| **Sinh ảnh — stage `refs`** (0 ảnh input) | `qwen-image-max` — text-to-image, sync | Alibaba tách t2i và edit thành hai dòng sản phẩm; stage `refs` không có ảnh input. Định tuyến theo hình dạng input là **tất định**, ⛔ không phải multi-provider fallback (`IP-C8` giữ nguyên) |
+| **Sinh ảnh — stage `panels`** (1–3 reference) | `qwen-image-edit-plus` — nhận **1–3 ảnh input** + text, sync, PNG qua Base64 | Khớp chính xác trần ≤3 nhân vật (`INV-2`). Đi đường native DashScope — sinh ảnh ⛔ **không có** đường OpenAI-compatible |
+| **VLM-select** | `qwen3-vl-plus` qua endpoint **OpenAI-compatible**, adapter **RIÊNG** | Đạt tiêu chí **loại** `ADR-007` `Q5` #1 (nhiều ảnh trong MỘT call) và #2 (`response_format: json_object`) |
 
-**Vì sao dùng chung vendor cho VLM-select:**
+**Vì sao đổi mà vẫn giữ nguyên kỷ luật cũ:**
 
-1. [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) dòng 185 nêu chính xác cái giá của việc thêm provider: *"**Thêm một provider = thêm một điểm phụ thuộc ngoài**: một bộ credential, một hạn mức, một chính sách nội dung có thể từ chối (`D-67`), một bề mặt drift."* Với MVP0 — một lát cắt 1–2 tuần để **mua thông tin** — trả cái giá đó cho một vendor thứ hai ⛔ không mua thêm được thông tin nào.
-2. Chọn khác Gemini cho phần sinh ảnh sẽ làm **lệch toàn bộ mô hình chi phí** đã dựng trên `$0.134` — và `G2` (gate kinh tế) lấy đầu vào từ chính những con số đó.
+1. Vẫn **một vendor, một bộ credential** (`DASHSCOPE_API_KEY`) — ⛔ không thêm điểm phụ thuộc ngoài nào so với trước. Hai adapter vẫn **TÁCH** đúng [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) `Q1` — ở Alibaba hai vai trò còn buộc phải đi **hai đường API khác nhau**, nên ranh giới adapter càng rõ.
+2. Lý do kinh tế: dải giá tham khảo rẻ hơn Gemini ~2–4× đưa full chương từ **vượt trần 41%** về **trong trần `~$12`** (số chốt chờ Founder verify — xem khối WARNING ở đầu file), cộng free quota 90 ngày (100 ảnh `qwen-image-max`/`qwen-image-edit-max`, ~1M token/model VL) đủ chạy stage `refs` + batch thăm dò gần như miễn phí.
 
-⚠️ **Adapter phải TÁCH, dù cùng vendor.** [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) `Q1`: *"VLM QA-select là **integration thứ hai, riêng biệt**, ⛔ không phải một hàm của adapter ảnh"* — ba lý do: hai vòng đời model version khác nhau (pin riêng), hai đường lỗi khác nhau (*"ảnh sinh xong nhưng chấm hỏng là một trạng thái hợp lệ"*). ⇒ **Cùng vendor, hai adapter.** ⛔ Đừng gộp cho tiện.
+⚠️ **Hai rủi ro mở — phải xử lý TRƯỚC khi ký ngưỡng:**
+
+- **Content moderation**: Alibaba kiểm duyệt **cả input lẫn output**, ⛔ **không có safety settings chỉnh được** như Gemini, ngưỡng với fantasy violence không công bố. Panel **18** (kiếm xuyên ngực + máu) là ca thử của `C-7`. ⇒ Chạy **batch thăm dò trong free quota** trước khi cam kết; mã từ chối `DataInspectionFailed` / `IPInfringementSuspect` được adapter map thẳng vào `refusals.jsonl` (`D-67`).
+- **`G1` sẽ đo năng lực model Alibaba**, ⛔ không phải Gemini — verdict và đầu vào `G2` nói về provider này. FAIL trên Alibaba ⛔ không suy ra FAIL trên Gemini (và ngược lại). Quay lại Gemini trước khi sinh ảnh thật = chưa mất gì.
 
 **Việc chốt vendor thật** vẫn dùng **5 tiêu chí `Q5`** của `ADR-007`, theo thứ tự — tiêu chí #1 (*nhận nhiều ảnh trong MỘT call*) là tiêu chí **loại**, ⛔ không phải cộng điểm.
 
 ## Chạy MVP0
 
-⚠️ **Cài trước**: `pip install google-genai pyyaml` · biến môi trường `GEMINI_API_KEY` (⛔ **không** hardcode — [`security.md`](../.claude/rules/security.md) §2).
+⚠️ **Cài trước**: `pip install dashscope openai pyyaml` · biến môi trường nạp từ `.env`: `cp .env.example .env`, điền `DASHSCOPE_API_KEY` + hai giá tham chiếu, rồi `set -a && source .env && set +a` (⛔ **không** hardcode — [`security.md`](../.claude/rules/security.md) §2).
 
 ### Hai stage — `refs` là bắt buộc trước `panels`
 
@@ -133,7 +141,7 @@ python3 scripts/mvp0/run_mvp0.py panels --chapter ch1
 - **VLM lỗi sau khi ảnh đã sinh** = trạng thái hợp lệ, ảnh vẫn giữ (`ADR-007` `Q6`)
 - **Mọi lần provider từ chối** ghi vào `refusals.jsonl` (`D-67`) — đây là dữ liệu cho `C-7`
 
-⚠️ **`IMAGE_MODEL_ID` và `VLM_MODEL_ID` phải verify trước khi chạy thật.** Hai hằng số trong `providers.py` lấy **tên sản phẩm** từ tài liệu, ⛔ chưa đối chiếu với model id thật của API. Chạy `--dry-run` trước.
+⚠️ **`IMAGE_T2I_MODEL_ID`, `IMAGE_EDIT_MODEL_ID` và `VLM_MODEL_ID` phải verify trước khi chạy thật.** Ba hằng số trong `providers.py` lấy **tên model** từ tài liệu chính thức Model Studio, ⛔ chưa đối chiếu với console của account thật. `IP-C3` cấm alias kiểu `latest` ⇒ pin **snapshot có ngày** (ví dụ `qwen-image-max-2025-12-30`) khi console cho phép. Chạy `--dry-run` trước.
 
 ### Output mỗi lần chạy
 
@@ -154,5 +162,7 @@ python3 scripts/mvp0/run_mvp0.py panels --chapter ch1
 - [ ] Ký nhận [`threshold-signoff.md`](./threshold-signoff.md) — `Q-2`, phải xong **trước** khi sinh ảnh đầu tiên
 - [ ] **Dữ liệu** golden dataset (`P-6`) — 15–20 panel có spec + ref + ảnh + đánh giá. ⭐ **Bảng chấm đã có** ([`golden-dataset/`](./golden-dataset)); còn thiếu là **ảnh và điểm**, tức phải chạy thật
 - [ ] Nâng cỡ mẫu `G1-d`, hoặc chấp nhận ghi nó là **đo-và-báo-cáo** thay vì điều kiện chặn
+- [ ] Điền **giá đã verify từ console** vào `.env` (`MVP0_IMAGE_PRICE_T2I_USD`, `MVP0_IMAGE_PRICE_EDIT_USD`) và thay khối ngân sách đầu file bằng số chốt — trước khi chạy thật
+- [ ] **Batch thăm dò content policy** trong free quota (stage `refs` + vài panel rủi ro, gồm 18) — dữ liệu cho `C-7`, làm **trước** khi ký ngưỡng
 
 **Đã xong**: ✅ Story Bible · ✅ panel script cả hai chương comic · ✅ corpus NFC/NFD · ✅ provider vận hành cho MVP0 · ✅ bảng chấm + phiếu verdict `G1` ([`golden-dataset/`](./golden-dataset)) · ✅ script tính regen ratio `p50`/`p90` ([`regen_ratio.py`](../scripts/mvp0/regen_ratio.py))
