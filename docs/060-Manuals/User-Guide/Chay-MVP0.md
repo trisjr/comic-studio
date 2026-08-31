@@ -220,5 +220,5 @@ python3 scripts/mvp0/regen_ratio.py
 
 ---
 
-_Created by TNMCORE-OS_
+_Created by Comic Studio_
 _Author: trisjr_
