@@ -1,0 +1,327 @@
+# AI Coding
+# panel-script-ch1.yaml
+# Panel script VIET TAY cho MVP0 — chuong comic #1, 22 panel / 6 trang.
+# Rang buoc: Roadmap §2 deliverable pre-cycle — "~8-30 panel".
+# Ten truong khop DUNG cot cua `comic.panel` (DB-Entity-Comic-IR.md) de panel
+# script nay nap thang duoc vao schema MVP1 ma ⛔ khong phai dich lai.
+# ⚠️ MVP0 ⛔ KHONG co database — day la file phang, dung theo MVP-Scope §3.1.
+#
+# Quy uoc bat buoc:
+#   - Moi toa do la 0-1 (INV-5), ⛔ khong pixel.
+#   - character_count <= 3 (INV-2).
+#   - beat_type thuoc danh muc khoi tao: climax | reaction | transition | establishing.
+#   - emphasis thuoc: normal | large | full_page.
+#   - Emphasis quota ca chuong: 1 full_page + 2-3 large (ADR-012 D-23).
+
+meta:
+  chuong_comic: 1
+  tong_panel: 22
+  tong_trang: 6
+  emphasis_da_dung:
+    full_page: 1   # panel 11
+    large: 3       # panel 6, 9, 18
+  ngan_sach_uoc_tinh: "22 panel x N=3 = 66 anh x $0.134 ~= $8.84 (duoi tran ~$12)"
+
+pages:
+
+  # ---------- TRANG 1 — Mo dau: vung dat chet ----------
+  - page_no: 1
+    page_layout: { rows: [{ y: 0.00, h: 0.45, panels: [1] }, { y: 0.45, h: 0.30, panels: [2] }, { y: 0.75, h: 0.25, panels: [3] }] }
+    panels:
+      - panel_index: 1
+        action: "Bầu trời đêm không trăng, mây đen dày đặc, một tia chớp màu đỏ xé ngang tầng mây"
+        camera: { shot: "extreme_wide", angle: "low", subject: "bầu trời" }
+        visual_constraints: { palette: "đen, đỏ máu", light_source: "chớp đỏ trên mây", mood: "áp bức" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.40, h: 0.15 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+      - panel_index: 2
+        action: "Những ngọn núi cháy rụi trải dài, xa xa là bóng thành trì Hắc Uyên"
+        camera: { shot: "extreme_wide", angle: "eye", subject: "dãy núi và thành trì" }
+        visual_constraints: { palette: "xám tro, đen", light_source: "chớp đỏ", mood: "hoang tàn" }
+        text_safe_zone: [{ x: 0.55, y: 0.10, w: 0.40, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+      - panel_index: 3
+        action: "Chuông đồng cổ treo trên cổng thành, mặt chuông rỉ xanh, đang rung"
+        camera: { shot: "medium", angle: "low", subject: "chuông đồng" }
+        visual_constraints: { palette: "xanh rỉ, đen", motion: "rung, có vệt mờ" }
+        text_safe_zone: [{ x: 0.05, y: 0.70, w: 0.30, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+  # ---------- TRANG 2 — Mat dat mo ra ----------
+  - page_no: 2
+    page_layout: { rows: [{ y: 0.00, h: 0.22, panels: [4] }, { y: 0.22, h: 0.28, panels: [5] }, { y: 0.50, h: 0.50, panels: [6, 7] }] }
+    panels:
+      - panel_index: 4
+        action: "Mặt đất nghĩa địa nứt ra thành từng đường dài"
+        camera: { shot: "wide", angle: "high", subject: "mặt đất nứt" }
+        visual_constraints: { palette: "nâu đất, đen", motion: "rung chuyển" }
+        text_safe_zone: [{ x: 0.60, y: 0.05, w: 0.35, h: 0.30 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+      - panel_index: 5
+        action: "Cận cảnh một bàn tay trắng bệch nhô lên khỏi mặt đất, ngón tay cào xuống"
+        camera: { shot: "close_up", angle: "low", subject: "bàn tay" }
+        visual_constraints: { palette: "trắng bệch, nâu đất", detail: "móng tay gãy, da nứt" }
+        text_safe_zone: []
+        text_safe_zone_warning: true
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+      - panel_index: 6
+        action: "Toàn cảnh: hàng nghìn bàn tay trắng nhô lên khắp cánh đồng mộ"
+        camera: { shot: "extreme_wide", angle: "high", subject: "cánh đồng bàn tay" }
+        visual_constraints: { palette: "trắng, đen, đỏ", density: "dày đặc kín khung", mood: "kinh dị" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.35, h: 0.15 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "large"
+        character_count: 0
+        characters: []
+
+      - panel_index: 7
+        action: "Một bàn tay nắm chặt lấy mép quan tài gỗ mục"
+        camera: { shot: "close_up", angle: "eye", subject: "tay và mép quan tài" }
+        visual_constraints: { palette: "nâu mục, trắng", detail: "gỗ nứt dưới lực bóp" }
+        text_safe_zone: [{ x: 0.05, y: 0.75, w: 0.25, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+  # ---------- TRANG 3 — Lam Uyen tro lai ----------
+  - page_no: 3
+    page_layout: { rows: [{ y: 0.00, h: 0.25, panels: [8] }, { y: 0.25, h: 0.45, panels: [9] }, { y: 0.70, h: 0.30, panels: [10] }] }
+    panels:
+      - panel_index: 8
+        action: "Nắp quan tài bật tung lên không trung, mảnh gỗ văng ra"
+        camera: { shot: "medium_wide", angle: "low", subject: "quan tài" }
+        visual_constraints: { palette: "nâu, đen", motion: "nổ tung, mảnh vỡ bay" }
+        text_safe_zone: [{ x: 0.65, y: 0.05, w: 0.30, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+
+      - panel_index: 9
+        action: "Lâm Uyên bò ra khỏi quan tài, chống hai tay xuống đất, toàn thân phủ máu khô"
+        camera: { shot: "full_body", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, đỏ khô", state_ref: "truoc_panel_20", detail: "áo đen rách nát, tóc bết" }
+        text_safe_zone: [{ x: 0.60, y: 0.08, w: 0.35, h: 0.22 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "large"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 10
+        action: "Cận mặt Lâm Uyên đang thở dốc, mắt hé mở"
+        camera: { shot: "close_up", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "tái nhợt, đỏ khô", state_ref: "truoc_panel_20" }
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.45, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+        dialogue:
+          - speaker: "lam_uyen"
+            text: "Ta… Ta đang ở đâu?"
+            bubble_type: "speech"
+
+  # ---------- TRANG 4 — Canh dong mo va tam bia ----------
+  - page_no: 4
+    page_layout: { rows: [{ y: 0.00, h: 1.00, panels: [11] }] }
+    panels:
+      - panel_index: 11
+        action: "Cánh đồng mộ trải dài đến tận chân trời, hàng vạn bia đá chen chúc trong bóng tối, Lâm Uyên đứng nhỏ bé ở tiền cảnh"
+        camera: { shot: "extreme_wide", angle: "high", subject: "cánh đồng mộ" }
+        visual_constraints: { palette: "xám, đen, đỏ", scale: "nhân vật rất nhỏ so với khung", state_ref: "truoc_panel_20" }
+        text_safe_zone: [{ x: 0.05, y: 0.03, w: 0.40, h: 0.12 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "full_page"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+  # ---------- TRANG 5 — Tam bia va ky uc vo de ----------
+  - page_no: 5
+    page_layout: { rows: [{ y: 0.00, h: 0.32, panels: [12, 13] }, { y: 0.32, h: 0.34, panels: [14, 15] }, { y: 0.66, h: 0.34, panels: [16] }] }
+    panels:
+      - panel_index: 12
+        action: "Cận tấm bia đá khắc dòng chữ: Lâm Uyên — chết năm mười bảy tuổi"
+        camera: { shot: "close_up", angle: "eye", subject: "bia đá" }
+        visual_constraints: { palette: "xám đá", detail: "chữ khắc sâu, rêu bám kẽ chữ" }
+        text_safe_zone: []
+        text_safe_zone_warning: true
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+        negative_space_hint: "Chữ trên bia là phần ẢNH, ⛔ không phải bubble — không đặt overlay đè lên"
+
+      - panel_index: 13
+        action: "Cận mắt Lâm Uyên, đồng tử co lại"
+        camera: { shot: "extreme_close_up", angle: "eye", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, trắng mắt vằn đỏ", state_ref: "truoc_panel_20" }
+        text_safe_zone: []
+        text_safe_zone_warning: true
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      # --- FLASHBACK bat dau: panel 14-18 ---
+      # ⭐ Day la NGUON DUY NHAT cua chuong cho tieu chi G1-d (panel 2-3 nhan vat).
+      - panel_index: 14
+        action: "FLASHBACK — Đại sảnh Lâm gia. Lâm phụ quỳ dưới đất, Lâm Uyên (quá khứ) đứng phía sau ông"
+        camera: { shot: "medium_wide", angle: "eye", subject: "lam_phu và lam_uyen" }
+        visual_constraints:
+          palette: "xanh nhạt, nâu sẫm, vàng nến"
+          flashback_treatment: "viền khung mềm, độ tương phản thấp hơn hiện tại"
+          state_ref: "flashback"
+          attribute_binding: "⭐ lam_uyen mặc áo LỤA XANH NHẠT; lam_phu mặc áo gấm NÂU SẪM có nhẫn ngọc lục"
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.35, h: 0.20 }]
+        text_safe_zone_warning: false
+        beat_type: "establishing"
+        emphasis: "normal"
+        character_count: 2
+        characters: ["lam_phu", "lam_uyen"]
+
+      - panel_index: 15
+        action: "FLASHBACK — Người phụ nữ áo trắng bước vào khung, Lâm phụ ngẩng đầu nhìn lên"
+        camera: { shot: "medium", angle: "low", subject: "bach_y_nu và lam_phu" }
+        visual_constraints:
+          palette: "trắng, nâu sẫm"
+          flashback_treatment: "viền khung mềm"
+          state_ref: "flashback"
+          attribute_binding: "⭐ bach_y_nu cầm trường kiếm chuôi quấn dây TRẮNG; lam_phu ⛔ KHÔNG cầm vũ khí"
+        text_safe_zone: [{ x: 0.60, y: 0.05, w: 0.35, h: 0.22 }]
+        text_safe_zone_warning: false
+        beat_type: "transition"
+        emphasis: "normal"
+        character_count: 2
+        characters: ["bach_y_nu", "lam_phu"]
+
+      - panel_index: 16
+        action: "FLASHBACK — Ba người trong cùng một khung: người phụ nữ áo trắng đứng đối diện, Lâm phụ quỳ giữa, Lâm Uyên phía sau"
+        camera: { shot: "wide", angle: "eye", subject: "ba nhân vật" }
+        visual_constraints:
+          palette: "trắng, nâu sẫm, xanh nhạt"
+          flashback_treatment: "viền khung mềm"
+          state_ref: "flashback"
+          attribute_binding: >
+            ⭐⭐ PANEL QUAN TRONG NHAT cho G1-d truc 3 nhan vat.
+            Ba bo trang phuc PHAI gan dung nguoi: TRANG = bach_y_nu (co kiem),
+            NAU SAM = lam_phu (co nhan ngoc luc), XANH NHAT = lam_uyen (tay khong).
+        text_safe_zone: [{ x: 0.05, y: 0.72, w: 0.90, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 3
+        characters: ["bach_y_nu", "lam_phu", "lam_uyen"]
+
+  # ---------- TRANG 6 — Cai chet va ky hieu ----------
+  - page_no: 6
+    page_layout: { rows: [{ y: 0.00, h: 0.28, panels: [17] }, { y: 0.28, h: 0.34, panels: [18] }, { y: 0.62, h: 0.20, panels: [19, 20] }, { y: 0.82, h: 0.18, panels: [21, 22] }] }
+    panels:
+      - panel_index: 17
+        action: "FLASHBACK — Cận mặt người phụ nữ áo trắng, ánh mắt lạnh, môi vừa mở"
+        camera: { shot: "close_up", angle: "low", subject: "bach_y_nu" }
+        visual_constraints: { palette: "trắng, da rất nhợt", flashback_treatment: "viền khung mềm", state_ref: "flashback" }
+        text_safe_zone: [{ x: 0.50, y: 0.10, w: 0.45, h: 0.30 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["bach_y_nu"]
+        dialogue:
+          - speaker: "bach_y_nu"
+            text: "Phế vật thì không có tư cách sống."
+            bubble_type: "speech"
+
+      - panel_index: 18
+        action: "FLASHBACK — Thanh kiếm xuyên qua ngực Lâm Uyên, Lâm phụ gào lên phía sau"
+        camera: { shot: "medium", angle: "dutch", subject: "lam_uyen và lam_phu" }
+        visual_constraints:
+          palette: "đỏ máu trên xanh nhạt, nâu sẫm"
+          flashback_treatment: "viền khung mềm"
+          state_ref: "flashback"
+          attribute_binding: "⭐ Kiếm thuộc bach_y_nu (ngoài khung, chỉ thấy lưỡi và cánh tay áo trắng)"
+          content_note: "⚠️ Panel rui ro content policy cao nhat chuong — xem README muc C-7"
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.30, h: 0.18 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "large"
+        character_count: 2
+        characters: ["lam_uyen", "lam_phu"]
+      # --- FLASHBACK ket thuc ---
+
+      - panel_index: 19
+        action: "Lâm Uyên (hiện tại) ôm đầu, quỳ sụp xuống đất nghĩa địa"
+        camera: { shot: "full_body", angle: "high", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, xám", state_ref: "truoc_panel_20" }
+        text_safe_zone: [{ x: 0.55, y: 0.05, w: 0.40, h: 0.30 }]
+        text_safe_zone_warning: false
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 20
+        action: "Lâm Uyên kéo vạt áo rách, nhìn xuống ngực mình"
+        camera: { shot: "medium", angle: "high", subject: "lam_uyen" }
+        visual_constraints:
+          palette: "đen, da tái"
+          state_ref: "tu_panel_20"
+          detail: "⭐ Vết thương chí mạng đã BIẾN MẤT; giữa ngực là ký hiệu con mắt màu đen"
+        text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.35, h: 0.22 }]
+        text_safe_zone_warning: false
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]
+
+      - panel_index: 21
+        action: "Cực cận ký hiệu con mắt trên ngực, con ngươi trong ký hiệu đang chuyển động"
+        camera: { shot: "extreme_close_up", angle: "eye", subject: "ký hiệu con mắt" }
+        visual_constraints: { palette: "đen tuyền trên da tái", detail: "đường nét như khắc chìm" }
+        text_safe_zone: []
+        text_safe_zone_warning: true
+        beat_type: "climax"
+        emphasis: "normal"
+        character_count: 0
+        characters: []
+        negative_space_hint: "Panel gan kin khung — ⛔ khong ep mot vung an toan de len ky hieu"
+
+      - panel_index: 22
+        action: "Lâm Uyên ngẩng phắt đầu lên, mắt mở to nhìn thẳng về phía trước"
+        camera: { shot: "close_up", angle: "low", subject: "lam_uyen" }
+        visual_constraints: { palette: "đen, đỏ chớp", state_ref: "tu_panel_20", mood: "kết chương treo" }
+        text_safe_zone: [{ x: 0.05, y: 0.72, w: 0.45, h: 0.25 }]
+        text_safe_zone_warning: false
+        beat_type: "reaction"
+        emphasis: "normal"
+        character_count: 1
+        characters: ["lam_uyen"]

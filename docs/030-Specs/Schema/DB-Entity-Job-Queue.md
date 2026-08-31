@@ -63,7 +63,7 @@ Một dòng = **một đơn vị công việc hạ tầng** mà worker phải nh
 - **FK**: `tenant_id → public.tenant(id)` `ON DELETE CASCADE` (`SRS-NFR-05`)
 - **FK** *(hoãn tới MVP3)*: `credit_hold_id → public.credit_hold(id)` — ⛔ chưa tạo được vì bảng đích thuộc [`DB-Entity-Credit-Ledger.md`](./DB-Entity-Credit-Ledger.md), `[OoH]` MVP3
 
-⚠️ ⛔ **Không có FK `job → generation`.** Quan hệ đi qua `payload`, có chủ đích: một job trỏ tới artifact nghiệp vụ ở schema khác, và số dòng `generation` mà một job sinh ra là câu hỏi **còn mở** (xem [Ranh giới với `KC-4`](#ranh-giới-với-kc-4--file-này-không-đóng-q45)).
+⚠️ ⛔ **Không có FK `job → generation`.** Quan hệ đi qua `payload`, có chủ đích: một job trỏ tới artifact nghiệp vụ ở schema khác, và số dòng `generation` mà một job sinh ra là câu hỏi **còn mở** (xem [Ranh giới với `KC-4`](#ranh-giới-với-kc-4--file-này--không-đóng-q45)).
 
 ### Danh mục `job_type`
 

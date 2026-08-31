@@ -127,7 +127,7 @@ Hai hàng còn lại của nhóm `E` trong [MVP-Scope §3](../../010-Planning/MV
 
 | Hàng | Hạng mục | Nhãn theo mốc | Loại | Lý do | Điều kiện mở lại |
 |---|---|---|---|---|---|
-| **E6** ⛔ | **Microservices (3 service) + 2 PostgreSQL + Vector DB riêng + Job Queue riêng** | ❌ · ❌ · ❌ · ❌ · ❌ · ❌ **cắt hẳn** | **Cắt hẳn — loại khỏi thiết kế** | Ba lý do ở [mục 5.1](#51--vì-sao-e6-bị-cắt-hẳn-ba-lý-do-mạnh-lên-dưới-saas) | **KHÔNG có điều kiện mở lại trong `MVP-Scope`.** Ai đề xuất mở lại phải bác được **cả ba** lý do ở mục 5.1, đặc biệt phải trả lời **KC-4** sẽ thoả bằng cách nào |
+| **E6** ⛔ | **Microservices (3 service) + 2 PostgreSQL + Vector DB riêng + Job Queue riêng** | ❌ · ❌ · ❌ · ❌ · ❌ · ❌ **cắt hẳn** | **Cắt hẳn — loại khỏi thiết kế** | Ba lý do ở [mục 5.1](#51--vì-sao-e6-bị-cắt-hẳn--ba-lý-do-mạnh-lên-dưới-saas) | **KHÔNG có điều kiện mở lại trong `MVP-Scope`.** Ai đề xuất mở lại phải bác được **cả ba** lý do ở mục 5.1, đặc biệt phải trả lời **KC-4** sẽ thoả bằng cách nào |
 | **E8** | SSO/SAML, custom domain, white-label, multi-region | ❌ · ❌ · ❌ · ❌ · ❌ · ⛔ | **Hoãn — vẫn trong Full Scope** | Analysis §5.7 xếp vào nhóm *"Hoãn được"* | `MVP-Scope` **không** ghi điều kiện mở lại cụ thể; hàng này `⛔` ở cột Full Scope tức **chưa có mốc nào được gán**. Em không đặt thêm điều kiện nào |
 
 ### 5.1 ⛔ Vì sao E6 bị CẮT HẲN — ba lý do MẠNH LÊN dưới SaaS
@@ -149,7 +149,7 @@ Nguồn: [MVP-Scope §4.2](../../010-Planning/MVP-Scope.md#42-microservices--vec
 > |---|---|---|
 > | Bản chất | **Một service / một datastore TÁCH RIÊNG**, đi cùng microservices + 2 PostgreSQL + Job Queue riêng | Một **extension trong chính PostgreSQL** đang có |
 > | Trạng thái | `❌` **cắt hẳn — loại khỏi thiết kế** ở **mọi** cột, kể cả Full Scope | `❌` MVP0–MVP2 · `⛔` MVP3–MVP4 · **Full Scope `🟡`** *"khi có bằng chứng SQL+FTS không đủ"* |
-> | Có bị cấm không | **Có** — nó phá lý do 1 và lý do 2 ở [mục 5.1](#51--vì-sao-e6-bị-cắt-hẳn-ba-lý-do-mạnh-lên-dưới-saas) | **KHÔNG bị cấm.** Nó chỉ **chưa được ưu tiên**, và có **điều kiện mở** rõ ràng |
+> | Có bị cấm không | **Có** — nó phá lý do 1 và lý do 2 ở [mục 5.1](#51--vì-sao-e6-bị-cắt-hẳn--ba-lý-do-mạnh-lên-dưới-saas) | **KHÔNG bị cấm.** Nó chỉ **chưa được ưu tiên**, và có **điều kiện mở** rõ ràng |
 > | Chủ sở hữu | **BRD-005** (mục này) | [**BRD-002**](./BRD-002-Story-Intelligence.md) — hàng **B5**, ngoài phạm vi BRD-005 |
 >
 > Lý do hiện tại chưa cần vector search: *"Story Bible **là** index của mình"* (CF-9.2 · Analysis §6.2). Đó là lý do **ưu tiên**, không phải lệnh cấm kỹ thuật.

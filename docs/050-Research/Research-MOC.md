@@ -3,7 +3,7 @@ id: MOC-RESEARCH
 type: moc
 status: draft
 created: 2026-02-04
-updated: 2026-08-23
+updated: 2026-08-30
 ---
 
 # Research Map of Content (MOC)
@@ -12,8 +12,11 @@ updated: 2026-08-23
 
 - [Analysis-Comic-Studio-Concept](./Analysis-Comic-Studio-Concept.md) — Thẩm định ý tưởng `comic-studio` (pipeline novel→comic): phù hợp hay chưa, khả thi hay không, cần đổi gì. Bốn verdict, chín điều kiện khả thi, bảy vấn đề phải sửa trước dòng code đầu tiên, và phần unit economics cho mô hình SaaS. `status: draft` · run `2026-08-23-danh-gia-y-tuong-comic-studio`.
 - [Analysis-Market-Competitor-Landscape](./Analysis-Market-Competitor-Landscape.md) — Thị trường, đối thủ và mô hình kinh doanh. TAM/SAM/SOM (**và vì sao TAM $14B không dùng được**), bối cảnh đối thủ gồm hai mối đe doạ mới (**GlobalComix + INKR**, **Constella của WEBTOON**), tiền lệ ngành cho **BYOK**, benchmark retention, kênh phân phối. `status: draft` · run `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio`.
+- [Analysis-MVP0-Requirements](./Analysis-MVP0-Requirements.md) — Phân tích yêu cầu **MVP0**: hợp nhất phạm vi + kỷ luật + hai lớp điều kiện ra (`P-1…P-6` artifact và `G1-a…G1-e` ngưỡng), ma trận truy vết 8 Story × tiêu chí, đánh giá **sẵn sàng thực thi** (8 điều kiện tiên quyết, 3 cái còn ⛔ trống), 8 phát hiện lệch giữa bốn tầng tài liệu, và 6 câu hỏi mở cần Founder và Architect đóng. `status: draft`.
 
-> **Hai tài liệu trên bổ sung cho nhau, không thay thế nhau.** `Analysis-Comic-Studio-Concept` trả lời *"làm được không"* (kỹ thuật, pháp lý, unit economics); `Analysis-Market-Competitor-Landscape` trả lời *"bán cho ai, cạnh tranh với ai, thu tiền thế nào"*.
+> **Hai tài liệu ĐẦU bổ sung cho nhau, không thay thế nhau.** `Analysis-Comic-Studio-Concept` trả lời *"làm được không"* (kỹ thuật, pháp lý, unit economics); `Analysis-Market-Competitor-Landscape` trả lời *"bán cho ai, cạnh tranh với ai, thu tiền thế nào"*.
+
+> `Analysis-MVP0-Requirements` là tài liệu **phái sinh**: nó ⛔ không đặt ngưỡng mới mà đối chiếu yêu cầu MVP0 đang rải ở `MVP-Scope` · `Roadmap` · `Backlog-Priority` · `Story-*` để trả lời *"bắt đầu được chưa"* và *"bốn tầng có mâu thuẫn nhau chỗ nào"*.
 
 ## Thư mục con
 

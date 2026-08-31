@@ -53,3 +53,9 @@ src/
 .opencode
 /.antigravitycli/
 /.claude/worktrees
+
+# MVP0 — output moi lan chay (anh candidate, log). Code MVP0 se bi vut theo
+# ky luat MVP-Scope §3.1; anh sinh ra khong thuoc lich su repo.
+# ⚠️ NGOAI LE: mvp0/refs/*.png la canonical reference DA CHON — chung la DU
+# LIEU duoc giu lai, ⛔ khong phai output tam. Xem mvp0/README.md.
+mvp0/run-*/

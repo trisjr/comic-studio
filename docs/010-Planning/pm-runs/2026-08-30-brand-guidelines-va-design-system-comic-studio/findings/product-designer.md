@@ -276,7 +276,7 @@ Ba dữ kiện thật để anh quyết:
 | **2** | ⚠️ **Có một lập luận NGƯỢC, và ở sản phẩm này nó mạnh hơn**: bề mặt trung tâm của editor là **ảnh comic** và **preview trang in 300 DPI** — trang thành phẩm có nền **trắng giấy**. Đặt trang trắng lên chrome tối làm **lệch cảm nhận độ sáng/tương phản của chính tấm ảnh người dùng đang duyệt** — mà họ đang duyệt để trả lời ***"trang này đọc có ổn không?"*** (`PRD` §3.3 — proxy *"đủ tốt"* **duy nhất** repo có). ⇒ Em đề xuất **vùng preview/canvas giữ nền trung tính CỐ ĐỊNH ở cả hai mode**; chrome đổi theo mode |
 | **3** | ⛔ **Em KHÔNG dùng lập luận *"editor ảnh dùng lâu nên phải dark"***. Repo ⛔ không có dữ liệu thời lượng phiên nào, ⛔ không có persona (`PRD` §3.3 `TBD-1`), ⛔ không có user interview nào (`docs/050-Research/User-Interviews/` **rỗng**). Nó là câu **nghe hợp lý mà không có căn cứ** — đúng loại suy diễn `PRD` §3.3 cảnh báo |
 
-**Đề xuất chốt (⚠️ toàn bộ `[EM]`)**: token **hai bộ giá trị từ đầu** + **light là default** + **vùng preview trung tính cố định** + **switcher hoãn**. Ba trong bốn cái này rẻ khi làm từ đầu và đắt khi retrofit ⇒ nên hỏi anh **cùng lúc với `BG-4`** (xem [mục 2.3 câu 4](#23-ba-bốn-thứ-bắt-buộc-anh-quyết--agent-không-quyết-thay-được)).
+**Đề xuất chốt (⚠️ toàn bộ `[EM]`)**: token **hai bộ giá trị từ đầu** + **light là default** + **vùng preview trung tính cố định** + **switcher hoãn**. Ba trong bốn cái này rẻ khi làm từ đầu và đắt khi retrofit ⇒ nên hỏi anh **cùng lúc với `BG-4`** (xem [mục 2.3 câu 4](#23-ba-bốn-thứ-bắt-buộc-anh-quyết--agent--không-quyết-thay-được)).
 
 ---
 
@@ -308,5 +308,5 @@ Ba dữ kiện thật để anh quyết:
 ### 9. Ba lằn ranh em đề nghị ghi thẳng vào contract của writer (Bước 5)
 
 1. ⛔ **Writer KHÔNG được chọn font render** — `ADR-013` `TBD` có chủ (**Architect + Founder, sau MVP0**). Chỉ được **ghi lại ràng buộc**.
-2. ⛔ **Writer KHÔNG được chép danh sách biến shadcn từ trí nhớ** — phải verify theo phiên bản thực tế (xem callout [4.2](#42-trả-lời-cả-hai--nhưng-một-chiều-phụ-thuộc-không-đối-xứng)).
+2. ⛔ **Writer KHÔNG được chép danh sách biến shadcn từ trí nhớ** — phải verify theo phiên bản thực tế (xem callout [4.2](#42-trả-lời-cả-hai--nhưng-một-chiều-phụ-thuộc--không-đối-xứng)).
 3. ⛔ **Mọi ngưỡng UX phải mang nhãn `[EM]`** — `PRD` §3.3 hệ quả #2. ⛔ Không con số UX nào trong repo là số đo.

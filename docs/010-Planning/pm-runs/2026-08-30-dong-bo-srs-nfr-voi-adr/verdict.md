@@ -16,10 +16,10 @@ created: 2026-08-30
 ## Mục lục
 
 - [Kết luận nhanh](#kết-luận-nhanh)
-- [1. COMPLETENESS](#1-completeness--pass)
-- [2. CORRECTNESS](#2-correctness--pass)
+- [1. COMPLETENESS](#1-completeness---pass)
+- [2. CORRECTNESS](#2-correctness---pass)
 - [3. COHERENCE](#3-coherence--pass-có-điều-kiện)
-- [4. CONNECTIVITY](#4-connectivity--pass)
+- [4. CONNECTIVITY](#4-connectivity---pass)
 - [5. Soi kỹ 6 điểm PM tự sửa](#5-soi-kỹ-6-điểm-pm-tự-sửa)
 - [6. Danh sách phát hiện](#6-danh-sách-phát-hiện)
 - [7. Kết luận](#7-kết-luận)

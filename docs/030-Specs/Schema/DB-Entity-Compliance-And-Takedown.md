@@ -137,7 +137,7 @@ Một dòng = **một yêu cầu hạ nội dung từ chủ sở hữu quyền �
 
 - **PK**: `(id)`
 - **FK**: `project_id → story.project(id)` **`ON DELETE SET NULL`**
-- ⛔ **KHÔNG có `tenant_id`** — xem [Vì sao bảng này ⛔ không có `tenant_id`](#-vì-sao-publictakedown_request-không-có-tenant_id)
+- ⛔ **KHÔNG có `tenant_id`** — xem [Vì sao bảng này ⛔ không có `tenant_id`](#-vì-sao-publictakedown_request--không-có-tenant_id)
 
 > [!CAUTION]
 > ⚠️⛔ **Vì sao gần như mọi trường nội dung đều NULLABLE — đây ⛔ KHÔNG phải cẩu thả.**
@@ -208,7 +208,7 @@ Một dòng = **trạng thái truy cập hiện hành của MỘT project**. ⭐
 
 > [!WARNING]
 > ⚠️ **`ix_takedown_sla` là một ngoại lệ của `D2` — ghi ra thay vì giấu.**
-> `D2` phát biểu ràng buộc trên composite index của bảng **phân vùng theo tenant**. `public.takedown_request` ⛔ **không** phân vùng theo tenant (xem [lý do](#-vì-sao-publictakedown_request-không-có-tenant_id)) ⇒ ⛔ **không có `tenant_id` để đặt lên đầu**.
+> `D2` phát biểu ràng buộc trên composite index của bảng **phân vùng theo tenant**. `public.takedown_request` ⛔ **không** phân vùng theo tenant (xem [lý do](#-vì-sao-publictakedown_request--không-có-tenant_id)) ⇒ ⛔ **không có `tenant_id` để đặt lên đầu**.
 > ⇒ **Test catalog của `M1-1` phải mang allowlist gồm tên bảng này.** Hai ngoại lệ còn lại (`ux_user_external_auth`, `ix_membership_user`) ở [`DB-Entity-Tenancy.md` `INV-T-6`](./DB-Entity-Tenancy.md) — ⭐ **allowlist là hợp nhất của hai file, ⛔ không phải hai danh sách rời**.
 
 ---

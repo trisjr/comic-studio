@@ -22,9 +22,9 @@ updated: 2026-08-30
 
 ## Mục lục
 
-- [⭐ HAI HỆ FONT — ⛔ KHÔNG GỘP](#-hai-hệ-font-—--không-gộp)
-- [Hệ 1 — Font UI](#hệ-1-—-font-ui)
-- [Hệ 2 — Font render vào ảnh](#hệ-2-—-font-render-vào-ảnh)
+- [⭐ HAI HỆ FONT — ⛔ KHÔNG GỘP](#-hai-hệ-font---không-gộp)
+- [Hệ 1 — Font UI](#hệ-1--font-ui)
+- [Hệ 2 — Font render vào ảnh](#hệ-2--font-render-vào-ảnh)
 - [Tiếng Việt: line-height & dấu chồng](#tiếng-việt-line-height--dấu-chồng)
 - [NFC / NFD](#nfc--nfd)
 - [Cỡ chữ bubble là HÀM của `text_budget`, ⛔ không phải giá trị chọn](#cỡ-chữ-bubble-là-hàm-của-text_budget--không-phải-giá-trị-chọn)
@@ -43,7 +43,7 @@ updated: 2026-08-30
 | Ai nhìn thấy | Tác giả, trong lúc biên tập | ⭐ **Người đọc cuối**, trong sản phẩm giao đi |
 | Bản chất | Lựa chọn **thẩm mỹ / brand** | ⭐ **Tham số kỹ thuật** — đầu vào của thuật toán wrap |
 | Đo bằng gì | Browser tự đo; ⛔ **không ai phụ thuộc số đo đó** | Compositor **phải tự đo** để wrap đúng |
-| **Fallback stack** | ✅ **Được phép** — browser giải quyết | ⛔ **KHÔNG** — phải [ĐƠN TRỊ](#hệ-2-—-font-render-vào-ảnh) |
+| **Fallback stack** | ✅ **Được phép** — browser giải quyết | ⛔ **KHÔNG** — phải [ĐƠN TRỊ](#hệ-2--font-render-vào-ảnh) |
 | Sai thì hỏng ở đâu | Chữ xấu trên màn hình — sửa bằng **một dòng CSS** | ⭐ **Hỏng sản phẩm cuối**: chữ tràn / dấu bị mép bubble cắt **trong ảnh đã sinh** |
 | Đổi được không | Bất cứ lúc nào, chi phí ~0 | Đổi = **wrap lại toàn bộ**; mọi bubble đã duyệt phải **đo lại** |
 | **Ai chốt** | Product Designer đề xuất → **Founder duyệt**, khi init dự án | ⛔ **Architect + Founder**, **sau MVP0, trước gate `G1-e`** — `TBD` do [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) sở hữu |
@@ -91,7 +91,7 @@ updated: 2026-08-30
 | **(b)** | ⭐ **Lộ ra SAU KHI đã tiêu tiền.** Điểm hỏng nằm ở **bước composite**, tức sau khi đã gọi image provider để sinh art. Và `D-29` cấm nướng chữ vào pixel ⇒ ⛔ **không có đường vá nhanh**: không thể "sửa tạm bằng cách vẽ đè chữ vào ảnh" |
 | **(c)** | **Vi phạm trực tiếp hai lệnh cấm nguyên văn** của [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) điều 8: ⛔ *"không được wrap ở frontend rồi gửi kết quả xuống"* và ⛔ *"không được wrap bằng font khác font sẽ render"* |
 | **(d)** | **Mất chỗ ghi rủi ro glyph coverage.** Rủi ro *"font không đủ glyph tiếng Việt"* chỉ áp cho hệ render và ⛔ **không có benchmark định lượng nào** ([ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) bảng `TBD`). Gộp hai hệ ⇒ rủi ro hoặc bị áp nhầm lên font UI (vô nghĩa — browser có fallback), hoặc **biến mất khỏi tài liệu** |
-| **(e)** | **Đóng hộ một `TBD` có chủ.** Xem [Hệ 2](#hệ-2-—-font-render-vào-ảnh) |
+| **(e)** | **Đóng hộ một `TBD` có chủ.** Xem [Hệ 2](#hệ-2--font-render-vào-ảnh) |
 
 ⚠️ **Chiều ngược lại (lấy font render làm font chung) ⛔ không phá pipeline** — nó chỉ làm UI xấu và ràng buộc thừa. Ghi ra để ⛔ **không ai "giải quyết" vấn đề bằng cách gộp về phía đó rồi tưởng đã xong**: gộp kiểu gì cũng vẫn là **một** hệ, và vẫn mất chỗ ghi `TBD` + rủi ro glyph.
 
@@ -101,7 +101,7 @@ updated: 2026-08-30
 
 | # | Kiểm bằng cách nào | Kết quả **phải** thấy |
 |:--:|---|---|
-| **K-10** | Mở mục [Hệ 2 — Font render](#hệ-2-—-font-render-vào-ảnh) | Mang **`TBD`** + owner **Architect + Founder**; ⛔ **không có tên họ font nào**, ⛔ không fallback stack |
+| **K-10** | Mở mục [Hệ 2 — Font render](#hệ-2--font-render-vào-ảnh) | Mang **`TBD`** + owner **Architect + Founder**; ⛔ **không có tên họ font nào**, ⛔ không fallback stack |
 | **`ARC-08`** | Đếm số hệ font được khai trong file | **≥ 2**, đặt **tên khác nhau**, mỗi hệ ghi rõ **render bởi ai** |
 | **`ARC-09`** | `grep` mọi tên họ font gắn với **hệ render** | ⛔ **0 hit** — ô đó là `TBD` |
 | **`ARC-10`** | Tìm dấu phẩy trong khai báo họ font của **hệ render** | ⛔ **0 hit** — đơn trị, ⛔ không fallback stack |
@@ -114,7 +114,7 @@ updated: 2026-08-30
 
 **Phạm vi:** chrome của editor — app shell, form, bảng, dialog, toolbar, nhãn, thông báo. Render bởi **browser**, trong `apps/web`.
 
-**Bản chất:** đây là **ô trống được phép điền bất cứ lúc nào**, ⛔ **KHÔNG phải một `TBD` có chủ như [Hệ 2](#hệ-2-—-font-render-vào-ảnh)**. Phân biệt hai thứ này là điểm dễ lẫn nhất của file:
+**Bản chất:** đây là **ô trống được phép điền bất cứ lúc nào**, ⛔ **KHÔNG phải một `TBD` có chủ như [Hệ 2](#hệ-2--font-render-vào-ảnh)**. Phân biệt hai thứ này là điểm dễ lẫn nhất của file:
 
 | | Hệ 1 — họ font chưa điền | Hệ 2 — `TBD-FONT` |
 |---|---|---|
@@ -239,7 +239,7 @@ theme: {
 3. ⇒ **Phép đo mất tính xác định** ⇒ kết quả wrap ⛔ không tái lập được ⇒ cùng một chuỗi thoại có thể ngắt khác nhau giữa hai lần chạy, hoặc giữa preview và export.
 4. ⇒ Điều này phá thẳng [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) `## Decision` điều **8**: preview và export **dùng chung compositor** để *"cái người dùng duyệt **là** cái họ nhận"*.
 
-⚠️ **Đối chiếu với [Hệ 1](#hệ-1-—-font-ui)**: font UI **được phép** fallback stack **chính vì** ⛔ **không ai phụ thuộc số đo của nó**. Tính bất định vô hại ở một hệ và gây hỏng sản phẩm ở hệ kia — đó là toàn bộ lý do hai hệ này ⛔ **không được gộp**.
+⚠️ **Đối chiếu với [Hệ 1](#hệ-1--font-ui)**: font UI **được phép** fallback stack **chính vì** ⛔ **không ai phụ thuộc số đo của nó**. Tính bất định vô hại ở một hệ và gây hỏng sản phẩm ở hệ kia — đó là toàn bộ lý do hai hệ này ⛔ **không được gộp**.
 
 ### Bốn ràng buộc mà font render phải thoả (khi `TBD` được đóng)
 
@@ -250,7 +250,7 @@ theme: {
 | **R-1** | ⭐ **Đơn trị** — một họ font, resolve xác định, ⛔ không fallback stack | [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) điều **8** (*"⛔ không được wrap bằng font khác font sẽ render"*) + `## Consequences` **#5** |
 | **R-2** | ⭐ **Phủ đủ dấu tiếng Việt**, gồm **dấu chồng hai tầng** (`ế`, `ữ`, `ợ`) — và phủ **bằng glyph dựng sẵn hoặc mark positioning đúng**, ⛔ không phải bằng cách vẽ chồng tuỳ ý | Nghiệm thu MVP0 của [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) **#5** (corpus có dấu chồng) · [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §Lý do **#2** |
 | **R-3** | **License cho phép nhúng và dùng server-side** trong image phân phối | Hệ quả của điều **8** (font phải nằm **cùng runtime** với compositor) + điều **2** của [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) (file font đi theo image build một lần, push lên registry) ⇒ đây là **nhúng server-side**, ⛔ không phải webfont |
-| **R-4** | ⭐ **Metric ổn định giữa các version** — và version font **phải được pin**, đổi version xử lý như **đổi font** | Đổi font = **wrap lại toàn bộ**, mọi bubble đã duyệt phải **đo lại**. Một bản cập nhật font đổi metric làm **mọi phép đo cũ hết hiệu lực im lặng** — cùng dạng hỏng với [đường hỏng ở trên](#-hai-hệ-font-—--không-gộp) |
+| **R-4** | ⭐ **Metric ổn định giữa các version** — và version font **phải được pin**, đổi version xử lý như **đổi font** | Đổi font = **wrap lại toàn bộ**, mọi bubble đã duyệt phải **đo lại**. Một bản cập nhật font đổi metric làm **mọi phép đo cũ hết hiệu lực im lặng** — cùng dạng hỏng với [đường hỏng ở trên](#-hai-hệ-font---không-gộp) |
 
 ### Nghiệm thu khi `TBD` đóng — ⛔ không được bỏ qua
 
@@ -283,7 +283,7 @@ theme: {
 
 | | **Hệ 1 — Font UI** | **Hệ 2 — Font render** |
 |---|---|---|
-| Có số trong file này không | ✅ Có — bảng token ở [Hệ 1](#hệ-1-—-font-ui) | ⛔ **KHÔNG. 0 số.** |
+| Có số trong file này không | ✅ Có — bảng token ở [Hệ 1](#hệ-1--font-ui) | ⛔ **KHÔNG. 0 số.** |
 | Số đó là gì | **Quyết định Phase 3**: đã nới rộng so với mặc định Latin theo **chiều** mà findings nêu. ⛔ **Không phải kết quả đo**, ⛔ không trình bày như đã đo | Leading của bubble là **dẫn xuất từ metric của font thật** (ascender, cap height, chiều cao vùng dấu) ⇒ ⛔ **không chọn trước khi `TBD-FONT` đóng** |
 | Sai thì hỏng ở đâu | Chữ chật trên form — sửa một token | ⭐ **Dấu bị mép bubble cắt** trong ảnh đã sinh — tiêu chí **(b)** của nghiệm thu MVP0 |
 | Vì sao vẫn áp cho UI | Form Story Bible, danh sách nhân vật, bảng thoại **đầy chữ có dấu** — đây ⛔ không phải vấn đề riêng của bubble | — |
@@ -323,7 +323,7 @@ Cùng một chữ `ế` có **hai** cách biểu diễn Unicode: một code poin
 ## Cỡ chữ bubble là HÀM của `text_budget`, ⛔ không phải giá trị chọn
 
 > [!IMPORTANT]
-> ⭐ **Design System phát biểu QUAN HỆ, ⛔ không phát biểu GIÁ TRỊ.** ⛔ **Không tồn tại một "type scale cho bubble"** trong tầng 040. Thang cỡ chữ ở [Hệ 1](#hệ-1-—-font-ui) áp cho **chrome của editor**, ⛔ **không áp cho chữ trong bubble**.
+> ⭐ **Design System phát biểu QUAN HỆ, ⛔ không phát biểu GIÁ TRỊ.** ⛔ **Không tồn tại một "type scale cho bubble"** trong tầng 040. Thang cỡ chữ ở [Hệ 1](#hệ-1--font-ui) áp cho **chrome của editor**, ⛔ **không áp cho chữ trong bubble**.
 
 ### `text_budget` là gì — verify trước khi dùng
 
@@ -349,9 +349,9 @@ Cỡ chữ render trong một bubble bị **ràng buộc đồng thời** bởi 
 | Khoảng trống | Trạng thái | **Chủ** | Khi nào |
 |---|---|---|---|
 | **Đơn vị của `text_budget`** (ký tự hay từ) và **hàm tính từ diện tích panel** — `T-PL-BUDGET-UNIT` | ⛔ **`TBD`** | ⭐ **BA + Architect** | Trước gate `M2-3` |
-| **Ánh xạ `text_budget` → cỡ chữ render** | ⛔ **`TBD`** — phụ thuộc **cả** hàng trên **và** `TBD-FONT` ([Hệ 2](#hệ-2-—-font-render-vào-ảnh)). ⭐ **Thứ tự đóng đã được chốt**: `TBD-FONT` **TRƯỚC**, hàm tính `text_budget` **SAU** — [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §*Thứ tự đóng hai `TBD`* | **Architect** (sau khi hai `TBD` kia đóng) | Sau MVP0 |
+| **Ánh xạ `text_budget` → cỡ chữ render** | ⛔ **`TBD`** — phụ thuộc **cả** hàng trên **và** `TBD-FONT` ([Hệ 2](#hệ-2--font-render-vào-ảnh)). ⭐ **Thứ tự đóng đã được chốt**: `TBD-FONT` **TRƯỚC**, hàm tính `text_budget` **SAU** — [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §*Thứ tự đóng hai `TBD`* | **Architect** (sau khi hai `TBD` kia đóng) | Sau MVP0 |
 
-⚠️ ⛔ **Không bịa một công thức ở đây.** Một công thức bịa sẽ được tầng code và tầng QA dùng làm **chuẩn nghiệm thu** — và nó sẽ sai theo đúng kiểu im lặng đã mô tả ở [mục hai hệ font](#-hai-hệ-font-—--không-gộp).
+⚠️ ⛔ **Không bịa một công thức ở đây.** Một công thức bịa sẽ được tầng code và tầng QA dùng làm **chuẩn nghiệm thu** — và nó sẽ sai theo đúng kiểu im lặng đã mô tả ở [mục hai hệ font](#-hai-hệ-font---không-gộp).
 
 ### ⛔ Điều KHÔNG được suy ra từ file này
 
