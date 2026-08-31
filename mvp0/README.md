@@ -25,6 +25,7 @@
 | [`panel-script-ch2.yaml`](./panel-script-ch2.yaml) | **20 panel / trang 7–12** — cánh cửa TÀ → giao kèo → hắc khí → Vọng Tử → khuôn mặt sau mây | như trên |
 | [`typeset-corpus.json`](./typeset-corpus.json) | **5 mục** ở **cả NFC và NFD**, sinh bằng [`scripts/gen-typeset-corpus.py`](../scripts/gen-typeset-corpus.py) | `ADR-001` `## Consequences` **#5** |
 | [`threshold-signoff.md`](./threshold-signoff.md) | Phiếu ký nhận ngưỡng `[EM]` — **ký TRƯỚC khi đo** | `MVP-Scope §7` · `Q-2` |
+| ⭐ [`golden-dataset/`](./golden-dataset) | **Bảng chấm** (`scoring-sheet.csv`, append-only) + phiếu verdict `G1` + ảnh đã duyệt — **dữ liệu giữ vĩnh viễn**, ⛔ không nằm trong `run-*/` | `MVP-Scope §3` `H6` · `Roadmap P-6` |
 
 **Nguồn**: *Tà Nguyệt Vô Tận* — Chương chữ 1 *(Người chết trở về)*, tách thành **hai chương comic**.
 
@@ -151,7 +152,7 @@ python3 scripts/mvp0/run_mvp0.py panels --chapter ch1
 
 - [ ] Chốt **vendor VLM** — `Q-3`. ⚠️ ⛔ **KHÔNG chặn MVP0**: `ADR-007` `Q4` đặt việc này ở **gate cuối MVP0**, vì đầu vào của nó là chính số đo MVP0
 - [ ] Ký nhận [`threshold-signoff.md`](./threshold-signoff.md) — `Q-2`, phải xong **trước** khi sinh ảnh đầu tiên
-- [ ] Bảng chấm golden dataset (`P-6`) — 15–20 panel có spec + ref + ảnh + đánh giá
+- [ ] **Dữ liệu** golden dataset (`P-6`) — 15–20 panel có spec + ref + ảnh + đánh giá. ⭐ **Bảng chấm đã có** ([`golden-dataset/`](./golden-dataset)); còn thiếu là **ảnh và điểm**, tức phải chạy thật
 - [ ] Nâng cỡ mẫu `G1-d`, hoặc chấp nhận ghi nó là **đo-và-báo-cáo** thay vì điều kiện chặn
 
-**Đã xong**: ✅ Story Bible · ✅ panel script cả hai chương comic · ✅ corpus NFC/NFD · ✅ provider vận hành cho MVP0
+**Đã xong**: ✅ Story Bible · ✅ panel script cả hai chương comic · ✅ corpus NFC/NFD · ✅ provider vận hành cho MVP0 · ✅ bảng chấm + phiếu verdict `G1` ([`golden-dataset/`](./golden-dataset)) · ✅ script tính regen ratio `p50`/`p90` ([`regen_ratio.py`](../scripts/mvp0/regen_ratio.py))

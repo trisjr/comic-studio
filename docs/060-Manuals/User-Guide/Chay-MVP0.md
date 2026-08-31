@@ -144,15 +144,35 @@ python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --panels 9 16 21
 >
 > ⇒ Báo `67%` mà ⛔ không nói `n=3` là biến phép đo trên **ba tấm ảnh** thành tuyên bố về năng lực model.
 
+### ⭐ Ghi điểm vào đâu — ⛔ không phải vào `run-*/`
+
+Mỗi panel chấm xong ⇒ **thêm một dòng** vào [`mvp0/golden-dataset/scoring-sheet.csv`](../../../mvp0/golden-dataset/scoring-sheet.csv) (13 cột, schema ở [`golden-dataset/README.md`](../../../mvp0/golden-dataset/README.md)).
+
+| Luật | Vì sao |
+|---|---|
+| **Append-only** — chấm lại thì **thêm dòng**, ⛔ không sửa dòng cũ | Với 1 người chấm (bus factor = 1), ⭐ **lịch sử đổi ý là thứ gần nhất với một second rater** mà MVP0 có |
+| ⭐ Trả lời `readability_verdict` **ngay lúc chấm** | `I2` — ⛔ **không backfill được**. Đóng máy rồi thì cảm nhận *"trang này đọc có ổn không"* ⛔ không tái tạo lại từ ảnh |
+| `refusal_count` ghi **riêng**, ⛔ không trộn vào `G1-c` | Provider từ chối và người loại là **hai nguyên nhân khác loại** — trộn làm `reject_rate` mất nghĩa |
+| Copy ảnh đã duyệt sang `golden-dataset/panels/panel-NNN/approved.png` | `run-*/` nằm trong `.gitignore` — ảnh ở đó là ảnh **đang chờ bị xoá** |
+
 ### Đo thêm — ⛔ không chặn `G1` nhưng bắt buộc có số
 
 **Regen ratio `p50` / `p90`**, tính từ `usage.jsonl`. ⚠️ Thiếu nó thì **`G2` ⛔ KHÔNG CHẠY ĐƯỢC** — ⛔ không PASS mặc định ([Roadmap §6.2](../../010-Planning/Roadmap.md)).
+
+```bash
+python3 scripts/mvp0/regen_ratio.py
+```
+
+⚠️ **Hai điều script này sẽ nói thẳng, đọc kỹ trước khi trích số:**
+
+1. **Định nghĩa phép chia là `[EM]`** — ⛔ **không** tài liệu nào trong repo định nghĩa công thức regen ratio (đã kiểm `Glossary`, `ADR-018`, `MVP-Scope §7.3`, `Analysis`). Script dùng `tổng ảnh sinh cho panel / 1 ảnh được duyệt` và **cần Founder xác nhận** trước khi số này đi vào `G2`.
+2. ⭐ **Phân phối có thể suy biến.** Nếu ⛔ không panel nào phải chạy lại vòng hai thì `p50 = p90 = N` — đó là **hệ quả của thiết kế** (`N=3` cố định, ⛔ không retry-on-failure), ⛔ **chưa** phải một phép đo về tỉ lệ regen thật.
 
 ---
 
 ## Bước 5 — Ghi verdict và golden dataset
 
-**Verdict `G1`** — ghi đủ **cả năm** tiêu chí kèm số và cỡ mẫu:
+**Verdict `G1`** — điền vào [`mvp0/golden-dataset/g1-verdict.md`](../../../mvp0/golden-dataset/g1-verdict.md), đủ **cả năm** tiêu chí kèm số và **cỡ mẫu**:
 
 | Kết quả | Điều kiện | Hành động |
 |---|---|---|
@@ -160,7 +180,7 @@ python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --panels 9 16 21
 | **PASS CÓ ĐIỀU KIỆN** | `G1-a`,`G1-b`,`G1-e` đạt; `G1-c` ở `30–50%` **hoặc** `G1-d` ở `50–60%` | Đi tiếp, **cứng hoá thêm**: `G1-d` dưới ngưỡng ⇒ **≤2 nhân vật/panel** thay vì ≤3 |
 | **FAIL** | Bất kỳ tiêu chí nào vào vùng FAIL | **Đổi cách tiếp cận** — ⚠️ **FAIL ≠ huỷ dự án**; đường đầu tiên là đổi định vị sang storyboard generator |
 
-**Golden dataset (`P-6`)** — 15–20 panel, mỗi panel đủ **4 trường**: Panel Specification · ảnh reference · ảnh output · bảng chấm.
+**Golden dataset (`P-6`)** — 15–20 panel, mỗi panel đủ **4 trường**: Panel Specification · ảnh reference · ảnh output · bảng chấm. Vị trí cố định: [`mvp0/golden-dataset/`](../../../mvp0/golden-dataset).
 
 > [!CAUTION]
 > ⭐ **Golden dataset ⛔ KHÔNG bị vứt cùng code.** `H6` là `✅` ở **mọi** mốc MVP0–MVP4 và là đầu vào eval kit `M1-6`. Lưu ở vị trí **cố định**, độc lập với thư mục `run-*/` — vì thư mục đó nằm trong `.gitignore`.
@@ -193,6 +213,8 @@ python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --panels 9 16 21
 | [Analysis-MVP0-Requirements](../../050-Research/Analysis-MVP0-Requirements.md) | Phiếu `C-1…C-8`, 8 phát hiện, 6 câu hỏi mở |
 | [`mvp0/README.md`](../../../mvp0/README.md) | Bất biến đã cài vào code, giới hạn đo lường |
 | [`mvp0/threshold-signoff.md`](../../../mvp0/threshold-signoff.md) | Phiếu ký ngưỡng `[EM]` |
+| [`mvp0/golden-dataset/README.md`](../../../mvp0/golden-dataset/README.md) | Schema 13 cột của bảng chấm, luật append-only, luật `readability_verdict` |
+| [`mvp0/golden-dataset/g1-verdict.md`](../../../mvp0/golden-dataset/g1-verdict.md) | Phiếu ghi verdict `G1` — Bước 5 điền vào đây |
 | [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `#5` | Nghiệm thu tiếng Việt NFC/NFD |
 | [ADR-007](../../030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) | Hợp đồng VLM, 5 tiêu chí chốt vendor |
 
