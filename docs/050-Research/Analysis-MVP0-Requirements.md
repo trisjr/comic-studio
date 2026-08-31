@@ -23,7 +23,7 @@ updated: 2026-08-30
 - [4. Ma trận truy vết Story × tiêu chí](#4-ma-trận-truy-vết-story--tiêu-chí)
 - [5. Sẵn sàng thực thi](#5-sẵn-sàng-thực-thi)
   - [5.4 Phiếu chọn chapter — tiêu chí `C-1…C-8`](#54-phiếu-chọn-chapter--tiêu-chí-c-1c-8)
-- [6. Nhất quán tài liệu — 7 phát hiện](#6-nhất-quán-tài-liệu--7-phát-hiện)
+- [6. Nhất quán tài liệu — 8 phát hiện](#6-nhất-quán-tài-liệu--8-phát-hiện)
 - [7. Câu hỏi mở cần Founder đóng](#7-câu-hỏi-mở-cần-founder-đóng)
 - [8. Tài liệu tham khảo](#8-tài-liệu-tham-khảo)
 
@@ -201,7 +201,7 @@ Rank 1  Fix-Narrative-Time-Key ──► P-4   (⭐ ĐỘC LẬP với nhánh si
 | **C-3** | **2–3 nhân vật tái xuất hiện xuyên chapter**, đủ để có **8 panel liền nhau** cùng một nhân vật | `G1-a` (**≥70%**) — cách đo nguyên văn là *"nhìn 8 panel liền nhau"* | Nhân vật chỉ xuất hiện một lần ⇒ ⛔ **không đo được consistency**, vì consistency là thuộc tính **giữa các lần xuất hiện** |
 | **C-4** | **Có thoại** — đối thoại thật, ⛔ không phải chapter thuần tự sự | `G1-e` (**100%** panel có thoại dùng overlay) | Chapter không thoại ⇒ `G1-e` đạt **một cách rỗng** (0/0 = 100%). `CF-8.11c`: typeset *"nổ ngay ở panel có thoại đầu tiên"* — không có thoại thì rủi ro ⛔ **không bị chạm tới**, chỉ bị hoãn |
 | **C-5** | Thoại chứa **dấu chồng hai tầng** (`ế`, `ữ`, `ợ`) | Nghiệm thu bắt buộc của [ADR-001](../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Consequences` **#5**: corpus **cả NFC và NFD**, render 300 DPI, kiểm (a) ký tự ⛔ không tách khỏi dấu khi xuống dòng · (b) dấu ⛔ không bị mép bubble cắt cụt · (c) NFD và NFC cho **cùng** kết quả ngắt dòng | Corpus không có dấu chồng ⇒ ba phép kiểm (a)(b)(c) **chạy qua mà không chạm lỗi** ⇒ `TBD-FONT` bị đóng trên dữ liệu ⛔ không đại diện |
-| **C-6** | **Kể trọn trong ≤30 panel** | `Roadmap §2` (~8–30 panel) + quyết định phủ trọn | ⭐ **Phần thưởng kèm theo**: cho ra **số panel/chapter THẬT**, thay được giả định **60 ảnh/chapter** `[EM]` `CF-3.3` — *"thừa số gốc của toàn bộ mô hình chi phí"* (`Charter §8 A1`), đóng luôn `G-07` của [Risk-Register](../010-Planning/Risk-Register.md) |
+| **C-6** | **Kể trọn trong ≤30 panel** ⚠️ *(đơn vị nào? xem [`F-8`](#f-8--đơn-vị-chapter-nhập-nhằng-giữa-chương-chữ-và-chương-comic))* | `Roadmap §2` (~8–30 panel) + quyết định phủ trọn | ⭐ **Phần thưởng kèm theo**: cho ra **số panel/chapter THẬT**, thay được giả định **60 ảnh/chapter** `[EM]` `CF-3.3` — *"thừa số gốc của toàn bộ mô hình chi phí"* (`Charter §8 A1`), đóng luôn `G-07` của [Risk-Register](../010-Planning/Risk-Register.md) |
 | **C-7** | Nội dung ⛔ **không chạm content policy** của provider (bạo lực đồ hoạ, tình dục, nhân vật có thật) | `G1-c` `reject_rate` sạch | Provider từ chối nhiều ⇒ `reject_rate` **trộn hai nguyên nhân khác loại** (VLM chọn tệ vs provider chặn) ⇒ verdict `G1-c` mất nghĩa. `D-67` ([SRS](../020-Requirements/SRS-Comic-Studio.md) `SRS-NFR-20`) bắt **ghi lại mọi lần từ chối** — nhưng ghi lại ⛔ không sửa được một mẫu đã nhiễm |
 | **C-8** | ⭐ **Bằng chứng đồng ý bằng văn bản của tác giả**, lưu **cùng chỗ** với golden dataset | Nghĩa vụ phái sinh từ `H6` | Xem cảnh báo ngay dưới |
 
@@ -216,7 +216,7 @@ Rank 1  Fix-Narrative-Time-Key ──► P-4   (⭐ ĐỘC LẬP với nhánh si
 
 ---
 
-## 6. Nhất quán tài liệu — 7 phát hiện
+## 6. Nhất quán tài liệu — 8 phát hiện
 
 > Mọi phát hiện dưới đây đều kèm **bằng chứng kiểm được bằng lệnh**. ⛔ Không suy diễn.
 
@@ -288,6 +288,33 @@ Story ⛔ không sai — nó đã tách DoD của lát MVP0 xuống mục 6 và 
 
 ⭐ **Điều quan trọng hơn cả kết luận**: dù phán theo hướng nào, kết quả phải được **ghi thành ngoại lệ tường minh tại headword `MVP0` của `Glossary`**. Nếu không, lần rà nhất quán tiếp theo sẽ **tốn lại đúng công này** và có thể ra kết luận ngược — đó mới là chi phí thật. Chi phí sửa nếu phán là vi phạm: **7 chỗ / 4 file**, thấp; `Typography:259` là **trích dẫn** nên sửa `ADR-001` trước, ⛔ đừng sửa rời.
 
+
+### F-8 — Đơn vị `chapter` nhập nhằng giữa **chương chữ** và **chương comic**
+
+**Bằng chứng cơ học** ([DB-Entity-Comic-IR](../030-Specs/Schema/DB-Entity-Comic-IR.md)):
+
+- ERD: `chapter ||--o{ page : "co nhieu trang"`
+- Chú giải ngay dưới ERD: *"`page`, `panel`, `panel_character` thuộc schema **`comic`**; `bible_entity` và **`chapter` thuộc schema `story`**"*
+- ⛔ Grep toàn `030-Specs/Schema/`: **không tồn tại** `comic.chapter`, `episode`, hay `volume`
+
+⇒ `comic.page` mang FK trỏ **thẳng** về `story.chapter`, ⛔ không có tầng nào ở giữa. Mô hình đang khoá cứng **1 chương chữ = 1 đơn vị xuất bản comic**.
+
+⚠️ Nhưng một chương chữ **2.000 chữ** và một chương **8.000 chữ** ra số panel khác nhau nhiều lần — và trong thực hành xuất bản, chương chữ dài thường được tách thành **nhiều chương comic**. Mô hình hiện tại ⛔ **không có chỗ biểu diễn** việc tách đó.
+
+**Hệ quả, xếp theo mức nghiêm trọng:**
+
+| # | Hệ quả | Neo |
+|:-:|---|---|
+| **1** | ⭐ **`60 ảnh/chapter` là một HẰNG SỐ đặt lên một đại lượng BIẾN THIÊN.** `Charter §8 A1` gọi nó là *"thừa số gốc của toàn bộ mô hình chi phí"* và cảnh báo *"sai 2 lần ⇒ chi phí/chapter, ngưỡng 125 ảnh, margin, giá tầng 2 sai theo cùng bội số"* | `CF-3.3` `[EM]` · `SRS:432` |
+| **2** | `CF-3.9` đã ghi **1 chapter @N=3 = 180 ảnh**, vượt ngưỡng ~125 **ngay chapter đầu**. Nếu một chương chữ thực chất là 2–3 chương comic, BYOK ⛔ không còn là *"tuỳ chọn mở khoá"* mà thành bắt buộc sớm hơn dự tính | `SRS:432` |
+| **3** | **`emphasis quota` khai phạm vi *"một chapter"*** (1 full page + 2–3 large panel). Áp cho chương **chữ** mà nó ra 3 chương comic ⇒ **hai chương comic ⛔ không có điểm nhấn nào** | `Glossary` headword `emphasis budget` · `ADR-012` `D-23` |
+| **4** | `page_no` `UNIQUE (tenant_id, chapter_id, page_no)` ⇒ tách chương thì số trang chạy liên tục, chương comic thứ hai bắt đầu từ **trang 16** | `DB-Entity-Comic-IR:130` |
+
+> [!NOTE]
+> ⛔ **Tài liệu này KHÔNG kết luận mô hình sai.** *"1 chương chữ = 1 chương comic"* có thể là một quyết định có chủ ý — nhưng ⛔ **không tìm thấy chỗ nào ghi nó NHƯ một quyết định**, kèm lý do và đường lui. Nó đang là **mặc định ngầm**, và mặc định ngầm ở tầng schema thì đắt khi sửa sau.
+>
+> ⚠️ **Phân biệt mức độ, ⛔ đừng đọc quá**: đây **KHÔNG** phải loại *"không backfill được"* như `KC-1`…`KC-7`. Thêm một entity trung gian về sau **vẫn gán lại được** page vào chương comic. Nó là **migration đắt**, ⛔ không phải **mất dữ liệu vĩnh viễn** — đúng vế 1 của `NT-3`, ⛔ không phải vế 2.
+
 ---
 
 ## 7. Câu hỏi mở cần Founder đóng
@@ -299,6 +326,7 @@ Story ⛔ không sai — nó đã tách DoD của lát MVP0 xuống mục 6 và 
 | **Q-3** | Chốt **vendor** image + VLM cho MVP0 | Số đo trên provider A ⛔ không chuyển giao sang provider B ⇒ mất giá trị của cả `G1` | **Founder + Architect** |
 | **Q-4** | `E_build` của **riêng lát cắt MVP0** là bao nhiêu | ~90h khai báo ⛔ không so được với trần 1–2 tuần (`F-1`) | **PM + Founder** |
 | **Q-5** | VLM-select ở MVP0 có chịu cổng chất lượng `SRS-FR-21` không? | [ADR-007](../030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) `Q3` đặt **report-only** làm mặc định cho *"mọi check"*, và [SRS](../020-Requirements/SRS-Comic-Studio.md) dòng `SRS-FR-21` đòi **≥100 panel dán nhãn tay** trước khi bật. MVP0 chỉ có **8–30 panel**. ⚠️ **Chưa kết luận đây là mâu thuẫn** — cổng đó neo vào Continuity Checker, còn VLM-select là bước khác. Cần Architect phân định | **Architect** |
+| **Q-6** | ⭐ **Có cần một entity giữa `story.chapter` và `comic.page` không** — để một chương chữ tách được thành nhiều chương comic? | Xem [`F-8`](#f-8--đơn-vị-chapter-nhập-nhằng-giữa-chương-chữ-và-chương-comic). ⛔ Quá tầm một tài liệu phân tích: đây là quyết định **schema**. Thời điểm: **trước khi viết schema MVP1** — sửa sau là migration đắt (⛔ không phải mất dữ liệu vĩnh viễn) | **Architect** |
 
 ---
 
