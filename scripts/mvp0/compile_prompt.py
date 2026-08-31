@@ -19,7 +19,64 @@ Hai bat bien mang tu `ADR-014` / `SRS-FR-18`:
    mo ta canh trong CUNG mot chuoi text.
 """
 
+import re
+
 CONSTRAINT_BUDGET = 8
+
+# ---------------------------------------------------------------------------
+# Loc chu thich meta khoi text truoc khi vao prompt.
+#
+# Vi sao ton tai — bang chung thuc nghiem `run-refs-20260831-223131`: cau chu
+# thich "⛔ khong gan cho nguoi phu nu ao trang" trong Story Bible bi dua
+# nguyen van vao prompt, va model ve LUON nguoi phu nu ao trang vao ca 3/3
+# character sheet cua lam_phu — chu thich chong nham lan gay ra dung loi no
+# dinh chong (T2I model khong hieu cau phu dinh).
+#
+# Story Bible van la NGUON SU THAT va giu nguyen chu thich (chung phuc vu
+# nguoi doc va human gate); compiler chiu trach nhiem loc chung khoi prompt.
+# Bo pattern duoi day phu 100% cac chuoi ⭐/⛔ da kiem ke co hoc trong
+# story-bible + panel-script-ch1/ch2 (dataset DONG cua MVP0, 2026-08-31).
+# ---------------------------------------------------------------------------
+META_SENTENCE_MARKERS = [
+    "⛔",
+    "dấu phân biệt", "dau phan biet",
+    "phải gắn", "phai gan",
+    "đây là mốc", "day la moc",
+    "quan trọng nhất", "quan trong nhat",
+]
+META_CODE_REGEX = re.compile(r"\bG1|\bG-\d|\bMVP\d")
+
+
+def _is_meta_sentence(sentence):
+    lowered = sentence.lower()
+    if any(marker in lowered for marker in META_SENTENCE_MARKERS):
+        return True
+    return bool(META_CODE_REGEX.search(sentence))
+
+
+def strip_meta(text):
+    """Bo cau chu thich meta; giu mo ta thi giac that.
+
+    Cau meta dang `nhan meta: DATA = mapping` giu lai phan data sau dau `:`
+    (dau hieu `=`) — vi attribute binding la precedence 1, ⛔ khong duoc mat.
+    Ky tu ⭐ tu than vo nghia voi model ⇒ luon bi xoa khoi cau duoc giu.
+    """
+    pieces = re.split(r"[.;]\s*", (text or "").replace("\n", " "))
+    kept = []
+    for piece in pieces:
+        piece = piece.strip()
+        if not piece:
+            continue
+        if _is_meta_sentence(piece):
+            _, colon, tail = piece.partition(":")
+            tail = tail.strip()
+            if colon and "=" in tail and not _is_meta_sentence(tail):
+                kept.append(tail)
+            continue
+        kept.append(piece)
+    cleaned = ". ".join(re.sub(r"⭐+\s*", "", p).strip() for p in kept)
+    return f"{cleaned}." if cleaned else ""
+
 
 # Bang tra `field value -> cum tu`. ⛔ Khong sinh dong, ⛔ khong LLM.
 CAMERA_SHOT = {
@@ -79,19 +136,19 @@ def _identity_clauses(panel, bible_by_id):
         if entity is None:
             continue
         ref = entity["canonical_reference"]
-        parts = [f"{entity['ten']}: {ref['khuon_mat']} {ref['toc']}"]
+        parts = [f"{entity['ten']}: {strip_meta(ref['khuon_mat'])} {strip_meta(ref['toc'])}"]
 
         state = _state_description(entity, state_ref) if state_ref else None
-        parts.append(state if state else ref["trang_phuc"])
+        parts.append(strip_meta(state if state else ref["trang_phuc"]))
 
         if "vat_pham" in ref:
-            parts.append(ref["vat_pham"])
+            parts.append(strip_meta(ref["vat_pham"]))
         if "dac_diem_khong_doi" in ref:
-            parts.append(ref["dac_diem_khong_doi"])
+            parts.append(strip_meta(ref["dac_diem_khong_doi"]))
 
-        clauses.append(" ".join(parts).replace("\n", " ").strip())
+        clauses.append(" ".join(p for p in parts if p).replace("\n", " ").strip())
 
-    binding = constraints.get("attribute_binding")
+    binding = strip_meta(constraints.get("attribute_binding"))
     if binding:
         clauses.append(f"attribute binding — {binding}".replace("\n", " ").strip())
 
@@ -102,7 +159,7 @@ def _scene_clauses(panel):
     """Precedence 2 — mo ta canh. Bi drop TRUOC identity khi vuot budget."""
     camera = panel["camera"]
     clauses = [
-        panel["action"],
+        strip_meta(panel["action"]),
         CAMERA_SHOT.get(camera.get("shot"), camera.get("shot", "")),
         CAMERA_ANGLE.get(camera.get("angle"), camera.get("angle", "")),
         BEAT_TREATMENT.get(panel["beat_type"], ""),
@@ -117,8 +174,10 @@ def _constraint_clauses(panel):
     ordered_keys = ["palette", "light_source", "mood", "detail", "scale",
                     "composition", "density", "motion", "pov", "flashback_treatment",
                     "figurant", "content_note"]
-    return [f"{key}: {constraints[key]}".replace("\n", " ").strip()
-            for key in ordered_keys if key in constraints]
+    cleaned = [(key, strip_meta(constraints[key])) for key in ordered_keys
+               if key in constraints]
+    return [f"{key}: {value}".replace("\n", " ").strip()
+            for key, value in cleaned if value]
 
 
 def compile_panel(panel, bible_by_id):
@@ -144,7 +203,7 @@ def compile_panel(panel, bible_by_id):
         if cid in bible_by_id
     ]
 
-    negative_space = panel.get("negative_space_hint")
+    negative_space = strip_meta(panel.get("negative_space_hint"))
     if negative_space:
         ordered.append(f"leave negative space: {negative_space}")
 

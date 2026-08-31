@@ -72,18 +72,25 @@ def append_jsonl(path, record):
 
 
 def character_sheet_prompt(entity):
-    """Prompt sinh character sheet — deterministic, ⛔ khong LLM."""
+    """Prompt sinh character sheet — deterministic, ⛔ khong LLM.
+
+    Moi field di qua `strip_meta` — chu thich meta trong Story Bible ma vao
+    prompt se THANH NOI DUNG VE (bang chung: run-refs-20260831-223131, 3/3
+    anh lam_phu bi ve them nguoi la tu cau "⛔ khong gan cho nguoi phu nu
+    ao trang").
+    """
     ref = entity["canonical_reference"]
+    strip = compile_prompt.strip_meta
     parts = [
         compile_prompt.BASE_STYLE,
         "character reference sheet, neutral grey background, front view and three-quarter view",
-        f"{entity['ten']}: {ref['khuon_mat']} {ref['toc']} {ref['trang_phuc']}",
+        f"{entity['ten']}: {strip(ref['khuon_mat'])} {strip(ref['toc'])} {strip(ref['trang_phuc'])}",
     ]
     if "vat_pham" in ref:
-        parts.append(ref["vat_pham"])
+        parts.append(strip(ref["vat_pham"]))
     if "dac_diem_khong_doi" in ref:
-        parts.append(ref["dac_diem_khong_doi"])
-    return ". ".join(p.replace("\n", " ").strip() for p in parts)
+        parts.append(strip(ref["dac_diem_khong_doi"]))
+    return ". ".join(p.replace("\n", " ").strip() for p in parts if p)
 
 
 def run_refs(is_dry_run):
