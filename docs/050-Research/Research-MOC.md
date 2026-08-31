@@ -3,7 +3,7 @@ id: MOC-RESEARCH
 type: moc
 status: draft
 created: 2026-02-04
-updated: 2026-08-30
+updated: 2026-08-31
 ---
 
 # Research Map of Content (MOC)
@@ -13,6 +13,7 @@ updated: 2026-08-30
 - [Analysis-Comic-Studio-Concept](./Analysis-Comic-Studio-Concept.md) — Thẩm định ý tưởng `comic-studio` (pipeline novel→comic): phù hợp hay chưa, khả thi hay không, cần đổi gì. Bốn verdict, chín điều kiện khả thi, bảy vấn đề phải sửa trước dòng code đầu tiên, và phần unit economics cho mô hình SaaS. `status: draft` · run `2026-08-23-danh-gia-y-tuong-comic-studio`.
 - [Analysis-Market-Competitor-Landscape](./Analysis-Market-Competitor-Landscape.md) — Thị trường, đối thủ và mô hình kinh doanh. TAM/SAM/SOM (**và vì sao TAM $14B không dùng được**), bối cảnh đối thủ gồm hai mối đe doạ mới (**GlobalComix + INKR**, **Constella của WEBTOON**), tiền lệ ngành cho **BYOK**, benchmark retention, kênh phân phối. `status: draft` · run `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio`.
 - [Analysis-MVP0-Requirements](./Analysis-MVP0-Requirements.md) — Phân tích yêu cầu **MVP0**: hợp nhất phạm vi + kỷ luật + hai lớp điều kiện ra (`P-1…P-6` artifact và `G1-a…G1-e` ngưỡng), ma trận truy vết 8 Story × tiêu chí, đánh giá **sẵn sàng thực thi** (8 điều kiện tiên quyết, 3 cái còn ⛔ trống), 8 phát hiện lệch giữa bốn tầng tài liệu, và 6 câu hỏi mở cần Founder và Architect đóng. `status: draft`.
+- [Research-Alibaba-Model-Studio-For-MVP0](./Research-Alibaba-Model-Studio-For-MVP0.md) — Xác minh **Alibaba Cloud Model Studio** (Qwen-Image / Qwen-VL) cho hai vai trò provider vận hành của MVP0: hai điều kiện cứng PASS (`qwen-image-edit-plus` nhận 1–3 reference, `qwen3-vl-plus` nhận N ảnh một call + JSON mode), cơ chế API hai đường, free quota, dải giá tham khảo (⚠️ **giá chưa verify từ trang chính thức**) và rủi ro content moderation với fantasy violence. Căn cứ cho quyết định đổi provider vận hành `2026-08-31` — ⛔ không phải chốt vendor (`ADR-007` `Q4`). `status: draft`.
 
 > **Hai tài liệu ĐẦU bổ sung cho nhau, không thay thế nhau.** `Analysis-Comic-Studio-Concept` trả lời *"làm được không"* (kỹ thuật, pháp lý, unit economics); `Analysis-Market-Competitor-Landscape` trả lời *"bán cho ai, cạnh tranh với ai, thu tiền thế nào"*.
 

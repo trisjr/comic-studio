@@ -34,8 +34,8 @@ created: 2026-08-31
 | # | Việc | Vì sao ⛔ không hoãn được |
 |:-:|---|---|
 | **1** | **Ký [`mvp0/threshold-signoff.md`](../../../mvp0/threshold-signoff.md)** | [MVP-Scope §7](../../010-Planning/MVP-Scope.md): *"Không sửa ngưỡng sau khi nhìn thấy kết quả — **đó là cách một gate biến thành nghi lễ**."* Ký sau khi thấy số ⛔ **không có giá trị** |
-| **2** | **Verify hai model id** trong [`scripts/mvp0/providers.py`](../../../scripts/mvp0/providers.py) | Hai hằng số là **tên sản phẩm** lấy từ tài liệu, ⛔ **chưa đối chiếu** với model id thật của API |
-| **3** | **Chốt ngân sách** | Chương comic #1: **~$8,84** · trọn chương chữ: **~$16,88** ⚠️ vượt trần `~$12`. Trần thực tế `~$50` |
+| **2** | **Verify ba model id** trong [`scripts/mvp0/providers.py`](../../../scripts/mvp0/providers.py) | Ba hằng số (`IMAGE_T2I_MODEL_ID` · `IMAGE_EDIT_MODEL_ID` · `VLM_MODEL_ID`) là **tên model** lấy từ tài liệu Model Studio, ⛔ **chưa đối chiếu** với console của account thật; pin **snapshot có ngày** khi console cho phép |
+| **3** | **Chốt ngân sách theo giá đã verify** | Công thức: trọn chương chữ = **126 ảnh** × giá/ảnh đọc từ console (điền vào `.env`). Mốc Gemini cũ: ~$16,88 vượt trần `~$12`; dải Alibaba ⚠️ chưa verify: ~$2,52–$9,45. Trần thực tế `~$50`. Xem khối ngân sách trong [`mvp0/README.md`](../../../mvp0/README.md) |
 
 ### Kỷ luật ⛔ không được quên
 
@@ -48,11 +48,12 @@ created: 2026-08-31
 ## Bước 1 — Chuẩn bị môi trường
 
 ```bash
-pip install google-genai pyyaml
-export GEMINI_API_KEY="..."   # ⛔ KHÔNG hardcode vào file nào
+pip install dashscope openai pyyaml
+cp .env.example .env              # điền DASHSCOPE_API_KEY + 2 giá tham chiếu — ⛔ KHÔNG commit .env
+set -a && source .env && set +a   # nạp biến môi trường vào shell
 ```
 
-⚠️ Nếu quên `GEMINI_API_KEY`, script dừng ngay với thông báo rõ — ⛔ nó ⛔ không chạy tiếp bằng giá trị rỗng.
+⚠️ Nếu quên `DASHSCOPE_API_KEY`, script dừng ngay với thông báo rõ — ⛔ nó ⛔ không chạy tiếp bằng giá trị rỗng. Key phải là của region **Singapore** — key Bắc Kinh ⛔ không dùng được với endpoint `dashscope-intl`.
 
 **Kiểm nhanh ⛔ không tốn tiền:**
 
@@ -70,7 +71,7 @@ Kỳ vọng: **42 panel** compile sạch, in ra số reference và số ràng bu
 
 ```bash
 python3 scripts/mvp0/run_mvp0.py refs --dry-run   # xem prompt
-python3 scripts/mvp0/run_mvp0.py refs             # 3 nhân vật × 3 candidate = 9 ảnh (~$1,21)
+python3 scripts/mvp0/run_mvp0.py refs             # 3 nhân vật × 3 candidate = 9 ảnh `qwen-image-max` — nằm gọn trong free quota 100 ảnh nếu còn hạn
 ```
 
 ### ⭐ Việc của con người — ⛔ không giao cho máy
@@ -193,9 +194,11 @@ python3 scripts/mvp0/regen_ratio.py
 
 | Triệu chứng | Nguyên nhân | Xử lý |
 |---|---|---|
-| `Thieu bien moi truong GEMINI_API_KEY` | Chưa export | `export GEMINI_API_KEY="..."` |
+| `Thieu bien moi truong DASHSCOPE_API_KEY` | Chưa nạp `.env` | `set -a && source .env && set +a` (tạo `.env` từ `.env.example` nếu chưa có) |
 | `Thieu reference mvp0/refs/<id>.png` | Chưa chạy bước 2, hoặc chưa copy tay | Quay lại [Bước 2](#bước-2--sinh-canonical-reference) |
-| Model id sai / `404` | Hằng số là **tên sản phẩm**, ⛔ chưa verify | Sửa `IMAGE_MODEL_ID` / `VLM_MODEL_ID` trong `providers.py` |
+| Model id sai / `Model not exist` | Hằng số là **tên model từ tài liệu**, ⛔ chưa verify với console | Sửa `IMAGE_T2I_MODEL_ID` / `IMAGE_EDIT_MODEL_ID` / `VLM_MODEL_ID` trong `providers.py`, pin snapshot có ngày |
+| `InvalidParameter` khi sinh ảnh | Model đang pin ⛔ không nhận một param (`n` / `watermark` / `prompt_extend`) | Đối chiếu API reference của model đó trong docs Model Studio, bỏ param không hỗ trợ khỏi `_call_image_api` |
+| `DataInspectionFailed` / `IPInfringementSuspect` | Content moderation của Alibaba — kiểm **cả input lẫn output**, ⛔ không chỉnh được mức | Đã ghi tự động vào `refusals.jsonl` (`D-67`) — là dữ liệu `C-7`. Tỉ lệ cao ở batch thăm dò ⇒ cân nhắc đổi `action` panel, hoặc quay lại Gemini khi chưa sinh ảnh thật |
 | `refusals.jsonl` có nhiều dòng | Content policy — panel **18** (kiếm xuyên ngực + máu) là chỗ rủi ro nhất | ⚠️ **⛔ Đừng bỏ qua**: từ chối nhiều làm `reject_rate` **trộn hai nguyên nhân khác loại** ⇒ verdict `G1-c` mất nghĩa. Ghi lại rồi cân nhắc đổi `action` của panel đó |
 | Panel thiếu chi tiết đã ghi trong spec | Vượt constraint budget | Xem `dropped_constraints.jsonl` — ⛔ **không** nới budget; giảm số ràng buộc trong panel script |
 | Nhân vật mặc sai trang phục | `state_ref` sai hoặc thiếu | Kiểm `visual_constraints.state_ref` khớp `moc` trong Story Bible |
