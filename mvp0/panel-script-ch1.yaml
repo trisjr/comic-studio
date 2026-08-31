@@ -215,6 +215,7 @@ pages:
         visual_constraints:
           palette: "trắng, nâu sẫm"
           flashback_treatment: "viền khung mềm"
+          state_ref: "flashback"
           attribute_binding: "⭐ bach_y_nu cầm trường kiếm chuôi quấn dây TRẮNG; lam_phu ⛔ KHÔNG cầm vũ khí"
         text_safe_zone: [{ x: 0.60, y: 0.05, w: 0.35, h: 0.22 }]
         text_safe_zone_warning: false
@@ -229,6 +230,7 @@ pages:
         visual_constraints:
           palette: "trắng, nâu sẫm, xanh nhạt"
           flashback_treatment: "viền khung mềm"
+          state_ref: "flashback"
           attribute_binding: >
             ⭐⭐ PANEL QUAN TRONG NHAT cho G1-d truc 3 nhan vat.
             Ba bo trang phuc PHAI gan dung nguoi: TRANG = bach_y_nu (co kiem),
@@ -247,7 +249,7 @@ pages:
       - panel_index: 17
         action: "FLASHBACK — Cận mặt người phụ nữ áo trắng, ánh mắt lạnh, môi vừa mở"
         camera: { shot: "close_up", angle: "low", subject: "bach_y_nu" }
-        visual_constraints: { palette: "trắng, da rất nhợt", flashback_treatment: "viền khung mềm" }
+        visual_constraints: { palette: "trắng, da rất nhợt", flashback_treatment: "viền khung mềm", state_ref: "flashback" }
         text_safe_zone: [{ x: 0.50, y: 0.10, w: 0.45, h: 0.30 }]
         text_safe_zone_warning: false
         beat_type: "climax"
@@ -265,6 +267,7 @@ pages:
         visual_constraints:
           palette: "đỏ máu trên xanh nhạt, nâu sẫm"
           flashback_treatment: "viền khung mềm"
+          state_ref: "flashback"
           attribute_binding: "⭐ Kiếm thuộc bach_y_nu (ngoài khung, chỉ thấy lưỡi và cánh tay áo trắng)"
           content_note: "⚠️ Panel rui ro content policy cao nhat chuong — xem README muc C-7"
         text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.30, h: 0.18 }]

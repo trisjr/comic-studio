@@ -89,6 +89,55 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 
 **Việc chốt vendor thật** vẫn dùng **5 tiêu chí `Q5`** của `ADR-007`, theo thứ tự — tiêu chí #1 (*nhận nhiều ảnh trong MỘT call*) là tiêu chí **loại**, ⛔ không phải cộng điểm.
 
+## Chạy MVP0
+
+⚠️ **Cài trước**: `pip install google-genai pyyaml` · biến môi trường `GEMINI_API_KEY` (⛔ **không** hardcode — [`security.md`](../.claude/rules/security.md) §2).
+
+### Hai stage — `refs` là bắt buộc trước `panels`
+
+```bash
+# Stage 1 — sinh character sheet cho 3 nhân vật
+python3 scripts/mvp0/run_mvp0.py refs --dry-run   # kiểm prompt, ⛔ không tốn tiền
+python3 scripts/mvp0/run_mvp0.py refs
+# ⭐ Bước NGƯỜI làm: chọn 1 ảnh/nhân vật, lưu thành mvp0/refs/<char_id>.png
+
+# Stage 2 — sinh panel với reference đã chọn
+python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --dry-run
+python3 scripts/mvp0/run_mvp0.py panels --chapter ch1
+```
+
+> [!IMPORTANT]
+> ⭐ **Vì sao stage `refs` phải tồn tại** — đây là bước ⛔ **không có trong tài liệu planning nào**:
+>
+> Story Bible mô tả nhân vật bằng **chữ**, nhưng pipeline `A1` cần **ảnh reference**. ⇒ Phải có một bước biến mô tả chữ thành ảnh, và **người phải chọn tay** ảnh nào là canonical. ⛔ Không có bước này thì *"generate panel **với reference**"* ⛔ không chạy được.
+>
+> Đây cũng là **quyết định sáng tạo đầu tiên của con người** trong toàn pipeline — thứ mà Điều 5a đòi hỏi. Ở MVP1 nó phải sinh `change_log` (`KC-2`); ở MVP0 thì ghi tay.
+
+### Ba file script
+
+| File | Vai trò | Ràng buộc cứng |
+|---|---|---|
+| [`compile_prompt.py`](../scripts/mvp0/compile_prompt.py) | Visual Prompt Compiler tối giản | ⛔ **Deterministic** — `D-34`/`SRS-FR-17` cấm LLM ở compiler runtime |
+| [`providers.py`](../scripts/mvp0/providers.py) | **Hai** adapter tách riêng | `ADR-007` `Q1` — cùng vendor nhưng **hai** adapter |
+| [`run_mvp0.py`](../scripts/mvp0/run_mvp0.py) | Orchestrator, ghi file phẳng | ⛔ Không UI, ⛔ không DB |
+
+**Bất biến đã cài vào code**, mỗi cái có neo:
+
+- **Precedence ladder** — identity reference + `state_ref` + `attribute_binding` ⛔ **không bao giờ** bị drop khi vượt constraint budget. ⭐ Cắt chúng là cắt đúng thứ `G1-a`/`G1-d` tồn tại để đo
+- **Constraint budget = 8**, phần bị drop ghi ra `dropped_constraints.jsonl` — ⛔ không drop im lặng
+- **N=3 cho MỌI panel**, ⛔ không phải retry-on-failure (`CF-3.1`, `Charter §7 C8`)
+- **`unclear` là giá trị hạng nhất** — rubric VLM nói thẳng ⛔ đừng ép thành pass/fail (`D-38`)
+- **Adapter chỉ xếp hạng**, ⛔ không tự chọn thay người (`D-38`) — lựa chọn cuối là của người, và đó **chính là phép đo `G1-c`**
+- **`usage` ghi ngay sau khi sinh**, ⛔ không đợi VLM — tài nguyên đã tiêu thì phải ghi
+- **VLM lỗi sau khi ảnh đã sinh** = trạng thái hợp lệ, ảnh vẫn giữ (`ADR-007` `Q6`)
+- **Mọi lần provider từ chối** ghi vào `refusals.jsonl` (`D-67`) — đây là dữ liệu cho `C-7`
+
+⚠️ **`IMAGE_MODEL_ID` và `VLM_MODEL_ID` phải verify trước khi chạy thật.** Hai hằng số trong `providers.py` lấy **tên sản phẩm** từ tài liệu, ⛔ chưa đối chiếu với model id thật của API. Chạy `--dry-run` trước.
+
+### Output mỗi lần chạy
+
+`mvp0/run-<stage>-<timestamp>/` — `prompts/` · `candidates/` · `results.jsonl` · `usage.jsonl` · `refusals.jsonl` · `dropped_constraints.jsonl`. Thư mục này **nằm trong `.gitignore`**; ⚠️ **ngoại lệ**: `mvp0/refs/*.png` là reference **đã chọn** — đó là **dữ liệu giữ lại**, ⛔ không phải output tạm.
+
 ## ⭐ Hai ca typeset khó — nơi `G1-e` thật sự bị thử
 
 `G1-e` đòi **100%** panel có thoại dùng overlay và **0** panel nhờ model render chữ. Chín panel có thoại chứa **hai loại bubble mà một chương đối thoại thường ⛔ không có**:

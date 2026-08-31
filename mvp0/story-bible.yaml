@@ -33,20 +33,27 @@ nhan_vat:
         toạc một bên. ⭐ Áo là màu ĐEN TUYỀN — không hoa văn, không viền.
       dac_diem_khong_doi: >
         Chân trần. Bàn tay và cổ tay gầy, nổi gân.
+    # ⭐ Moc trang thai — `state_ref` trong panel script tra THANG vao day.
+    # Compiler dua noi dung nay vao PRECEDENCE 1 (cung bac voi identity),
+    # vi "mac gi o thoi diem nao" chinh la thu G1-a va G1-d do.
     trang_thai_theo_thoi_diem:
       - moc: "truoc_panel_20"
-        mat: "Hai mắt đen bình thường"
-        nguc: "Áo rách để lộ vết thương kiếm đã liền sẹo mờ"
+        mo_ta: >
+          Áo đen rách nát, tóc dài bết máu khô. Hai mắt đen bình thường.
+          Áo rách để lộ vết thương kiếm đã liền sẹo mờ giữa ngực.
       - moc: "tu_panel_20"
-        mat: "Hai mắt đen bình thường (chưa thức tỉnh)"
-        nguc: >
-          ⭐ Vết thương biến mất hoàn toàn. Thay vào đó là một KÝ HIỆU CON MẮT
-          màu đen in trên da giữa ngực, đường nét như khắc chìm.
-    ghi_chu_flashback: >
-      Trong flashback (panel 14-18), Lâm Uyên mặc áo LỤA XANH NHẠT còn nguyên
-      vẹn, tóc buộc gọn sau gáy — ⛔ KHÔNG phải áo đen rách. Đây là mốc
-      attribute binding quan trong nhat cua chuong: cung mot nguoi, hai bo
-      trang phuc, hai thoi diem.
+        mo_ta: >
+          Áo đen rách nát, tóc bết. Hai mắt vẫn đen. ⭐ Vết thương giữa ngực
+          BIẾN MẤT, thay bằng KÝ HIỆU CON MẮT màu đen khắc chìm trên da.
+      - moc: "flashback"
+        mo_ta: >
+          ⭐ Áo LỤA XANH NHẠT còn nguyên vẹn, tóc buộc gọn sau gáy, mặt sạch
+          không máu. ⛔ KHÔNG phải áo đen rách. Đây là mốc attribute binding
+          quan trọng nhất chương: cùng một người, hai bộ trang phục.
+      - moc: "sau_thuc_tinh"
+        mo_ta: >
+          Áo đen rách. ⭐ Mắt TRÁI đen, mắt PHẢI ĐỎ NHƯ MÁU — hai màu khác
+          nhau. Ký hiệu con mắt trên ngực vẫn còn.
 
   - id: lam_phu
     ten: "Lâm phụ (cha của Lâm Uyên)"
@@ -60,7 +67,9 @@ nhan_vat:
       trang_phuc: >
         Áo choàng gấm màu NÂU SẪM, cổ áo thêu chỉ vàng — trang phục gia chủ.
         ⭐ Màu nâu sẫm là dấu phân biệt với áo trắng của nữ nhân.
-    dac_diem_khong_doi: "Tay phải đeo một chiếc nhẫn ngọc màu lục."
+      vat_pham: >
+        ⭐ Tay phải đeo một chiếc nhẫn ngọc màu LỤC. Vật phẩm này PHẢI gắn với
+        nhân vật này, ⛔ không gắn cho người phụ nữ áo trắng.
 
   - id: bach_y_nu
     ten: "Người phụ nữ áo trắng"
