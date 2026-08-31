@@ -103,7 +103,14 @@ BEAT_TREATMENT = {
     "transition": "neutral framing, motion implied",
 }
 
-BASE_STYLE = "black and white manhua ink art, screentone shading, clean linework"
+# ⭐ Art style van hanh cho MVP0 — Founder chot 2026-09-01 (huong "manhua
+# MAU", bien the B trong A/B test 4 anh): style den-trang cu MAU THUAN voi
+# chinh du lieu — Story Bible phan biet nhan vat bang MAU (nau sam / trang /
+# xanh nhat / nhan ngoc luc) va moi panel co `palette:` mau ⇒ anh sinh ra
+# lai tap giua den-trang va mau. Chot manhua mau lam du lieu TU NHAT QUAN.
+BASE_STYLE = ("full-color dark fantasy manhua comic panel, clean sharp linework, "
+              "painterly shading, desaturated moody palette with blood-red accents, "
+              "cinematic chiaroscuro lighting, ancient xianxia horror atmosphere")
 
 
 def _state_description(entity, state_ref):

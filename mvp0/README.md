@@ -98,6 +98,17 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 
 **Việc chốt vendor thật** vẫn dùng **5 tiêu chí `Q5`** của `ADR-007`, theo thứ tự — tiêu chí #1 (*nhận nhiều ảnh trong MỘT call*) là tiêu chí **loại**, ⛔ không phải cộng điểm.
 
+## Art style dùng cho MVP0
+
+> [!IMPORTANT]
+> ⭐ **Founder chốt `2026-09-01`: manhua MÀU, tông trầm tối** — thay cho style đen trắng ban đầu.
+>
+> **Vì sao đổi**: style đen trắng **mâu thuẫn với chính dữ liệu** — Story Bible phân biệt nhân vật bằng MÀU (nâu sẫm / trắng / xanh nhạt / nhẫn ngọc *lục*) và mọi panel có `palette:` màu ⇒ 23 ảnh đầu ra lai tạp giữa đen-trắng và màu (bằng chứng: run `refs-223131`, probe `232407`). Chốt manhua màu làm dữ liệu **tự nhất quán** — bible và palette giữ nguyên, ⛔ không sửa hồi tố.
+>
+> **Cách chốt**: A/B test 4 ảnh (2 biến thể × char sheet + cảnh đông) trong free quota; Founder chọn biến thể B — *desaturated moody palette, blood-red accents, dark xianxia horror*. Chuỗi chính thức nằm ở một nơi duy nhất: `BASE_STYLE` trong [`compile_prompt.py`](../scripts/mvp0/compile_prompt.py).
+>
+> ⚠️ Hệ quả đo lường: ảnh sinh **trước** mốc này mang style cũ — là dữ liệu quan sát, ⛔ không trộn vào golden dataset. Canonical refs sinh lại toàn bộ với style mới (xem [`refs/selection-log.md`](./refs/selection-log.md)).
+
 ## Chạy MVP0
 
 ⚠️ **Cài trước**: `pip install dashscope openai pyyaml` · biến môi trường nạp từ `.env`: `cp .env.example .env`, điền `DASHSCOPE_API_KEY` + hai giá tham chiếu, rồi `set -a && source .env && set +a` (⛔ **không** hardcode — [`security.md`](../.claude/rules/security.md) §2).
