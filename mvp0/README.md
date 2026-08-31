@@ -67,6 +67,28 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 >
 > **Đường xử lý**: bổ sung một chương có hội thoại nhiều người để nâng cỡ mẫu, hoặc chấp nhận và ghi `G1-d` là **đo-và-báo-cáo**, ⛔ không dùng làm điều kiện chặn.
 
+## Provider dùng cho MVP0
+
+> [!IMPORTANT]
+> ⚠️ **Đây là LỰA CHỌN VẬN HÀNH để chạy MVP0, ⛔ KHÔNG phải chốt vendor.**
+>
+> [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) `Q4` đã định sẵn: *"**Ai đóng**: PM + Architect. **Khi nào**: tại gate cuối **MVP0**, khi ba phép đo bắt buộc của MVP0 có kết quả."* Lý do là biến quyết định — chi phí per-call, `N` tối thiểu, human-reject rate — **chính là output của MVP0**. ⇒ Chốt trước là *"chọn mù"* (chữ của ADR).
+
+| Vai trò | Dùng cho MVP0 | Căn cứ |
+|---|---|---|
+| **Sinh ảnh** | **Gemini 3 Pro Image** (Nano Banana Pro) — `$0.134` standard / `$0.067` batch | ⛔ **Không phải lựa chọn mới.** [Spec-Integration-Image-Provider §6.2](../docs/030-Specs/API/Spec-Integration-Image-Provider.md) và **mọi** con số chi phí trong repo (`~$12`, `$12,06`, `CF-3.11`, `CF-3.5`) đều **đã tính từ provider này** |
+| *Đường lui sinh ảnh* | FLUX.2 pro — `$0.03` | Đã ghi sẵn là *"đường lui"* ở cùng bảng giá |
+| **VLM-select** | ⭐ **Cùng Gemini**, nhưng qua **adapter RIÊNG** | Xem hai lý do dưới |
+
+**Vì sao dùng chung vendor cho VLM-select:**
+
+1. [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) dòng 185 nêu chính xác cái giá của việc thêm provider: *"**Thêm một provider = thêm một điểm phụ thuộc ngoài**: một bộ credential, một hạn mức, một chính sách nội dung có thể từ chối (`D-67`), một bề mặt drift."* Với MVP0 — một lát cắt 1–2 tuần để **mua thông tin** — trả cái giá đó cho một vendor thứ hai ⛔ không mua thêm được thông tin nào.
+2. Chọn khác Gemini cho phần sinh ảnh sẽ làm **lệch toàn bộ mô hình chi phí** đã dựng trên `$0.134` — và `G2` (gate kinh tế) lấy đầu vào từ chính những con số đó.
+
+⚠️ **Adapter phải TÁCH, dù cùng vendor.** [ADR-007](../docs/030-Specs/Architecture/ADR-007-VLM-Provider-For-QA-Select.md) `Q1`: *"VLM QA-select là **integration thứ hai, riêng biệt**, ⛔ không phải một hàm của adapter ảnh"* — ba lý do: hai vòng đời model version khác nhau (pin riêng), hai đường lỗi khác nhau (*"ảnh sinh xong nhưng chấm hỏng là một trạng thái hợp lệ"*). ⇒ **Cùng vendor, hai adapter.** ⛔ Đừng gộp cho tiện.
+
+**Việc chốt vendor thật** vẫn dùng **5 tiêu chí `Q5`** của `ADR-007`, theo thứ tự — tiêu chí #1 (*nhận nhiều ảnh trong MỘT call*) là tiêu chí **loại**, ⛔ không phải cộng điểm.
+
 ## ⭐ Hai ca typeset khó — nơi `G1-e` thật sự bị thử
 
 `G1-e` đòi **100%** panel có thoại dùng overlay và **0** panel nhờ model render chữ. Chín panel có thoại chứa **hai loại bubble mà một chương đối thoại thường ⛔ không có**:
@@ -78,9 +100,9 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 
 ## Việc còn thiếu
 
-- [ ] ⭐ Chốt **vendor** image + VLM — `Q-3`. ⛔ **Chưa chốt thì chưa sinh được ảnh nào**, và số đo trên provider A ⛔ không chuyển giao sang provider B
+- [ ] Chốt **vendor VLM** — `Q-3`. ⚠️ ⛔ **KHÔNG chặn MVP0**: `ADR-007` `Q4` đặt việc này ở **gate cuối MVP0**, vì đầu vào của nó là chính số đo MVP0
 - [ ] Ký nhận [`threshold-signoff.md`](./threshold-signoff.md) — `Q-2`, phải xong **trước** khi sinh ảnh đầu tiên
 - [ ] Bảng chấm golden dataset (`P-6`) — 15–20 panel có spec + ref + ảnh + đánh giá
 - [ ] Nâng cỡ mẫu `G1-d`, hoặc chấp nhận ghi nó là **đo-và-báo-cáo** thay vì điều kiện chặn
 
-**Đã xong**: ✅ Story Bible · ✅ panel script cả hai chương comic · ✅ corpus NFC/NFD
+**Đã xong**: ✅ Story Bible · ✅ panel script cả hai chương comic · ✅ corpus NFC/NFD · ✅ provider vận hành cho MVP0
