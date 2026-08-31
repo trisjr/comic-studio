@@ -1,0 +1,91 @@
+# AI Coding
+# story-bible.yaml
+# Story Bible VIET TAY cho MVP0 — 3 nhan vat, mot chuong duy nhat.
+# Nguon: "Ta Nguyet Vo Tan" Chuong 1 (Nguoi chet tro ve).
+# Rang buoc: Roadmap §3.1 — "Story Bible cho 2-3 nhan vat VIET TAY".
+# ⛔ KHONG co database o MVP0 (MVP-Scope §3.1, o A5 = ❌). File phang la dung.
+
+meta:
+  tac_pham: "Tà Nguyệt Vô Tận"
+  chuong_chu: 1
+  ten_chuong: "Người chết trở về"
+  chuong_comic: 1
+  ghi_chu_don_vi: >
+    Chuong chu 1 duoc tach thanh HAI chuong comic. File nay phuc vu chuong
+    comic #1 (nghia dia -> tinh day -> bia da -> flashback -> ky hieu con mat).
+    Xem F-8 trong docs/050-Research/Analysis-MVP0-Requirements.md: don vi
+    "chapter" hien nhap nhang giua chuong chu va chuong comic.
+
+nhan_vat:
+
+  - id: lam_uyen
+    ten: "Lâm Uyên"
+    vai_tro: "Nhân vật chính"
+    tuoi: 17
+    canonical_reference:
+      khuon_mat: >
+        Thiếu niên 17 tuổi, khuôn mặt gầy và tái nhợt, gò má cao, môi mỏng
+        không còn sắc máu. Lông mày rậm, sống mũi thẳng.
+      toc: >
+        Tóc đen dài quá vai, rối và bết thành từng lọn, dính vào hai bên má.
+      trang_phuc: >
+        Áo dài đen kiểu tu tiên cổ, vạt rách nát từ ngực xuống gấu, ống tay
+        toạc một bên. ⭐ Áo là màu ĐEN TUYỀN — không hoa văn, không viền.
+      dac_diem_khong_doi: >
+        Chân trần. Bàn tay và cổ tay gầy, nổi gân.
+    trang_thai_theo_thoi_diem:
+      - moc: "truoc_panel_20"
+        mat: "Hai mắt đen bình thường"
+        nguc: "Áo rách để lộ vết thương kiếm đã liền sẹo mờ"
+      - moc: "tu_panel_20"
+        mat: "Hai mắt đen bình thường (chưa thức tỉnh)"
+        nguc: >
+          ⭐ Vết thương biến mất hoàn toàn. Thay vào đó là một KÝ HIỆU CON MẮT
+          màu đen in trên da giữa ngực, đường nét như khắc chìm.
+    ghi_chu_flashback: >
+      Trong flashback (panel 14-18), Lâm Uyên mặc áo LỤA XANH NHẠT còn nguyên
+      vẹn, tóc buộc gọn sau gáy — ⛔ KHÔNG phải áo đen rách. Đây là mốc
+      attribute binding quan trong nhat cua chuong: cung mot nguoi, hai bo
+      trang phuc, hai thoi diem.
+
+  - id: lam_phu
+    ten: "Lâm phụ (cha của Lâm Uyên)"
+    vai_tro: "Nhân vật phụ — chỉ xuất hiện trong flashback"
+    tuoi: "khoảng 45"
+    canonical_reference:
+      khuon_mat: >
+        Người đàn ông trung niên, râu quai nón cắt ngắn, nếp nhăn sâu giữa
+        hai lông mày, mắt trũng.
+      toc: "Tóc búi cao, cài trâm gỗ, vài sợi bạc hai bên thái dương."
+      trang_phuc: >
+        Áo choàng gấm màu NÂU SẪM, cổ áo thêu chỉ vàng — trang phục gia chủ.
+        ⭐ Màu nâu sẫm là dấu phân biệt với áo trắng của nữ nhân.
+    dac_diem_khong_doi: "Tay phải đeo một chiếc nhẫn ngọc màu lục."
+
+  - id: bach_y_nu
+    ten: "Người phụ nữ áo trắng"
+    vai_tro: "Kẻ giết Lâm Uyên — chỉ xuất hiện trong flashback"
+    tuoi: "không rõ, ngoại hình khoảng 25"
+    canonical_reference:
+      khuon_mat: >
+        Gương mặt lạnh, không biểu cảm. Mắt dài và hẹp, lông mày mảnh.
+        Da rất trắng.
+      toc: "Tóc đen dài buông thẳng, không trang sức."
+      trang_phuc: >
+        Áo dài TRẮNG TOÀN BỘ, tay áo rộng, không hoa văn, không thắt lưng màu.
+      vat_pham: >
+        ⭐ Một thanh trường kiếm lưỡi mỏng, chuôi quấn dây trắng.
+        Vật phẩm này PHẢI gắn với nhân vật này, ⛔ không gắn cho Lâm phụ.
+
+# ⛔ KHONG dua vao Story Bible:
+#   - "Ta Than": chi la GIONG NOI trong linh hon, khong co than the
+#     => khong co canonical reference, khong dem vao character_count.
+#   - Con mat khong lo / khuon mat sau tang may: thuc the thi giac,
+#     khong co trang phuc hay vat pham => ⛔ KHONG do duoc attribute binding.
+#   - Oan hon: dam dong vo danh, khong identity rieng.
+# Ba muc tren la LY DO chuong nay truot tieu chi C-1 — xem README.md.
+
+rang_buoc_toan_chuong:
+  toi_da_nhan_vat_moi_panel: 3
+  bang_mau_chu_dao: "Đen, đỏ máu, xám tro. Flashback: xanh nhạt, nâu sẫm, trắng."
+  anh_sang: "Không trăng. Nguồn sáng duy nhất là chớp đỏ trên tầng mây."
