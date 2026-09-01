@@ -59,9 +59,15 @@ import urllib.request
 # ⚠️ PIN TUONG MINH — `D-40`: ghi model_id vao MOI ban ghi. DashScope ⛔ khong
 # tra field version rieng; voi Alibaba viec pin nam trong chinh model_id
 # (snapshot dated) ⇒ `model_version` ghi null la trung thuc, ⛔ khong bia.
-IMAGE_T2I_MODEL_ID = "qwen-image-max"
-IMAGE_EDIT_MODEL_ID = "qwen-image-edit-plus"
-VLM_MODEL_ID = "qwen3-vl-plus"
+#
+# ⭐ Snapshot dated pin ngay 2026-08-31 theo `IP-C3` (cam alias). Nguon: danh
+# sach model that cua account, endpoint GET /compatible-mode/v1/models region
+# Singapore — moi dong san pham pin snapshot MOI NHAT dang liet ke. Cac run
+# truoc ngay nay (refs + probe) chay tren ALIAS — usage.jsonl cua chung ghi
+# alias, ⛔ khong sua hoi to.
+IMAGE_T2I_MODEL_ID = "qwen-image-max-2025-12-30"
+IMAGE_EDIT_MODEL_ID = "qwen-image-edit-plus-2025-12-15"
+VLM_MODEL_ID = "qwen3-vl-plus-2025-12-19"
 
 # Region Singapore — key Bac Kinh ⛔ KHONG dung duoc voi hai endpoint nay
 # (hai region tach key va endpoint).
@@ -184,6 +190,9 @@ def generate_candidate(text_prompt, reference_images, candidate_index):
 
 
 VLM_RUBRIC = """Bạn đang chấm {n} ứng viên ảnh cho CÙNG một panel truyện tranh.
+Ứng viên đánh số 0-based THEO THỨ TỰ ảnh đưa vào: ảnh đầu tiên là candidate 0,
+ảnh cuối cùng là candidate {n_minus_1}. Mọi chỉ số trong JSON trả về PHẢI dùng
+đúng hệ đánh số này.
 
 Đặc tả panel:
 {spec}
@@ -223,7 +232,8 @@ def score_candidates(candidate_images, panel_spec_text):
         for image in candidate_images
     ]
     content.append({"type": "text", "text": VLM_RUBRIC.format(
-        n=len(candidate_images), spec=panel_spec_text)})
+        n=len(candidate_images), n_minus_1=len(candidate_images) - 1,
+        spec=panel_spec_text)})
 
     response = client.chat.completions.create(
         model=VLM_MODEL_ID,

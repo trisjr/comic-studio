@@ -103,7 +103,23 @@ BEAT_TREATMENT = {
     "transition": "neutral framing, motion implied",
 }
 
-BASE_STYLE = "black and white manhua ink art, screentone shading, clean linework"
+# ⭐ Art style van hanh cho MVP0 — Founder chot 2026-09-01 sau BA vong A/B
+# (1: den-trang cu vs manhua mau · 2: manhua mau B vs manga Nhat C theo anh
+# tham khao Founder gui · 3: C tuyet doi vs C + "DO TA DI"): chot C + do ta
+# di — shonen manga den trang, DUY NHAT mau do mau danh cho yeu to sieu
+# nhien (chop do, soi day do so menh, mat phai do). Mo ta DAC TRUNG thi
+# giac, ⛔ khong neu ten tac pham/tac gia (tranh `IPInfringementSuspect`).
+BASE_STYLE = ("traditional Japanese shonen manga art, black and white ink drawing, "
+              "bold confident linework, heavy solid black shadows, screentone halftone shading, "
+              "detailed cross-hatching, dynamic speed lines, high contrast monochrome, "
+              "a single blood-red spot color reserved strictly for supernatural elements")
+
+# Style den trang ⇒ `palette:` (mau) cua panel bi loai khoi prompt. Bai hoc
+# thuc nghiem vong A/B 1: menh de mau trong prompt DE bep tuyen bo den-trang
+# va keo anh sang mau lai tap. Mo ta mau trong Story Bible (nau sam, ngoc
+# luc...) van giu — model B/W-hoa chung thanh gia tri xam (da verify bang
+# anh test lam_phu truoc khi sinh lai refs).
+BASE_STYLE_IS_MONOCHROME = True
 
 
 def _state_description(entity, state_ref):
@@ -174,6 +190,8 @@ def _constraint_clauses(panel):
     ordered_keys = ["palette", "light_source", "mood", "detail", "scale",
                     "composition", "density", "motion", "pov", "flashback_treatment",
                     "figurant", "content_note"]
+    if BASE_STYLE_IS_MONOCHROME:
+        ordered_keys = [key for key in ordered_keys if key != "palette"]
     cleaned = [(key, strip_meta(constraints[key])) for key in ordered_keys
                if key in constraints]
     return [f"{key}: {value}".replace("\n", " ").strip()

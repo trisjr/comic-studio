@@ -42,6 +42,13 @@ MVP0 = ROOT / "mvp0"
 REFS_DIR = MVP0 / "refs"
 N_CANDIDATES = 3  # `CF-3.1` `[OFF]` — mac dinh cho MOI panel, ⛔ khong retry-on-failure
 
+# Nhip nghi giua hai request sinh anh. Nguon: quan sat thuc nghiem 2026-08-31
+# — 4 request lien tiep (~3.5 req/phut) cham `Throttling.RateQuota`; nhip 30s
+# (~1.3 req/phut) chay 8/8 request sach. Day la pacing phong ngua, ⛔ khong
+# phai retry-on-failure (`CF-3.1` giu nguyen). So RPM that cua account xem
+# trong trang quota cua Model Studio console.
+SECONDS_BETWEEN_IMAGE_CALLS = 30
+
 
 def load_bible():
     data = yaml.safe_load((MVP0 / "story-bible.yaml").read_text(encoding="utf-8"))
@@ -112,11 +119,13 @@ def run_refs(is_dry_run):
                              {"stage": "refs", "character_id": char_id,
                               "candidate_index": index, "reason": str(refusal)})
                 print(f"    ⛔ candidate {index}: bi tu choi")
+                time.sleep(SECONDS_BETWEEN_IMAGE_CALLS)
                 continue
             (run_dir / "candidates" / f"{char_id}-c{index}.png").write_bytes(result["image_bytes"])
             append_jsonl(run_dir / "usage.jsonl",
                          {k: v for k, v in result.items() if k != "image_bytes"} |
                          {"stage": "refs", "character_id": char_id})
+            time.sleep(SECONDS_BETWEEN_IMAGE_CALLS)
 
     print(f"\n-> {run_dir}")
     if not is_dry_run:
@@ -172,6 +181,7 @@ def run_panels(chapter, is_dry_run, only):
                 append_jsonl(run_dir / "refusals.jsonl",
                              {"panel_index": index, "candidate_index": candidate_index,
                               "reason": str(refusal)})
+                time.sleep(SECONDS_BETWEEN_IMAGE_CALLS)
                 continue
             path = run_dir / "candidates" / f"panel-{index:03d}-c{candidate_index}.png"
             path.write_bytes(result["image_bytes"])
@@ -182,6 +192,7 @@ def run_panels(chapter, is_dry_run, only):
             append_jsonl(run_dir / "usage.jsonl",
                          {k: v for k, v in result.items() if k != "image_bytes"} |
                          {"stage": "panels", "panel_index": index})
+            time.sleep(SECONDS_BETWEEN_IMAGE_CALLS)
 
         record = {"panel_index": index, "page_no": panel["page_no"],
                   "character_count": panel["character_count"],
