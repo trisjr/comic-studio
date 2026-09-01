@@ -45,11 +45,15 @@ nhan_vat:
         mo_ta: >
           Áo đen rách nát, tóc bết. Hai mắt vẫn đen. ⭐ Vết thương giữa ngực
           BIẾN MẤT, thay bằng KÝ HIỆU CON MẮT màu đen khắc chìm trên da.
+      # Mau goc (cho preset MAU sau nay): ao lua XANH NHAT.
+      # Style C den-trang (Founder chot 2026-09-01): mo ta bang TONG + dang.
       - moc: "flashback"
         mo_ta: >
-          ⭐ Áo LỤA XANH NHẠT còn nguyên vẹn, tóc buộc gọn sau gáy, mặt sạch
-          không máu. ⛔ KHÔNG phải áo đen rách. Đây là mốc attribute binding
-          quan trọng nhất chương: cùng một người, hai bộ trang phục.
+          ⭐ Áo LỤA TÔNG SÁNG mượt còn nguyên vẹn, tóc buộc gọn sau gáy, mặt
+          sạch không máu. ⛔ KHÔNG phải áo đen rách. Đây là mốc attribute
+          binding quan trọng nhất chương: cùng một người, hai bộ trang phục.
+      # Mat PHAI DO NHU MAU = mot trong ba yeu to "DO TA DI" duoc phep mang
+      # mau tren nen B/W (Founder chot 2026-09-01, cung chop do + day do).
       - moc: "sau_thuc_tinh"
         mo_ta: >
           Áo đen rách. ⭐ Mắt TRÁI đen, mắt PHẢI ĐỎ NHƯ MÁU — hai màu khác
@@ -64,12 +68,17 @@ nhan_vat:
         Người đàn ông trung niên, râu quai nón cắt ngắn, nếp nhăn sâu giữa
         hai lông mày, mắt trũng.
       toc: "Tóc búi cao, cài trâm gỗ, vài sợi bạc hai bên thái dương."
+      # Mau goc (cho preset MAU sau nay): ao gam NAU SAM, theu CHI VANG,
+      # nhan ngoc mau LUC. Style C den-trang: mo ta bang TONG + hoa van + hinh.
       trang_phuc: >
-        Áo choàng gấm màu NÂU SẪM, cổ áo thêu chỉ vàng — trang phục gia chủ.
-        ⭐ Màu nâu sẫm là dấu phân biệt với áo trắng của nữ nhân.
+        Áo choàng gấm TÔNG SẪM ĐẬM gần đen, cổ áo thêu hoa văn dây leo nổi
+        rõ — trang phục gia chủ. ⭐ Tông sẫm đậm là dấu phân biệt với áo
+        trắng sáng của nữ nhân.
+      # "Nhan ngoc" bi model to mau luc (jade -> xanh) ⇒ style B/W bo chu
+      # "ngoc" khoi mo ta prompt; chat lieu goc van la nhan ngoc mau LUC.
       vat_pham: >
-        ⭐ Tay phải đeo một chiếc nhẫn ngọc màu LỤC. Vật phẩm này PHẢI gắn với
-        nhân vật này, ⛔ không gắn cho người phụ nữ áo trắng.
+        ⭐ Tay phải đeo một chiếc nhẫn LỚN mặt đá tròn nổi bật. Vật phẩm
+        này PHẢI gắn với nhân vật này, ⛔ không gắn cho người phụ nữ áo trắng.
 
   - id: bach_y_nu
     ten: "Người phụ nữ áo trắng"

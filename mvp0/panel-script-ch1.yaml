@@ -51,7 +51,8 @@ pages:
         characters: []
 
       - panel_index: 3
-        action: "Chuông đồng cổ treo trên cổng thành, mặt chuông rỉ xanh, đang rung"
+# Mau goc: mat chuong ri XANH.
+        action: "Chuông đồng cổ treo trên cổng thành, mặt chuông rỉ sét loang lổ, đang rung"
         camera: { shot: "medium", angle: "low", subject: "chuông đồng" }
         visual_constraints: { palette: "xanh rỉ, đen", motion: "rung, có vệt mờ" }
         text_safe_zone: [{ x: 0.05, y: 0.70, w: 0.30, h: 0.25 }]
@@ -201,7 +202,8 @@ pages:
           palette: "xanh nhạt, nâu sẫm, vàng nến"
           flashback_treatment: "viền khung mềm, độ tương phản thấp hơn hiện tại"
           state_ref: "flashback"
-          attribute_binding: "⭐ lam_uyen mặc áo LỤA XANH NHẠT; lam_phu mặc áo gấm NÂU SẪM có nhẫn ngọc lục"
+# Mau goc (preset MAU sau nay): lam_uyen ao LUA XANH NHAT; lam_phu ao NAU SAM, nhan ngoc LUC.
+          attribute_binding: "⭐ lam_uyen mặc áo lụa tông sáng gọn gàng; lam_phu mặc áo gấm tông sẫm đậm có nhẫn mặt đá lớn"
         text_safe_zone: [{ x: 0.05, y: 0.05, w: 0.35, h: 0.20 }]
         text_safe_zone_warning: false
         beat_type: "establishing"
@@ -231,10 +233,12 @@ pages:
           palette: "trắng, nâu sẫm, xanh nhạt"
           flashback_treatment: "viền khung mềm"
           state_ref: "flashback"
+# Mau goc (preset MAU sau nay): TRANG = bach_y_nu, NAU SAM = lam_phu, XANH NHAT = lam_uyen.
           attribute_binding: >
             ⭐⭐ PANEL QUAN TRONG NHAT cho G1-d truc 3 nhan vat.
-            Ba bo trang phuc PHAI gan dung nguoi: TRANG = bach_y_nu (co kiem),
-            NAU SAM = lam_phu (co nhan ngoc luc), XANH NHAT = lam_uyen (tay khong).
+            Ba bo trang phuc PHAI gan dung nguoi: AO TRANG TAY RONG + truong kiem = bach_y_nu,
+            AO GAM TONG SAM DAM + nhan mat da lon = lam_phu (trung nien),
+            AO LUA TONG SANG gon gang + tay khong = lam_uyen (thieu nien tre nhat).
         text_safe_zone: [{ x: 0.05, y: 0.72, w: 0.90, h: 0.25 }]
         text_safe_zone_warning: false
         beat_type: "climax"

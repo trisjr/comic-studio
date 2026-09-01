@@ -9,21 +9,26 @@
 >
 > Cách phê chuẩn: ghi *"Phê chuẩn"* + ngày vào cột trạng thái bảng dưới. Cách override: thay file `<char_id>.png` bằng candidate khác, cập nhật dòng tương ứng (nguồn + lý do + ngày), ⛔ không xoá dòng cũ.
 
-## Đợt 2 — 2026-09-01, art style manhua MÀU (biến thể B) — HIỆN HÀNH
+## Đợt 3 — 2026-09-01, art style CHỐT: manga Nhật B/W + "đỏ tà dị" — HIỆN HÀNH
 
-> Căn cứ đổi style: Founder chốt hướng *manhua màu* `2026-09-01` sau A/B test — xem khối **Art style dùng cho MVP0** trong [`mvp0/README.md`](../README.md). Toàn bộ 9 candidate sinh lại tại `run-refs-20260901-001908` bằng `BASE_STYLE` mới.
+> Style chốt sau **ba vòng A/B** — xem khối **Art style dùng cho MVP0** trong [`mvp0/README.md`](../README.md). Toàn bộ 9 candidate sinh tại `run-refs-20260901-122647` bằng `BASE_STYLE` chốt (kèm bible/panel script đã khử màu-tả-thực).
 
 | char_id | File nguồn (provenance) | Lý do đề xuất (theo 3 tiêu chí Bước 2) | Trạng thái |
 |---|---|---|---|
-| `lam_uyen` | `run-refs-20260901-001908/candidates/lam_uyen-c2.png` | (1) Khuôn mặt trẻ đúng 17 tuổi, mắt tối gần "hai mắt đen" nhất trong 3 candidate (c1 mắt trắng dã lệch canonical); nét lông mày rậm + gò má cao dễ nhận lại. (2) Áo đen rách nát, da tái nhợt đúng Bible. (3) Vệt máu khoé miệng nhỏ — chấp nhận được với tông truyện | ⏳ Chờ phê chuẩn |
-| `lam_phu` | `run-refs-20260901-001908/candidates/lam_phu-c1.png` | (1) 3 pose khuôn mặt nhất quán nhất (nếp nhăn giữa mày, mắt trũng, râu quai nón); c2 có vệt máu trên mặt — nhiễu cho nhân vật chỉ xuất hiện flashback. (2) Áo choàng nâu sẫm + cổ thêu chỉ vàng + trâm gỗ rõ. (3) Nhẫn ngọc LỤC hiện rõ | ⏳ Chờ phê chuẩn |
-| `bach_y_nu` | `run-refs-20260901-001908/candidates/bach_y_nu-c2.png` | (1) *"Gương mặt lạnh, không biểu cảm, mắt dài và hẹp"* thể hiện chuẩn nhất, 3 pose nhất quán. (2) Áo trắng toàn bộ, trơn. (3) Trường kiếm **lưỡi thẳng** kiểu Trung Hoa (c0 pose giữa cong kiểu katana), chuôi quấn dây rõ | ⏳ Chờ phê chuẩn |
+| `lam_uyen` | `run-refs-20260901-122647/candidates/lam_uyen-c1.png` | (1) 3 pose khuôn mặt nhất quán, lông mày rậm + gò má cao dễ nhận lại; mắt đen đúng canonical. (2) Áo đen tuyền rách nát, tóc bết từng lọn, tay nổi gân — bám Bible sát nhất. (3) B/W gần tuyệt đối (một chấm đỏ rất nhỏ trên vai áo pose trái). c0/c2 bị môi đỏ / vệt máu miệng — lệch *"môi không còn sắc máu"* | ⏳ Chờ phê chuẩn |
+| `lam_phu` | `run-refs-20260901-122647/candidates/lam_phu-c1.png` | (1) 3 pose nhất quán nhất (nếp nhăn giữa mày, mắt trũng, râu quai nón, trâm gỗ). (2) Áo gấm tông sẫm + thêu hoa văn nổi B/W đúng bible mới. (3) ⚠️ **Nhẫn ra màu ĐỎ ở cả 3 candidate** — model đặt spot-đỏ của style vào vật "nổi bật" duy nhất. Đề xuất **chấp nhận**: ảnh ref là conditioning nên nhẫn đỏ sẽ nhất quán mọi panel (tốt cho trục attribute binding `G1-d`), và "kỷ vật nhuốm đỏ" không phá tông truyện. Founder bác được khi phê chuẩn | ⏳ Chờ phê chuẩn |
+| `bach_y_nu` | `run-refs-20260901-122647/candidates/bach_y_nu-c1.png` | (1) Mặt lạnh vô cảm, mắt dài hẹp — 3 pose nhất quán. (2) Áo trắng trơn, tay áo rộng ✓. (3) B/W **sạch tuyệt đối**; c2 có giọt máu đỏ trên lưỡi kiếm — đẹp về cốt truyện nhưng ⛔ nguy hiểm cho canonical (kiếm sẽ dính máu ở mọi panel, kể cả trước cảnh đâm) | ⏳ Chờ phê chuẩn |
 
-**Ghi chú đo lường đợt 2:**
+**Ghi chú đo lường đợt 3:**
 
-- Cả 9 candidate mới: 0 refusal, model `qwen-image-max-2025-12-30` (đã pin), pacing 30s trong script chính hoạt động sạch.
-- Lỗi *ghost woman* (đợt 1) **không tái xuất** ở cả 3 ảnh `lam_phu` — fix lọc meta-note bền vững qua style mới.
+- 9/9 candidate, 0 refusal, model `qwen-image-max-2025-12-30`, pacing 30s sạch.
+- Ghost woman tiếp tục vắng mặt ở cả 3 ảnh `lam_phu` (fix meta-note bền qua 3 style).
+- Bằng chứng khử màu: "nhẫn ngọc"→"nhẫn mặt đá" đã hết màu **lục**; hệ quả mới là spot **đỏ** từ chính style — xem cột `lam_phu`.
 - File PNG trong thư mục này là **dữ liệu giữ lại** (ngoại lệ `.gitignore`) — chỉ commit **sau khi Founder phê chuẩn**.
+
+## Đợt 2 — 2026-09-01, manhua MÀU biến thể B (ĐÃ THAY THẾ, giữ làm lịch sử)
+
+Đề xuất cũ: `lam_uyen-c2` + `lam_phu-c1` + `bach_y_nu-c2` từ run `20260901-001908` (style manhua màu trầm). ⛔ **Vô hiệu cùng ngày** — Founder xem ảnh, yêu cầu thêm biến thể manga Nhật theo ảnh tham khảo, và chốt lại style ở vòng A/B thứ ba. Ảnh đợt 2 là dữ liệu quan sát của vòng chọn style.
 
 ## Đợt 1 — 2026-08-31, art style đen trắng (ĐÃ THAY THẾ, giữ làm lịch sử)
 

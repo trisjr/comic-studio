@@ -101,13 +101,16 @@ Chương này chấm theo phiếu [`C-1…C-8`](../docs/050-Research/Analysis-MV
 ## Art style dùng cho MVP0
 
 > [!IMPORTANT]
-> ⭐ **Founder chốt `2026-09-01`: manhua MÀU, tông trầm tối** — thay cho style đen trắng ban đầu.
+> ⭐ **Founder chốt `2026-09-01`: manga Nhật ĐEN TRẮNG + "đỏ tà dị"** — đen trắng thuần (nét mực đậm, screentone, cross-hatching), **duy nhất màu đỏ máu** được phép xuất hiện ở **yếu tố siêu nhiên**: chớp đỏ · sợi dây đỏ số mệnh · mắt phải đỏ của `lam_uyen`.
 >
-> **Vì sao đổi**: style đen trắng **mâu thuẫn với chính dữ liệu** — Story Bible phân biệt nhân vật bằng MÀU (nâu sẫm / trắng / xanh nhạt / nhẫn ngọc *lục*) và mọi panel có `palette:` màu ⇒ 23 ảnh đầu ra lai tạp giữa đen-trắng và màu (bằng chứng: run `refs-223131`, probe `232407`). Chốt manhua màu làm dữ liệu **tự nhất quán** — bible và palette giữ nguyên, ⛔ không sửa hồi tố.
+> **Chốt qua BA vòng A/B trong free quota** (mỗi vòng Founder nhìn ảnh thật rồi quyết): ① đen-trắng cũ thua vì mâu thuẫn dữ liệu màu → chọn hướng manhua màu; ② manhua màu B vs manga Nhật C (theo ảnh tham khảo Founder) → chọn C; ③ C tuyệt đối vs C + đỏ tà dị → chốt **C + đỏ tà dị** (bằng chứng: panel 1 chớp đỏ trên nền B/W).
 >
-> **Cách chốt**: A/B test 4 ảnh (2 biến thể × char sheet + cảnh đông) trong free quota; Founder chọn biến thể B — *desaturated moody palette, blood-red accents, dark xianxia horror*. Chuỗi chính thức nằm ở một nơi duy nhất: `BASE_STYLE` trong [`compile_prompt.py`](../scripts/mvp0/compile_prompt.py).
+> **Hệ quả đã cài vào code và data:**
+> - Chuỗi style nằm ở **một nơi duy nhất**: `BASE_STYLE` trong [`compile_prompt.py`](../scripts/mvp0/compile_prompt.py); cờ `BASE_STYLE_IS_MONOCHROME` làm compiler **bỏ `palette:` màu** khỏi prompt (data palette giữ nguyên — tri thức cho preset màu sau này).
+> - Mô-tả-màu **bám nhân vật** trong Story Bible / panel script đổi thành **tông + chất liệu + hình** (*nâu sẫm→tông sẫm đậm, chỉ vàng→hoa văn thêu nổi, nhẫn ngọc→nhẫn mặt đá lớn, rỉ xanh→rỉ sét*); màu gốc giữ trong comment YAML — bằng chứng thực nghiệm: chữ màu (kể cả "ngọc") trong prompt **thắng** cả style block lẫn chỉ dẫn ép xám.
+> - Ba yếu tố "đỏ tà dị" **giữ nguyên chữ đỏ** trong data — đó là ý đồ nghệ thuật, không phải rò rỉ.
 >
-> ⚠️ Hệ quả đo lường: ảnh sinh **trước** mốc này mang style cũ — là dữ liệu quan sát, ⛔ không trộn vào golden dataset. Canonical refs sinh lại toàn bộ với style mới (xem [`refs/selection-log.md`](./refs/selection-log.md)).
+> ⚠️ Hệ quả đo lường: ảnh sinh **trước** mốc này (38 ảnh style cũ/thăm dò) là dữ liệu quan sát, ⛔ không trộn vào golden dataset. Canonical refs sinh lại toàn bộ với style chốt (xem [`refs/selection-log.md`](./refs/selection-log.md)). Việc bổ sung **catalog thể loại style** (nhiều preset có tên) là năng lực sau MVP0 — `G1` chạy đúng MỘT style này.
 
 ## Chạy MVP0
 

@@ -203,6 +203,7 @@ pages:
         visual_constraints:
           palette: "xám bình minh, đỏ"
           state_ref: "sau_thuc_tinh"
+# Mat do = "DO TA DI" duoc phep mang mau (Founder chot 2026-09-01).
           detail: "⭐ Mắt TRÁI vẫn đen; mắt PHẢI đỏ như máu. Đây là mốc trạng thái mới."
         text_safe_zone: [{ x: 0.55, y: 0.05, w: 0.40, h: 0.25 }]
         text_safe_zone_warning: false
