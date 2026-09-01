@@ -3,7 +3,7 @@
 # Nhật ký chọn canonical reference — MVP0
 
 > [!IMPORTANT]
-> ⚠️ **Trạng thái: ĐỀ XUẤT của Comic Studio — CHỜ FOUNDER PHÊ CHUẨN.**
+> ✅ **Trạng thái: FOUNDER ĐÃ PHÊ CHUẨN đợt 3 ngày `2026-09-01`** — qua phiên làm việc (nguyên văn: *"Duyệt, em tự điền sau đó merge giúp anh"*), Comic Studio ghi thay theo ủy quyền. Phán quyết kèm theo: **chấp nhận nhẫn đỏ** của `lam_phu` như đề xuất.
 >
 > [Chay-MVP0 Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md) ghi rõ việc chọn canonical là *"việc của con người — ⛔ không giao cho máy"* (Điều 5a NĐ 134/2026 đòi quyết định sáng tạo của **con người**). Ba file dưới đây do Comic Studio **đề xuất** theo ủy quyền *"tự làm tiếp"* của Founder để pipeline chạy được; **quyết định con người xảy ra tại thời điểm Founder phê chuẩn hoặc thay ảnh — bắt buộc TRƯỚC run sinh ảnh chấm `G1`**.
 >
@@ -15,9 +15,9 @@
 
 | char_id | File nguồn (provenance) | Lý do đề xuất (theo 3 tiêu chí Bước 2) | Trạng thái |
 |---|---|---|---|
-| `lam_uyen` | `run-refs-20260901-122647/candidates/lam_uyen-c1.png` | (1) 3 pose khuôn mặt nhất quán, lông mày rậm + gò má cao dễ nhận lại; mắt đen đúng canonical. (2) Áo đen tuyền rách nát, tóc bết từng lọn, tay nổi gân — bám Bible sát nhất. (3) B/W gần tuyệt đối (một chấm đỏ rất nhỏ trên vai áo pose trái). c0/c2 bị môi đỏ / vệt máu miệng — lệch *"môi không còn sắc máu"* | ⏳ Chờ phê chuẩn |
-| `lam_phu` | `run-refs-20260901-122647/candidates/lam_phu-c1.png` | (1) 3 pose nhất quán nhất (nếp nhăn giữa mày, mắt trũng, râu quai nón, trâm gỗ). (2) Áo gấm tông sẫm + thêu hoa văn nổi B/W đúng bible mới. (3) ⚠️ **Nhẫn ra màu ĐỎ ở cả 3 candidate** — model đặt spot-đỏ của style vào vật "nổi bật" duy nhất. Đề xuất **chấp nhận**: ảnh ref là conditioning nên nhẫn đỏ sẽ nhất quán mọi panel (tốt cho trục attribute binding `G1-d`), và "kỷ vật nhuốm đỏ" không phá tông truyện. Founder bác được khi phê chuẩn | ⏳ Chờ phê chuẩn |
-| `bach_y_nu` | `run-refs-20260901-122647/candidates/bach_y_nu-c1.png` | (1) Mặt lạnh vô cảm, mắt dài hẹp — 3 pose nhất quán. (2) Áo trắng trơn, tay áo rộng ✓. (3) B/W **sạch tuyệt đối**; c2 có giọt máu đỏ trên lưỡi kiếm — đẹp về cốt truyện nhưng ⛔ nguy hiểm cho canonical (kiếm sẽ dính máu ở mọi panel, kể cả trước cảnh đâm) | ⏳ Chờ phê chuẩn |
+| `lam_uyen` | `run-refs-20260901-122647/candidates/lam_uyen-c1.png` | (1) 3 pose khuôn mặt nhất quán, lông mày rậm + gò má cao dễ nhận lại; mắt đen đúng canonical. (2) Áo đen tuyền rách nát, tóc bết từng lọn, tay nổi gân — bám Bible sát nhất. (3) B/W gần tuyệt đối (một chấm đỏ rất nhỏ trên vai áo pose trái). c0/c2 bị môi đỏ / vệt máu miệng — lệch *"môi không còn sắc máu"* | ✅ Phê chuẩn 2026-09-01 |
+| `lam_phu` | `run-refs-20260901-122647/candidates/lam_phu-c1.png` | (1) 3 pose nhất quán nhất (nếp nhăn giữa mày, mắt trũng, râu quai nón, trâm gỗ). (2) Áo gấm tông sẫm + thêu hoa văn nổi B/W đúng bible mới. (3) ⚠️ **Nhẫn ra màu ĐỎ ở cả 3 candidate** — model đặt spot-đỏ của style vào vật "nổi bật" duy nhất. Đề xuất **chấp nhận**: ảnh ref là conditioning nên nhẫn đỏ sẽ nhất quán mọi panel (tốt cho trục attribute binding `G1-d`), và "kỷ vật nhuốm đỏ" không phá tông truyện. Founder bác được khi phê chuẩn | ✅ Phê chuẩn 2026-09-01 |
+| `bach_y_nu` | `run-refs-20260901-122647/candidates/bach_y_nu-c1.png` | (1) Mặt lạnh vô cảm, mắt dài hẹp — 3 pose nhất quán. (2) Áo trắng trơn, tay áo rộng ✓. (3) B/W **sạch tuyệt đối**; c2 có giọt máu đỏ trên lưỡi kiếm — đẹp về cốt truyện nhưng ⛔ nguy hiểm cho canonical (kiếm sẽ dính máu ở mọi panel, kể cả trước cảnh đâm) | ✅ Phê chuẩn 2026-09-01 |
 
 **Ghi chú đo lường đợt 3:**
 

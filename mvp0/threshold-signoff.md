@@ -1,5 +1,8 @@
 # Phiếu ký nhận ngưỡng `[EM]` — ký TRƯỚC khi đo
 
+> [!NOTE]
+> ✅ **Đã ký `2026-09-01`** — Founder phê duyệt toàn bộ ngưỡng đề xuất trong phiếu qua phiên làm việc (nguyên văn: *"Duyệt, em tự điền sau đó merge giúp anh"*); Comic Studio điền phiếu thay theo ủy quyền. Thời điểm ký: **TRƯỚC** khi sinh bất kỳ ảnh nào dùng để chấm `G1` — ảnh đã sinh trước mốc này (refs 3 đợt, probe 6/9/18, A/B style) là dữ liệu thăm dò/quan sát, ⛔ không chấm `G1`; panel 6/9/18 sẽ được sinh lại trong run chấm.
+
 > [!CAUTION]
 > ⭐ **Phiếu này phải được ký TRƯỚC khi sinh tấm ảnh đầu tiên.**
 >
@@ -33,7 +36,7 @@ Năm tiêu chí `G1` có **độ mạnh nguồn khác nhau**. Chỉ những cái
 | **Lý do chọn hình dạng này** | `CF-8.5`: chỉ số này quyết định *"checker có cắt được công người hay chỉ thêm chi phí"*. Nếu người vẫn phải loại **>1/2** số panel mà VLM đã chọn, VLM-select **đang là một lớp chi phí thuần** |
 | **Hệ quả nếu rơi dải giữa** | HITL gate ở MVP1 (`H1`) phải thiết kế cho **tải review cao hơn dự kiến** |
 
-- [ ] **Founder ký nhận** ba dải trên · Ngày: `__________`
+- [x] **Founder ký nhận** ba dải trên · Ngày: `2026-09-01` *(qua phiên làm việc, Comic Studio điền thay)*
 
 ### 2. `G1-d` — panel nhiều nhân vật
 
@@ -44,8 +47,8 @@ Năm tiêu chí `G1` có **độ mạnh nguồn khác nhau**. Chỉ những cái
 | **Lý do hình dạng bất đối xứng** | `CF-6.5` `[OFF]`: ID-Sim **sụp** từ **42.33** (2 người) → **27.21** (3 người). Đặt cùng một ngưỡng cho cả hai là **đặt sai** |
 | ⚠️ **Cảnh báo cỡ mẫu** | Với `panel-script-ch1.yaml`: **n=3** cho trục 2 nhân vật, **n=1** cho trục 3 nhân vật. Giá trị quan sát được chỉ có thể là `0 · 33 · 67 · 100%` ⇒ **dải `50–60%` ⛔ không tồn tại trên thang đo**. Xem [README](./README.md) |
 
-- [ ] **Founder ký nhận** ngưỡng ≥60% · Ngày: `__________`
-- [ ] **Founder ký nhận** rằng verdict `G1-d` sẽ **luôn ghi kèm cỡ mẫu** · Ngày: `__________`
+- [x] **Founder ký nhận** ngưỡng ≥60% · Ngày: `2026-09-01` *(qua phiên làm việc, Comic Studio điền thay)*
+- [x] **Founder ký nhận** rằng verdict `G1-d` sẽ **luôn ghi kèm cỡ mẫu** · Ngày: `2026-09-01` *(cỡ mẫu hiện tại: n=3 panel 2 nhân vật, n=1 panel 3 nhân vật — đo-và-báo-cáo kèm cỡ mẫu)*
 
 ### 3. `E_hitl` — trần giờ người mỗi chapter
 
@@ -56,7 +59,7 @@ Năm tiêu chí `G1` có **độ mạnh nguồn khác nhau**. Chỉ những cái
 | **Nghĩa vụ kèm theo** | Phải **hiệu chỉnh bằng số đo thật của MVP0** (tỉ lệ human-reject sau VLM-select, tức chính `G1-c`) |
 | **Nếu vượt trần** | ⛔ **KHÔNG split được** — split ⛔ không giảm nghĩa vụ lặp lại. Phải **escalate cho Founder** |
 
-- [ ] **Founder ký nhận** trần 2h là **placeholder cần hiệu chỉnh**, ⛔ không phải ngưỡng đã kiểm chứng · Ngày: `__________`
+- [x] **Founder ký nhận** trần 2h là **placeholder cần hiệu chỉnh**, ⛔ không phải ngưỡng đã kiểm chứng · Ngày: `2026-09-01` *(qua phiên làm việc, Comic Studio điền thay)*
 
 ### 4. `G1-a` — consistency nhân vật *(nên ký, không bắt buộc)*
 
@@ -66,7 +69,7 @@ Năm tiêu chí `G1` có **độ mạnh nguồn khác nhau**. Chỉ những cái
 | **Đo bằng** | Nhìn **8 panel liền nhau**: *"có nhận ra đó là cùng một nhân vật mà không cần được nhắc không?"* Chấm bằng mắt, ghi ra bảng |
 | **Vì sao vẫn nên ký** | Nguồn là **đề xuất của một lens ở run trước**, ⛔ không phải benchmark ngành. Nó mạnh hơn `[EM]` nhưng ⛔ vẫn không phải số đo |
 
-- [ ] **Founder ký nhận** ngưỡng ≥70% · Ngày: `__________`
+- [x] **Founder ký nhận** ngưỡng ≥70% · Ngày: `2026-09-01` *(qua phiên làm việc, Comic Studio điền thay)*
 
 ---
 
