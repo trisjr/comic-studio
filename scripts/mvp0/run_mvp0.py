@@ -79,18 +79,12 @@ def append_jsonl(path, record):
 
 
 def character_sheet_prompt(entity):
-    """Prompt sinh character sheet — deterministic, ⛔ khong LLM.
-
-    Moi field di qua `strip_meta` — chu thich meta trong Story Bible ma vao
-    prompt se THANH NOI DUNG VE (bang chung: run-refs-20260831-223131, 3/3
-    anh lam_phu bi ve them nguoi la tu cau "⛔ khong gan cho nguoi phu nu
-    ao trang").
-    """
-    ref = entity["canonical_reference"]
+    """Prompt sinh character sheet — deterministic, ⛔ khong LLM."""
+    ref = entity.get("canonical_reference_en") or entity["canonical_reference"]
     strip = compile_prompt.strip_meta
     parts = [
         compile_prompt.BASE_STYLE,
-        "character reference sheet, neutral grey background, front view and three-quarter view",
+        "2D anime character design model sheet, multiple angle views, clean neutral background, front view and three-quarter view, pure 2D anime drawing, flat cel shading",
         f"{entity['ten']}: {strip(ref['khuon_mat'])} {strip(ref['toc'])} {strip(ref['trang_phuc'])}",
     ]
     if "vat_pham" in ref:
@@ -100,8 +94,10 @@ def character_sheet_prompt(entity):
     return ". ".join(p.replace("\n", " ").strip() for p in parts if p)
 
 
-def run_refs(is_dry_run):
+def run_refs(is_dry_run, only_character=None):
     bible = load_bible()
+    if only_character:
+        bible = {k: v for k, v in bible.items() if k == only_character}
     run_dir = make_run_dir("refs")
     print(f"Stage refs — {len(bible)} nhan vat x {N_CANDIDATES} candidate\n")
 
@@ -225,11 +221,12 @@ def main():
     parser.add_argument("--chapter", default="ch1", choices=["ch1", "ch2", "all"])
     parser.add_argument("--dry-run", action="store_true",
                         help="Chi compile va in prompt — ⛔ khong goi API, ⛔ khong ton tien")
+    parser.add_argument("--character", help="Chi sinh reference cho 1 character_id")
     parser.add_argument("--panels", type=int, nargs="*", help="Chi chay vai panel_index")
     args = parser.parse_args()
 
     if args.stage == "refs":
-        run_refs(args.dry_run)
+        run_refs(args.dry_run, args.character)
     else:
         run_panels(args.chapter, args.dry_run, args.panels)
     return 0

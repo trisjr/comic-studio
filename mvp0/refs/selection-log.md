@@ -3,14 +3,21 @@
 # Nhật ký chọn canonical reference — MVP0
 
 > [!IMPORTANT]
-> ✅ **Trạng thái: FOUNDER ĐÃ PHÊ CHUẨN đợt 3 ngày `2026-09-01`** — qua phiên làm việc (nguyên văn: *"Duyệt, em tự điền sau đó merge giúp anh"*), Comic Studio ghi thay theo ủy quyền. Phán quyết kèm theo: **chấp nhận nhẫn đỏ** của `lam_phu` như đề xuất.
+> ✅ **Trạng thái: FOUNDER ĐÃ PHÊ CHUẨN đợt 4 ngày `2026-09-02`** — qua phiên làm việc, chốt phong cách **Pure 2D Anime / Manhwa Webtoon** (Clip Studio Paint 2D Drawing, nét mảnh, mảng màu phẳng cel-shading, triệt tiêu hoàn toàn 3D CGI).
 >
-> [Chay-MVP0 Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md) ghi rõ việc chọn canonical là *"việc của con người — ⛔ không giao cho máy"* (Điều 5a NĐ 134/2026 đòi quyết định sáng tạo của **con người**). Ba file dưới đây do Comic Studio **đề xuất** theo ủy quyền *"tự làm tiếp"* của Founder để pipeline chạy được; **quyết định con người xảy ra tại thời điểm Founder phê chuẩn hoặc thay ảnh — bắt buộc TRƯỚC run sinh ảnh chấm `G1`**.
->
-> Cách phê chuẩn: ghi *"Phê chuẩn"* + ngày vào cột trạng thái bảng dưới. Cách override: thay file `<char_id>.png` bằng candidate khác, cập nhật dòng tương ứng (nguồn + lý do + ngày), ⛔ không xoá dòng cũ.
+> [Chay-MVP0 Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md) ghi rõ việc chọn canonical là *"việc của con người — ⛔ không giao cho máy"*. Ba file canonical dưới đây được chọn từ run `20260902-155323` cho vòng đo `G1`.
 
-## Đợt 3 — 2026-09-01, art style CHỐT: manga Nhật B/W + "đỏ tà dị" — HIỆN HÀNH
+## Đợt 4 — 2026-09-02, art style CHỐT: Pure 2D Anime / Manhwa Webtoon — HIỆN HÀNH
 
+> Style chốt theo mẫu Webtoon 2D phẳng của Founder: nét mảnh sắc sảo, cel-shading 2D thuần túy, ngũ quan cách điệu anime, cấm triệt để 3D CGI. Toàn bộ 9 candidate sinh tại `run-refs-20260902-155323`.
+
+| char_id | File nguồn (provenance) | Lý do đề xuất / phê chuẩn | Trạng thái |
+|---|---|---|---|
+| `lam_uyen` | `run-refs-20260902-155323/candidates/lam_uyen-c0.png` | 4 góc nhìn chuẩn 2D Anime (chính diện, toàn thân, nghiêng, 3/4). Mắt đen sắc bén, tóc đen tỉa mảng 2D, áo rách đen, chân trần đúng Story Bible. 100% 2D lineart phẳng | ✅ Phê chuẩn 2026-09-02 |
+| `lam_phu` | `run-refs-20260902-155323/candidates/lam_phu-c0.png` | 3 góc nhìn 2D, trung niên uy nghiêm, tóc búi trâm gỗ, râu quai nón, nhẫn đá lớn ở tay phải, áo gấm sẫm đúng gia chủ | ✅ Phê chuẩn 2026-09-02 |
+| `bach_y_nu` | `run-refs-20260902-155323/candidates/bach_y_nu-c0.png` | 3 góc nhìn 2D thanh thoát, váy trắng kiếm tu, nét vẽ thanh mảnh, mắt lạnh 2D sắc lẹm, kiếm có chuôi quấn dải lụa trắng | ✅ Phê chuẩn 2026-09-02 |
+
+## Đợt 3 — 2026-09-01, art style manga Nhật B/W (ĐÃ THAY THẾ, giữ làm lịch sử)
 > Style chốt sau **ba vòng A/B** — xem khối **Art style dùng cho MVP0** trong [`mvp0/README.md`](../README.md). Toàn bộ 9 candidate sinh tại `run-refs-20260901-122647` bằng `BASE_STYLE` chốt (kèm bible/panel script đã khử màu-tả-thực).
 
 | char_id | File nguồn (provenance) | Lý do đề xuất (theo 3 tiêu chí Bước 2) | Trạng thái |
