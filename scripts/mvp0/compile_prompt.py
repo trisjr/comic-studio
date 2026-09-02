@@ -103,32 +103,22 @@ BEAT_TREATMENT = {
     "transition": "neutral framing, motion implied",
 }
 
-# ⭐ Art style van hanh cho MVP0 — Founder chot 2026-09-01 sau BA vong A/B
-# (1: den-trang cu vs manhua mau · 2: manhua mau B vs manga Nhat C theo anh
-# tham khao Founder gui · 3: C tuyet doi vs C + "DO TA DI"): chot C + do ta
-# di — shonen manga den trang, DUY NHAT mau do mau danh cho yeu to sieu
-# nhien (chop do, soi day do so menh, mat phai do). Mo ta DAC TRUNG thi
-# giac, ⛔ khong neu ten tac pham/tac gia (tranh `IPInfringementSuspect`).
-BASE_STYLE = ("traditional Japanese shonen manga art, black and white ink drawing, "
-              "bold confident linework, heavy solid black shadows, screentone halftone shading, "
-              "detailed cross-hatching, dynamic speed lines, high contrast monochrome, "
-              "a single blood-red spot color reserved strictly for supernatural elements")
-
-# Style den trang ⇒ `palette:` (mau) cua panel bi loai khoi prompt. Bai hoc
-# thuc nghiem vong A/B 1: menh de mau trong prompt DE bep tuyen bo den-trang
-# va keo anh sang mau lai tap. Mo ta mau trong Story Bible (nau sam, ngoc
-# luc...) van giu — model B/W-hoa chung thanh gia tri xam (da verify bang
-# anh test lam_phu truoc khi sinh lai refs).
-BASE_STYLE_IS_MONOCHROME = True
+# ⭐ Art style CHUẨN: Pure 2D Anime / Manhwa Webtoon (Clip Studio Paint 2D Drawing)
+BASE_STYLE = ("pure 2D Japanese anime style, flat 2D manhwa webtoon illustration, Clip Studio Paint 2D drawing, "
+              "clean fine black 2D lineart, flat cel shading with hard shadow edges, "
+              "stylized 2D anime face, simple anime nose, simple 2D line mouth, expressive anime eyes, "
+              "flat color fills, 2D anime webcomic panel, no 3D CGI, no 3D Donghua, no 3D render, "
+              "no realistic nose bridge, no volumetric lighting, no soft gradient skin, no 3D game engine")
+BASE_STYLE_IS_MONOCHROME = False
 
 
 def _state_description(entity, state_ref):
     """Tra `state_ref` cua panel vao moc trang thai cua nhan vat trong Story Bible."""
     for state in entity.get("trang_thai_theo_thoi_diem", []):
         if state["moc"] == state_ref:
-            return state["mo_ta"].replace("\n", " ").strip()
+            desc = state.get("mo_ta_en") or state.get("mo_ta")
+            return desc.replace("\n", " ").strip()
     return None
-
 
 def _identity_clauses(panel, bible_by_id):
     """Precedence 1 — ⛔ KHONG BAO GIO bi drop khi vuot budget.
@@ -151,7 +141,7 @@ def _identity_clauses(panel, bible_by_id):
         entity = bible_by_id.get(char_id)
         if entity is None:
             continue
-        ref = entity["canonical_reference"]
+        ref = entity.get("canonical_reference_en") or entity["canonical_reference"]
         parts = [f"{entity['ten']}: {strip_meta(ref['khuon_mat'])} {strip_meta(ref['toc'])}"]
 
         state = _state_description(entity, state_ref) if state_ref else None
@@ -204,13 +194,14 @@ def compile_panel(panel, bible_by_id):
     scene = _scene_clauses(panel)
     constraints = _constraint_clauses(panel)
 
-    # Constraint budget: identity mien tru, phan con lai bi cat tu duoi len.
-    budget_left = max(CONSTRAINT_BUDGET - len(identity), 0)
-    kept_tail, dropped = (scene + constraints)[:budget_left], (scene + constraints)[budget_left:]
+    # Constraint budget: identity va scene mien tru, constraints bi cat tu duoi len.
+    budget_left = max(CONSTRAINT_BUDGET - len(identity) - len(scene), 0)
+    kept_constraints, dropped = constraints[:budget_left], constraints[budget_left:]
 
+    panel_framing = "Single dynamic 2D anime comic book panel frame, narrative scene, no model sheet, no split views"
     seen, ordered = set(), []
-    for clause in [BASE_STYLE] + identity + kept_tail:
-        if clause not in seen:
+    for clause in [BASE_STYLE, panel_framing] + scene + identity + kept_constraints:
+        if clause and clause not in seen:
             seen.add(clause)
             ordered.append(clause)
 

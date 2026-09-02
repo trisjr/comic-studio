@@ -1,0 +1,60 @@
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+: omniroute-keepalive
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341170,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"role":"assistant"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341170,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Defining the Character's Form**\n\nI'm currently working on transitioning the character from the provided reference into a 2D anime style. I've pinpointed his core identity: a young adult male with striking, dark eyes. This forms the basis for adapting his appearance.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341171,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Adapting the Character's Look**\n\nNow I'm focusing on incorporating the character's key features, such as the messy hair and torn robe, into a 2D anime style, while maintaining the grave expression. The location is now set as a dense bamboo forest at dusk. I'm aiming for a medium-long shot to capture the setting's atmosphere.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341172,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Refining the Scene Elements**\n\nI'm now zeroing in on the finer details for the bamboo forest environment. I'm focusing on the number of stalks, leaf density, and ground texture, aiming for a balance between detail and readability. The lighting will be key to establishing the mood, and I'm planning to play with the interplay of warm and cool tones, as well as the positioning of a small stream to highlight the atmosphere.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341176,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Constructing the Scene**\n\nI am now focusing on integrating the character into the bamboo forest setting. I'm prioritizing a three-quarter view to highlight the robes' details, and I'm aiming for a balance between detail and readability in the character's facial features and tattered robes, while maintaining a classic 2D anime style with clear lines and cell shading. I'm focusing on the environmental lighting scheme, dusk, and playing with a warm/cool color palette.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341177,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Composing the Scene**\n\nI'm now integrating the character into the specified bamboo forest at dusk. I'm prioritizing a detailed three-quarter view to showcase the robes and maintaining fidelity to the 2D anime style. The setting sun will provide backlighting and the key lighting, using a complementary color palette, enhancing the character's form amidst the forest's cool, shadowy depths.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341180,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Defining the Scene's Details**\n\nI'm now focusing on a medium-long, single shot of the character within the bamboo forest at dusk, emphasizing a three-quarter view for robe and facial detail. The existing character's features and clothing will be fully integrated. I am ensuring that the environment includes bamboo stalks, leaves, and ground textures and that lighting emphasizes dusk, with the interplay of warm and cool tones, enhancing depth and mood. I'm focusing on his torn robes, messy hair, and intense expression.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"omniroute-keepalive","object":"chat.completion.chunk","created":1788341185,"model":"omniroute","choices":[{"index":0,"delta":{},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341187,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Defining the Scene's Details**\n\nI'm now focusing on generating a medium-long shot with a three-quarter view, ensuring the full integration of character details. A high level of detail is needed to be true to the original character, and this can be done while in a classic 2D anime style. The setting, a bamboo forest at dusk, will be rich in detail and the lighting scheme is being established.\n\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341190,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Analyzing Visual Style**\n\nI'm now focusing on stylistic and environmental fidelity, and how that impacts overall impression. I've confirmed that the character details align with the original design. The setting and lighting are satisfactory. An unexpected element, however, is the inclusion of a comic.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341192,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Refining Environmental Detail**\n\nI'm now refining the composition, focusing on eliminating the accidental UI element, the inset frame. The character's details are consistent with the source. I'm focusing on the bamboo forest at dusk, the view will be a mid-shot emphasizing his bare feet, tattered robe and veins, and the lighting is being adjusted. The gradient will be dramatically improved to better represent a natural transition with rim lighting and shadows, the lines will be polished.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"omniroute-keepalive","object":"chat.completion.chunk","created":1788341200,"model":"omniroute","choices":[{"index":0,"delta":{},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341204,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Evaluating Compositional Integrity**\n\nI'm now zeroing in on composition, and examining how the character integrates with the scene. The character and environment still look as designed. The original error, the inset frame, has been removed. The forest at dusk and the barefoot character are the key elements. The details on the character's clothing and veins are captured well. The lighting has been improved to create a strong transition. Now I'm focusing on the overall scene density, and line polish.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341207,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Assessing Final Details**\n\nI've reviewed the latest iteration closely. The character and setting are now accurately represented per the given prompt. The anime style rendering appears accurate, and I've addressed any previous issues with unwanted UI elements. It seems ready to go.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341207,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{"reasoning_content":"**Confirming Complete Adherence**\n\nI've confirmed the image's adherence to the source instructions regarding the character, environment, and style. The rendering matches the requested anime style, and I've addressed the identified flaws. This image should be sent.\n\n\n"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-rOuXauvDCKr5juMP1OGw6Qg","object":"chat.completion.chunk","created":1788341210,"model":"gemini-3.1-flash-image","choices":[{"index":0,"delta":{},"finish_reason":"stop"}],"usage":{"prompt_tokens":2354,"completion_tokens":1497,"total_tokens":3851,"completion_tokens_details":{"reasoning_tokens":1497}}}
+
+: x-omniroute-cache-hit=false
+: x-omniroute-latency-ms=39315
+: x-omniroute-response-cost=0.0000000000
+: x-omniroute-tokens-in=354
+: x-omniroute-tokens-out=1497
+: x-omniroute-version=3.8.48
+: x-omniroute-model=gemini-3.1-flash-image
+: x-omniroute-provider=antigravity
+data: [DONE]
+
