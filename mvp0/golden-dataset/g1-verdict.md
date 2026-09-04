@@ -35,15 +35,11 @@
 | `G1-e` | Đường đi của chữ | **100%** overlay · **0** model-render | `____` overlay / `____` model-render | `n = ____` panel có thoại | ☐ |
 
 > [!CAUTION]
-> ⭐ **`G1-d` với `n=3` — dải PASS-CÓ-ĐIỀU-KIỆN ⛔ KHÔNG TỒN TẠI trên thang đo.**
+> ⭐ **`G1-d` — lưu ý cỡ mẫu panel nhiều nhân vật.**
 >
-> Với bộ panel script hiện có: **n=3** panel hai nhân vật (14, 15, 18) và **n=1** panel ba nhân vật (16). Giá trị quan sát được **chỉ có thể là** `0 · 33 · 67 · 100%` ⇒ dải `50–60%` ⛔ không đạt tới được, và **một** panel hỏng làm verdict tụt **33 điểm phần trăm**.
+> Kiểm tra cỡ mẫu panel 2 nhân vật và 3 nhân vật trong panel script của chương mới trước khi chấm. Nếu cỡ mẫu quá nhỏ (ví dụ $n \le 3$), dải PASS-CÓ-ĐIỀU-KIỆN (50–60%) có thể không tồn tại trên thang đo.
 >
-> ⇒ Chọn **một** trong hai, ghi rõ vào [mục 4](#4-verdict):
->
-> - ☐ **Nâng cỡ mẫu** trước khi chấm — bổ sung một chương có hội thoại nhiều người
-> - ☐ **Ghi `G1-d` là đo-và-báo-cáo**, ⛔ không dùng làm điều kiện chặn
-
+> ⇒ Luôn ghi kèm cỡ mẫu $n = \dots$ khi báo cáo kết quả `G1-d`.
 **Hai trục của `G1-d` chấm RIÊNG** (`CF-6.5` `[OFF]`: ID-Sim sụp từ **42.33** ở 2 người xuống **27.21** ở 3 người). ⛔ Không gộp hai trục thành một điểm.
 
 ## 2. Đo thêm — regen ratio `p50`/`p90`
