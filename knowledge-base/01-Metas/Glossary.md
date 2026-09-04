@@ -1,4 +1,4 @@
-# Từ Điển Thuật Ngữ (Glossary) - Quy Trình & Hệ Thống Agent
+# Từ Điển Thuật Ngữ (Glossary) - Hệ Điều Hành TNMCORE-OS
 
 ## Mục lục
 1. [Hệ thống cốt lõi (Core System Concepts)](#1-hệ-thống-cốt-lõi-core-system-concepts)
@@ -13,6 +13,7 @@
 
 | Thuật ngữ | Định nghĩa |
 |:---|:---|
+| **TNMCORE-OS** | Hệ điều hành Agile AI-Native, tập trung vào sự cộng tác giữa Con người và AI thông qua tài liệu hóa và quy trình chuẩn. |
 | **Spec-Driven Development (SDD)** | Phương pháp phát triển phần mềm lấy Đặc tả (Specification) làm trung tâm. Mọi dòng code đều phải có nguồn gốc từ Spec. |
 | **Hybrid Collaboration** | Mô hình cộng tác lai giữa năng lực sáng tạo/quyết định của Con người và năng lực thực thi/xử lý của AI. |
 | **Role-Playing First** | Nguyên tắc ưu tiên xác định Danh tính (Identity/Role) của AI trước khi thực hiện bất kỳ kỹ năng (Skill) nào. |
@@ -57,10 +58,10 @@ Dưới đây là các thuật ngữ ưu tiên dùng tiếng Anh để giữ tí
 ---
 
 ## Tài liệu tham khảo
-1. [Knowledge Base Master Index](../00-Index.md) - Bản đồ toàn bộ kho tri thức.
+1. [README.md](../../README.md) - Tầm nhìn và Triết lý TNMCORE-OS.
 2. [OS-Handbook.md](../../OS-Handbook.md) - Cẩm nang vận hành chi tiết.
 3. [OpenAI Documentation - Agentic Concepts](https://platform.openai.com/docs/guides/agents)
 4. [Diátaxis Documentation Framework](https://diataxis.fr/)
 
 ---
-*Glossary được quản lý bởi Comic Studio - Cập nhật lần cuối: 2026-08-30.*
+*Glossary được quản lý bởi TNMCORE-OS - Cập nhật lần cuối: 2026-02-05.*

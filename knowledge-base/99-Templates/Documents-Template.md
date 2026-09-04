@@ -3,29 +3,8 @@ id: RULE-001
 type: rule
 status: approved
 created: 2026-02-05
-updated: 2026-08-24
-# change-log:
-#   2026-08-24 — thêm MỘT hàng additive vào Document Type Mapping:
-#     022-User-Stories › Prioritized Backlog › docs/022-User-Stories/ › Backlog-Priority.md
-#     Lý do: loại tài liệu này được yêu cầu tường minh nhưng chưa được đăng ký, và quy tắc #7
-#     ("KHÔNG ĐƯỢC tạo tài liệu mà không kiểm tra bảng Mapping trước") chặn việc tạo nó.
-#     `type: backlog-priority` trong frontmatter file thật trỏ đúng về hàng này, KHÔNG nhập nhằng —
-#     nhưng nó KHÔNG phải slug nghĩa đen của tên loại ("Prioritized Backlog" → "prioritized-backlog").
-#     Nó khớp theo quy ước LỎNG đã có sẵn của bảng này; tiền lệ: hàng "User Story" ứng với `type: story`.
-#     (Câu gốc ở đây viết "khớp nguyên văn" — overclaim, verify L24 bắt được và đã sửa.)
-#     Chỉ THÊM, không sửa/xoá hàng nào đang có. Tiền lệ: hàng `MVP Scope` thêm ở run 2026-08-23.
-#     Nguồn: docs/010-Planning/pm-runs/2026-08-24-khoi-tao-requirements-stories-comic-studio/
+updated: 2026-03-03
 ---
-
-<!--
-Nhật ký thay đổi (chỉ ghi thay đổi ĐỔI CONTRACT, không ghi sửa chính tả):
-- 2026-08-23: thêm một hàng `MVP Scope → docs/010-Planning/MVP-Scope.md` vào bảng Document
-  Type Mapping. Thay đổi ADDITIVE: không đổi naming convention nào, không đổi cấu trúc thư mục
-  nào, không đường dẫn nào đang tồn tại bị ảnh hưởng. Được duyệt tại gate của run
-  `2026-08-23-khoi-tao-tai-lieu-planning-comic-studio`. Lý do: loại tài liệu này được yêu cầu
-  tạo nhưng không tra được trong bảng, mà quy tắc #7 cấm tạo tài liệu chưa tra bảng.
--->
-
 
 # Quy tắc Cấu trúc Tài liệu (Documentation Structure Rule)
 
@@ -92,7 +71,6 @@ Nhật ký thay đổi (chỉ ghi thay đổi ĐỔI CONTRACT, không ghi sửa 
 | | WBS | `docs/010-Planning/Estimates/` | `WBS-{ProjectName}.xlsx` |
 | | ETA / Timeline | `docs/010-Planning/Estimates/` | `ETA-{ProjectName}.xlsx` |
 | | Risk Register | `docs/010-Planning/` | `Risk-Register.md` |
-| | MVP Scope | `docs/010-Planning/` | `MVP-Scope.md` |
 | | Budget / Cost Estimate | `docs/010-Planning/Estimates/` | `Budget-{ProjectName}.xlsx` |
 | | Status Report | `docs/010-Planning/` | `Status-Report-{Date}.md` |
 | | Retrospective | `docs/010-Planning/Sprints/` | `Retro-Sprint-{NNN}.md` |
@@ -105,7 +83,7 @@ Nhật ký thay đổi (chỉ ghi thay đổi ĐỔI CONTRACT, không ghi sửa 
 | **022-User-Stories** | Epic | `docs/022-User-Stories/Epics/` | `Epic-{Title}.md` |
 | | User Story | `docs/022-User-Stories/Backlog/` | `Story-{Title}.md` |
 | | Active Story | `docs/022-User-Stories/Active-Sprint/` | `Story-{Title}.md` |
-| | Prioritized Backlog | `docs/022-User-Stories/` | `Backlog-Priority.md` |
+| | Unified Backlog _(chỉ [SDLC-Lite](../20-Project/SDLC-Lite-Workflow.md))_ | `docs/022-User-Stories/` | `Backlog.md` |
 | **030-Specs** | ADR | `docs/030-Specs/Architecture/` | `ADR-{NNN}-{Title}.md` |
 | | RFC | `docs/030-Specs/Architecture/` | `RFC-{NNN}-{Title}.md` |
 | | SDD (System Design) | `docs/030-Specs/Architecture/` | `SDD-{ProjectName}.md` |

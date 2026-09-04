@@ -78,7 +78,7 @@ Thực hiện các bước step by step:
 
    - **Mẫu 3: Sử dụng Workflows**
 
-     > `/opsx:new` (Tạo tính năng mới) | `/opsx:explore` (Cần bàn bạc thêm)
+     > `/opsx-new` (Tạo tính năng mới) | `/opsx-explore` (Cần bàn bạc thêm)
 
    - **Mẫu 4: Tìm hiểu cách hoạt động của hệ thống**
 

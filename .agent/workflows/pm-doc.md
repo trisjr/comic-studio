@@ -87,7 +87,7 @@ Theo `pm-core.md` §GATE, cộng bốn mục riêng:
 
 ## Bước 4 — Doc plan (T1–T3)
 
-Thay cho `/opsx:ff` bên lane code. Viết `docs/010-Planning/pm-runs/<run-id>/outline.md`:
+Thay cho `/opsx-ff` bên lane code. Viết `docs/010-Planning/pm-runs/<run-id>/outline.md`:
 
 ```markdown
 # Doc Plan: <run-id>
@@ -218,7 +218,7 @@ Tài liệu viết xong mà không ai trỏ tới thì coi như không tồn t�
    - Re-verify **chỉ các mục đã sửa**: **T0/T1 PM tự làm, 0 spawn** (PM không viết bản fix nên vẫn độc lập); **T2/T3 một dispatch, trần 10 call**.
    - Còn `CRITICAL` sau vòng 1 → **dừng, AskUserQuestion**: còn lỗi gì, chi phí một vòng nữa, lựa chọn giao kèm nợ. **Không tự chạy vòng 2.**
 
-4. **Close-step — PM tự làm, bắt buộc mọi tier** (tương đương `/opsx:archive`):
+4. **Close-step — PM tự làm, bắt buộc mọi tier** (tương đương `/opsx-archive`):
    - Cập nhật **MOC của thư mục cha** cho từng tài liệu mới/đổi tên; `docs/000-Index.md` nếu là tài liệu lớn (PRD, SDD, MTP, Roadmap).
    - Tài liệu bị thay thế → chuyển `docs/090-Archive/` + `status: deprecated`, **không xóa**. Thư mục chưa tồn tại thì tạo theo RULE-001.
    - Chạy *Validation Checklist* của RULE-001 lần cuối trên toàn danh sách.

@@ -30,9 +30,9 @@ description: PM tiếp nhận yêu cầu code, triage ra tier, điều phối sp
    | Tier | Đường đi |
    |---|---|
    | **T0** | PM tự code, 0 spawn. Bỏ Bước 2 và 4. Bước 6: PM đối chiếu AC trong `brief.md`. |
-   | **T1** | `/opsx:ff` + 1 implementer. Bỏ Bước 2. PM tự verify. |
+   | **T1** | `/opsx-ff` + 1 implementer. Bỏ Bước 2. PM tự verify. |
    | **T2** | Fan-out → implement → `quality-assurance` verify. Đủ 6 bước. |
-   | **T3** | Như T2 + delta specs + `design.md` + `/opsx:archive`. |
+   | **T3** | Như T2 + delta specs + `design.md` + `/opsx-archive`. |
 
 ## Bước 2 — Analysis fan-out (T2, T3)
 
@@ -53,8 +53,8 @@ Theo `pm-core.md` §GATE. Riêng lane code: ownership map cắt theo **module / 
 
 ## Bước 4 — Planning artifacts (T1–T3)
 
-- Chạy `/opsx:ff` để scaffold change và sinh artifact tới apply-ready. **T3** thêm delta specs `openspec/changes/<name>/specs/` và `design.md`.
-- **Không chạy `/opsx:new`** (`ff` đã bao trùm) và **không chạy `/opsx:explore` như một phase** (Bước 1–2 đã thay nó bằng phase có output cụ thể).
+- Chạy `/opsx-ff` để scaffold change và sinh artifact tới apply-ready. **T3** thêm delta specs `openspec/changes/<name>/specs/` và `design.md`.
+- **Không chạy `/opsx-new`** (`ff` đã bao trùm) và **không chạy `/opsx-explore` như một phase** (Bước 1–2 đã thay nó bằng phase có output cụ thể).
 
 ## Bước 5 — Implementation
 
@@ -87,10 +87,10 @@ Theo `pm-core.md` §GATE. Riêng lane code: ownership map cắt theo **module / 
    ```
 
    Còn `[ ]` → quay lại đóng lô, hoặc mỗi dòng còn lại có lý do đích danh trong `verdict.md`. T0: đối chiếu AC trong `brief.md`.
-2. **Verify bởi agent KHÁC implementer** — mặc định `quality-assurance`. **T0/T1: PM tự đối chiếu AC, 0 spawn.** T2/T3: dispatch theo tiêu chí `/opsx:verify` (Completeness / Correctness / Coherence), cắt pass theo `pm-core.md` §*Verify cũng phải cắt lô* — mặc định theo 3 tiêu chí; chạm nhiều tầng thì theo tầng (BE / FE / specs).
+2. **Verify bởi agent KHÁC implementer** — mặc định `quality-assurance`. **T0/T1: PM tự đối chiếu AC, 0 spawn.** T2/T3: dispatch theo tiêu chí `/opsx-verify` (Completeness / Correctness / Coherence), cắt pass theo `pm-core.md` §*Verify cũng phải cắt lô* — mặc định theo 3 tiêu chí; chạm nhiều tầng thì theo tầng (BE / FE / specs).
 3. `verdict.md`: **mỗi requirement trong `specs/**/spec.md` có ít nhất một dòng bằng chứng** — requirement không có dòng nào là *chưa kiểm*, không phải *đã đạt*. Kèm chỗ lệch `tasks.md` ↔ code đã ghi nhận khi đóng lô.
 4. CRITICAL → quay lại Bước 5 với worker mới kèm nguyên văn lỗi. Không tự vá rồi tuyên bố xong.
-5. **T3**: verdict sạch → `/opsx:archive`.
+5. **T3**: verdict sạch → `/opsx-archive`.
 6. `cost.md` theo close-step `pm-core.md`, rồi báo cáo theo mục *Output*.
 
 ---

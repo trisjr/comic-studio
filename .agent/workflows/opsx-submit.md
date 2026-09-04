@@ -40,7 +40,7 @@ Automated workflow from code completion to opening a fully formatted Pull Reques
 >   - ✅ `Content Studio — Enforce AI skill entitlement, conflicts and cap in FE`
 >   - ❌ `Cli — Update files` · ❌ `Auth — Fix bug` · ❌ `Api — Change handler`
 >   - `<Scope>` is the **business module** in Title Case (`Content Studio`, `Brand Vault`), or the bare acronym when it is one (`CLI`, `API`, `UI`). Never a raw folder name.
-> - **MONOREPO RULE:** The repository is a single unified repository at HUB_ROOT. Commits and Pull Requests are created directly on the root repository. NEVER use `git add .` blindly; ignore `package.json/package-lock.json` if the task does not modify libraries.
+> - **FORBIDDEN:** Committing at Hub Root (unless `ALLOW_COMMIT_HUB_ROOT=true` in `.env`); NEVER use `git add .`; ignore `package.json/package-lock.json` if the task does not modify libraries.
 
 ---
 

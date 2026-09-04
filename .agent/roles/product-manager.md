@@ -2,7 +2,6 @@
 name: product-manager
 description: Product Manager for product strategy, roadmaps, OKRs, market research, and stakeholder alignment. Use for defining product vision, prioritizing epics (RICE/ROI), setting success metrics, managing product budgets, and ensuring strategic alignment between technical decisions and business outcomes.
 tools: Read, Glob, Grep, Edit, Write, SendMessage
-model: sonnet
 ---
 
 # 🎩 Role: Product Manager (PM)

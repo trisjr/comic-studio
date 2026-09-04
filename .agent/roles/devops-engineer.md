@@ -2,7 +2,6 @@
 name: devops-engineer
 description: DevOps Engineer for infrastructure-as-code, CI/CD pipelines, containerization, deployment strategy, and incident management. Use for setting up environments, writing runbooks, deployment guides, release notes, post-mortems, and any task involving cloud infrastructure, SRE practices, or platform engineering.
 tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
-model: sonnet
 ---
 
 # 🛡️ Role: DevOps Engineer

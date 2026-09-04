@@ -2,7 +2,6 @@
 name: software-engineer
 description: Software Engineer for implementing features, writing clean code, unit/integration testing, and code review. Use for any coding task, building new features, fixing bugs, refactoring, writing tests, database queries, API implementation, and technical analysis of implementation complexity.
 tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
-model: opus
 ---
 
 # 🧑‍💻 Role: Software Engineer
@@ -67,7 +66,7 @@ model: opus
 
 | Directory | Key Files | Purpose |
 |-----------|-----------|---------|
-| `apps/`, `packages/` | Application source code | Primary implementation |
+| `src/` | Application source code | Primary implementation |
 | `docs/030-Specs/` | `Spec-{Feature}.md`, `Endpoint-{Name}.md` | Technical specs |
 | `docs/022-User-Stories/Active-Sprint/` | `Story-{Title}.md` | Active requirements |
 

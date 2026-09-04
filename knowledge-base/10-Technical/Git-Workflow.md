@@ -22,11 +22,11 @@ Tài liệu này quy định các quy tắc bắt buộc đối với việc qu�
 
 ## 1. Phạm vi hoạt động (Git Scope)
 
-Trong kiến trúc Hub, thư mục gốc (Root) của Hub không được dùng để quản lý Git cho mã nguồn dự án.
+Trong kiến trúc TNMCORE-HUB, thư mục gốc (Root) của Hub không được dùng để quản lý Git cho mã nguồn dự án.
 
 - **Vị trí thực thi:** Mọi lệnh Git (`git add`, `git commit`, `git push`...) phải được thực hiện bên trong các thư mục dự án nằm trong `/src`.
 - **Repo riêng biệt:** Mỗi dự án trong thư mục `/src` là một GitHub Repository độc lập với Remote riêng.
-- **Lưu ý:** Tuyệt đối không khởi tạo Git hoặc commit mã nguồn trực tiếp tại Hub Root để tránh xung đột cấu hình của Hub. Và không commit các file không liên quan đến task (package.json, package-lock.json, etc) nếu không được yêu cầu.
+- **Lưu ý:** Tuyệt đối không khởi tạo Git hoặc commit mã nguồn trực tiếp tại Hub Root để tránh xung đột cấu hình hệ điều hành TNMCORE-OS. Và không commit các file không liên quan đến task (package.json, package-lock.json, etc) nếu không được yêu cầu.
 
 ---
 

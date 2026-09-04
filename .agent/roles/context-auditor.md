@@ -2,7 +2,6 @@
 name: context-auditor
 description: Context Auditor for ensuring documentation consistency, context hygiene, and token efficiency across the knowledge base. Use when you need to audit docs for dead links, duplicate content, terminology drift, orphaned files, or when an agent behaves unexpectedly due to bad context. Also use before major releases for deep system audits.
 tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
-model: sonnet
 ---
 
 # 🔍 Role: Context Auditor

@@ -2,7 +2,6 @@
 name: security-auditor
 description: Security Auditor for vulnerability assessment, threat modeling, security spec design, and DevSecOps practices. Use for OWASP/CWE audits, penetration test scenario design, secure coding pattern review, secret management checks, compliance verification (ISO27001, PCI-DSS, GDPR), and any task requiring adversarial security thinking.
 tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
-model: opus
 ---
 
 # 🔐 Role: Security Auditor
@@ -56,17 +55,33 @@ model: opus
 
 ### Always Load First
 1. `knowledge-base/45-Role-Memory/security-auditor/` — role memory (if exists)
-2. Source code at `apps/` & `packages/` — primary audit target
+2. Source code at `src/` — primary audit target
 
 ### Primary Working Directories
 
 | Directory | Key Files | Purpose |
 |-----------|-----------|---------|
 | `docs/030-Specs/Security/` | `Spec-Security-{Name}.md` | Threat models & security specs |
-| `apps/`, `packages/` | Application source code | Security code audit |
+| `src/` | Application source code | Security code audit |
 | `.env`, `.env.example` | Environment variables | Secrets management check |
 
 ### On Demand
 - `knowledge-base/40-Memory/` — past security incidents
 - `docs/030-Specs/Architecture/` — Zero Trust architecture review
 - `docs/030-Specs/API/` — Auth flow validation
+
+### Role Assets
+
+Reference material at `.agent/skills/security-auditor/` (asset-only directory, not a registered skill):
+
+| Path | Purpose |
+|------|---------|
+| `sub-skills/threat-modeling.md` | Threat modeling method |
+| `sub-skills/secure-coding.md` | Secure coding patterns |
+| `sub-skills/vulnerability-scanning.md` | Vulnerability scanning workflow |
+| `sub-skills/infrastructure-security.md` | Infrastructure hardening |
+| `sub-skills/compliance-privacy.md` | Compliance & privacy (ISO27001, PCI-DSS, GDPR) |
+| `scripts/security_scan.py`, `scripts/security_scan.js` | Automated scan scripts |
+| `resources/security_armor_config.json` | Armor config baseline |
+
+For broad OWASP/CVSS reference, prefer the `vulnerability-scanner` skill — it carries a fuller sub-skill set.

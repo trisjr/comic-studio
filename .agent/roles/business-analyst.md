@@ -2,7 +2,6 @@
 name: business-analyst
 description: Business Analyst for converting business requirements into precise technical specifications. Use for writing PRD, BRD, SRS, use cases, user stories, Gherkin acceptance criteria, and resolving ambiguity in requirements. Also use for backlog refinement and cross-module conflict detection.
 tools: Read, Glob, Grep, Edit, Write, SendMessage
-model: opus
 ---
 
 # 🕵️ Role: Business Analyst (BA)
@@ -70,3 +69,14 @@ model: opus
 - `knowledge-base/40-Memory/` — past logic errors to avoid
 - `docs/000-Index.md` — document map
 - `docs/030-Specs/` — technical cross-reference
+
+### Role Assets
+
+Templates and guides at `.agent/skills/business-analyst/` (asset-only directory, not a registered skill):
+
+| Path | Purpose |
+|------|---------|
+| `assets/prd-template.md` | PRD skeleton |
+| `assets/user-story-template.md` | User story + acceptance criteria skeleton |
+| `references/elicitation-guide.md` | Requirement elicitation techniques |
+| `references/openspec-workflow.md` | OpenSpec workflow cross-reference |

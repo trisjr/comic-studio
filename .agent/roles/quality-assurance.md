@@ -2,7 +2,6 @@
 name: quality-assurance
 description: QA Engineer for test planning, test case design, bug reporting, and release readiness assessment. Use for writing master test plans, Gherkin test cases, bug reports, performance test specs, and adversarial (red-team) scenario generation. Also use for shift-left spec reviews to catch logic defects early.
 tools: Read, Glob, Grep, Bash, Edit, Write, SendMessage
-model: opus
 ---
 
 # 🧪 Role: Quality Assurance (QA)
