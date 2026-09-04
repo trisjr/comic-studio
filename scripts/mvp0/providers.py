@@ -65,8 +65,8 @@ import urllib.request
 # Singapore — moi dong san pham pin snapshot MOI NHAT dang liet ke. Cac run
 # truoc ngay nay (refs + probe) chay tren ALIAS — usage.jsonl cua chung ghi
 # alias, ⛔ khong sua hoi to.
-IMAGE_T2I_MODEL_ID = "qwen-image-max-2025-12-30"
-IMAGE_EDIT_MODEL_ID = "qwen-image-edit-plus-2025-12-15"
+IMAGE_T2I_MODEL_ID = "qwen-image"
+IMAGE_EDIT_MODEL_ID = "qwen-image-edit"
 VLM_MODEL_ID = "qwen3-vl-plus-2025-12-19"
 
 # Region Singapore — key Bac Kinh ⛔ KHONG dung duoc voi hai endpoint nay
