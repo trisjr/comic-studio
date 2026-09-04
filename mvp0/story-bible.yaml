@@ -20,6 +20,7 @@ nhan_vat:
 
   - id: lam_uyen
     ten: "Lâm Uyên"
+    ten_en: "Lam Uyen"
     vai_tro: "Nhân vật chính"
     tuoi: 17
     canonical_reference:
@@ -76,6 +77,7 @@ nhan_vat:
 
   - id: lam_phu
     ten: "Lâm phụ (cha của Lâm Uyên)"
+    ten_en: "Father Lam"
     vai_tro: "Nhân vật phụ — chỉ xuất hiện trong flashback"
     tuoi: "khoảng 45"
     canonical_reference:
@@ -102,9 +104,9 @@ nhan_vat:
         Prominent large dark gemstone ring worn on right hand.
 
   - id: bach_y_nu
-    ten: "Người phụ nữ áo trắng"
     vai_tro: "Kẻ giết Lâm Uyên — chỉ xuất hiện trong flashback"
-    tuoi: "không rõ, ngoại hình khoảng 25"
+    ten: "Bạch y nữ (người phụ nữ áo trắng)"
+    ten_en: "White-robed swordswoman"
     canonical_reference:
       khuon_mat: >
         Gương mặt lạnh, không biểu cảm. Mắt dài và hẹp, lông mày mảnh.

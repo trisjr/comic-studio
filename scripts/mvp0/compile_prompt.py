@@ -103,14 +103,25 @@ BEAT_TREATMENT = {
     "transition": "neutral framing, motion implied",
 }
 
-# ⭐ Art style CHUẨN: Pure 2D Anime / Manhwa Webtoon (Clip Studio Paint 2D Drawing)
-BASE_STYLE = ("pure 2D Japanese anime style, flat 2D manhwa webtoon illustration, Clip Studio Paint 2D drawing, "
-              "clean fine black 2D lineart, flat cel shading with hard shadow edges, "
-              "stylized 2D anime face, simple anime nose, simple 2D line mouth, expressive anime eyes, "
-              "flat color fills, 2D anime webcomic panel, no 3D CGI, no 3D Donghua, no 3D render, "
-              "no realistic nose bridge, no volumetric lighting, no soft gradient skin, no 3D game engine")
-BASE_STYLE_IS_MONOCHROME = False
+# ⭐ Art style CHUẨN: Pure 2D Anime / Manhwa Webtoon (Dark Xianxia Comic Art)
+BASE_STYLE_CORE = ("2D manhwa webcomic art style, dark xianxia fantasy comic art, graphic novel panel, "
+                   "clean sharp black ink lineart, flat cel shading with crisp shadow edges, "
+                   "dramatic high contrast, professional digital webtoon illustration, "
+                   "no 3D CGI, no 3D render, no 3D Donghua, no volumetric lighting, "
+                   "no realistic photography, no 3D game engine")
 
+BASE_STYLE_CHARACTER = (f"{BASE_STYLE_CORE}. Dynamic 2D anime/manhwa character drawing, "
+                        "stylized expressive anime face and eyes, natural comic character action pose, "
+                        "integrated full background environment. Single narrative comic book panel frame, "
+                        "storytelling scene, NOT a character model sheet, NOT multiple angle views, "
+                        "NOT standing on blank white background")
+
+BASE_STYLE_SCENERY = (f"{BASE_STYLE_CORE}. Atmospheric establishing scenery and environment comic panel, "
+                      "rich environmental depth, detailed landscape architecture and props. "
+                      "Pure scenery background comic panel frame, NO humans, NO people, NO characters, "
+                      "NO faces in frame")
+BASE_STYLE = BASE_STYLE_CHARACTER
+BASE_STYLE_IS_MONOCHROME = False
 
 def _state_description(entity, state_ref):
     """Tra `state_ref` cua panel vao moc trang thai cua nhan vat trong Story Bible."""
@@ -133,7 +144,7 @@ def _identity_clauses(panel, bible_by_id):
     ⛔ Ca ba deu MIEN TRU khoi constraint budget. Cat chung di la cat dung
     thu ma phep do ton tai de do.
     """
-    constraints = panel["visual_constraints"]
+    constraints = panel.get("visual_constraints_en") or panel.get("visual_constraints", {})
     state_ref = constraints.get("state_ref")
     clauses = []
 
@@ -142,7 +153,8 @@ def _identity_clauses(panel, bible_by_id):
         if entity is None:
             continue
         ref = entity.get("canonical_reference_en") or entity["canonical_reference"]
-        parts = [f"{entity['ten']}: {strip_meta(ref['khuon_mat'])} {strip_meta(ref['toc'])}"]
+        name_en = entity.get("ten_en") or entity.get("ten")
+        parts = [f"{name_en}: {strip_meta(ref.get('khuon_mat', ''))} {strip_meta(ref.get('toc', ''))}"]
 
         state = _state_description(entity, state_ref) if state_ref else None
         parts.append(strip_meta(state if state else ref["trang_phuc"]))
@@ -154,7 +166,7 @@ def _identity_clauses(panel, bible_by_id):
 
         clauses.append(" ".join(p for p in parts if p).replace("\n", " ").strip())
 
-    binding = strip_meta(constraints.get("attribute_binding"))
+    binding = strip_meta(constraints.get("attribute_binding") or panel.get("visual_constraints", {}).get("attribute_binding"))
     if binding:
         clauses.append(f"attribute binding — {binding}".replace("\n", " ").strip())
 
@@ -164,8 +176,9 @@ def _identity_clauses(panel, bible_by_id):
 def _scene_clauses(panel):
     """Precedence 2 — mo ta canh. Bi drop TRUOC identity khi vuot budget."""
     camera = panel["camera"]
+    action = strip_meta(panel.get("action_en") or panel.get("action"))
     clauses = [
-        strip_meta(panel["action"]),
+        action,
         CAMERA_SHOT.get(camera.get("shot"), camera.get("shot", "")),
         CAMERA_ANGLE.get(camera.get("angle"), camera.get("angle", "")),
         BEAT_TREATMENT.get(panel["beat_type"], ""),
@@ -175,7 +188,7 @@ def _scene_clauses(panel):
 
 def _constraint_clauses(panel):
     """Precedence 3 — rang buoc thi giac. Bi drop DAU TIEN."""
-    constraints = panel["visual_constraints"]
+    constraints = panel.get("visual_constraints_en") or panel.get("visual_constraints", {})
     # ⛔ `state_ref` va `attribute_binding` KHONG o day — chung thuoc precedence 1.
     ordered_keys = ["palette", "light_source", "mood", "detail", "scale",
                     "composition", "density", "motion", "pov", "flashback_treatment",
@@ -189,7 +202,14 @@ def _constraint_clauses(panel):
 
 
 def compile_panel(panel, bible_by_id):
-    """Tra ve (text_prompt, conditioning_set, dropped) — ⛔ khong goi model nao."""
+    conditioning_set = [
+        {"character_id": cid, "role": "identity_reference"}
+        for cid in panel.get("characters", [])
+        if cid in bible_by_id
+    ]
+    if panel.get("enhanced_prompt"):
+        return panel["enhanced_prompt"].strip(), conditioning_set, []
+
     identity = _identity_clauses(panel, bible_by_id)
     scene = _scene_clauses(panel)
     constraints = _constraint_clauses(panel)
@@ -198,9 +218,11 @@ def compile_panel(panel, bible_by_id):
     budget_left = max(CONSTRAINT_BUDGET - len(identity) - len(scene), 0)
     kept_constraints, dropped = constraints[:budget_left], constraints[budget_left:]
 
-    panel_framing = "Single dynamic 2D anime comic book panel frame, narrative scene, no model sheet, no split views"
+    has_characters = bool(panel.get("characters")) or panel.get("character_count", 0) > 0
+    base_style = BASE_STYLE_CHARACTER if has_characters else BASE_STYLE_SCENERY
+
     seen, ordered = set(), []
-    for clause in [BASE_STYLE, panel_framing] + scene + identity + kept_constraints:
+    for clause in [base_style] + scene + identity + kept_constraints:
         if clause and clause not in seen:
             seen.add(clause)
             ordered.append(clause)
@@ -212,7 +234,7 @@ def compile_panel(panel, bible_by_id):
         if cid in bible_by_id
     ]
 
-    negative_space = strip_meta(panel.get("negative_space_hint"))
+    negative_space = strip_meta(panel.get("negative_space_hint_en") or panel.get("negative_space_hint"))
     if negative_space:
         ordered.append(f"leave negative space: {negative_space}")
 

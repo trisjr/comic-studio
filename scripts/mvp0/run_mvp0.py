@@ -142,7 +142,7 @@ def load_reference_images(panel):
     return images
 
 
-def run_panels(chapter, is_dry_run, only):
+def run_panels(chapter, is_dry_run, only, n_candidates=N_CANDIDATES):
     bible = load_bible()
     panels = load_panels(chapter)
     if only:
@@ -150,8 +150,8 @@ def run_panels(chapter, is_dry_run, only):
         panels = [p for p in panels if p["panel_index"] in wanted]
 
     run_dir = make_run_dir(f"panels-{chapter}")
-    print(f"Stage panels — {len(panels)} panel x N={N_CANDIDATES} = "
-          f"{len(panels) * N_CANDIDATES} anh\n")
+    print(f"Stage panels — {len(panels)} panel x N={n_candidates} = "
+          f"{len(panels) * n_candidates} anh\n")
 
     for panel in panels:
         index = panel["panel_index"]
@@ -162,14 +162,15 @@ def run_panels(chapter, is_dry_run, only):
             append_jsonl(run_dir / "dropped_constraints.jsonl",
                          {"panel_index": index, "dropped": dropped})
 
+        desc = panel.get("action_en") or panel.get("action")
         print(f"  panel {index:2d}  {len(conditioning_set)} ref  "
-              f"{len(dropped)} drop  {text_prompt[:56]}...")
+              f"{len(dropped)} drop  [{len(text_prompt)}c] {desc[:50]}...")
         if is_dry_run:
             continue
 
         references = load_reference_images(panel)
         candidates, refused = [], 0
-        for candidate_index in range(N_CANDIDATES):
+        for candidate_index in range(n_candidates):
             try:
                 result = providers.generate_candidate(text_prompt, references, candidate_index)
             except providers.ProviderRefusal as refusal:
@@ -223,12 +224,14 @@ def main():
                         help="Chi compile va in prompt — ⛔ khong goi API, ⛔ khong ton tien")
     parser.add_argument("--character", help="Chi sinh reference cho 1 character_id")
     parser.add_argument("--panels", type=int, nargs="*", help="Chi chay vai panel_index")
+    parser.add_argument("-n", "--candidates", type=int, default=N_CANDIDATES,
+                        help=f"So luong candidate moi panel (mac dinh: {N_CANDIDATES})")
     args = parser.parse_args()
 
     if args.stage == "refs":
         run_refs(args.dry_run, args.character)
     else:
-        run_panels(args.chapter, args.dry_run, args.panels)
+        run_panels(args.chapter, args.dry_run, args.panels, args.candidates)
     return 0
 
 
