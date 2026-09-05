@@ -176,13 +176,31 @@ def _page_section(page):
                      f"laid out in exactly {len(rows)} horizontal rows.")
     if layout.get("dominant_panel"):
         lines.append(_field("dominant_panel", layout["dominant_panel"]))
+
+    # ⚠️⚠️ ⛔ TUYET DOI KHONG phat ra so thap phan tran o day. Ban cu ghi
+    # "row 1: y 0.0 to 0.22" va model VE LUON cac so do len le trang
+    # (`qwen-image-3.0`, do 2026-09-06). Model ⛔ khong phan biet toa do dieu
+    # khien voi chu can ve — cung co che da lam no chep bo cuc character
+    # sheet. Chieu cao vi the mo ta bang TU, ⛔ khong bang so.
+    #
+    # `crop_page.py` van cat theo `layout.rows` doc THANG tu page YAML, nen
+    # bo so o day ⛔ KHONG lam mat do chinh xac cua buoc cat.
     for row in rows:
         panels = row.get("panels", [])
-        panel_list = ", ".join(panels)
-        lines.append(f"row {row.get('row')}: y {row.get('y')} to "
-                     f"{round(row.get('y', 0) + row.get('h', 0), 3)}, "
-                     f"exactly {len(panels)} panel(s): {panel_list}")
+        lines.append(f"row {row.get('row')} (from the top): "
+                     f"a {_band_height_word(row.get('h', 0))} band holding "
+                     f"exactly {len(panels)} panel(s): {', '.join(panels)}")
     return _join_lines(["PAGE:", *lines])
+
+
+def _band_height_word(height_fraction):
+    """Doi chieu cao row thanh TU, ⛔ khong de lot so ra prompt. Xem ly do o
+    `_page_section`."""
+    if height_fraction >= 0.30:
+        return "tall"
+    if height_fraction >= 0.20:
+        return "medium-height"
+    return "short"
 
 
 def _continuity_section(continuity):
@@ -229,11 +247,28 @@ def _panel_characters_clause(panel_characters, characters_by_id):
     return "; ".join(clauses)
 
 
+def _panel_width_word(relative_width):
+    """Doi be ngang panel thanh TU. Xem ly do o `_page_section`."""
+    try:
+        fraction = float(relative_width)
+    except (TypeError, ValueError):
+        return "spanning its row"
+    if fraction >= 0.95:
+        return "spanning the full width of its row"
+    if fraction >= 0.6:
+        return "taking up most of the width of its row"
+    if fraction >= 0.4:
+        return "sharing its row evenly with the panel beside it"
+    return "a narrow panel within its row"
+
+
 def _panel_section(panel, characters_by_id):
     lines = [f"panel {panel.get('id')}:"]
+    # ⛔ KHONG phat `relative_width` / `relative_height` dang so — xem ly do o
+    # `_page_section`. Be ngang mo ta bang tu; `shape` von da noc du hinh dang.
     geometry = (f"row {panel.get('row')}, column {panel.get('column')}, "
-                f"width {panel.get('relative_width')}, height {panel.get('relative_height')}, "
-                f"{panel.get('shape', '')}").strip()
+                f"{_panel_width_word(panel.get('relative_width'))}, "
+                f"{panel.get('shape', '')}").strip().rstrip(",")
     lines.append(f"  position/size: {geometry}")
     scene_delta = _field("scene_delta", panel.get("scene_delta"))
     if scene_delta:

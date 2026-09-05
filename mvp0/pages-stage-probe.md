@@ -305,6 +305,54 @@ Vì API ⛔ không có trường khai báo vai trò ảnh, đường còn lại 
 
 ⭐ Ghi chú đi kèm: toàn bộ số đo của MVP0 tới giờ chạy trên **free tier**, và `cost_usd` luôn là `null` vì `.env` thiếu `MVP0_IMAGE_PRICE_*`. Khi chuyển sang trả tiền, ⭐ **nên điền hai biến giá đó trước** — lúc đó `cost_status` mới ra `reference_price` và `E_hitl` mới hiệu chỉnh được bằng số thật.
 
+## 8.8. Đổi model giai đoạn develop — và ref ĐÃ LẤY LẠI ĐƯỢC
+
+> [!IMPORTANT]
+> ✅ **Vấn đề chép character sheet ĐÃ GIẢI QUYẾT — ⛔ không crop, ⛔ không tách panel.** Lời giải là **`qwen-image-3.0` + khối `REFERENCE_IMAGES` viết thuần khẳng định**.
+
+### a. Quota là chuyện của từng model, ⛔ không phải của cả account
+
+Đo lại cả 13 model image sau khi gặp `403`:
+
+| Hết quota | Còn quota |
+|---|---|
+| `qwen-image-3.0-pro` | **12 model còn lại** — gồm `qwen-image-2.0`, `qwen-image-2.0-pro*`, `qwen-image-3.0`, cả họ `edit`, `wan2.7-image*`, `z-image-turbo` |
+
+⇒ Chặn ở [§8.7](#87-chặn-hiện-tại--hết-quota) **hẹp hơn tưởng**: ⛔ không phải hết quota toàn account, chỉ một model.
+
+### b. Model chọn cho develop: `qwen-image-3.0`
+
+| Ứng viên | Kết quả |
+|---|---|
+| `z-image-turbo` | ⛔ **Loại.** Rẻ nhất nhưng ra **4 panel giống hệt nhau**, ⛔ không nhân vật nào, ⛔ không tiến trình. Bỏ qua phần lớn prompt ⇒ ⛔ không kiểm chứng được thứ đang sửa |
+| `qwen-image-3.0` | ✅ **Chọn.** Còn quota · nhận ref · ⛔ **không dán sheet** · nhận dạng nhân vật mạnh |
+
+> [!WARNING]
+> ⚠️ **Nợ đã biết**: `qwen-image-3.0` là **alias**, ⛔ không phải snapshot dated ⇒ ⛔ **vi phạm `IP-C3`**. Chấp nhận vì danh sách model thật của account ⛔ **không có** snapshot dated nào cho dòng 3.0. ⇒ Pin snapshot ngay khi console công bố.
+
+### c. Hai fix làm nên khác biệt
+
+**1. Khối `REFERENCE_IMAGES` viết THUẦN KHẲNG ĐỊNH.** Bỏ hết phần tả tấm sheet, chỉ còn: dùng ref cho *khuôn mặt / tóc / trang phục*, và *"every_panel_is_a_new_drawing"*. Kết quả: ⛔ **không còn panel nào là tấm sheet dán vào** — điều mà bản có mệnh đề `do_not_copy` ⛔ không làm được.
+
+**2. ⛔ Bỏ MỌI số thập phân khỏi prompt.** Khối `PAGE` từng ghi `row 1: y 0.0 to 0.22`, khối `PANELS` ghi `width 1.0, height 0.22`. Model **vẽ luôn các số đó lên lề trang**. Giờ mô tả bằng từ (`a tall band`, `spanning the full width of its row`). Đã verify: **11/11 trang ⛔ không còn số thập phân nào** trong prompt, và ảnh test ra **sạch chữ hoàn toàn**.
+
+⭐ **Cùng một nguyên nhân gốc cho cả hai lỗi**: model ⛔ không phân biệt *dữ liệu điều khiển* với *nội dung cần vẽ*. Tả tấm sheet → nó vẽ tấm sheet. Ghi tọa độ → nó vẽ tọa độ. ⇒ **Quy tắc rút ra: prompt chỉ được chứa thứ mình MUỐN thấy trên trang.**
+
+⚠️ `crop_page.py` ⛔ **không bị ảnh hưởng** — nó cắt theo `layout.rows` đọc thẳng từ page YAML, ⛔ không đọc prompt.
+
+### d. ⚠️ Cỡ mẫu — đọc bảng này cho đúng
+
+Mỗi cấu hình mới chạy **1 candidate**. Ghi nhận quan sát, ⛔ **không phải tỉ lệ**:
+
+| Cấu hình | Row/panel (đặc tả 4/5) | Dán sheet? | Chữ trên ảnh? |
+|---|---|:-:|:-:|
+| `3.0-pro` + ref, ⛔ chưa có khối | 5 row / ~9 panel | ⚠️ 2 Bà Tư một panel | ⛔ Có (`0.22`, `0.46`) |
+| `3.0-pro` + ref + khối **có mô tả sheet** | 4–5 row | ⛔ **2 panel là sheet nguyên tấm** | ✅ Sạch |
+| `3.0` + ref + khối **khẳng định** | **4 row / 5 panel** ✅ | ✅ ⛔ Không | ⛔ Có (số ở lề) |
+| `3.0` + ref + khẳng định + **⛔ bỏ số** | 5 row / 7 panel | ✅ ⛔ Không | ✅ **Sạch** |
+
+⚠️ Dòng cuối lệch layout hơn dòng trên nó. Với $n = 1$ ⛔ **không kết luận được** đó là do bỏ số hay do sampling. Cần chạy $N = 3$ mới biết.
+
 ## 9. Tài liệu tham khảo
 
 | Tài liệu | Liên quan gì |

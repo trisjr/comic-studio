@@ -74,8 +74,20 @@ import urllib.request
 # duong, ⛔ khong con tach t2i/edit. Ly do giu hai hang so: `generate_candidate`
 # van route theo "co ref hay ⛔ khong", va `IMAGE_PRICE_ENV_BY_MODEL` van tra
 # ve dung bien gia cho model dang chay.
-IMAGE_T2I_MODEL_ID = "qwen-image-2.0-pro-2026-06-22"
-IMAGE_EDIT_MODEL_ID = "qwen-image-2.0-pro-2026-06-22"
+#
+# ⭐ 2026-09-06 — Founder doi model cho giai doan DEVELOP. Ly do va so do:
+#   `qwen-image-3.0-pro` het quota free tier (`403 AllocationQuota.FreeTierOnly`).
+#   Do lai ca 13 model image: CHI MINH no het quota, phan con lai van chay.
+#   `qwen-image-3.0` la ban ⛔ khong "pro" cung dong: con quota, nhan ref, VA
+#   la model DAU TIEN dung ref ma ⛔ KHONG dan tam character sheet vao trang.
+#   `z-image-turbo` da thu va LOAI: ra 4 panel giong het nhau, ⛔ khong nhan vat.
+#
+# ⚠️ NO DA BIET — `qwen-image-3.0` la ALIAS, ⛔ khong phai snapshot dated, nen
+# ⛔ VI PHAM `IP-C3`. Ly do chap nhan: danh sach model that cua account ⛔ KHONG
+# co snapshot dated nao cho dong 3.0 (chi co `qwen-image-3.0` va
+# `qwen-image-3.0-pro`). ⇒ pin snapshot ngay khi console cong bo.
+IMAGE_T2I_MODEL_ID = "qwen-image-3.0"
+IMAGE_EDIT_MODEL_ID = "qwen-image-3.0"
 VLM_MODEL_ID = "qwen3-vl-plus-2025-12-19"
 
 # Region Singapore — key Bac Kinh ⛔ KHONG dung duoc voi hai endpoint nay
