@@ -1,13 +1,24 @@
 # AI Coding
 # story-bible.yaml
-# Story Bible cho MVP0 — Danh sách nhân vật và đặc tả hình ảnh (Template).
-# Điền thông tin nhân vật của chương truyện mới vào đây.
+# Story Bible cho MVP0 — Danh sách nhân vật (nhan_vat) và bối cảnh (boi_canh) dùng
+# chung cho toàn bộ chương truyện. Điền thông tin của chương mới vào đây trước khi
+# chạy skill /mvp0-page-prompt để sinh page YAML theo mvp0/prompt-template.txt.
 #
 # RÀNG BUỘC KỸ THUẬT:
 # - Cần tối đa 2-3 nhân vật chính xuất hiện lặp lại để đo Consistency (G1-a, G1-d).
-# - Mỗi nhân vật bắt buộc có `id` viết liền không dấu (dùng làm tên file ref: mvp0/refs/<id>.png).
-# - Bổ sung `ten_en` và `canonical_reference_en` để Prompt Compiler và Qwen3.7-Plus
-#   ghép prompt tiếng Anh liền mạch cho pipeline sinh ảnh 2D.
+# - Mỗi nhân vật bắt buộc có `id` viết liền không dấu (dùng làm tên file ref:
+#   mvp0/refs/<id>.png, đúng bằng `canonical_reference`).
+# - Các trường tiếng Anh (`silhouette_cue_en`, `body_type_relative_en`,
+#   `color_language_en`, `personality_en`, và toàn bộ `canonical_reference_en.*`,
+#   `setting_en`, `environment_en`, `lighting_default_en`, `props_en`) được skill
+#   /mvp0-page-prompt CHIẾU 1:1 (projected 1:1) vào khối CHARACTERS và CONTINUITY
+#   của mvp0/prompt-template.txt khi soạn page YAML — KHÔNG qua LLM enhance nào
+#   trong script (D-34/SRS-FR-17); scripts/mvp0/compile_prompt.py chỉ serialize
+#   page YAML đã soạn sẵn thành text prompt, không tự sinh câu chữ mới.
+# - Theo D4: `ten`/`ten_en` được phép dùng trong các trường prose của page YAML
+#   (continuity.spatial, composition, panel_purpose...); còn các trường STRUCTURED
+#   (characters[].id, panels[].characters[].character_id, typeset.dialogue[].speaker)
+#   BẮT BUỘC dùng `id` (character_id), không được dùng tên.
 
 nhan_vat: []
 # Ví dụ mẫu cấu trúc nhân vật (Bỏ comment và chỉnh sửa khi có chương truyện mới):
@@ -19,13 +30,40 @@ nhan_vat: []
 #   gioi_tinh: "Nam"
 #   dien_mao:
 #     khuon_mat: "Góc cạnh, ánh mắt kiên định"
-#     toc: "Đen ngắn tỉa mọn tự nhiên"
+#     toc: "Đen ngắn tỉa gọn tự nhiên"
 #     chieu_cao_the_trang: "Cao 1m78, thân hình cân đối"
 #   trang_phuc:
 #     chinh: "Áo choàng xám sẫm viền đen"
 #   dau_an:
 #     dac_diem_rieng: "Vết sẹo nhỏ ở đuôi mày trái"
+#   canonical_reference: "mvp0/refs/nhan_vat_1.png"
 #   canonical_reference_en:
 #     khuon_mat: "Sharp jawline, determined black eyes"
+#     mat: "Dark eyes with sharp eyebrows"
 #     toc: "Short black layered anime hair"
 #     trang_phuc: "Dark grey martial robe with black trim"
+#     dac_diem_rieng: "Small scar at the outer tip of the left eyebrow"
+#   silhouette_cue_en:
+#     "short layered black hair, dark grey robe with black trim, small eyebrow scar"
+#   body_type_relative_en:
+#     "average height, lean build, slightly shorter than the antagonist"
+#   color_language_en: "cool grey and black accents, no bright energy color"
+#   personality_en: "calm, decisive, protective of allies"
+
+boi_canh: []
+# Ví dụ mẫu cấu trúc bối cảnh (Bỏ comment và chỉnh sửa khi có chương truyện mới):
+# - id: "boi_canh_1"
+#   ten: "Sân thượng cổ thành"
+#   ten_en: "Ancient City Rooftop"
+#   setting_en:
+#     "An ancient city rooftop at night under heavy storm clouds, traditional
+#      tiled roofs, distant pagoda silhouettes, thin mist."
+#   environment_en:
+#     "Cold moonlight as the only light source, wind intensity that can rise
+#      through a scene, storm clouds always visible."
+#   lighting_default_en:
+#     "soft cold moonlight from upper right, long shadows across roof tiles"
+#   props_en:
+#     - "tiled roof surface"
+#     - "distant pagoda silhouettes"
+#     - "thin drifting mist"

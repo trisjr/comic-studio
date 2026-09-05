@@ -2,7 +2,7 @@
 
 > Thư mục này chứa **dữ liệu đầu vào viết tay** và **kết quả thực nghiệm** của MVP0, ⛔ không phải tài liệu dự án.
 >
-> **Hiện trạng**: Đã clear toàn bộ dữ liệu của truyện cũ; sẵn sàng tiếp nhận **chương truyện mới** để khởi động lại vòng thử nghiệm Gate G1.
+> **Hiện trạng**: Đã chuyển sang đơn vị sinh ảnh **cấp trang (page-level)**; sẵn sàng tiếp nhận **chương truyện mới** để khởi động lại vòng thử nghiệm Gate G1.
 
 ## Kỷ luật MVP0 — Cái gì vứt, cái gì giữ
 
@@ -11,10 +11,16 @@
 | Thành phần | Số phận |
 |---|---|
 | Script sinh ảnh, adapter, compiler (`scripts/mvp0/`) | ⛔ **Vứt** sau khi có số đo và chuyển giao sang MVP1 |
-| `story-bible.yaml` · `panel-script-ch1.yaml` | ✅ **Giữ** — là nguyên liệu tái dựng golden dataset |
+| `story-bible.yaml` · `mvp0/pages/*.yaml` | ✅ **Giữ** — là nguyên liệu tái dựng golden dataset |
+| `panel-script-ch1.yaml` | ⛔ **Đã retired** — thay bằng `mvp0/pages/<page_id>.yaml` (một file/trang) |
+| `scripts/mvp0/enhance_prompts.py` | ⛔ **Đã retired** — authoring bằng LLM chuyển hẳn sang skill `/mvp0-page-prompt`, ⛔ không còn ở trong script |
 | Golden dataset (ảnh approved + bảng chấm `scoring-sheet.csv`) | ✅ **Giữ vĩnh viễn** — `H6` là `✅` ở **mọi** mốc MVP0–MVP4, đầu vào của eval kit `M1-6` |
 
 ⛔ **Không** tạo database, migration hay ORM trong thư mục này.
+
+## Ranh giới LLM
+
+⭐ **LLM chỉ được gọi ở bước authoring (skill `/mvp0-page-prompt`)** — nơi lập page plan và soạn nội dung page YAML từ chương truyện. **Toàn bộ script trong `scripts/mvp0/` PHẢI deterministic, ⛔ TUYỆT ĐỐI không gọi LLM/VLM tại runtime** (`D-34` / `SRS-FR-17`). `compile_prompt.py` chỉ làm việc serializer: đọc page YAML đã được người duyệt, trả về `text_prompt` + `conditioning_set` bằng bảng tra cố định.
 
 ---
 
@@ -23,8 +29,13 @@
 ```
 mvp0/
 ├── README.md                  ← Hướng dẫn và trạng thái này
-├── story-bible.yaml           ← [Template] Đặc tả nhân vật của chương mới
-├── panel-script-ch1.yaml      ← [Template] Kịch bản phân cảnh của chương mới
+├── story-bible.yaml           ← [Template] Đặc tả nhân vật + bối cảnh của chương mới (nhan_vat + boi_canh)
+├── chapters/                  ← Văn bản chương truyện thô, đầu vào của page plan
+│   └── chNN.md                ← Chương NN (2 chữ số)
+├── pages/                     ← Page YAML đã lint — đơn vị gửi đi sinh ảnh (✅ Giữ)
+│   └── chNN_pageNNN.yaml       ← 1 file/trang, page_id = "chNN_pageNNN"
+├── prompt-template.txt        ← Sơ đồ trường bắt buộc của page YAML (tham khảo khi soạn)
+├── prompt-example.yaml        ← Ví dụ page YAML đầy đủ, đúng schema
 ├── threshold-signoff.md       ← Phiếu ký nhận ngưỡng Gate G1 (ký TRƯỚC khi sinh ảnh)
 ├── typeset-corpus.json        ← Corpus text tiếng Việt để kiểm tra typeset
 ├── refs/                      ← Nơi lưu canonical reference images đã duyệt (1 file/nhân vật)
@@ -33,27 +44,34 @@ mvp0/
     ├── README.md
     ├── scoring-sheet.csv      ← Bảng chấm 13 cột (append-only)
     ├── g1-verdict.md          ← Phiếu kết luận 5 tiêu chí Gate G1
-    └── panels/                ← Thư mục chứa các ảnh panel đã được duyệt
+    └── panels/                ← Thư mục chứa các ảnh panel đã được duyệt (crop từ page candidate)
 ```
 
 ---
 
 ## Quy trình vận hành khi có chương truyện mới
 
-### 1. Soạn thảo nguyên liệu đầu vào
-1. **Story Bible** (`mvp0/story-bible.yaml`): Định nghĩa 2–3 nhân vật chính của chương (gồm `id`, `ten`, `ten_en`, `dien_mao`, `trang_phuc`, `canonical_reference_en`).
-2. **Panel Script** (`mvp0/panel-script-ch1.yaml`): Viết kịch bản phân cảnh cho chương mới (khuyến nghị 15–25 panel, tối đa 3 nhân vật/panel, có `text_safe_zone` và phân bổ loại cảnh/beat).
+### 1. Đặt văn bản chương
+Lưu nguyên văn chương mới tại `mvp0/chapters/chNN.md` (`NN` là số thứ tự 2 chữ số, ví dụ `ch01.md`).
 
-### 2. Chuẩn hóa & nâng cao prompt (Tùy chọn nhưng khuyến nghị)
-Chạy script tự động tối ưu tính liền mạch thị giác (continuity, cinematic lighting, 2D manhwa lineart) qua Qwen3.7-Plus:
+### 2. Soạn Story Bible
+Điền `mvp0/story-bible.yaml` với hai nhóm khóa cấp cao nhất:
+- `nhan_vat` (list): mỗi nhân vật gồm `id`, `ten`, `ten_en`, `vai_tro`, `tuoi`, `gioi_tinh`, `dien_mao{...}`, `trang_phuc{...}`, `dau_an{...}`, `canonical_reference` (đường dẫn `mvp0/refs/<id>.png`), `canonical_reference_en{khuon_mat, toc, trang_phuc,...}`, và bốn trường tiếng Anh **mới** dùng 1:1 bởi `prompt-template.txt`: `silhouette_cue_en`, `body_type_relative_en`, `color_language_en`, `personality_en`.
+- `boi_canh` (list bối cảnh): mỗi bối cảnh gồm `id`, `ten`, `ten_en`, `setting_en`, `environment_en`, `lighting_default_en`, `props_en` (list).
+
+### 3. Lập page plan & soạn page YAML — Skill `/mvp0-page-prompt`
 ```bash
-python3 scripts/mvp0/enhance_prompts.py --chapter ch1
+/mvp0-page-prompt mvp0/chapters/ch01.md
+```
+Skill đọc chương, đề xuất page plan (số trang, số panel/trang, `panel_index` toàn cục xuyên suốt chương), chờ người duyệt, rồi sinh từng `mvp0/pages/chNN_pageNNN.yaml` theo `prompt-template.txt`. Trong page YAML: các trường văn xuôi (`continuity.spatial`, `composition`, `panel_purpose`...) được phép dùng tên nhân vật; các trường **cấu trúc** (`characters[].id`, `panels[].characters[].character_id`, `typeset.dialogue[].speaker`) **BẮT BUỘC** dùng `character_id`. Lint ngay sau khi sinh:
+```bash
+python3 scripts/mvp0/lint_page_prompt.py mvp0/pages/
 ```
 
-### 3. Ký nhận ngưỡng kỹ thuật
+### 4. Ký nhận ngưỡng kỹ thuật
 Kiểm tra và ký nhận các ngưỡng trong `mvp0/threshold-signoff.md` **TRƯỚC** khi gọi API sinh ảnh.
 
-### 4. Sinh và chọn Canonical References (Stage `refs`)
+### 5. Sinh và chọn Canonical References (Stage `refs`)
 ```bash
 python3 scripts/mvp0/run_mvp0.py refs --dry-run
 python3 scripts/mvp0/run_mvp0.py refs
@@ -62,21 +80,25 @@ python3 scripts/mvp0/run_mvp0.py refs
 * Chọn 1 ảnh tốt nhất cho mỗi nhân vật, lưu vào `mvp0/refs/<char_id>.png`.
 * Ghi nhận quyết định vào `mvp0/refs/selection-log.md`.
 
-### 5. Sinh Panel và VLM Ranking (Stage `panels`)
-Chạy thăm dò trước một vài panel rủi ro:
+### 6. Sinh Trang (Stage `pages`)
+Thăm dò trước một vài trang rủi ro:
 ```bash
-python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --dry-run
-python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --panels 1 2 3 -n 3
+python3 scripts/mvp0/run_mvp0.py pages --dry-run
+python3 scripts/mvp0/run_mvp0.py pages --page ch01_page001 -n 3
 ```
-Sau đó chạy toàn bộ chapter:
+Sau đó chạy toàn bộ chương:
 ```bash
-python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 -n 3
+python3 scripts/mvp0/run_mvp0.py pages -n 3
 ```
+Output nằm ở `mvp0/run-pages-<timestamp>/`: `prompts/<page_id>.txt` (prompt tiếng Anh **paste-ready**, cũng dùng tay được để thử trong Gemini), `candidates/<page_id>-c<k>.png`, `usage.jsonl` (mỗi dòng là 1 candidate trang, có `page_id` + `panel_indices`), `results.jsonl`, `refusals.jsonl`, `dropped_constraints.jsonl`.
 
-### 6. Chấm điểm Golden Dataset & Đóng Gate G1
-1. Chọn candidate ưng ý cho từng panel, copy vào `mvp0/golden-dataset/panels/panel-NNN/approved.png`.
-2. Ghi điểm vào `mvp0/golden-dataset/scoring-sheet.csv` (13 cột, điền nhận định `readability_verdict`).
-3. Chạy tính `regen_ratio` ($p_{50}/p_{90}$):
+### 7. Crop trang thành panel & Chấm điểm Golden Dataset
+1. Chọn candidate trang ưng ý, crop theo `layout.rows` của page YAML:
+   ```bash
+   python3 scripts/mvp0/crop_page.py mvp0/pages/ch01_page001.yaml mvp0/run-pages-<timestamp>/candidates/ch01_page001-c1.png --out mvp0/golden-dataset/panels/
+   ```
+2. Ghi điểm **từng panel** vào `mvp0/golden-dataset/scoring-sheet.csv` (13 cột, schema không đổi; `panel_index` lấy từ page YAML, là chỉ số toàn cục xuyên suốt chương).
+3. Chạy tính `regen_ratio` ($p_{50}/p_{90}$) — đếm theo `run-pages-*/usage.jsonl`, mỗi candidate trang cộng +1 cho **mọi** `panel_index` trong `panel_indices` của nó:
    ```bash
    python3 scripts/mvp0/regen_ratio.py
    ```
