@@ -1,0 +1,470 @@
+# AI Coding
+# prompt-example.yaml
+# Prompt mẫu một trang 5 panel để thử sinh ảnh trang với Gemini.
+# Nguyên tắc: continuity khai báo MỘT lần ở page-level, panel chỉ ghi delta;
+# text KHÔNG render trong ảnh (G1-e), mỗi panel chừa text_safe_zone cho stage typeset;
+# mỗi nhân vật có canonical reference image và một silhouette cue riêng (G1-d).
+
+page:
+  page_id: "ch03_page017"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Build tension as the protagonist confronts a stronger opponent,
+     ending with a dramatic power reveal."
+
+  overall_mood:
+    "tense, dramatic, supernatural, escalating toward an explosive climax"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_05"
+    rows:
+      - { row: 1, y: 0.00, h: 0.25, panels: ["panel_01"] }
+      - { row: 2, y: 0.25, h: 0.30, panels: ["panel_02", "panel_03"] }
+      - { row: 3, y: 0.55, h: 0.45, panels: ["panel_04", "panel_05"] }
+
+  continuity:
+    setting:
+      "One ancient city rooftop at night under heavy storm clouds.
+       Traditional tiled roofs, distant pagoda silhouettes, thin mist."
+    time_span:
+      "All five panels happen within a few seconds."
+    spatial:
+      "Liang stays on the left / near side, Wei on the right / far side.
+       This relationship is never reversed."
+    environment:
+      "Wind intensity increases panel by panel. Storm clouds stay visible.
+       Cold moonlight is the only light source until Liang's energy appears."
+    wardrobe:
+      "Both characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_01: confrontation. No visible energy."
+      - "panel_02: threat. Wei reveals faint dark-red energy."
+      - "panel_03: response. Liang begins charging blue-white energy."
+      - "panel_04: suspense. Wei realizes something is wrong."
+      - "panel_05: climax. Liang releases overwhelming blue-white energy."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "char_01"
+    name: "Liang"
+    canonical_reference: "mvp0/refs/char_01.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "high ponytail, slim dark-blue robe, bright blue sash, blue-white energy"
+
+    role: "young cultivator / protagonist"
+
+    identity:
+      gender: "male"
+      age: 19
+      body_type: "lean athletic, noticeably shorter and slimmer than Wei"
+
+    appearance:
+      hair:
+        "long black hair tied into a high ponytail,
+         several loose strands framing the face"
+      eyes: "dark eyes with sharp eyebrows"
+      face: "youthful but determined"
+      distinctive_features:
+        - "small vertical scar beneath the right eye"
+        - "bright blue sash tied at the waist, always visible"
+        - "small jade pendant hanging from the sash"
+
+    outfit:
+      - "dark blue traditional martial robe"
+      - "light inner shirt"
+      - "bright blue waist sash"
+      - "cloth wrist guards"
+      - "black martial boots"
+
+    personality: "calm under pressure, stubborn, protective"
+
+
+  - id: "char_02"
+    name: "Wei"
+    canonical_reference: "mvp0/refs/char_02.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "loose long hair with one white streak, oversized bronze shoulder guard,
+       black robe with dark-red collar, dark-red energy"
+
+    role: "antagonist / senior cultivator"
+
+    identity:
+      gender: "male"
+      age: 28
+      body_type: "tall and broad-shouldered, a full head taller than Liang"
+
+    appearance:
+      hair:
+        "long dark hair flowing loose behind the shoulders,
+         one prominent white streak from the left temple"
+      eyes: "narrow pale eyes"
+      face: "sharp mature features"
+      distinctive_features:
+        - "single white streak of hair from the left temple"
+        - "oversized bronze shoulder guard on the left shoulder"
+        - "dark red inner collar visible at all times"
+
+    outfit:
+      - "long black ceremonial robe"
+      - "dark red inner garment with a high collar"
+      - "oversized bronze shoulder guard on the left shoulder"
+
+    personality: "arrogant, controlled, confident in his superiority"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 01
+  - id: "panel_01"
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.25
+    shape: "wide cinematic horizontal panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Full rooftop visible. Distant lightning inside the clouds."
+
+    characters:
+      - character_id: "char_01"
+        position: "foreground left"
+        pose: "standing upright, one hand resting near the blue sash"
+        action: "facing the opponent across the rooftop"
+        facial_expression: "calm and serious, seen in profile"
+        gaze: "toward Wei"
+        emotion: "controlled tension"
+
+      - character_id: "char_02"
+        position: "background right"
+        pose: "standing completely still, hands behind his back"
+        action: "silently confronting Liang"
+        facial_expression: "faint confident smile, seen in profile"
+        gaze: "toward Liang"
+        emotion: "superiority"
+
+    camera:
+      shot_type: "extreme wide establishing shot"
+      camera_angle: "slightly low angle"
+      camera_position:
+        "side-on, level with both fighters, slightly favoring Liang's side
+         so both profiles stay readable"
+      perspective: "deep perspective emphasizing the distance between the two fighters"
+      composition:
+        "Liang in the lower-left third, Wei on the far right,
+         empty rooftop between them."
+
+    lighting:
+      source: "moonlight partially blocked by storm clouds"
+      direction: "soft light from upper right"
+      intensity: "low"
+      shadow: "long shadows across roof tiles"
+
+    effects:
+      wind: "Liang's robe and Wei's hair move strongly in the wind"
+      lightning: "faint lightning illuminating the clouds"
+
+    text_safe_zone:
+      - { x: 0.30, y: 0.05, w: 0.40, h: 0.30 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Establish the confrontation, location, distance between characters,
+       and threatening atmosphere. Both silhouette cues (blue sash, bronze
+       shoulder guard) must be readable even at this distance."
+
+
+  # ---------------------------------------------------------- PANEL 02
+  - id: "panel_02"
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.30
+    shape: "medium horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Simplified dark rooftop background."
+
+    characters:
+      - character_id: "char_02"
+        position: "center, slightly right"
+        pose: "one hand raised slightly"
+        action: "casually releasing a small amount of spiritual energy"
+        facial_expression: "amused"
+        gaze: "toward Liang (off-panel left)"
+        emotion: "mocking confidence"
+
+    camera:
+      shot_type: "medium close-up"
+      camera_angle: "slightly low angle"
+      camera_position: "in front of Wei"
+      perspective: "moderate perspective compression"
+      composition: "Wei dominates the frame and appears physically imposing."
+
+    lighting:
+      source: "cold moonlight"
+      shadow: "strong shadow beneath chin and robe folds"
+
+    effects:
+      energy: "thin dark-red energy particles begin forming around Wei's raised hand"
+      wind: "robe edges flowing backward"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.05, w: 0.45, h: 0.30 }
+
+    typeset:
+      dialogue:
+        - speaker: "char_02"
+          text: "You still haven't learned when to give up."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Show the antagonist's confidence and establish the power imbalance."
+
+
+  # ---------------------------------------------------------- PANEL 03
+  - id: "panel_03"
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.30
+    shape: "medium horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Dark sky and roof tiles. Small fragments of dust start rising."
+
+    characters:
+      - character_id: "char_01"
+        position: "center, slightly left"
+        pose: "slightly lowering his stance"
+        action: "gripping his right fist tightly"
+        facial_expression: "focused"
+        gaze: "toward Wei (off-panel right)"
+        emotion: "determination"
+
+    camera:
+      shot_type: "medium close-up"
+      camera_angle: "slightly low angle"
+      camera_position: "in front of Liang"
+      perspective: "slightly exaggerated perspective"
+      composition: "Liang's fist in the foreground, face behind it."
+
+    lighting:
+      source: "dim moonlight"
+      shadow: "heavy facial shadows"
+
+    effects:
+      energy: "thin blue-white particles begin appearing around Liang's fist"
+      motion: "small fragments of dust rising from the rooftop"
+
+    text_safe_zone:
+      - { x: 0.50, y: 0.05, w: 0.45, h: 0.30 }
+
+    typeset:
+      dialogue:
+        - speaker: "char_01"
+          text: "Then I'll make you stop me."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Shift the emotional balance from fear to determination."
+
+
+  # ---------------------------------------------------------- PANEL 04
+  - id: "panel_04"
+    row: 3
+    column: 1
+    relative_width: 0.35
+    relative_height: 0.45
+    shape: "narrow vertical close-up"
+    beat_type: "reaction"
+    emphasis: "small"
+    character_count: 1
+
+    scene_delta:
+      "No background. Face fills the frame."
+
+    characters:
+      - character_id: "char_02"
+        position: "extreme foreground"
+        pose: "head slightly tilted"
+        action: "eyes suddenly widening"
+        facial_expression: "momentary shock"
+        gaze: "toward Liang (off-panel left)"
+        emotion: "unexpected alarm"
+
+    camera:
+      shot_type: "extreme close-up"
+      camera_angle: "eye level"
+      camera_position: "very close to Wei's face"
+      composition:
+        "Only Wei's eyes and upper face are visible, placed in the upper
+         two-thirds of the frame. The white hair streak crosses the top.
+         The lower third drops into hard black shadow with no facial detail."
+
+    lighting:
+      source: "sudden blue-white glow from off-screen left"
+      shadow: "strong contrast across the face, lower third fully in shadow"
+
+    effects:
+      energy: "blue-white reflected light visible in Wei's eyes"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.75, w: 0.90, h: 0.20 }
+
+    typeset:
+      dialogue: []
+      sfx:
+        - "CRACK"
+
+    panel_purpose:
+      "Create a suspense beat immediately before the power reveal."
+
+
+  # ---------------------------------------------------------- PANEL 05
+  - id: "panel_05"
+    row: 3
+    column: 2
+    relative_width: 0.65
+    relative_height: 0.45
+    shape: "large dominant action panel"
+    beat_type: "action"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "Storm clouds split apart by the energy burst. Roof tiles lifted into
+       the air. Distant buildings obscured by energy and dust."
+
+    characters:
+      - character_id: "char_01"
+        position: "foreground center"
+        pose: "wide combat stance"
+        action: "releasing a massive burst of blue-white spiritual energy"
+        facial_expression: "fiercely determined"
+        gaze: "locked onto Wei"
+        emotion: "resolve"
+        interaction: "attacking Wei with concentrated energy"
+
+      - character_id: "char_02"
+        position: "background right"
+        pose: "raising both arms defensively"
+        action: "attempting to block the attack"
+        facial_expression: "shocked"
+        gaze: "toward Liang"
+        emotion: "alarm"
+
+    camera:
+      shot_type: "dynamic wide action shot"
+      camera_angle: "low angle"
+      camera_position: "close to the rooftop surface"
+      perspective: "strong perspective distortion"
+      composition:
+        "Liang dominates the foreground, energy expands diagonally toward Wei,
+         Wei is pushed toward the upper-right corner."
+      focal_point: "Liang's glowing fist and the expanding energy wave"
+
+    lighting:
+      source: "blue-white supernatural energy"
+      direction: "radiating outward from Liang"
+      intensity: "extremely high"
+      shadow: "hard dramatic shadows cast behind characters"
+
+    effects:
+      energy:
+        - "large concentrated energy wave"
+        - "glowing particles"
+        - "energy trails"
+      environment:
+        - "roof tiles lifted into the air"
+        - "dust and debris"
+        - "wind vortex"
+      motion_lines: "strong radial motion lines emphasizing explosive force"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.05, w: 0.35, h: 0.25 }
+
+    typeset:
+      dialogue: []
+      sfx:
+        - "BOOM"
+
+    panel_purpose:
+      "Deliver the page's visual climax and reveal that Liang possesses
+       unexpectedly powerful spiritual energy."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian fantasy cultivation aesthetic, 2D anime proportions"
+  background: "detailed traditional architecture with cinematic atmospheric perspective"
+  lighting: "dramatic cinematic lighting with strong supernatural glow"
+  effects: "high-detail 2D fantasy energy effects"
+  color_language:
+    protagonist: "blue-white energy, bright blue sash"
+    antagonist: "dark red energy, dark red collar"
+  panel_language:
+    "cinematic composition with strong variation in shot size,
+     close-ups and dynamic perspective"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Liang has the ponytail and blue sash, only Wei has the white streak and bronze shoulder guard."
+  - "Do not introduce additional characters."
+  - "Do not reverse the left/right relationship between Liang and Wei."
+  - "Do not show any energy in panel_01."
+  - "Do not make the final energy attack originate from Wei."
+  - "Do not make panel_01 taller than panel_05."

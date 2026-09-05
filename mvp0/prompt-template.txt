@@ -1,0 +1,54 @@
+PAGE
+│   ├── aspect_ratio / target_resolution
+│   ├── reading_direction
+│   ├── purpose · overall_mood
+│   │
+│   ├── LAYOUT
+│   │   ├── rows[]  (y, h, panels[])   ← tổng h = 1.0
+│   │   └── dominant_panel
+│   │
+│   ├── CONTINUITY  (khai báo MỘT lần, panel chỉ ghi delta)
+│   │   ├── setting · time_span
+│   │   ├── spatial  (ai trái / ai phải, không đảo)
+│   │   ├── environment · wardrobe
+│   │   └── progression  (beat từng panel)
+│   │
+│   └── TEXT_POLICY
+│       └── render_text_in_image: false   ← G1-e: 100% overlay
+│
+├── CHARACTERS  (tối đa 2–3 nhân vật lặp lại)
+│   ├── id  (dùng làm file ref: mvp0/refs/<id>.png)
+│   ├── canonical_reference + reference_instruction
+│   ├── silhouette_cue  (mỗi người MỘT dấu hiệu nhận dạng riêng, không trùng)
+│   ├── identity  (gender, age, body_type — nêu chênh lệch tương đối)
+│   ├── appearance  (hair, eyes, face, distinctive_features)
+│   ├── outfit · personality
+│
+├── PANELS / FRAMES
+│   ├── id · row · column · relative_width · relative_height · shape
+│   ├── beat_type · emphasis · character_count (≤ 3)
+│   ├── scene_delta  (chỉ điều khác so với CONTINUITY)
+│   │
+│   ├── CHARACTERS[]  (character_id, không dùng tên)
+│   │   ├── position · pose · action
+│   │   └── facial_expression · gaze · emotion
+│   │       ← phải khớp với camera: nếu camera từ sau lưng thì không mô tả mặt
+│   │
+│   ├── CAMERA
+│   │   ├── shot_type · camera_angle · camera_position
+│   │   └── perspective · composition · focal_point
+│   │
+│   ├── LIGHTING · EFFECTS
+│   │
+│   ├── text_safe_zone[]  (x, y, w, h chuẩn hóa 0–1; không đặt mặt/focal detail)
+│   │
+│   ├── TYPESET  (không render vào ảnh, dùng cho stage overlay)
+│   │   ├── dialogue[]  (speaker = character_id, text, bubble_type)
+│   │   └── sfx[]
+│   │
+│   └── panel_purpose
+│
+├── STYLE  (khớp art direction dự án: 2D anime / manhwa lineart, cel shading)
+│   └── color_language  (mỗi nhân vật một màu energy / accent)
+│
+└── NEGATIVE_CONSTRAINTS  (không lặp lại CONTINUITY; thêm cấm text + cấm swap silhouette cue)
