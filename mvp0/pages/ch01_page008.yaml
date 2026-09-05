@@ -1,0 +1,580 @@
+# AI Coding
+# ch01_page008.yaml
+# Chương 1 — trang 8/11. Ân nhân trở mặt thành kẻ giết người, rồi bị đâm từ sau lưng.
+# panel_index 37–42 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page008"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "The woman he just freed puts the blade to his throat and promises to kill
+     the whole village — and is killed mid-sentence by a smiling old man with
+     one leg."
+
+  overall_mood:
+    "vicious, fast, resolved by casual violence from an unexpected direction"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 6
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_38"
+    rows:
+      - { row: 1, y: 0.00, h: 0.18, panels: ["panel_37"] }
+      - { row: 2, y: 0.18, h: 0.32, panels: ["panel_38"] }
+      - { row: 3, y: 0.50, h: 0.22, panels: ["panel_39", "panel_40"] }
+      - { row: 4, y: 0.72, h: 0.28, panels: ["panel_41", "panel_42"] }
+
+  continuity:
+    setting:
+      "The same riverbank in broad daylight — a green grazing meadow along the water,
+       blue-green mountains layered into the distance, clear sky with high white clouds."
+    time_span:
+      "Under a minute, continuous, standing on and around the discarded hide."
+    spatial:
+      "Qin Mu stays on the left / near side of the frame, the woman on the right /
+       far side. Lame Grandpa arrives from behind her, deeper into the frame.
+       This relationship is never reversed."
+    environment:
+      "Bright open daylight with short soft shadows on the grass. An empty cowhide
+       lies flat on the grass between them, cut open and completely bloodless."
+    wardrobe:
+      "All characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_37: reaction. Standing over the hide, her face changes as eleven years catch up with her."
+      - "panel_38: threat. She lays the sickle against his throat and tells him what she intends to do to the village."
+      - "panel_39: reaction. Qin Mu understands none of it; the words go past him."
+      - "panel_40: action. She lifts the sickle to bring it down."
+      - "panel_41: climax. A saber blade comes out through her chest from behind."
+      - "panel_42: reveal. Lame Grandpa is standing behind her, blade in hand, smiling and telling the boy to come home for his medicine."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tan_muc_thieu_nien"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+
+    role: "protagonist at eleven, the village cowherd boy"
+
+    identity:
+      gender: "male"
+      age: 11
+      body_type:
+        "eleven-year-old boy, slim, the height reference every other character is
+         measured against"
+
+    appearance:
+      hair: "black hair loosely tied at the nape, several strands falling over the forehead"
+      eyes: "bright dark eyes with clean thin eyebrows"
+      face: "delicate handsome boyish face, clear brows, fair skin"
+      distinctive_features:
+        - "pale jade pendant on a cord, worn openly on the bare chest"
+        - "always barefoot"
+
+    outfit:
+      - "pale brown coarse hemp tunic worn half-open"
+      - "cloth waist belt"
+      - "bare feet"
+
+    personality: "curious, gentle, easily shaken but quick to obey his elders"
+
+
+  - id: "yeu_phu_nguoi"
+    name: "The Freed Woman"
+    canonical_reference: "mvp0/refs/yeu_phu_nguoi.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "wild matted long black hair covering half the face, ragged damp silk robe,
+       raw red seam-marks around both thighs"
+
+    role: "the same noblewoman freed from the seal, antagonist in human form"
+
+    identity:
+      gender: "female"
+      age: 28
+      body_type: "adult woman, roughly two heads taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "long black hair in a wild matted tangle covering half the face"
+      eyes: "bloodshot dark eyes, wide and unblinking"
+      face: "pale gaunt woman's face in her late twenties, twisted with hatred"
+      distinctive_features:
+        - "sickly pale skin from eleven years without sunlight"
+        - "raw red seam-marks around both thighs where the hide was joined"
+
+    outfit:
+      - "ragged faded silk inner robe, damp and clinging"
+
+    personality: "vengeful, theatrical, snaps from pleading to murderous without warning"
+
+
+  - id: "gia_gia_que"
+    name: "Lame Grandpa"
+    canonical_reference: "mvp0/refs/gia_gia_que.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "right trouser leg tied off below the knee, plain wooden staff,
+       broad saber slung across the back"
+
+    role: "village elder and hunter who teaches Qin Mu kicking techniques"
+
+    identity:
+      gender: "male"
+      age: 68
+      body_type:
+        "lean and wiry, roughly two heads taller than Qin Mu at eleven even while
+         leaning on his staff"
+
+    appearance:
+      hair: "salt-and-pepper hair gathered into a small topknot"
+      eyes: "warm crinkled eyes"
+      face: "plain kindly old man's face with a broad easy smile and deep laugh lines"
+      distinctive_features:
+        - "right leg missing below the knee"
+        - "plain wooden walking staff"
+        - "a single broad saber slung across the back"
+
+    outfit:
+      - "dark moss-green cloth robe"
+      - "wide trousers with the right leg tied off below the knee"
+
+    personality: "cheerful, unshakeable, kills without changing expression"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 37
+  - id: "panel_37"
+    panel_index: 37
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.18
+    shape: "wide horizontal close-up"
+    beat_type: "reaction"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Close on her face across the panel, bright sky behind. The tangled hair
+       shifts off one eye as she lifts her head."
+
+    characters:
+      - character_id: "yeu_phu_nguoi"
+        position: "center right, head and shoulders"
+        pose: "head slowly lifting, chin coming up"
+        action: "letting eleven years of stored hatred surface"
+        facial_expression: "a smile with nothing warm in it spreading across a gaunt face"
+        gaze: "sliding sideways toward the boy, off-panel left"
+        emotion: "hatred arriving all at once"
+
+    camera:
+      shot_type: "close-up"
+      camera_angle: "slightly low angle"
+      camera_position: "just below her chin, close in"
+      perspective: "flat, sky as a plain backdrop"
+      composition:
+        "Her face in the right two thirds; the left third is empty sky."
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and behind, throwing her face into partial shade"
+      intensity: "high"
+      shadow: "the upper half of her face shadowed by her own hair"
+
+    effects:
+      atmosphere: "her damp hair still dripping, catching the light"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.08, w: 0.30, h: 0.60 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Turn the victim into the threat on a single facial beat, before any line
+       is spoken."
+
+
+  # ---------------------------------------------------------- PANEL 38
+  - id: "panel_38"
+    panel_index: 38
+    row: 2
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.32
+    shape: "large dominant threat panel"
+    beat_type: "threat"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "She stands on the flat cut hide. The curved sickle is laid flat against the
+       side of the boy's neck, not yet cutting."
+
+    characters:
+      - character_id: "yeu_phu_nguoi"
+        position: "right, standing over him"
+        pose: "leaning down over the boy, sickle extended to his throat, free hand fisted in her own hair"
+        action: "holding the blade to his neck and telling him what comes next"
+        facial_expression: "cold laughing smile, eyes wide and unblinking"
+        gaze: "locked on the boy"
+        emotion: "triumphant malice"
+        interaction: "pinning Qin Mu in place with the blade"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "left, held in place"
+        pose: "frozen upright, chin lifted away from the blade, hands open at his sides"
+        action: "holding absolutely still"
+        facial_expression: "wide-eyed, jaw tight, not crying"
+        gaze: "sideways at the blade"
+        emotion: "controlled terror"
+
+    camera:
+      shot_type: "medium two-shot"
+      camera_angle: "slightly low angle"
+      camera_position: "close beside the two, at the boy's shoulder height"
+      perspective: "moderate distortion emphasising the height difference"
+      composition:
+        "A strong diagonal from her shoulder down the sickle to his throat; the
+         hide fills the ground plane beneath them."
+      focal_point: "the blade against his neck"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above"
+      intensity: "high"
+      shadow: "her shadow covering the boy entirely"
+
+    effects:
+      atmosphere: "a hard specular highlight running the length of the sickle"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.03, w: 0.34, h: 0.24 }
+
+    typeset:
+      dialogue:
+        - speaker: "yeu_phu_nguoi"
+          text: "Little monster. Because of you I was made into a cow. Eleven years of grass, and my milk for your mouth."
+          bubble_type: "speech"
+        - speaker: "yeu_phu_nguoi"
+          text: "I will start with you. Then I will go into that village and finish every one of them."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's largest beat and state the stakes for the village in
+       the antagonist's own words."
+
+
+  # ---------------------------------------------------------- PANEL 39
+  - id: "panel_39"
+    panel_index: 39
+    row: 3
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical close-up"
+    beat_type: "reaction"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "No background at all — the meadow drops out to flat white light behind him."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "center, face filling the frame"
+        pose: "head slightly tilted, utterly still"
+        action: "failing to understand a word of it"
+        facial_expression: "blank, pupils shrunk, mouth slightly open"
+        gaze: "unfocused, past her"
+        emotion: "the shutdown that comes before fear"
+
+    camera:
+      shot_type: "extreme close-up"
+      camera_angle: "eye level"
+      camera_position: "very close to his face"
+      perspective: "flat, no depth cues"
+      composition:
+        "His eyes sit on the upper third line; the lower third is empty and quiet."
+      focal_point: "the empty look in his eyes"
+
+    lighting:
+      source: "high clear midday sunlight, bounced and diffuse"
+      direction: "flat frontal"
+      intensity: "high, almost blown out"
+      shadow: "almost no shadow — deliberately washed and airless"
+
+    effects:
+      atmosphere: "the background reduced to white to convey his mind going blank"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.72, w: 0.90, h: 0.24 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Hold one beat inside the child's head, so the killing lands on a witness
+       rather than on a participant."
+
+
+  # ---------------------------------------------------------- PANEL 40
+  - id: "panel_40"
+    panel_index: 40
+    row: 3
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical action panel"
+    beat_type: "action"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Seen from below: her arm at the top of its swing, the sickle raised against
+       the bright sky."
+
+    characters:
+      - character_id: "yeu_phu_nguoi"
+        position: "center, towering, arm raised"
+        pose: "arm at full extension above her head, body coiled forward"
+        action: "raising the sickle to bring it down"
+        facial_expression: "teeth bared, hair thrown back off the face"
+        gaze: "down at the boy, off-panel bottom"
+        emotion: "murderous commitment"
+
+    camera:
+      shot_type: "low-angle medium shot"
+      camera_angle: "extreme low angle"
+      camera_position: "on the ground at the boy's position, looking up"
+      perspective: "strong vertical distortion, her arm exaggerated"
+      composition:
+        "The raised sickle silhouetted at the top of the frame against white sky;
+         her body forms a wedge narrowing toward the camera."
+      focal_point: "the raised blade"
+
+    lighting:
+      source: "high clear midday sunlight directly behind her"
+      direction: "full backlight"
+      intensity: "very high"
+      shadow: "she reads almost as a silhouette, only the seam-marks catching light"
+
+    effects:
+      motion: "an arc of speed lines following the sickle's rise"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.42, h: 0.18 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Commit her to the swing so the interruption in the next panel is a genuine
+       cut-off."
+
+
+  # ---------------------------------------------------------- PANEL 41
+  - id: "panel_41"
+    panel_index: 41
+    row: 4
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.28
+    shape: "medium vertical panel"
+    beat_type: "climax"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "A broad saber blade has come out through the front of her chest. The swing
+       has stopped dead at the top."
+
+    characters:
+      - character_id: "yeu_phu_nguoi"
+        position: "center right, arrested mid-swing"
+        pose: "arm still up, spine arched, head snapping down toward her own chest"
+        action: "stopping, and looking down at the blade"
+        facial_expression: "mouth open, eyes wide with pure surprise"
+        gaze: "down at the point of the blade"
+        emotion: "astonishment, not yet pain"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "lower left, small"
+        pose: "still frozen, chin lifted, seen from behind and below"
+        action: "not moving"
+        facial_expression: "not visible — seen from behind"
+        gaze: "away from the viewer, up at her"
+        emotion: "reads through posture only"
+
+    camera:
+      shot_type: "medium shot"
+      camera_angle: "low angle"
+      camera_position: "at the boy's level, slightly behind his shoulder"
+      perspective: "her body large against the sky, the boy's head small in the corner"
+      composition:
+        "The blade point forms a hard horizontal against her vertical body; the
+         boy's silhouette anchors the lower left corner."
+      focal_point: "the emerged blade tip"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and behind her"
+      intensity: "high"
+      shadow: "the blade catching one hard highlight along its edge"
+
+    effects:
+      atmosphere: "a minimal dark stain spreading on the silk around the blade, nothing sprayed or thrown"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.42, h: 0.18 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Resolve the threat from off-frame, in one image, without letting the
+       violence become the spectacle."
+
+
+  # ---------------------------------------------------------- PANEL 42
+  - id: "panel_42"
+    panel_index: 42
+    row: 4
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.28
+    shape: "medium vertical reveal panel"
+    beat_type: "reveal"
+    emphasis: "medium"
+    character_count: 3
+
+    scene_delta:
+      "The woman is falling. Behind where she stood, Lame Grandpa is on his feet
+       in the grass, staff planted, the broad saber lowered in his other hand."
+
+    characters:
+      - character_id: "gia_gia_que"
+        position: "center right, standing behind the falling body"
+        pose: "weight on the wooden staff, saber lowered and angled down"
+        action: "letting the body drop and greeting the boy"
+        facial_expression: "broad easy smile, deep laugh lines, completely unchanged"
+        gaze: "past the falling woman at Qin Mu"
+        emotion: "cheerful ordinariness"
+
+      - character_id: "yeu_phu_nguoi"
+        position: "center, falling forward out of frame bottom"
+        pose: "collapsing forward, arms loose, hair falling over the face"
+        action: "dropping to the hide"
+        facial_expression: "obscured by falling hair"
+        gaze: "not visible"
+        emotion: "gone"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "foreground left, low"
+        pose: "sunk down onto his heels in the grass"
+        action: "looking up at the old man"
+        facial_expression: "stunned, lips parted"
+        gaze: "at Lame Grandpa"
+        emotion: "disbelief"
+
+    camera:
+      shot_type: "medium three-shot"
+      camera_angle: "slightly low angle"
+      camera_position: "on the grass at the boy's side"
+      perspective: "moderate depth, Lame Grandpa set back behind the falling body"
+      composition:
+        "Lame Grandpa upright at the right with the tied trouser leg and staff both
+         clearly readable, the falling body on the diagonal, the boy low at left."
+      focal_point: "the old man's smile"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and slightly left"
+      intensity: "high"
+      shadow: "short and soft — the lighting stays as pleasant as it was in panel_27"
+
+    effects:
+      atmosphere: "a thin dark line of blood along the saber edge, nothing more"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.42, h: 0.16 }
+
+    typeset:
+      dialogue:
+        - speaker: "gia_gia_que"
+          text: "Mu'er. The doctor grandpa says it's time you came back for your medicine."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Land the chapter's real joke: the kindly grandfather kills an adult
+       mid-sentence and then reminds the boy about his medicine."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "sunlit pastoral river meadow with layered blue-green mountains"
+  lighting: "high-key natural midday sunlight held deliberately pleasant through the violence"
+  effects: "minimal — motion lines only, blood restricted to a thin edge line and a small stain"
+  color_language:
+    qin_mu: "pale jade-green pendant over warm hemp brown"
+    the_freed_woman: "sickly grey-green skin with dried-blood red on the ragged silk"
+    lame_grandpa: "dark moss green and worn leather brown"
+  panel_language:
+    "one large threat panel anchoring the page, resolved by a fast four-beat
+     descent of smaller panels"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not draw blood spray, arterial jets, pooled blood, viscera, or an exit wound — blood is limited to a thin edge line and a small stain on cloth."
+  - "Do not draw the woman nude — the ragged damp silk inner robe is always present and covers her."
+  - "Do not draw a living cow anywhere on this page; the hide is a flat empty object on the grass."
+  - "Do not show Lame Grandpa's body, face, staff, or shadow before panel_42."
+  - "Do not give Lame Grandpa an angry, grim, or shocked expression — his face never changes."

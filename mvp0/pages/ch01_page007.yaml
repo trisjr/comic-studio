@@ -1,0 +1,518 @@
+# AI Coding
+# ch01_page007.yaml
+# Chương 1 — trang 7/11. Lột da bò: không máu, bên trong rỗng, một người phụ nữ trút ra.
+# panel_index 32–36 (tuần tự toàn chương).
+# ⭐ panel_35: con bò KHÔNG còn là nhân vật có mặt — nó là tấm da rỗng đang bị
+#    trút ra, nên nằm ở scene_delta chứ không nằm trong `characters`.
+
+page:
+  page_id: "ch01_page007"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "The boy skins the animal that raised him. There is no blood, the hide is
+     hollow, and what comes out of it is a woman."
+
+  overall_mood:
+    "queasy, clinical, body-horror staged in full sunlight"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_35"
+    rows:
+      - { row: 1, y: 0.00, h: 0.20, panels: ["panel_32"] }
+      - { row: 2, y: 0.20, h: 0.22, panels: ["panel_33", "panel_34"] }
+      - { row: 3, y: 0.42, h: 0.36, panels: ["panel_35"] }
+      - { row: 4, y: 0.78, h: 0.22, panels: ["panel_36"] }
+
+  continuity:
+    setting:
+      "The same riverbank in broad daylight — a green grazing meadow along the water,
+       blue-green mountains layered into the distance, clear sky with high white clouds."
+    time_span:
+      "A few minutes, continuous, in the same patch of meadow."
+    spatial:
+      "Qin Mu stays on the left / near side of the frame; the animal and whatever
+       comes out of it stay on the right / far side. This relationship is never reversed."
+    environment:
+      "Bright open daylight with short soft shadows on the grass. The river runs
+       bright at the far edge. The cut hide produces no blood and stains nothing."
+    wardrobe:
+      "Qin Mu keeps the same half-open hemp tunic, cloth belt, bare feet and jade
+       pendant in every panel."
+    progression:
+      - "panel_32: dialogue. The cow tells him where the sickle is and what to do with it."
+      - "panel_33: action. He makes the first careful cut along the hide."
+      - "panel_34: detail. The cut lips open on nothing — no blood, no flesh, no bone."
+      - "panel_35: reveal. The hide is peeled down to the waist and a woman is coming out of it, legs still sealed inside."
+      - "panel_36: action. She snatches the sickle from his hand and finishes the job herself."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tan_muc_thieu_nien"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+
+    role: "protagonist at eleven, the village cowherd boy"
+
+    identity:
+      gender: "male"
+      age: 11
+      body_type:
+        "eleven-year-old boy, slim, the height reference every other character is
+         measured against"
+
+    appearance:
+      hair: "black hair loosely tied at the nape, several strands falling over the forehead"
+      eyes: "bright dark eyes with clean thin eyebrows"
+      face: "delicate handsome boyish face, clear brows, fair skin"
+      distinctive_features:
+        - "pale jade pendant on a cord, worn openly on the bare chest"
+        - "always barefoot"
+
+    outfit:
+      - "pale brown coarse hemp tunic worn half-open"
+      - "cloth waist belt"
+      - "bare feet"
+
+    personality: "curious, gentle, easily shaken but quick to obey his elders"
+
+
+  - id: "yeu_phu_bo"
+    name: "The Cow"
+    canonical_reference: "mvp0/refs/yeu_phu_bo.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "dull tan-and-cream cow with short blunt horns and a braided cloth nose rope,
+       hide hanging slightly loose"
+
+    role: "a noblewoman sealed into the body of a cow, wet nurse to Qin Mu"
+
+    identity:
+      gender: "female"
+      age: 11
+      body_type: "adult cow, back tall enough for Qin Mu at eleven to sit on comfortably"
+
+    appearance:
+      hair: "short dull tan-and-cream hide, a coarse tuft running along the neck"
+      eyes: "large wet dark cow eyes carrying visible human sorrow"
+      face: "bovine head with a broad muzzle and an unnaturally human, tearful expression"
+      distinctive_features:
+        - "short blunt horns"
+        - "the hide hangs slightly loose, as if hollow underneath"
+
+    outfit:
+      - "no garment; only a braided cloth nose rope"
+
+    personality: "pleading, manipulative, carrying eleven years of stored resentment"
+
+
+  - id: "yeu_phu_nguoi"
+    name: "The Freed Woman"
+    canonical_reference: "mvp0/refs/yeu_phu_nguoi.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "wild matted long black hair covering half the face, ragged damp silk robe,
+       raw red seam-marks around both thighs"
+
+    role: "the same noblewoman freed from the seal, antagonist in human form"
+
+    identity:
+      gender: "female"
+      age: 28
+      body_type: "adult woman, roughly two heads taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "long black hair in a wild matted tangle covering half the face"
+      eyes: "bloodshot dark eyes, wide and unblinking"
+      face: "pale gaunt woman's face in her late twenties, twisted with hatred"
+      distinctive_features:
+        - "sickly pale skin from eleven years without sunlight"
+        - "raw red seam-marks around both thighs where the hide was joined"
+
+    outfit:
+      - "ragged faded silk inner robe, damp and clinging"
+
+    personality: "vengeful, theatrical, snaps from pleading to murderous without warning"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 32
+  - id: "panel_32"
+    panel_index: 32
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Both standing in the open grass, a short curved harvesting sickle hanging
+       at the boy's cloth belt."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "left, standing in the grass"
+        pose: "standing stiffly, one hand drifting toward the sickle at his hip"
+        action: "asking how he is supposed to help"
+        facial_expression: "uncertain, brows drawn together"
+        gaze: "at the cow"
+        emotion: "wary sympathy"
+
+      - character_id: "yeu_phu_bo"
+        position: "right, side on"
+        pose: "standing square, head turned toward him"
+        action: "directing him to the sickle"
+        facial_expression: "eyes fixed on him, muzzle working"
+        gaze: "at the boy's hip"
+        emotion: "urgency"
+
+    camera:
+      shot_type: "wide two-shot"
+      camera_angle: "eye level"
+      camera_position: "level with the boy, square on to both"
+      perspective: "flat, both on the same plane"
+      composition:
+        "Boy small at left, cow large at right, a clear gap of bright grass between
+         them and the sickle sitting on the sightline."
+      focal_point: "the sickle at his belt"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and slightly behind camera"
+      intensity: "high"
+      shadow: "short soft shadows on the grass under both"
+
+    text_safe_zone:
+      - { x: 0.35, y: 0.04, w: 0.30, h: 0.35 }
+
+    typeset:
+      dialogue:
+        - speaker: "tan_muc_thieu_nien"
+          text: "How am I supposed to save you?"
+          bubble_type: "speech"
+        - speaker: "yeu_phu_bo"
+          text: "There is a sickle at your hip. Cut my hide off me and I am free."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Put the weapon on stage and make the horror the boy's own decision."
+
+
+  # ---------------------------------------------------------- PANEL 33
+  - id: "panel_33"
+    panel_index: 33
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical panel"
+    beat_type: "action"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Close on the boy's hands at the animal's flank, the curved blade just
+       entering the hide."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "left, hands and face in three-quarter view"
+        pose: "crouched slightly, both hands steadying the sickle"
+        action: "drawing the first careful cut along the hide"
+        facial_expression: "mouth pressed shut, eyes narrowed in concentration"
+        gaze: "down at the blade"
+        emotion: "reluctant focus"
+
+      - character_id: "yeu_phu_bo"
+        position: "right, flank filling the frame"
+        pose: "standing perfectly still, not flinching"
+        action: "holding motionless under the blade"
+        facial_expression: "head out of frame — only the body is visible"
+        gaze: "not visible in this shot"
+        emotion: "reads through absolute stillness"
+
+    camera:
+      shot_type: "close-up"
+      camera_angle: "eye level"
+      camera_position: "beside the animal's flank, close to the blade"
+      perspective: "shallow, the meadow reduced to soft green"
+      composition:
+        "The blade line runs vertically down the center; the boy's hands enter
+         from the left."
+      focal_point: "the point of the blade in the hide"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above"
+      intensity: "high"
+      shadow: "the boy's hands casting a sharp small shadow on the hide"
+
+    effects:
+      motion: "a fine cut line opening behind the blade"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.42, h: 0.18 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Make the reader watch the cut being made carefully, not violently."
+
+
+  # ---------------------------------------------------------- PANEL 34
+  - id: "panel_34"
+    panel_index: 34
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical detail panel"
+    beat_type: "detail"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Extreme close on the opened cut. The lips of the hide part like cut cloth
+       over emptiness — no blood, no flesh, no bone, only shadow inside."
+
+    characters:
+      - character_id: "yeu_phu_bo"
+        position: "center, hide filling the entire frame"
+        pose: "still standing, only the cut section visible"
+        action: "bleeding nothing"
+        facial_expression: "no face in frame"
+        gaze: "no eyes in frame"
+        emotion: "absent — this panel is deliberately impersonal"
+
+    camera:
+      shot_type: "extreme close-up"
+      camera_angle: "eye level"
+      camera_position: "directly at the cut"
+      perspective: "flat, macro framing"
+      composition:
+        "The cut runs corner to corner as a dark slit; hide texture fills the rest."
+      focal_point: "the darkness inside the cut"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above"
+      intensity: "high"
+      shadow: "the interior of the cut reading as pure flat shadow with no depth cue"
+
+    effects:
+      atmosphere: "the hide edge curling very slightly, like leather rather than skin"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.76, w: 0.90, h: 0.20 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Deliver the wrongness in one image: it was never an animal."
+
+
+  # ---------------------------------------------------------- PANEL 35
+  - id: "panel_35"
+    panel_index: 35
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.36
+    shape: "large dominant reveal panel"
+    beat_type: "reveal"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "The cowhide is peeled down to the waist and hangs empty and slack, like a
+       shed garment collapsing outward. There is no living animal here any more —
+       only the loose hide, its head lolling sideways on the grass. A woman has
+       come out of it from the waist up, arms already free; from the waist down
+       her legs are still sealed inside the hide's hind legs."
+
+    characters:
+      - character_id: "yeu_phu_nguoi"
+        position: "center right, rising out of the collapsed hide"
+        pose:
+          "torso upright and twisting free, both arms out of the hide and braced on
+           the grass, legs still enclosed inside the hide's hind legs below the hip"
+        action: "forcing herself up out of the hide"
+        facial_expression: "mouth open, hair plastered across half her face"
+        gaze: "up at the boy"
+        emotion: "raw effort, hatred not yet surfaced"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "foreground left, backing away"
+        pose: "stumbling backward, sickle held loose and forgotten in one hand"
+        action: "retreating from what he has opened"
+        facial_expression: "eyes enormous, all colour gone"
+        gaze: "at the woman"
+        emotion: "dawning horror"
+
+    camera:
+      shot_type: "wide reveal shot"
+      camera_angle: "low angle"
+      camera_position: "low in the grass on the boy's side"
+      perspective: "strong perspective, the woman looming over the crouched boy"
+      composition:
+        "The empty hide spreads across the lower right like a discarded coat, the
+         woman rising vertically out of it through the center, the boy small and
+         low at the left."
+      focal_point: "the seam where her body meets the hide at the hip"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and behind her"
+      intensity: "high"
+      shadow: "her shadow falling directly across the boy"
+
+    effects:
+      atmosphere: "the hide sagging with no volume inside it, completely dry and unstained"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.04, w: 0.30, h: 0.22 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's climax. The cow must read as an empty garment here, not
+       as a living animal standing beside her."
+
+
+  # ---------------------------------------------------------- PANEL 36
+  - id: "panel_36"
+    panel_index: 36
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide horizontal action panel"
+    beat_type: "action"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "She has the sickle. Two or three fast strokes and the last of the hide
+       falls away; she rises to stand on top of it."
+
+    characters:
+      - character_id: "yeu_phu_nguoi"
+        position: "center right, standing"
+        pose: "standing barefoot on the fallen hide, sickle reversed in one hand"
+        action: "cutting herself free and straightening up"
+        facial_expression: "breathing hard, hair still across one eye"
+        gaze: "down at the hide, then up"
+        emotion: "release curdling into fury"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "left, on the ground"
+        pose: "fallen back on his hands in the grass, empty-handed"
+        action: "staring up with nothing left to hold"
+        facial_expression: "slack, uncomprehending"
+        gaze: "up at her"
+        emotion: "numb shock"
+
+    camera:
+      shot_type: "wide two-shot"
+      camera_angle: "low angle"
+      camera_position: "at the boy's eye level on the ground"
+      perspective: "her height exaggerated against the sky"
+      composition:
+        "She stands at right filling the full panel height; the boy is a low mass
+         at left; the flat hide lies between them."
+      focal_point: "the sickle now in her hand"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and behind her"
+      intensity: "high"
+      shadow: "she is partly backlit, her face slightly darker than the sky behind"
+
+    effects:
+      motion: "two fast arc lines where the last cuts were made"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.04, w: 0.32, h: 0.28 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Transfer the weapon from the child to the adult and end the page on that
+       reversal."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "sunlit pastoral river meadow with layered blue-green mountains"
+  lighting: "high-key natural midday sunlight, no supernatural light source anywhere"
+  effects: "minimal — motion lines and cut lines only, no glow, no gore effects"
+  color_language:
+    qin_mu: "pale jade-green pendant over warm hemp brown"
+    the_cow: "dull tan hide and dirty cream, no glow"
+    the_freed_woman: "sickly grey-green skin with dried-blood red on the ragged silk"
+  panel_language:
+    "tight clinical inserts building to one large low-angle reveal"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not draw a living, standing, or head-raised cow in panel_35 or panel_36 — from panel_35 onward the hide is an empty object on the ground."
+  - "Do not draw blood, viscera, exposed muscle, bone, or wet tissue anywhere on this page."
+  - "Do not draw the woman nude — the ragged damp silk inner robe is always present and covers her."
+  - "Do not give the cow human limbs, human teeth, or an anthropomorphic posture in panel_32 through panel_34."
+  - "Do not add other cattle, villagers, birds, or any second animal to the meadow."

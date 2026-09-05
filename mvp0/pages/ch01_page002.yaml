@@ -1,0 +1,532 @@
+# AI Coding
+# ch01_page002.yaml
+# Chương 1 — trang 2/11. Tiếng trẻ khóc ngoài thôn; ba lão nhân tranh nhau vác tượng đá.
+# panel_index 6–10 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page002"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "A baby is crying outside the safe ring. Three crippled elders argue over
+     who gets to walk into the dark, and the one-armed one wins by lifting a
+     statue no whole man could lift."
+
+  overall_mood:
+    "urgent, bickering, stubborn courage under real fear"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_10"
+    rows:
+      - { row: 1, y: 0.00, h: 0.20, panels: ["panel_06"] }
+      - { row: 2, y: 0.20, h: 0.24, panels: ["panel_07", "panel_08"] }
+      - { row: 3, y: 0.44, h: 0.20, panels: ["panel_09"] }
+      - { row: 4, y: 0.64, h: 0.36, panels: ["panel_10"] }
+
+  continuity:
+    setting:
+      "A tiny remote mountain village of low mud-and-thatch houses, ringed by four
+       ancient weathered stone statues standing one at each corner of the settlement.
+       Bare packed-earth paths, a few crooked trees, mountains closing in on all sides."
+    time_span:
+      "One continuous argument lasting under a minute, at the foot of the nearest
+       corner statue."
+    spatial:
+      "Granny Si holds the left / near side, Elder Ma the right / far side, and
+       Lame Grandpa enters from the far right behind Elder Ma. This order is
+       never reversed."
+    environment:
+      "Full night. The four corner statues give off a faint pale glow, weak and
+       short-reaching; beyond them the darkness is absolute. The air is dead
+       silent apart from a thin infant cry coming from somewhere outside the village."
+    wardrobe:
+      "All three characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_06: dialogue. Elder Ma denies hearing anything, then hears it."
+      - "panel_07: dialogue. Granny Si announces she is going out; Elder Ma calls her mad."
+      - "panel_08: action. Granny Si tries to shoulder the corner statue and cannot — her back is bent."
+      - "panel_09: dialogue. Elder Ma offers to carry it and walk with her."
+      - "panel_10: action. Lame Grandpa volunteers instead; Elder Ma hoists the statue with his single arm to settle it."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "ma_lao"
+    name: "Elder Ma"
+    canonical_reference: "mvp0/refs/ma_lao.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "empty left sleeve knotted at the shoulder, one thick right arm,
+       earth-brown work tunic"
+
+    role: "village elder who carries the stone statue out to the river at night"
+
+    identity:
+      gender: "male"
+      age: 65
+      body_type:
+        "tall and broad for an old man, a head and a half taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "short cropped white hair under a brown cloth headband"
+      eyes: "narrow dark eyes under heavy white brows"
+      face: "square weathered old man's face with a patchy white stubble beard"
+      distinctive_features:
+        - "left arm missing entirely at the shoulder"
+        - "the empty left sleeve knotted up at the shoulder"
+        - "the remaining right arm unusually thick and muscular"
+
+    outfit:
+      - "earth-brown coarse work tunic"
+      - "brown cloth headband"
+
+    personality: "gruff, loyal, quick to bicker but first to volunteer"
+
+
+  - id: "gia_gia_que"
+    name: "Lame Grandpa"
+    canonical_reference: "mvp0/refs/gia_gia_que.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "right trouser leg tied off below the knee, plain wooden staff,
+       broad saber slung across the back"
+
+    role: "village elder and hunter who teaches Qin Mu kicking techniques"
+
+    identity:
+      gender: "male"
+      age: 68
+      body_type:
+        "lean and wiry, roughly two heads taller than Qin Mu at eleven even while
+         leaning on his staff"
+
+    appearance:
+      hair: "salt-and-pepper hair gathered into a small topknot"
+      eyes: "warm crinkled eyes"
+      face: "plain kindly old man's face with a broad easy smile and deep laugh lines"
+      distinctive_features:
+        - "right leg missing below the knee"
+        - "plain wooden walking staff"
+        - "a single broad saber slung across the back"
+
+    outfit:
+      - "dark moss-green cloth robe"
+      - "wide trousers with the right leg tied off below the knee"
+
+    personality: "cheerful, unshakeable, kills without changing expression"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 06
+  - id: "panel_06"
+    panel_index: 6
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "A low thatched roofline behind him, the glowing statue just out of frame
+       to the right casting his rim light."
+
+    characters:
+      - character_id: "ma_lao"
+        position: "center right, three-quarter view"
+        pose: "head cocked, single right hand raised in a dismissive wave"
+        action: "waving off the claim, then freezing mid-gesture as he hears it too"
+        facial_expression: "smirk collapsing into open-mouthed disbelief"
+        gaze: "off-panel left toward Granny Si, then sliding toward the dark"
+        emotion: "dismissal turning to dread"
+
+    camera:
+      shot_type: "medium shot"
+      camera_angle: "eye level"
+      camera_position: "level with Elder Ma, slightly to his left"
+      perspective: "shallow, flattened background"
+      composition:
+        "Elder Ma occupies the right two thirds; the knotted empty left sleeve
+         is fully visible in profile against the pale statue light."
+
+    lighting:
+      source: "faint pale glow from the nearest corner stone statue"
+      direction: "hard rim from the right"
+      intensity: "low"
+      shadow: "the left side of his body dropping into black"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.08, w: 0.35, h: 0.60 }
+
+    typeset:
+      dialogue:
+        - speaker: "ma_lao"
+          text: "Nonsense, you misheard... no. No, there really is a child crying."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Confirm the impossible sound through a second witness, and plant the
+       knotted empty sleeve as Elder Ma's identity cue."
+
+
+  # ---------------------------------------------------------- PANEL 07
+  - id: "panel_07"
+    panel_index: 7
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.24
+    shape: "medium vertical panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "The base of the corner statue enters the frame at the left edge."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "foreground left, back three-quarter"
+        pose: "already turning away, small feet mid-stride"
+        action: "declaring she will go and look"
+        facial_expression: "jaw set, seen in sharp profile"
+        gaze: "toward the village edge"
+        emotion: "hard resolve"
+
+      - character_id: "ma_lao"
+        position: "background right"
+        pose: "leaning after her, single arm outstretched"
+        action: "trying to stop her"
+        facial_expression: "alarmed, brows down"
+        gaze: "at Granny Si"
+        emotion: "panic"
+
+    camera:
+      shot_type: "medium two-shot"
+      camera_angle: "slightly low angle"
+      camera_position: "at the height of Granny Si's shoulder"
+      perspective: "moderate depth, Elder Ma noticeably further back"
+      composition:
+        "Granny Si small and hunched in the near left, Elder Ma large and
+         reaching in the far right, the gap between them carrying the tension."
+
+    lighting:
+      source: "faint pale glow from the corner stone statue at frame left"
+      direction: "from the lower left"
+      intensity: "low"
+      shadow: "both figures underlit, faces half in shadow"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.04, w: 0.45, h: 0.22 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "I'll go and see for myself."
+          bubble_type: "speech"
+        - speaker: "ma_lao"
+          text: "Old woman, have you lost your mind? Leave the village after dark and you die. Every time."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "State the rule out loud one last time, then have someone break it."
+
+
+  # ---------------------------------------------------------- PANEL 08
+  - id: "panel_08"
+    panel_index: 8
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.24
+    shape: "medium vertical panel"
+    beat_type: "action"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Close on the base of the glowing corner statue, its weathered mottling
+       filling the upper frame."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "lower center, at the statue's base"
+        pose: "crouched with both arms wrapped around the stone, back bent double"
+        action: "straining to shoulder the statue and failing"
+        facial_expression: "teeth bared with effort"
+        gaze: "down at her own hands"
+        emotion: "frustration"
+
+    camera:
+      shot_type: "medium close-up"
+      camera_angle: "low angle"
+      camera_position: "close to the ground beside the statue"
+      perspective: "the statue exaggerated in scale above her"
+      composition:
+        "The statue mass dominates the upper two thirds; her hunched back curves
+         under it in the lower third, the two curves echoing each other."
+      focal_point: "her bent back against the immovable stone"
+
+    lighting:
+      source: "pale glow from the statue itself, directly above her"
+      direction: "top-down"
+      intensity: "low but close"
+      shadow: "her face fully shadowed under the overhang of the stone"
+
+    effects:
+      motion: "small strain lines and a shift of dust under her heels"
+
+    text_safe_zone:
+      - { x: 0.55, y: 0.60, w: 0.40, h: 0.32 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Show the cost of her body without a word — the hunched back is why she
+       cannot do this alone."
+
+
+  # ---------------------------------------------------------- PANEL 09
+  - id: "panel_09"
+    panel_index: 9
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Both elders framed against the black village edge, statue glow behind them."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "left, half turned toward the viewer"
+        pose: "straightening as far as her back allows, hands falling from the stone"
+        action: "letting go of the statue"
+        facial_expression: "grudging, mouth pressed thin"
+        gaze: "sideways at Elder Ma"
+        emotion: "reluctant acceptance"
+
+      - character_id: "ma_lao"
+        position: "right, stepping in"
+        pose: "shaking his head, single right hand flat against his own chest"
+        action: "offering to carry the statue and walk out with her"
+        facial_expression: "resigned half-smile"
+        gaze: "at Granny Si"
+        emotion: "gruff loyalty"
+
+    camera:
+      shot_type: "wide two-shot"
+      camera_angle: "eye level"
+      camera_position: "square on to both elders"
+      perspective: "flat and even, both at the same depth"
+      composition:
+        "The two figures balanced left and right with the dark gap of the village
+         exit between them."
+
+    lighting:
+      source: "faint pale statue glow from behind the characters"
+      direction: "backlight"
+      intensity: "low"
+      shadow: "both figures reading close to silhouette, cues still legible"
+
+    text_safe_zone:
+      - { x: 0.32, y: 0.05, w: 0.36, h: 0.35 }
+
+    typeset:
+      dialogue:
+        - speaker: "ma_lao"
+          text: "Leave it. I'll carry the statue and walk out with you."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Turn the argument into a partnership, and set up who is carrying what."
+
+
+  # ---------------------------------------------------------- PANEL 10
+  - id: "panel_10"
+    panel_index: 10
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.36
+    shape: "large dominant action panel"
+    beat_type: "action"
+    emphasis: "large"
+    character_count: 3
+
+    scene_delta:
+      "The corner statue is off its plinth, tilted up against Elder Ma's shoulder.
+       Its glow now moves with him, throwing the light across all three faces."
+
+    characters:
+      - character_id: "ma_lao"
+        position: "center, dominating the frame"
+        pose: "half crouched, single right arm locked around the tilted statue"
+        action: "hoisting the statue against his shoulder to end the argument"
+        facial_expression: "teeth clenched, veins standing out on the temple"
+        gaze: "forward past the others, toward the village exit"
+        emotion: "stubborn triumph"
+        interaction: "cutting off Lame Grandpa's offer by simply taking the load"
+
+      - character_id: "gia_gia_que"
+        position: "right, one step behind Elder Ma"
+        pose: "leaning on the wooden staff, free hand half raised in offer"
+        action: "volunteering to carry it instead"
+        facial_expression: "broad easy smile, unbothered"
+        gaze: "at Elder Ma"
+        emotion: "cheerful insistence"
+
+      - character_id: "tu_ba_ba"
+        position: "foreground left, small and low"
+        pose: "hunched, both hands on her hips"
+        action: "snapping at both of them to hurry"
+        facial_expression: "gap-toothed scowl"
+        gaze: "up at Elder Ma"
+        emotion: "impatience"
+
+    camera:
+      shot_type: "dynamic wide action shot"
+      camera_angle: "low angle"
+      camera_position: "close to the packed earth, looking up at the lifted statue"
+      perspective: "strong perspective, the statue exaggerated against the black sky"
+      composition:
+        "Elder Ma and the statue form a single mass through the center, Lame
+         Grandpa's staff and tied trouser leg reading clearly at right, Granny Si
+         small at lower left."
+      focal_point: "the single straining right arm holding the statue"
+
+    lighting:
+      source: "the lifted stone statue, now a moving light source"
+      direction: "from above and center, swinging with the statue"
+      intensity: "low but close and hard"
+      shadow: "three hard shadows thrown down and outward across the packed earth"
+
+    effects:
+      glow: "pale halo around the tilted stone"
+      motion: "dust knocked loose from the plinth"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.03, w: 0.30, h: 0.24 }
+
+    typeset:
+      dialogue:
+        - speaker: "gia_gia_que"
+          text: "Ma, you have one arm. You won't hold it long. Let me carry it."
+          bubble_type: "speech"
+        - speaker: "ma_lao"
+          text: "You're missing a leg, cripple. One arm is plenty — and this one has strength."
+          bubble_type: "speech"
+        - speaker: "tu_ba_ba"
+          text: "The rest of you watch the village. One statue is already gone from the ring."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's climax and establish the running joke that everyone in
+       this village is missing a piece and none of them care."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "detailed vernacular mud-and-thatch architecture with cinematic atmospheric perspective"
+  lighting: "dramatic cinematic lighting driven by a single weak supernatural glow"
+  effects: "restrained 2D fantasy glow effects, no particle spam"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    elder_ma: "earth brown and rust, warm dull tones"
+    lame_grandpa: "dark moss green and worn leather brown"
+    statues: "cold pale stone glow"
+  panel_language:
+    "cinematic composition with strong variation in shot size, tight reaction
+     inserts building to one large low-angle action panel"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Elder Ma has the knotted empty sleeve, only Lame Grandpa has the staff and tied trouser leg, only Granny Si has the hunched back."
+  - "Do not give Elder Ma a left arm, or Lame Grandpa a right lower leg, in any panel."
+  - "Do not draw Lame Grandpa's saber unsheathed or in his hand on this page."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."
+  - "Do not draw a visible infant anywhere on this page."

@@ -1,0 +1,576 @@
+# AI Coding
+# ch01_page005.yaml
+# Chương 1 — trang 5/11. Thôn tàn tật nhận nuôi một đứa trẻ lành lặn; đặt tên Tần Mục.
+# panel_index 21–26 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page005"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "A village of cripples claims a whole child. Granny Si refuses to give him
+     up, and the limbless chief settles it by giving him a name and a trade."
+
+  overall_mood:
+    "communal, prickly, unexpectedly tender under the hard talk"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 6
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_24"
+    rows:
+      - { row: 1, y: 0.00, h: 0.18, panels: ["panel_21"] }
+      - { row: 2, y: 0.18, h: 0.20, panels: ["panel_22", "panel_23"] }
+      - { row: 3, y: 0.38, h: 0.34, panels: ["panel_24"] }
+      - { row: 4, y: 0.72, h: 0.28, panels: ["panel_25", "panel_26"] }
+
+  continuity:
+    setting:
+      "A tiny remote mountain village of low mud-and-thatch houses, ringed by four
+       ancient weathered stone statues standing one at each corner of the settlement.
+       Bare packed-earth paths, a few crooked trees, mountains closing in on all sides."
+    time_span:
+      "One gathering in the village square, lasting a few minutes, still deep in
+       the same night."
+    spatial:
+      "Granny Si holds the left / near side of the square with the basket. The
+       village chief is carried in from the right / far side on his stretcher.
+       This relationship is never reversed."
+    environment:
+      "Full night inside the ring. The corner statues give off a faint pale glow that
+       reaches the middle of the square and dies. A crowd of village elders stands
+       around the edges as unlit silhouettes with no readable faces."
+    wardrobe:
+      "All characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_21: establishing. Granny Si walks back into the square with the basket; silhouettes close in around her."
+      - "panel_22: reveal. She folds back the swaddle and grins — the child is whole."
+      - "panel_23: dialogue. She snarls down an offscreen suggestion that the child be given away."
+      - "panel_24: entrance. The limbless village chief is carried in on his bamboo stretcher and the arguing stops."
+      - "panel_25: detail. She turns the jade pendant over: one carved character, no papers."
+      - "panel_26: naming. The chief gives the boy a surname, a name, and a future as a cowherd."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "truong_thon"
+    name: "Village Chief"
+    canonical_reference: "mvp0/refs/truong_thon.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "limbless torso in a bone-white robe lying on a carried bamboo stretcher"
+
+    role: "chief of Canlao Village, the one who named Qin Mu and taught him breathing"
+
+    identity:
+      gender: "male"
+      age: 75
+      body_type:
+        "limbless torso, always carried at the waist height of standing villagers,
+         never upright"
+
+    appearance:
+      hair: "long loose white hair spread across the stretcher"
+      eyes: "half-closed pale eyes with a steady gaze"
+      face: "gaunt hollow-cheeked old face, calm and composed"
+      distinctive_features:
+        - "both arms and both legs missing"
+        - "always lying on a carried bamboo stretcher"
+
+    outfit:
+      - "wide bone-white cloth robe draped over the whole torso"
+
+    personality: "quiet, respected without effort, settles what no one else dares to"
+
+
+  - id: "tan_muc_so_sinh"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_so_sinh.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "newborn wrapped in coarse white swaddling inside a woven river basket,
+       faintly glowing jade pendant lying beside him"
+
+    role: "protagonist as a newborn, found in a basket at the river"
+
+    identity:
+      gender: "male"
+      age: 0
+      body_type: "newborn infant, small enough for Granny Si to carry in one basket"
+
+    appearance:
+      hair: "sparse fine black baby hair"
+      eyes: "large dark newborn eyes still wet with tears"
+      face: "round newborn face, cheeks flushed from crying, mouth open in a toothless laugh"
+      distinctive_features:
+        - "pale jade pendant carved with a single character"
+        - "the pendant gives off a faint green glow beside the swaddle"
+
+    outfit:
+      - "coarse undyed white swaddling cloth, no other garment"
+
+    personality: "unafraid, laughs instead of crying when held"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 21
+  - id: "panel_21"
+    panel_index: 21
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.18
+    shape: "wide cinematic horizontal panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "The village square. A ring of village elders closes in from both edges as
+       unlit background silhouettes — bent backs, missing limbs, crutches — none
+       of them with a readable face."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "center, walking in from frame left"
+        pose: "hunched, the woven basket clutched against her chest"
+        action: "carrying the basket back into the square"
+        facial_expression: "guarded, chin up, three-quarter view"
+        gaze: "straight ahead through the crowd"
+        emotion: "possessive defiance"
+
+    camera:
+      shot_type: "wide establishing shot"
+      camera_angle: "eye level"
+      camera_position: "at the far side of the square, level with the crowd"
+      perspective: "moderate depth, houses receding on both sides"
+      composition:
+        "Granny Si small at center inside a corridor of dark silhouettes; the
+         green glow from the basket is the brightest point in the panel."
+      focal_point: "the glow at her chest"
+
+    lighting:
+      source: "faint pale glow from the four corner stone statues, plus green light from the basket"
+      direction: "statue light from both sides, green light from the basket itself"
+      intensity: "low"
+      shadow: "the surrounding villagers reduced to flat black shapes"
+
+    effects:
+      atmosphere: "breath faintly visible in the cold air"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.06, w: 0.30, h: 0.40 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Show the village as a crowd of broken bodies without giving any of them a
+       face that competes with the three named characters."
+
+
+  # ---------------------------------------------------------- PANEL 22
+  - id: "panel_22"
+    panel_index: 22
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.20
+    shape: "medium horizontal panel"
+    beat_type: "reveal"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Close on the open basket in her arms, the swaddle folded back. Dark
+       silhouette shoulders crowd the edges of the frame."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "upper left, leaning over the basket"
+        pose: "bent over the basket, one hand holding the swaddle back"
+        action: "checking the child and finding him whole"
+        facial_expression: "wide gap-toothed grin breaking across her face"
+        gaze: "down into the basket"
+        emotion: "triumph"
+
+      - character_id: "tan_muc_so_sinh"
+        position: "lower right, in the basket"
+        pose: "lying on his back, both arms free of the cloth"
+        action: "kicking and laughing up at her"
+        facial_expression: "toothless laugh, cheeks still wet"
+        gaze: "up at Granny Si"
+        emotion: "delight"
+
+    camera:
+      shot_type: "medium close-up"
+      camera_angle: "high angle over the basket"
+      camera_position: "just above and beside Granny Si's shoulder"
+      perspective: "compressed, both faces on nearly the same plane"
+      composition:
+        "The two faces on a diagonal, the basket rim cutting the lower corner."
+
+    lighting:
+      source: "green glow from the jade pendant in the basket"
+      direction: "uplight onto Granny Si's face"
+      intensity: "low and close"
+      shadow: "her eye sockets deeply shadowed by the uplight"
+
+    effects:
+      glow: "green light catching the loose threads of the swaddling"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.45, h: 0.20 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "Canlao Village finally has someone with all his pieces."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Land the chapter's central joke and its central sadness in one line."
+
+
+  # ---------------------------------------------------------- PANEL 23
+  - id: "panel_23"
+    panel_index: 23
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.20
+    shape: "medium horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Silhouetted villagers recoil half a step backward around the edges of the frame."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "center right"
+        pose: "straightened as far as her back allows, basket held away protectively"
+        action: "snarling down an offscreen suggestion"
+        facial_expression: "furious, gap-toothed snarl, brows down hard"
+        gaze: "off-panel left at whoever spoke"
+        emotion: "possessive rage"
+
+    camera:
+      shot_type: "medium shot"
+      camera_angle: "low angle"
+      camera_position: "below her, at the height of the basket"
+      perspective: "slight distortion making her larger than her frame allows"
+      composition:
+        "Granny Si occupies the right two thirds, dark recoiling silhouettes
+         bleeding off the left edge."
+
+    lighting:
+      source: "pale statue glow from behind, green glow from the basket in front"
+      direction: "backlight plus uplight, meeting on her face"
+      intensity: "low"
+      shadow: "a hard rim around her hunched back"
+
+    effects:
+      motion: "small backward-step lines on the silhouettes"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.72, w: 0.45, h: 0.24 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "I found him with my own skill. Why would I hand him to anyone?"
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Establish that she keeps him by force of will, not by anyone's permission."
+
+
+  # ---------------------------------------------------------- PANEL 24
+  - id: "panel_24"
+    panel_index: 24
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.34
+    shape: "large dominant entrance panel"
+    beat_type: "entrance"
+    emphasis: "large"
+    character_count: 1
+
+    scene_delta:
+      "The crowd of silhouettes parts down the middle. A bamboo stretcher is
+       carried in at waist height by two unlit silhouette bearers, and the
+       argument stops."
+
+    characters:
+      - character_id: "truong_thon"
+        position: "center, lying on the carried stretcher"
+        pose: "lying flat on his back on the bamboo stretcher, head turned toward the basket"
+        action: "being carried into the middle of the square"
+        facial_expression: "calm, unhurried, half-closed eyes"
+        gaze: "toward Granny Si and the basket, off-panel left"
+        emotion: "composure"
+
+    camera:
+      shot_type: "wide dramatic shot"
+      camera_angle: "low angle"
+      camera_position: "at the level of the packed earth, looking up along the parting crowd"
+      perspective: "strong perspective down the corridor of silhouettes"
+      composition:
+        "The stretcher held horizontally across the middle band of the frame, the
+         bone-white robe the brightest mass in the panel, black silhouettes
+         flanking both sides."
+      focal_point: "the limbless white-robed torso on the bamboo"
+
+    lighting:
+      source: "faint pale glow from two corner stone statues behind the crowd"
+      direction: "backlight from both rear corners"
+      intensity: "low"
+      shadow: "the bearers fully black, the white robe catching almost all the light"
+
+    effects:
+      atmosphere: "the crowd noise implied by scattered turned heads, all in silhouette"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.04, w: 0.34, h: 0.22 }
+
+    typeset:
+      dialogue:
+        - speaker: "truong_thon"
+          text: "If she is going to raise him, then he ought to have a name. Old woman — is there anything else in that basket?"
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Introduce the one person this village obeys, and make his body the reason
+       the reader believes it."
+
+
+  # ---------------------------------------------------------- PANEL 25
+  - id: "panel_25"
+    panel_index: 25
+    row: 4
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.28
+    shape: "medium vertical panel"
+    beat_type: "detail"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Close on her hands turning the pale jade pendant over. It is flawless, with
+       one carved character on its face and a faint green light inside the stone."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "hands and lower face only, upper frame"
+        pose: "both hands cupped, thumbs turning the pendant over"
+        action: "examining the pendant for anything else that identifies him"
+        facial_expression: "only the mouth and chin visible, lips pursed"
+        gaze: "down at the pendant"
+        emotion: "calculation"
+
+    camera:
+      shot_type: "extreme close-up"
+      camera_angle: "high angle"
+      camera_position: "directly over her cupped hands"
+      perspective: "flat, hands filling the frame"
+      composition:
+        "The pendant dead center in her cupped hands; her face cropped at the
+         nose so the pendant stays the subject."
+      focal_point: "the carved character on the jade"
+
+    lighting:
+      source: "the pendant's own green fluorescence"
+      direction: "from inside the stone, upward onto her palms"
+      intensity: "low but the only source in frame"
+      shadow: "the creases of her palms thrown into sharp relief"
+
+    effects:
+      glow: "green light visible through the translucent jade, no impurity in the stone"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.74, w: 0.90, h: 0.22 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "Only this pendant. One character carved on it, no papers. And there is something strange inside the stone."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Plant the pendant as the chapter's one unexplained object without letting
+       any lettering into the image."
+
+
+  # ---------------------------------------------------------- PANEL 26
+  - id: "panel_26"
+    panel_index: 26
+    row: 4
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.28
+    shape: "medium vertical panel"
+    beat_type: "naming"
+    emphasis: "medium"
+    character_count: 3
+
+    scene_delta:
+      "Granny Si crouches beside the stretcher with the basket tipped so the chief
+       can see in. The silhouettes have drawn back out of frame."
+
+    characters:
+      - character_id: "truong_thon"
+        position: "right, lying on the stretcher"
+        pose: "head turned toward the basket, white hair spilling over the bamboo edge"
+        action: "giving the child a surname, a name, and a trade"
+        facial_expression: "faint settled smile"
+        gaze: "at the infant"
+        emotion: "quiet finality"
+
+      - character_id: "tu_ba_ba"
+        position: "left, crouched beside the stretcher"
+        pose: "crouched low, basket balanced on her knees"
+        action: "listening, then looking down at the child"
+        facial_expression: "softening, gap-toothed smile returning"
+        gaze: "down into the basket"
+        emotion: "unguarded fondness"
+
+      - character_id: "tan_muc_so_sinh"
+        position: "lower center, in the basket between them"
+        pose: "lying on his back, small fists up"
+        action: "laughing up at both of them"
+        facial_expression: "toothless open laugh"
+        gaze: "up between the two faces"
+        emotion: "delight"
+
+    camera:
+      shot_type: "medium three-shot"
+      camera_angle: "slightly high angle"
+      camera_position: "above the basket, looking down between the two adults"
+      perspective: "shallow, all three heads in one plane"
+      composition:
+        "The two adult faces angled inward from left and right, the infant's face
+         at the bottom vertex — a closed triangle."
+      focal_point: "the infant at the center of the triangle"
+
+    lighting:
+      source: "green pendant glow from the basket, pale statue glow from above"
+      direction: "green uplight, pale toplight"
+      intensity: "low"
+      shadow: "soft, warmer than any other panel on the page"
+
+    effects:
+      glow: "green light pooling in the basket between the three faces"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.90, h: 0.16 }
+
+    typeset:
+      dialogue:
+        - speaker: "truong_thon"
+          text: "Let the surname be Qin, then. Call him Mu. When he grows, put him out to herd — that much will keep him fed."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Close the flashback on the naming, and put the two people who decide his
+       life in the same frame as the child."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "crowded night village square, extras rendered as flat unlit silhouettes"
+  lighting: "cold pale statue glow against warm jade-green pendant light"
+  effects: "restrained 2D fantasy glow effects, no particle spam"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    village_chief: "bone white and pale bamboo, no saturated color"
+    qin_mu_newborn: "pale jade-green pendant glow against undyed white cloth"
+  panel_language:
+    "crowd wide shots and tight two-shots orbiting one large low-angle entrance"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not render the carving on the pendant as legible text or a readable glyph — show it only as an indistinct carved mark lost in the glow."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not give any background villager a readable face, and do not give any of them the three named characters' silhouette cues."
+  - "Do not draw the village chief with arms, legs, stumps in motion, or standing upright at any point."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."
+  - "Do not draw Elder Ma, Lame Grandpa, or any cow on this page."

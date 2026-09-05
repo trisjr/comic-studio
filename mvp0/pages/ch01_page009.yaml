@@ -1,0 +1,450 @@
+# AI Coding
+# ch01_page009.yaml
+# Chương 1 — trang 9/11. "Về đi, về đi" — rồi ném xác xuống sông như việc thường ngày.
+# panel_index 43–46 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page009"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "The old man pats the boy's shoulder and sends him home. Qin Mu looks back
+     once and sees the body go into the river — routine, unhurried, no ceremony."
+
+  overall_mood:
+    "warm on the surface, cold underneath; the horror is how ordinary it looks"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 4
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_45"
+    rows:
+      - { row: 1, y: 0.00, h: 0.24, panels: ["panel_43"] }
+      - { row: 2, y: 0.24, h: 0.22, panels: ["panel_44"] }
+      - { row: 3, y: 0.46, h: 0.34, panels: ["panel_45"] }
+      - { row: 4, y: 0.80, h: 0.20, panels: ["panel_46"] }
+
+  continuity:
+    setting:
+      "The same riverbank in broad daylight — a green grazing meadow along the water,
+       blue-green mountains layered into the distance, clear sky with high white clouds."
+    time_span:
+      "A few minutes, continuous, as the boy walks from the hide toward the village path."
+    spatial:
+      "Qin Mu moves from right to left across the page, away from the river. Lame
+       Grandpa and the body stay on the right / far side near the water. This
+       relationship is never reversed."
+    environment:
+      "Bright open daylight with short soft shadows on the grass. An empty cowhide
+       lies flat on the grass, cut open and completely bloodless. The river runs
+       bright at the far edge and takes whatever is put into it."
+    wardrobe:
+      "All characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_43: dialogue. Lame Grandpa slaps the boy's shoulder, laughing, and tells him to go home."
+      - "panel_44: reaction. Qin Mu walks away unsteadily, legs not quite working."
+      - "panel_45: reveal. He looks back and sees the old man swinging the body into the river."
+      - "panel_46: transition. The empty hide alone on the grass; the water already smooth again."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tan_muc_thieu_nien"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+
+    role: "protagonist at eleven, the village cowherd boy"
+
+    identity:
+      gender: "male"
+      age: 11
+      body_type:
+        "eleven-year-old boy, slim, the height reference every other character is
+         measured against"
+
+    appearance:
+      hair: "black hair loosely tied at the nape, several strands falling over the forehead"
+      eyes: "bright dark eyes with clean thin eyebrows"
+      face: "delicate handsome boyish face, clear brows, fair skin"
+      distinctive_features:
+        - "pale jade pendant on a cord, worn openly on the bare chest"
+        - "always barefoot"
+
+    outfit:
+      - "pale brown coarse hemp tunic worn half-open"
+      - "cloth waist belt"
+      - "bare feet"
+
+    personality: "curious, gentle, easily shaken but quick to obey his elders"
+
+
+  - id: "gia_gia_que"
+    name: "Lame Grandpa"
+    canonical_reference: "mvp0/refs/gia_gia_que.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "right trouser leg tied off below the knee, plain wooden staff,
+       broad saber slung across the back"
+
+    role: "village elder and hunter who teaches Qin Mu kicking techniques"
+
+    identity:
+      gender: "male"
+      age: 68
+      body_type:
+        "lean and wiry, roughly two heads taller than Qin Mu at eleven even while
+         leaning on his staff"
+
+    appearance:
+      hair: "salt-and-pepper hair gathered into a small topknot"
+      eyes: "warm crinkled eyes"
+      face: "plain kindly old man's face with a broad easy smile and deep laugh lines"
+      distinctive_features:
+        - "right leg missing below the knee"
+        - "plain wooden walking staff"
+        - "a single broad saber slung across the back"
+
+    outfit:
+      - "dark moss-green cloth robe"
+      - "wide trousers with the right leg tied off below the knee"
+
+    personality: "cheerful, unshakeable, kills without changing expression"
+
+
+  - id: "yeu_phu_nguoi"
+    name: "The Freed Woman"
+    canonical_reference: "mvp0/refs/yeu_phu_nguoi.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "wild matted long black hair covering half the face, ragged damp silk robe,
+       raw red seam-marks around both thighs"
+
+    role: "the same noblewoman freed from the seal, antagonist in human form"
+
+    identity:
+      gender: "female"
+      age: 28
+      body_type: "adult woman, roughly two heads taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "long black hair in a wild matted tangle covering half the face"
+      eyes: "bloodshot dark eyes, wide and unblinking"
+      face: "pale gaunt woman's face in her late twenties, twisted with hatred"
+      distinctive_features:
+        - "sickly pale skin from eleven years without sunlight"
+        - "raw red seam-marks around both thighs where the hide was joined"
+
+    outfit:
+      - "ragged faded silk inner robe, damp and clinging"
+
+    personality: "vengeful, theatrical, snaps from pleading to murderous without warning"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 43
+  - id: "panel_43"
+    panel_index: 43
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.24
+    shape: "wide horizontal panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Open grass, the flat hide out of frame behind them. The saber is already
+       back over the old man's shoulder."
+
+    characters:
+      - character_id: "gia_gia_que"
+        position: "right of center, leaning in"
+        pose: "balanced on the staff, free hand landing on the boy's shoulder"
+        action: "patting his shoulder and laughing him homeward"
+        facial_expression: "laughing openly, eyes crinkled shut"
+        gaze: "down at the boy"
+        emotion: "genuine affection"
+        interaction: "steering Qin Mu toward the village path"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "left of center, much lower in frame"
+        pose: "standing loose, shoulders slumped under the old man's hand"
+        action: "being turned toward home"
+        facial_expression: "eyes unfocused, mouth slightly open"
+        gaze: "at nothing in particular"
+        emotion: "dissociation"
+
+    camera:
+      shot_type: "medium two-shot"
+      camera_angle: "eye level with the boy"
+      camera_position: "on the grass a few paces from the pair"
+      perspective: "moderate, both on the same plane"
+      composition:
+        "The old man's tied trouser leg and staff read clearly at right; the boy's
+         head reaches only to the old man's chest."
+      focal_point: "the hand on the boy's shoulder"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and slightly left"
+      intensity: "high"
+      shadow: "short, soft, entirely unmenacing"
+
+    effects:
+      atmosphere: "grass moving in the breeze around both of them"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.04, w: 0.34, h: 0.26 }
+
+    typeset:
+      dialogue:
+        - speaker: "gia_gia_que"
+          text: "Go on home. Go on."
+          bubble_type: "speech"
+        - speaker: "tan_muc_thieu_nien"
+          text: "Grandpa..."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Keep the tone warm on purpose — nobody in this village treats what just
+       happened as an event."
+
+
+  # ---------------------------------------------------------- PANEL 44
+  - id: "panel_44"
+    panel_index: 44
+    row: 2
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide horizontal panel"
+    beat_type: "reaction"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "The boy alone in the meadow, walking left along the path, the river behind
+       him out of focus."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "center left, walking away from the water"
+        pose: "walking unevenly, one shoulder dropped, feet dragging in the grass"
+        action: "trying to walk home on legs that will not cooperate"
+        facial_expression: "seen in profile, blank and slack"
+        gaze: "at the ground ahead"
+        emotion: "numbness"
+
+    camera:
+      shot_type: "wide tracking shot"
+      camera_angle: "eye level"
+      camera_position: "level with the path, moving with him"
+      perspective: "shallow, background softened"
+      composition:
+        "The boy occupies the left third; the remaining two thirds are open grass
+         behind him, deliberately empty."
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and behind"
+      intensity: "high"
+      shadow: "his own shadow stretching ahead of him into the empty part of the frame"
+
+    effects:
+      atmosphere: "loose grass seeds drifting in the light"
+
+    text_safe_zone:
+      - { x: 0.45, y: 0.08, w: 0.50, h: 0.35 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Give the reader a quiet beat, and set up the backward glance."
+
+
+  # ---------------------------------------------------------- PANEL 45
+  - id: "panel_45"
+    panel_index: 45
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.34
+    shape: "large dominant reveal panel"
+    beat_type: "reveal"
+    emphasis: "large"
+    character_count: 3
+
+    scene_delta:
+      "Seen over the boy's shoulder as he turns: at the waterline the old man has
+       the body swung out over the river, one-handed, mid-throw."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "foreground left, head and shoulder only, back to the viewer"
+        pose: "half turned, looking back over his own shoulder"
+        action: "looking back one time"
+        facial_expression: "only the edge of his profile and one wide eye visible"
+        gaze: "back toward the river"
+        emotion: "sick recognition"
+
+      - character_id: "gia_gia_que"
+        position: "middle distance right, at the waterline"
+        pose: "planted on the staff, torso rotated, body swung out over the water"
+        action: "throwing the body into the river"
+        facial_expression: "still smiling, entirely relaxed"
+        gaze: "at the water, judging the throw"
+        emotion: "routine competence"
+
+      - character_id: "yeu_phu_nguoi"
+        position: "right, in the air above the water"
+        pose: "limp, arms and hair trailing, mid-arc"
+        action: "falling toward the river"
+        facial_expression: "face turned away, hidden by falling hair"
+        gaze: "not visible"
+        emotion: "none — she is a weight now"
+
+    camera:
+      shot_type: "wide over-the-shoulder shot"
+      camera_angle: "eye level"
+      camera_position: "just behind the boy's head, framing past him toward the water"
+      perspective: "strong depth from the boy's near shoulder to the distant waterline"
+      composition:
+        "The boy's dark shoulder brackets the left edge; the throw plays out small
+         and clear in the middle distance at right, framed by bright water."
+      focal_point: "the body at the top of its arc"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above, glinting off the river"
+      intensity: "high"
+      shadow: "bright sparkle on the water directly beneath the falling figure"
+
+    effects:
+      atmosphere: "the river surface bright and busy, giving nothing away"
+
+    text_safe_zone:
+      - { x: 0.32, y: 0.03, w: 0.36, h: 0.22 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's real horror at a distance — the boy is not shown the
+       body, he is shown how normal the disposal is."
+
+
+  # ---------------------------------------------------------- PANEL 46
+  - id: "panel_46"
+    panel_index: 46
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal panel"
+    beat_type: "transition"
+    emphasis: "small"
+    character_count: 0
+
+    scene_delta:
+      "No characters. The empty cowhide lying flat and alone in the grass, cut
+       open and completely bloodless, with the smooth river beyond it."
+
+    characters: []
+
+    camera:
+      shot_type: "wide static shot"
+      camera_angle: "high angle"
+      camera_position: "above the meadow, looking down at the hide"
+      perspective: "moderate, the water band across the top"
+      composition:
+        "The hide spread across the lower two thirds like a discarded coat; a band
+         of undisturbed bright water closes the top."
+      focal_point: "the empty hide"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above"
+      intensity: "high"
+      shadow: "the hide's own soft shadow in the grass, nothing else"
+
+    effects:
+      atmosphere: "the river surface already smooth, no ripple, no trace"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.06, w: 0.90, h: 0.24 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Close the daylight half of the chapter on the one object nobody bothered
+       to clean up."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "sunlit pastoral river meadow with layered blue-green mountains"
+  lighting: "high-key natural midday sunlight held deliberately pleasant throughout"
+  effects: "minimal — wind and water sparkle only, no blood effects"
+  color_language:
+    qin_mu: "pale jade-green pendant over warm hemp brown"
+    lame_grandpa: "dark moss green and worn leather brown"
+    the_freed_woman: "sickly grey-green skin with dried-blood red on the ragged silk"
+  panel_language:
+    "two quiet wide beats, one large over-the-shoulder reveal, one empty
+     closing frame"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not draw blood spray, pooled blood, viscera, or a visible wound on the body in any panel."
+  - "Do not show the dead woman's face at any point on this page."
+  - "Do not give Lame Grandpa an angry, grim, or shocked expression — his face never changes."
+  - "Do not draw a living cow anywhere on this page; the hide is a flat empty object on the grass."
+  - "Do not add other cattle, villagers, birds, or any second animal to the meadow."

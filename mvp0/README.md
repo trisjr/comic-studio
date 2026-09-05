@@ -38,7 +38,7 @@ mvp0/
 ├── prompt-example.yaml        ← Ví dụ page YAML đầy đủ, đúng schema
 ├── threshold-signoff.md       ← Phiếu ký nhận ngưỡng Gate G1 (ký TRƯỚC khi sinh ảnh)
 ├── typeset-corpus.json        ← Corpus text tiếng Việt để kiểm tra typeset
-├── refs/                      ← Nơi lưu canonical reference images đã duyệt (1 file/nhân vật)
+├── refs/                      ← Nơi lưu canonical reference images đã duyệt (1 file/entry `nhan_vat`, mỗi biến thể một file)
 │   └── selection-log.md       ← Bảng ghi nhận provenance khi chọn ảnh ref
 └── golden-dataset/            ← Dữ liệu chấm điểm Gate G1 (giữ vĩnh viễn)
     ├── README.md
@@ -56,8 +56,16 @@ Lưu nguyên văn chương mới tại `mvp0/chapters/chNN.md` (`NN` là số th
 
 ### 2. Soạn Story Bible
 Điền `mvp0/story-bible.yaml` với hai nhóm khóa cấp cao nhất:
-- `nhan_vat` (list): mỗi nhân vật gồm `id`, `ten`, `ten_en`, `vai_tro`, `tuoi`, `gioi_tinh`, `dien_mao{...}`, `trang_phuc{...}`, `dau_an{...}`, `canonical_reference` (đường dẫn `mvp0/refs/<id>.png`), `canonical_reference_en{khuon_mat, toc, trang_phuc,...}`, và bốn trường tiếng Anh **mới** dùng 1:1 bởi `prompt-template.txt`: `silhouette_cue_en`, `body_type_relative_en`, `color_language_en`, `personality_en`.
+- `nhan_vat` (list): mỗi nhân vật gồm `id`, `ten`, `ten_en`, `vai_tro`, `tuoi`, `gioi_tinh`, `dien_mao{...}`, `trang_phuc{...}`, `dau_an{...}`, `canonical_reference` (đường dẫn `mvp0/refs/<id>.png`), `canonical_reference_en{khuon_mat, toc, trang_phuc,...}`, và năm trường tiếng Anh **mới** dùng 1:1 bởi `prompt-template.txt`: `vai_tro_en`, `silhouette_cue_en`, `body_type_relative_en`, `color_language_en`, `personality_en`.
 - `boi_canh` (list bối cảnh): mỗi bối cảnh gồm `id`, `ten`, `ten_en`, `setting_en`, `environment_en`, `lighting_default_en`, `props_en` (list).
+
+⭐ **Biến thể nhân vật (variant)** — khi một nhân vật có nhiều hình dạng theo **thời gian** (độ tuổi, timeline) hoặc theo **biến thân**, mỗi hình dạng là **MỘT entry riêng ở cấp `nhan_vat`**, ⛔ không lồng vào nhau. Lý do: `run_mvp0.py` stage `refs` duyệt phẳng `nhan_vat` và sinh đúng một character sheet cho mỗi entry — đơn vị mà pipeline tiêu thụ là *"thứ có reference image riêng"*, tức chính là variant. Dùng hai trường metadata `nhan_vat_goc` (id nhân vật gốc, để nhóm) và `bien_the` (mô tả hình dạng); script bỏ qua cả hai.
+
+| Ràng buộc kéo theo | Chi tiết |
+|---|---|
+| Ngân sách `characters` | Variant tính riêng như một nhân vật độc lập: giới hạn **≤ 3 `characters`/page** (lint `L08` báo ERROR nếu vượt) và ngân sách **2–3 nhân vật lặp lại** của `G1-d` |
+| `silhouette_cue_en` | Các variant có thể cùng xuất hiện một trang **BẮT BUỘC** khác cue — `L08` bắt trùng |
+| `canonical_reference_en` | Phải đủ bốn khóa `khuon_mat`, `mat`, `toc`, `trang_phuc` cho **mọi** entry, kể cả biến thân phi nhân — `run_mvp0.py::character_sheet_prompt` truy cập trực tiếp, thiếu khóa là `KeyError` |
 
 ### 3. Lập page plan & soạn page YAML — Skill `/mvp0-page-prompt`
 ```bash
@@ -77,7 +85,7 @@ python3 scripts/mvp0/run_mvp0.py refs --dry-run
 python3 scripts/mvp0/run_mvp0.py refs
 ```
 * Duyệt ảnh candidate trong `mvp0/run-refs-<timestamp>/candidates/`.
-* Chọn 1 ảnh tốt nhất cho mỗi nhân vật, lưu vào `mvp0/refs/<char_id>.png`.
+* Chọn 1 ảnh tốt nhất cho **mỗi entry `nhan_vat`** (mỗi biến thể một ảnh), lưu vào `mvp0/refs/<char_id>.png`.
 * Ghi nhận quyết định vào `mvp0/refs/selection-log.md`.
 
 ### 6. Sinh Trang (Stage `pages`)

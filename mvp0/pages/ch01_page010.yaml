@@ -1,0 +1,492 @@
+# AI Coding
+# ch01_page010.yaml
+# Chương 1 — trang 10/11. Tư bà bà thản nhiên nhận đã biến một người thành bò.
+# panel_index 47–51 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page010"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Night closes the village again. Qin Mu finally asks why, and Granny Si
+     answers by admitting, without a flicker, that she turned a woman into a cow
+     — then offers to teach him how."
+
+  overall_mood:
+    "domestic, wry, and quietly monstrous"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_51"
+    rows:
+      - { row: 1, y: 0.00, h: 0.22, panels: ["panel_47"] }
+      - { row: 2, y: 0.22, h: 0.22, panels: ["panel_48", "panel_49"] }
+      - { row: 3, y: 0.44, h: 0.20, panels: ["panel_50"] }
+      - { row: 4, y: 0.64, h: 0.36, panels: ["panel_51"] }
+
+  continuity:
+    setting:
+      "A tiny remote mountain village of low mud-and-thatch houses, ringed by four
+       ancient weathered stone statues standing one at each corner of the settlement.
+       Bare packed-earth paths, a few crooked trees, mountains closing in on all sides."
+    time_span:
+      "One conversation of a few minutes, beginning the moment the statues light up."
+    spatial:
+      "Granny Si holds the left / near side of the frame, Qin Mu the right / far
+       side. This relationship is never reversed."
+    environment:
+      "Nightfall inside the ring. The four corner statues have lit again and give off
+       a faint pale glow, weak and short-reaching; beyond them the darkness is
+       absolute. The air is completely still and silent."
+    wardrobe:
+      "Both characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_47: establishing. Darkness lands on the village and the four corner statues light up on their own."
+      - "panel_48: dialogue. Granny Si hauls Qin Mu back by the collar before he can slip out toward the river."
+      - "panel_49: dialogue. He asks the question the whole chapter has avoided."
+      - "panel_50: reaction. She looks out past the statues, worried about the one-legged man still outside."
+      - "panel_51: dialogue. She admits what she did to the woman, and offers to teach him the same thing."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "tan_muc_thieu_nien"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+
+    role: "protagonist at eleven, the village cowherd boy"
+
+    identity:
+      gender: "male"
+      age: 11
+      body_type:
+        "eleven-year-old boy, slim, the height reference every other character is
+         measured against"
+
+    appearance:
+      hair: "black hair loosely tied at the nape, several strands falling over the forehead"
+      eyes: "bright dark eyes with clean thin eyebrows"
+      face: "delicate handsome boyish face, clear brows, fair skin"
+      distinctive_features:
+        - "pale jade pendant on a cord, worn openly on the bare chest"
+        - "always barefoot"
+
+    outfit:
+      - "pale brown coarse hemp tunic worn half-open"
+      - "cloth waist belt"
+      - "bare feet"
+
+    personality: "curious, gentle, easily shaken but quick to obey his elders"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 47
+  - id: "panel_47"
+    panel_index: 47
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide cinematic horizontal panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 0
+
+    scene_delta:
+      "No characters. The village from outside its own ring: darkness arriving
+       across the rooftops and, one after another, the four corner statues
+       coming alight without anyone touching them."
+
+    characters: []
+
+    camera:
+      shot_type: "extreme wide establishing shot"
+      camera_angle: "high angle"
+      camera_position: "on the slope above the village, the same vantage as the chapter's opening"
+      perspective: "deep perspective, mountains flattened into black behind"
+      composition:
+        "Rooftops across the middle band with four small pale points marking the
+         corners; the top and bottom of the frame are solid black."
+      focal_point: "the four glowing corner points"
+
+    lighting:
+      source: "faint pale glow from the four corner stone statues"
+      direction: "outward from each corner"
+      intensity: "weak and short-reaching"
+      shadow: "no gradient — everything outside the ring is flat black"
+
+    effects:
+      atmosphere: "the glow visibly failing a few paces past each statue"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.62, w: 0.90, h: 0.32 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Rhyme with the opening page so the reader feels the chapter closing its
+       loop."
+
+
+  # ---------------------------------------------------------- PANEL 48
+  - id: "panel_48"
+    panel_index: 48
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "A mud house wall and the packed-earth path at the village edge."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "left, low"
+        pose: "hunched, one small hand fisted in the back of the boy's collar"
+        action: "hauling him back from the village edge"
+        facial_expression: "furious, gap-toothed snarl"
+        gaze: "up at Qin Mu"
+        emotion: "anger over fear"
+        interaction: "physically dragging Qin Mu backward"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "right, leaning away"
+        pose: "caught mid-stride, one bare foot still pointing out of the village"
+        action: "being pulled back before he can go and look at the hide"
+        facial_expression: "guilty, wincing"
+        gaze: "back over his shoulder at her"
+        emotion: "caught"
+
+    camera:
+      shot_type: "medium two-shot"
+      camera_angle: "eye level with the boy"
+      camera_position: "at the village edge, beside the path"
+      perspective: "moderate, both on the same plane"
+      composition:
+        "A hard diagonal running from her fist at his collar down to his planted
+         foot; the black beyond the village fills the right edge."
+
+    lighting:
+      source: "faint pale statue glow from the left"
+      direction: "raking from the left"
+      intensity: "low"
+      shadow: "both figures half-lit, the right side of the frame swallowed"
+
+    effects:
+      motion: "small drag lines under the boy's heel"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.44, h: 0.20 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "Qin Mu! You little wretch, how many times? When it gets dark, you do not go outside."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Restate the chapter's opening line as a domestic scolding rather than a
+       prophecy."
+
+
+  # ---------------------------------------------------------- PANEL 49
+  - id: "panel_49"
+    panel_index: 49
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Both sitting on the low step outside her house, the nearest statue a pale
+       shape at the edge of frame."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "right, sitting on the step"
+        pose: "sitting with knees drawn up, head tipped back to look at her"
+        action: "asking why the rule exists"
+        facial_expression: "open, curious, still shaken"
+        gaze: "up at Granny Si"
+        emotion: "honest curiosity"
+
+      - character_id: "tu_ba_ba"
+        position: "left, standing beside the step"
+        pose: "standing hunched with both hands behind her back"
+        action: "answering flatly, without softening it"
+        facial_expression: "serious, mouth set in a hard line"
+        gaze: "out past the statue"
+        emotion: "grim honesty"
+
+    camera:
+      shot_type: "medium two-shot"
+      camera_angle: "low angle from the step"
+      camera_position: "close to the ground beside Qin Mu"
+      perspective: "her head against the black sky, the boy below her"
+      composition:
+        "The two heads on a vertical stack at the left; open black fills the right
+         half of the panel."
+
+    lighting:
+      source: "faint pale statue glow from behind them"
+      direction: "backlight and slight rim"
+      intensity: "low"
+      shadow: "faces mostly in shadow with a bright edge along the profiles"
+
+    text_safe_zone:
+      - { x: 0.50, y: 0.05, w: 0.45, h: 0.35 }
+
+    typeset:
+      dialogue:
+        - speaker: "tan_muc_thieu_nien"
+          text: "Granny — why can't we leave the village after dark?"
+          bubble_type: "speech"
+        - speaker: "tu_ba_ba"
+          text: "Because things move out there at night. Go out and you die. The statues keep them off the village."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Put the chapter's opening superstition on the record as literal fact,
+       stated by someone who would know."
+
+
+  # ---------------------------------------------------------- PANEL 50
+  - id: "panel_50"
+    panel_index: 50
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal close-up"
+    beat_type: "reaction"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Close on Granny Si in profile, the black outside the village filling the
+       whole background behind her."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "left of center, profile"
+        pose: "head turned away toward the village edge, hands still behind her back"
+        action: "watching the dark for someone who has not come back"
+        facial_expression: "the hardness slipping — brow drawn, mouth tight"
+        gaze: "out past the statue line"
+        emotion: "worry she will not admit to"
+
+    camera:
+      shot_type: "close-up"
+      camera_angle: "eye level"
+      camera_position: "beside her, level with her turned face"
+      perspective: "flat, nothing behind her but black"
+      composition:
+        "Her profile occupies the left third; the remaining two thirds are the
+         empty dark she is staring into."
+      focal_point: "the direction of her gaze rather than her face"
+
+    lighting:
+      source: "faint pale statue glow from below and behind"
+      direction: "low rim along the jaw and the curve of the back"
+      intensity: "low"
+      shadow: "the front of her face in near-total shadow"
+
+    text_safe_zone:
+      - { x: 0.45, y: 0.08, w: 0.50, h: 0.40 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "That cripple should be back by now. He never should have gone out. The man has one leg..."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Show that she is capable of worrying about someone, so the next panel's
+       admission is not the confession of a monster."
+
+
+  # ---------------------------------------------------------- PANEL 51
+  - id: "panel_51"
+    panel_index: 51
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.36
+    shape: "large dominant dialogue panel"
+    beat_type: "dialogue"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "The two of them on the step outside her house, the glowing statue behind
+       and above them, her needle-and-thread pouch catching the light at her hip."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "right of center, standing over the step"
+        pose: "hunched forward, one hand out palm-up as if offering something small"
+        action: "explaining what she did to the woman, and offering to teach him"
+        facial_expression: "wide gap-toothed grin, entirely untroubled"
+        gaze: "down at Qin Mu"
+        emotion: "cheerful, appalling generosity"
+        interaction: "offering Qin Mu the same craft"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "left of center, on the step below her"
+        pose: "sitting frozen, both hands flat on the stone"
+        action: "staring up at her"
+        facial_expression: "eyes round, mouth open"
+        gaze: "up at Granny Si"
+        emotion: "pure disbelief"
+
+    camera:
+      shot_type: "wide two-shot"
+      camera_angle: "low angle"
+      camera_position: "on the ground below the step, looking up at both"
+      perspective: "strong perspective, her hunched shape enlarged against the glowing statue"
+      composition:
+        "Granny Si's hunched silhouette dominates the right against the pale statue;
+         Qin Mu is small and low at the left, his pendant the only bright point on
+         his side of the frame."
+      focal_point: "her open, offering hand"
+
+    lighting:
+      source: "faint pale glow from the corner stone statue directly behind her"
+      direction: "full backlight from the upper right"
+      intensity: "low but concentrated"
+      shadow: "she reads mostly as silhouette, her grin caught by a thin rim of light"
+
+    effects:
+      atmosphere: "the black beyond the statue absolutely featureless"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.03, w: 0.32, h: 0.24 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "That woman was the wife of the lord of Xianglong City, a thousand li from here. I went in meaning to kill her, and found she had just given birth."
+          bubble_type: "speech"
+        - speaker: "tu_ba_ba"
+          text: "You had no milk. She had milk. So I made her a cow. I only never expected her to break the seal."
+          bubble_type: "speech"
+        - speaker: "tan_muc_thieu_nien"
+          text: "Granny — how can a person be turned into a cow?"
+          bubble_type: "speech"
+        - speaker: "tu_ba_ba"
+          text: "Do you want to learn? I'll teach you."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's climax: the woman who raised him is the villain of the
+       cow's story, and she is offering him the same power."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "night village exterior, most of the frame intentionally empty black"
+  lighting: "single weak supernatural glow with a hard, unnatural falloff edge"
+  effects: "restrained 2D fantasy glow effects, no particle spam"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    qin_mu: "pale jade-green pendant over warm hemp brown"
+    statues: "cold pale stone glow"
+  panel_language:
+    "quiet conversational two-shots descending into one large backlit
+     low-angle panel"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Granny Si has the hunched back and indigo tunic, only Qin Mu has the jade pendant and half-open hemp tunic."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."
+  - "Do not render anything visible inside the darkness beyond the statue glow."
+  - "Do not draw a cow, a cowhide, a sickle, or any flashback inset on this page."
+  - "Do not make the jade pendant glow brightly enough to light Qin Mu's face."
