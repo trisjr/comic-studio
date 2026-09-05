@@ -7,6 +7,13 @@
 >
 > §1–§6 dưới đây giữ nguyên làm **hồ sơ chẩn đoán**: chúng ghi lại vì sao cấu hình cũ hỏng và bằng chứng nào dẫn tới quyết định đổi model. ⛔ Không đọc §1–§6 như trạng thái hiện tại.
 
+> [!IMPORTANT]
+> ⛔ **MVP0 ĐÃ KHÉP ngày `2026-09-05`** theo quyết định Founder — [`golden-dataset/g1-verdict.md` §5.1](./golden-dataset/g1-verdict.md).
+>
+> ⇒ **Ba việc còn lại ở [§8.5](#85-ba-việc-còn-lại-xếp-theo-mức-nặng) và mọi mục ⚠️ *"chưa đo"* ở [§8.6d](#d-còn-lại-gì) ⛔ KHÔNG được thực hiện**, và giờ là **nợ mang sang MVP1**, ⛔ không phải việc đang chờ trong hàng đợi MVP0. Chặn quota ở [§8.7](#87-chặn-hiện-tại--hết-quota) ⛔ **không** còn là chặn — ⛔ không còn call nào định bắn.
+>
+> ⭐ **Tài liệu này là thứ giá trị nhất MVP0 để lại.** `G1` ⛔ không có số, nhưng **sáu kết luận về hành vi model** rút ra ở đây thì có — chúng được tổng hợp lại tại [`g1-verdict.md` §5.1](./golden-dataset/g1-verdict.md) và là đầu vào thật cho prompt engineering ở MVP1.
+
 **Probe chẩn đoán**: `2026-09-05` · run `mvp0/run-pages-20260905-223242` · 3 image call · 0 refusal
 **Run chương 1**: `2026-09-05` · run `mvp0/run-pages-20260905-231040` · 33 image call · 0 refusal
 

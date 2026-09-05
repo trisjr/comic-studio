@@ -2,7 +2,18 @@
 
 > Thư mục này chứa **dữ liệu đầu vào viết tay** và **kết quả thực nghiệm** của MVP0, ⛔ không phải tài liệu dự án.
 >
-> **Hiện trạng**: Đã chuyển sang đơn vị sinh ảnh **cấp trang (page-level)**; sẵn sàng tiếp nhận **chương truyện mới** để khởi động lại vòng thử nghiệm Gate G1.
+> **Hiện trạng**: ⛔ **ĐÃ KHÉP** ngày `2026-09-05` theo quyết định Founder — chuyển sang MVP1.
+>
+> | | |
+> |---|---|
+> | **Hình thức khép** | ⚠️ **Khép theo quyết định**, ⛔ **KHÔNG PHẢI** `G1` PASS |
+> | **Gate `G1`** | ⛔ **KHÔNG ĐO ĐƯỢC** — 0/5 tiêu chí có số. Biên bản: [`golden-dataset/g1-verdict.md` §5.1](./golden-dataset/g1-verdict.md) |
+> | **Đã chạy tới đâu** | Bước 1–6 xong (11 page YAML · 8 ref · 33 ảnh chương 1). **Bước 7 — crop + chấm điểm — ⛔ chưa bắt đầu** |
+> | **Golden dataset** | **0** panel / mục tiêu 15–20 · `scoring-sheet.csv` **0 dòng** · `panels/` **rỗng** |
+> | ⭐ **Cái đáng giá còn lại** | **Sáu kết luận về hành vi model** ở [`g1-verdict.md` §5.1](./golden-dataset/g1-verdict.md) — đây là thứ MVP0 thực sự mua được, ⛔ không phải con số `G1` |
+> | ⚠️ **Nợ mang sang MVP1** | `M1-6` (eval kit) **mất baseline** ⇒ phải cấp lại ngân sách API để dựng bộ ảnh chuẩn. Chi tiết: [`g1-verdict.md` §5.2](./golden-dataset/g1-verdict.md) |
+>
+> ⇒ Quy trình 7 bước bên dưới **giữ nguyên**, ⛔ không phải để chạy tiếp MVP0 — mà là **quy trình đã kiểm chứng**, dùng lại khi MVP1 cần dựng golden dataset.
 
 ## Kỷ luật MVP0 — Cái gì vứt, cái gì giữ
 

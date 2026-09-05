@@ -129,6 +129,21 @@ Ba câu Q1/Q2/Q3 và bối cảnh phải đưa kèm đã được soạn sẵn t
 
 #### Việc 2 — Chạy MVP0 (CF-8.4 → CF-8.6)
 
+> [!CAUTION]
+> ⛔ **KẾT QUẢ THỰC TẾ — MVP0 đã KHÉP ngày `2026-09-05` theo quyết định Founder, ⛔ KHÔNG PHẢI `G1` PASS.**
+>
+> Bảng kế hoạch bên dưới giữ nguyên làm **hồ sơ chủ đích ban đầu**. Cái thực sự xảy ra:
+>
+> | Exit criterion | Yêu cầu | Thực tế |
+> |---|---|---|
+> | `P-2` | `G1` có **SỐ** cho cả 5 tiêu chí + verdict được ghi | ⛔ **KHÔNG ĐẠT** — 0/5 tiêu chí có số |
+> | `P-3` | regen ratio **p50 và p90** có giá trị số | ⛔ **KHÔNG ĐẠT** |
+> | `P-6` | golden dataset có spec + ref + **ảnh** + **bảng chấm** | 🟡 **NỬA** — có spec + ref + 11 page YAML; ⛔ không có ảnh panel, ⛔ không có bảng chấm |
+>
+> ⭐ **Cái MVP0 thực sự mua được**: 33 ảnh trang chương 1 đã sinh, và **sáu kết luận về hành vi model** — ghi tại [`mvp0/golden-dataset/g1-verdict.md` §5.1](../../mvp0/golden-dataset/g1-verdict.md). Đúng kỷ luật *"giữ lại **kết luận** và dữ liệu"*, ⛔ chỉ thiếu đúng phần **số đo**.
+>
+> ⚠️ **Hệ quả phải theo dõi**: `G2-a` mất một nguồn đầu vào (còn mỗi `usage_daily` của MVP1) · `M1-6` **mất baseline hồi quy** ⇒ dựng lại eval kit sẽ **tốn tiền API lần hai**, đúng như [mục 6](#6-phụ-thuộc--đường-găng) đã cảnh báo khi xếp phụ thuộc này là *"mềm"*.
+
 | Hạng mục | Nội dung |
 |---|---|
 | **Thời lượng** | **1–2 tuần** (CF-8.4) |

@@ -7,7 +7,12 @@
 >
 > ⛔ **Không sửa ngưỡng ở đây.** Ngưỡng đã đóng ở phiếu ký. Phiếu này chỉ ghi **số đo** và **verdict** ([MVP-Scope §7](../../docs/010-Planning/MVP-Scope.md)).
 
-**Ngày chấm**: `__________` · **Người chấm**: `__________` · **Run dùng để chấm**: `__________`
+**Ngày chấm**: `2026-09-05` · **Người chấm**: **TrisJr (Founder)** — review bằng mắt ngoài phiên · **Run dùng để chấm**: `mvp0/run-pages-20260905-231040` (33 ảnh, ⛔ **không** crop thành panel)
+
+> [!CAUTION]
+> ⛔ **PHIẾU NÀY ⛔ KHÔNG CHỨA MỘT SỐ ĐO NÀO.** MVP0 được **khép bằng quyết định của Founder**, ⛔ **không phải** bằng phép đo `G1`. Biên bản khép ở [§5.1](#51-biên-bản-khép-gate--quyết-định-founder).
+>
+> ⇒ ⛔ **Không đọc phiếu này như một verdict `G1`.** Mọi ô dưới đây ghi `⛔ KHÔNG ĐO ĐƯỢC` là **sự thật**, ⛔ không phải chỗ chờ điền nốt.
 
 ## Mục lục
 
@@ -16,6 +21,8 @@
 - [3. Readability — dữ liệu song song](#3-readability--dữ-liệu-song-song)
 - [4. Hạn chế đã biết ở tầng canonical reference](#4-hạn-chế-đã-biết-ở-tầng-canonical-reference)
 - [5. Verdict](#5-verdict)
+  - [5.1. Biên bản khép gate — quyết định Founder](#51-biên-bản-khép-gate--quyết-định-founder)
+  - [5.2. Hệ quả kéo theo — cái gì mất đầu vào](#52-hệ-quả-kéo-theo--cái-gì-mất-đầu-vào)
 - [6. Tài liệu tham khảo](#6-tài-liệu-tham-khảo)
 
 ---
@@ -27,13 +34,20 @@
 
 | # | Tiêu chí | Ngưỡng PASS | Số đo | **Cỡ mẫu** | Đạt? |
 |:-:|---|---|---|---|:-:|
-| `G1-a` | Consistency nhân vật | **≥70%** panel | `____%` | `n = ____` | ☐ |
-| `G1-b` | `N` tối thiểu | **N ≤ 3** | `N = ____` | `n = ____` panel chạy lại ở `N=2` | ☐ |
-| `G1-c` | Human-reject rate sau VLM-select | **≤30%** | `____%` | `n = ____` panel VLM đã chọn | ☐ |
-| `G1-d` | Panel 2 nhân vật — trục **identity** | **≥60%** | `____%` | ⚠️ `n = ____` | ☐ |
-| `G1-d` | Panel 2 nhân vật — trục **attribute binding** | **≥60%** | `____%` | ⚠️ `n = ____` | ☐ |
-| `G1-d` | Panel 3 nhân vật | ⛔ **không có ngưỡng chặn** — đo và báo cáo | `____%` | ⚠️ `n = ____` | — |
-| `G1-e` | Đường đi của chữ | **100%** overlay · **0** model-render | `____` overlay / `____` model-render | `n = ____` panel có thoại | ☐ |
+| `G1-a` | Consistency nhân vật | **≥70%** panel | ⛔ **KHÔNG ĐO ĐƯỢC** | `n = 0` panel đã chấm | ⛔ |
+| `G1-b` | `N` tối thiểu | **N ≤ 3** | ⛔ **KHÔNG ĐO ĐƯỢC** — ⛔ không có run `N=2` đối chứng | `n = 0` | ⛔ |
+| `G1-c` | Human-reject rate sau VLM-select | **≤30%** | ⛔ **KHÔNG ĐO ĐƯỢC** | `n = 0` panel VLM đã chọn | ⛔ |
+| `G1-d` | Panel 2 nhân vật — trục **identity** | **≥60%** | ⛔ **KHÔNG ĐO ĐƯỢC** | ⚠️ `n = 0` (⛔ chưa chấm; cỡ mẫu **có sẵn** là 24 panel) | ⛔ |
+| `G1-d` | Panel 2 nhân vật — trục **attribute binding** | **≥60%** | ⛔ **KHÔNG ĐO ĐƯỢC** | ⚠️ `n = 0` (⛔ chưa chấm; cỡ mẫu **có sẵn** là 24 panel) | ⛔ |
+| `G1-d` | Panel 3 nhân vật | ⛔ **không có ngưỡng chặn** — đo và báo cáo | ⛔ **KHÔNG ĐO ĐƯỢC** | ⚠️ `n = 0` (⛔ chưa chấm; cỡ mẫu **có sẵn** là 4 panel) | — |
+| `G1-e` | Đường đi của chữ | **100%** overlay · **0** model-render | ⛔ **KHÔNG ĐO ĐƯỢC** theo đúng định nghĩa (đếm trên **trang composite có bubble**, mà trang composite ⛔ chưa tồn tại) | `n = 0` panel có thoại | ⛔ |
+
+> [!CAUTION]
+> ⚠️ **`G1-e` — có quan sát, nhưng ⛔ KHÔNG phải số đo.** Run `231040` ghi nhận `ch01_page005` **3/3** candidate bị model vẽ chữ vào ảnh ([`pages-stage-probe.md` §8.5](../pages-stage-probe.md)). Ngưỡng `G1-e` là **0 model-render** ⇒ quan sát này **⛔ nghịch ngưỡng**.
+>
+> ⛔ Nhưng nó ⛔ **không được** ghi thành *"`G1-e` FAIL"*: `MVP-Scope §7.2` định nghĩa `G1-e` đếm trên **trang composite có typeset overlay**, và MVP0 ⛔ **chưa bao giờ dựng trang composite nào**. Đây là **tín hiệu cảnh báo mang sang MVP1**, ⛔ không phải một verdict.
+
+⭐ **Cỡ mẫu đã đếm sẵn nhưng ⛔ chưa dùng**: `threshold-signoff.md` ghi chương 1 có **56 panel / 11 trang** — 2 nhân vật: **24** · 3 nhân vật: **4** · 1 nhân vật: **23** · 0 nhân vật: **5**. Nguyên liệu để chấm **⛔ không thiếu**; thứ thiếu là **bước crop và bước chấm**.
 
 > [!CAUTION]
 > ⭐ **`G1-d` — lưu ý cỡ mẫu panel nhiều nhân vật.**
@@ -53,11 +67,16 @@ python3 scripts/mvp0/regen_ratio.py
 
 | Đại lượng | Giá trị | Ghi chú |
 |---|---|---|
-| `p50` | `______` | |
-| `p90` | `______` | |
-| Số panel tính được | `______` | Chỉ panel **đã có ảnh duyệt** |
-| Số panel **loại khỏi phép tính** | `______` | `approved_candidate_index = none` ⇒ ⛔ chưa xong một vòng, ⛔ không được tính |
-| Phân phối suy biến? | ☐ có ☐ không | ⚠️ Nếu mọi panel đều đúng `N` ảnh (⛔ không vòng nào lặp lại) thì `p50 = p90 = N` và con số này ⛔ **chưa mang thông tin về tỉ lệ regen thật** — ghi rõ, ⛔ đừng trình bày nó như một phép đo |
+| `p50` | ⛔ **KHÔNG ĐO ĐƯỢC** | |
+| `p90` | ⛔ **KHÔNG ĐO ĐƯỢC** | |
+| Số panel tính được | **0** | `regen_ratio.py` chỉ tính panel **đã có ảnh duyệt** — ⛔ không panel nào được duyệt |
+| Số panel **loại khỏi phép tính** | **56 / 56** | `approved_candidate_index = none` trên toàn bộ ⇒ ⛔ chưa panel nào xong một vòng |
+| Phân phối suy biến? | ☐ có ☐ không — ⛔ **không áp dụng** | ⛔ Không có phân phối để xét |
+
+> [!CAUTION]
+> ⭐ **Đây là hệ quả nặng nhất của việc khép MVP0 sớm, ⛔ không phải một ô trống vô hại.**
+>
+> `MVP-Scope §7.2` nói regen ratio *"⛔ **không** chặn `G1` nhưng **là đầu vào bắt buộc của `G2`**"*, và `G2-a` quy định thiếu dữ liệu ⇒ `G2` **⛔ KHÔNG CHẠY ĐƯỢC**, ⛔ không PASS mặc định. MVP0 đóng lại mà ⛔ không sinh ra `p50`/`p90` ⇒ `G2` giờ phụ thuộc **hoàn toàn** vào `usage_daily` của MVP1 (`M1-7`), ⛔ không còn nguồn thứ hai để đối chứng.
 
 > [!WARNING]
 > ⛔ **Thiếu dữ liệu thì ghi "⛔ KHÔNG ĐO ĐƯỢC", ⛔ không bao giờ ghi `0`.** `0` là một giá trị **trông rất tốt** — nó sẽ được đọc thành *"⛔ không ai regen"* thay vì *"chúng ta ⛔ không biết"* ([ADR-018](../../docs/030-Specs/Architecture/ADR-018-Usage-Event-And-Rollup-Model.md) `Q2`).
@@ -68,10 +87,10 @@ python3 scripts/mvp0/regen_ratio.py
 
 | Giá trị | Số panel |
 |---|---|
-| `readable` | `______` |
-| `not_readable` | `______` |
-| `unscored` | `______` ⚠️ ⛔ không được ngầm coi là `readable` |
-| ⭐ **Panel `pass` kỹ thuật nhưng `not_readable`** | `______` — đây là con số `CF-10.10` tồn tại để bắt |
+| `readable` | **0** |
+| `not_readable` | **0** |
+| `unscored` | **56** ⚠️ ⛔ không được ngầm coi là `readable` — toàn bộ chương 1 nằm ở đây |
+| ⭐ **Panel `pass` kỹ thuật nhưng `not_readable`** | ⛔ **KHÔNG ĐO ĐƯỢC** — đây là con số `CF-10.10` tồn tại để bắt, và nó ⛔ **không được bắt** ở MVP0 |
 
 ## 4. Hạn chế đã biết ở tầng canonical reference
 
@@ -124,9 +143,16 @@ python3 scripts/mvp0/regen_ratio.py
 
 | Sai lệch | `pages` có sửa được ⛔ không? | Ghi chú |
 |---|---|---|
-| Cụt tay/chân (`ma_lao`, `gia_gia_que`, `truong_thon`) | ☐ có ☐ không | |
-| Lưng gù (`tu_ba_ba`) | ☐ có ☐ không | |
-| Tuổi `tan_muc_thieu_nien` | ☐ có ☐ không | |
+| Cụt tay/chân (`ma_lao`, `gia_gia_que`, `truong_thon`) | ⛔ **KHÔNG KẾT LUẬN ĐƯỢC** | ⛔ Không panel nào được chấm bằng mắt |
+| Lưng gù (`tu_ba_ba`) | ⛔ **KHÔNG KẾT LUẬN ĐƯỢC** | ⛔ Không panel nào được chấm bằng mắt |
+| Tuổi `tan_muc_thieu_nien` | ⛔ **KHÔNG KẾT LUẬN ĐƯỢC** | ⛔ Không panel nào được chấm bằng mắt |
+
+> [!IMPORTANT]
+> ⭐ **Có một thay đổi làm câu hỏi của §4.3 ⛔ KHÔNG còn đúng đề nữa** — phải ghi lại, ⛔ không được để người sau đọc bảng trên mà tưởng chỉ thiếu công chấm.
+>
+> Run `231040` chạy với cờ **`--no-refs`** ⇒ `mvp0/refs/*.png` ⛔ **không hề được gửi** lên model ở stage `pages` ([`pages-stage-probe.md` §8.2](../pages-stage-probe.md)). Mà §4.3 hỏi *"tầng `pages` có **sửa** được sai lệch nằm trong ảnh ref ⛔ không?"* — câu hỏi này chỉ có nghĩa khi ref **được dùng**.
+>
+> ⇒ Trên run `231040`, các sai lệch ở [§4.2](#42-sai-lệch-tồn-đọng-trong-mvp0refspng-đã-chọn) **⛔ không còn liên quan** tới ảnh trang: nhân vật ở tầng page chỉ được neo **bằng chữ**. Muốn trả lời §4.3 cho đúng đề, phải chạy lại bằng cấu hình **có ref** (`qwen-image-3.0` + khối `REFERENCE_IMAGES` thuần khẳng định, [§8.8](../pages-stage-probe.md)) — việc đó ⛔ **không** nằm trong MVP0 nữa.
 
 ## 5. Verdict
 
@@ -135,22 +161,76 @@ python3 scripts/mvp0/regen_ratio.py
 | **PASS** | 5/5 tiêu chí đạt | ☐ |
 | **PASS CÓ ĐIỀU KIỆN** | `G1-a`, `G1-b`, `G1-e` đạt; `G1-c` ở `30–50%` **hoặc** `G1-d` ở `50–60%` | ☐ |
 | **FAIL** | Bất kỳ tiêu chí nào vào vùng FAIL | ☐ |
+| ⭐ **KHÉP KHÔNG ĐO** — ⚠️ ⛔ **không phải** một verdict của `MVP-Scope §7.2` | Founder khép MVP0 khi ⛔ **chưa** tiêu chí nào có số | ☑ |
 
-**Nếu PASS CÓ ĐIỀU KIỆN** — ghi phần cứng hoá thêm: `G1-d` dưới ngưỡng ⇒ **≤2 nhân vật/panel** thay vì ≤3.
-
-**Nếu FAIL** — ⚠️ **FAIL ≠ huỷ dự án**. Đường đầu tiên là **đổi định vị sang storyboard generator** ([MVP-Scope §7.2](../../docs/010-Planning/MVP-Scope.md)).
+> [!CAUTION]
+> ⭐ **Vì sao ⛔ KHÔNG tick vào PASS, PASS CÓ ĐIỀU KIỆN, hay FAIL.**
+>
+> Cả ba dải đó là **kết luận rút ra từ số đo**. Ở đây ⛔ **không có số đo nào** ⇒ tick bất kỳ ô nào trong ba ô cũng là **bịa ra một phép đo chưa từng xảy ra**. Kể cả `FAIL` — `FAIL` là một **phát hiện** (*"tiền đề ⛔ không đứng"*), ⛔ không phải chỗ đổ mọi thứ chưa làm xong.
+>
+> ⇒ Dòng thứ tư được thêm vào **chỉ để nói đúng sự thật**, và nó ⛔ **không** sửa ngưỡng nào ở [`threshold-signoff.md`](../threshold-signoff.md). Tiền lệ có sẵn: `G2-a` của `MVP-Scope §7.3` đã quy định *"**KHÔNG CHẠY ĐƯỢC** ⇒ **lùi gate**, ⛔ không PASS mặc định. Thiếu dữ liệu ⛔ không phải bằng chứng tốt"* — phiếu này áp đúng tinh thần đó cho `G1`.
 
 **Lý do verdict** (bắt buộc, ⛔ không để trống — đây là *"kết luận"* mà kỷ luật MVP0 đòi giữ lại sau khi vứt code):
 
 ```
-______________________________________________________________
-______________________________________________________________
+Founder review 33 anh cua run 20260905-231040 bang mat va quyet dinh KHEP MVP0,
+chuyen sang MVP1, thay vi chi them API call de hoan tat vong cham diem.
+
+Gate G1 KHONG duoc do. Khong tieu chi nao trong 5 tieu chi co so.
+Golden dataset dung lai o muc "spec + ref + page YAML", KHONG co anh panel
+va KHONG co bang cham.
+
+Day la mot quyet dinh dieu phoi nguon luc, KHONG phai mot ket luan ky thuat.
+Cau hoi ma MVP0 sinh ra de tra loi -- "tien de san pham con dung khong" --
+van con NGUYEN, chua duoc tra loi.
 ```
 
-**Số panel thực tế trong golden dataset**: `______` / mục tiêu 15–20.
+**Số panel thực tế trong golden dataset**: **`0`** / mục tiêu 15–20.
 
 > [!WARNING]
 > ⚠️ Nếu dừng giữa chừng vì vượt ngân sách mà chưa đủ 15 panel: ghi **số thực tế** và **lý do dừng** ở trên. ⛔ **Không làm tròn lên 15** *"cho đủ"*.
+>
+> ⇒ Số thực tế là **`0`**, và lý do dừng ⛔ **không phải** ngân sách — là **quyết định khép mốc**. Ghi đúng như vậy.
+
+### 5.1. Biên bản khép gate — quyết định Founder
+
+| | |
+|---|---|
+| **Ngày** | `2026-09-05` |
+| **Người quyết** | **TrisJr (Founder)** — chỉ đạo trực tiếp trong phiên, ghi nhận bởi TNMCORE-OS |
+| **Nội dung** | Đã review ảnh chương 1; **khép MVP0**, ⛔ không chạy tiếp vòng crop + chấm điểm |
+| **Hình thức** | ⚠️ **Khép theo quyết định** — ⛔ **không phải** `G1` PASS |
+| **Cái được giữ lại** | `story-bible.yaml` · `mvp0/chapters/ch01.md` · 11 page YAML · 8 canonical ref · **toàn bộ kết luận kỹ thuật** trong [`pages-stage-probe.md`](../pages-stage-probe.md) |
+| **Cái ⛔ không có** | `scoring-sheet.csv` (0 dòng) · `panels/` (rỗng) · `p50`/`p90` · verdict `G1` đo được |
+
+⭐ **Giá trị thật MVP0 để lại ⛔ không phải là số `G1`** — mà là **chuỗi kết luận về hành vi model**, thứ mà kỷ luật `MVP-Scope §3.1` gọi là *"giữ lại kết luận và dữ liệu"*:
+
+| # | Kết luận đã mua được bằng tiền API |
+|:-:|---|
+| 1 | ⭐ **Prompt chỉ được chứa thứ mình MUỐN thấy trên trang.** Tả tấm character sheet → model vẽ tấm sheet. Ghi toạ độ `0.22` → model vẽ chữ `0.22` lên lề. Model ⛔ **không phân biệt** *dữ liệu điều khiển* với *nội dung cần vẽ* |
+| 2 | ⭐ **Cấm bằng chữ ⛔ KHÔNG phải một bảo đảm.** Cấm chữ **hai lần** trong prompt, model vẫn vẽ chữ Hán vào ảnh |
+| 3 | ⭐ **Lối khẳng định thắng lối phủ định.** Mệnh đề `do_not_copy` ⛔ không ngăn được model chép sheet; bỏ hẳn phần mô tả sheet thì ngăn được |
+| 4 | ⭐ **"Nhận được ref" ⛔ KHÔNG bằng "dùng được ref."** Model càng bám ref giỏi thì trang càng hỏng (dán nguyên pose, nhân đôi row) |
+| 5 | ⭐ **VLM-select hallucinate khẳng định.** Nó ghi *"Elder Ma (single right arm…) are accurate"* cho tấm ảnh mà nhân vật **có đủ hai tay** ⇒ ⛔ **không** được tin VLM thay mắt người ở MVP1 |
+| 6 | ⭐ **Quota là chuyện của từng model, ⛔ không phải của cả account** — `403` ở một model ⛔ không có nghĩa hết đường |
+
+### 5.2. Hệ quả kéo theo — cái gì mất đầu vào
+
+> [!CAUTION]
+> ⭐ **Mục này tồn tại để hệ quả ⛔ không diễn ra âm thầm.** Khép `G1` ⛔ không đo ⛔ không phải một việc cục bộ trong `mvp0/` — nó rút đầu vào của bốn thứ đã cam kết ở nơi khác.
+
+| # | Cam kết ở đâu | Nội dung | Trạng thái sau khi khép |
+|:-:|---|---|---|
+| 1 | [Roadmap mục 2](../../docs/010-Planning/Roadmap.md) `P-2` | *"`G1` có **SỐ** cho cả 5 tiêu chí và verdict được ghi"* | ⛔ **KHÔNG ĐẠT** |
+| 2 | [Roadmap mục 2](../../docs/010-Planning/Roadmap.md) `P-3` | *"regen ratio **p50 và p90** có giá trị số"* | ⛔ **KHÔNG ĐẠT** |
+| 3 | [Roadmap mục 2](../../docs/010-Planning/Roadmap.md) `P-6` | *"golden dataset tồn tại dưới dạng file (spec + ref + **ảnh** + **bảng chấm**)"* | 🟡 **ĐẠT MỘT NỬA** — có spec + ref, ⛔ không có ảnh panel + bảng chấm |
+| 4 | [MVP-Scope §7.3](../../docs/010-Planning/MVP-Scope.md) `G2-a` | Regen ratio là **đầu vào bắt buộc** của `G2` | ⚠️ `G2` giờ phụ thuộc **hoàn toàn** vào `usage_daily` của MVP1 (`M1-7`), ⛔ mất nguồn đối chứng |
+| 5 | [Roadmap mục 3](../../docs/010-Planning/Roadmap.md) `M1-6` | *"eval kit chạy được trên **golden dataset của MVP0** và cho ra số"* | ⚠️ **Mất baseline** — eval kit MVP1 ⛔ không có bộ ảnh + điểm chuẩn để so hồi quy |
+| 6 | [Roadmap mục 3](../../docs/010-Planning/Roadmap.md) `M1-3` | *"extraction ≥80% khớp **Story Bible viết tay của MVP0**"* | ✅ **⛔ Không ảnh hưởng** — `story-bible.yaml` được giữ nguyên |
+
+⚠️ ⭐ **Mục 5 là hệ quả đắt nhất, và nó ⛔ không hiển thị ngay.** `Roadmap mục 6` xếp *"Golden dataset của MVP0 → eval kit MVP1"* là phụ thuộc **mềm** — *"có thể dựng lại, nhưng dựng lại **tốn tiền API lần hai**"*. ⇒ Cái giá của việc khép sớm ⛔ không mất đi, nó chỉ **dời sang MVP1**.
+
+⇒ ⭐ **Việc phải làm ở MVP1, ⛔ không được quên**: khi dựng eval kit (`M1-6`), phải **cấp lại ngân sách API** để sinh bộ ảnh baseline — hoặc chấp nhận eval kit chạy ⛔ **không** có điểm chuẩn hồi quy.
 
 ## 6. Tài liệu tham khảo
 
