@@ -25,7 +25,9 @@ PAGE
 │   ├── outfit · personality
 │
 ├── PANELS / FRAMES
-│   ├── id · row · column · relative_width · relative_height · shape
+│   ├── id · panel_index · row · column · relative_width · relative_height · shape
+│   │   └── panel_index: số nguyên tuần tự TOÀN CHƯƠNG (không reset theo trang),
+│   │       gán tại thời điểm page-plan, dùng làm tên golden-dataset/panels/panel-NNN/
 │   ├── beat_type · emphasis · character_count (≤ 3)
 │   ├── scene_delta  (chỉ điều khác so với CONTINUITY)
 │   │
@@ -52,3 +54,45 @@ PAGE
 │   └── color_language  (mỗi nhân vật một màu energy / accent)
 │
 └── NEGATIVE_CONSTRAINTS  (không lặp lại CONTINUITY; thêm cấm text + cấm swap silhouette cue)
+
+
+# ============================================================
+# QUY TẮC ÁP DỤNG (đọc trước khi soạn page YAML)
+# ============================================================
+
+- Vị trí file: mỗi trang soạn ra là MỘT file mvp0/pages/<page_id>.yaml, với
+  page_id = "chNN_pageNNN" (NN = số chương 2 chữ số, NNN = số trang 3 chữ số),
+  ví dụ mvp0/pages/ch01_page001.yaml. Nội dung tuân theo đúng cây trên.
+
+- D4 — tên vs character_id: các trường PROSE (continuity.spatial, composition,
+  panel_purpose, scene_delta, panel_purpose, dialogue text...) ĐƯỢC PHÉP dùng
+  ten/ten_en của nhân vật cho tự nhiên. Các trường STRUCTURED sau đây BẮT BUỘC
+  dùng character_id (id trong story-bible.yaml), KHÔNG được dùng tên:
+    characters[].id · panels[].characters[].character_id ·
+    typeset.dialogue[].speaker
+
+- Mapping story-bible.yaml -> template (skill /mvp0-page-prompt chiếu 1:1,
+  không qua LLM enhance trong script):
+    nhan_vat[].id                              -> CHARACTERS.id
+    nhan_vat[].ten_en                          -> CHARACTERS.name (prose dùng ten/ten_en)
+    nhan_vat[].vai_tro                          -> CHARACTERS.role
+    nhan_vat[].canonical_reference               -> CHARACTERS.canonical_reference
+    nhan_vat[].silhouette_cue_en                 -> CHARACTERS.silhouette_cue
+    nhan_vat[].gioi_tinh / tuoi                  -> CHARACTERS.identity.gender / age
+    nhan_vat[].body_type_relative_en             -> CHARACTERS.identity.body_type
+    nhan_vat[].canonical_reference_en.toc        -> CHARACTERS.appearance.hair
+    nhan_vat[].canonical_reference_en.mat        -> CHARACTERS.appearance.eyes
+    nhan_vat[].canonical_reference_en.khuon_mat  -> CHARACTERS.appearance.face
+    nhan_vat[].canonical_reference_en.dac_diem_rieng
+                                                  -> CHARACTERS.appearance.distinctive_features
+    nhan_vat[].canonical_reference_en.trang_phuc -> CHARACTERS.outfit
+    nhan_vat[].personality_en                    -> CHARACTERS.personality
+    nhan_vat[].color_language_en                 -> STYLE.color_language
+    boi_canh[].setting_en                        -> PAGE.CONTINUITY.setting
+    boi_canh[].environment_en                    -> PAGE.CONTINUITY.environment
+    boi_canh[].lighting_default_en                -> PANELS.LIGHTING (mặc định, panel có thể override)
+    boi_canh[].props_en                          -> PANELS.scene_delta (nguồn tham khảo)
+
+- Lint trước khi dùng để sinh ảnh:
+    python3 scripts/mvp0/lint_page_prompt.py mvp0/pages/                 (lint toàn bộ)
+    python3 scripts/mvp0/lint_page_prompt.py mvp0/pages/ch01_page001.yaml (lint một file)

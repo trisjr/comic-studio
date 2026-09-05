@@ -1,28 +1,34 @@
 # AI Coding
 """
 run_mvp0.py
-Script MVP0 — lam DUNG MOT VIEC: generate panel voi reference + N=3 candidate
-+ VLM select. ⛔ Khong UI, ⛔ khong database (`MVP-Scope §3.1`, o `A5` = ❌).
+Script MVP0 — lam DUNG MOT VIEC: generate PAGE (D-1) voi reference + N=3
+candidate + VLM select. ⛔ Khong UI, ⛔ khong database (`MVP-Scope §3.1`,
+o `A5` = ❌).
 
 ⚠️ CODE NAY SE BI VUT. `MVP-Scope §3.1` / `Roadmap §3.1`: "Code cua MVP0 KHONG
 phai nen cua san pham — viet de tra loi cau hoi roi BO; giu lai KET LUAN va
 DU LIEU." ⇒ Neu thay minh sap viet migration, config loader, hay abstraction
 da provider trong file nay: DUNG LAI.
 
-HAI STAGE — ⭐ stage `refs` la BAT BUOC truoc `panels`:
+HAI STAGE — ⭐ stage `refs` la BAT BUOC truoc `pages`:
   refs   — sinh character sheet cho tung nhan vat tu MO TA CHU trong Story
            Bible. Nguoi chon tay 1 anh/nhan vat lam canonical reference.
            ⚠️ Ly do stage nay ton tai: Story Bible mo ta nhan vat bang CHU,
            nhung pipeline can ANH reference. ⛔ Khong co buoc nay thi
            "generate voi reference" ⛔ khong chay duoc.
-  panels — dung reference DA CHON, sinh N=3 candidate/panel, roi VLM xep hang.
+  pages  — moi page YAML duoi mvp0/pages/<page_id>.yaml duoc compile thanh
+           MOT prompt duy nhat (D-1), dung reference DA CHON, sinh N=3
+           candidate/page, roi VLM xep hang. G1 van cham theo TUNG PANEL —
+           `crop_page.py` cat anh trang thanh panel SAU khi co anh trang.
 
 Cach dung:
-    python3 scripts/mvp0/run_mvp0.py refs   --dry-run
+    python3 scripts/mvp0/run_mvp0.py refs --dry-run
     python3 scripts/mvp0/run_mvp0.py refs
     # -> chon tay 1 anh/nhan vat, copy vao mvp0/refs/<char_id>.png
-    python3 scripts/mvp0/run_mvp0.py panels --chapter ch1 --dry-run
-    python3 scripts/mvp0/run_mvp0.py panels --chapter ch1
+    python3 scripts/mvp0/run_mvp0.py pages --dry-run
+    python3 scripts/mvp0/run_mvp0.py pages
+    python3 scripts/mvp0/run_mvp0.py pages --page ch01_page001 --dry-run
+    python3 scripts/mvp0/run_mvp0.py pages -n 3
 """
 
 import os
@@ -40,7 +46,9 @@ import providers
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 MVP0 = ROOT / "mvp0"
 REFS_DIR = MVP0 / "refs"
-N_CANDIDATES = 3  # `CF-3.1` `[OFF]` — mac dinh cho MOI panel, ⛔ khong retry-on-failure
+PAGES_DIR = MVP0 / "pages"
+# `CF-3.1` `[OFF]` — mac dinh cho MOI page, ⛔ khong retry-on-failure
+N_CANDIDATES = 3
 
 # Nhip nghi giua hai request sinh anh. Nguon: quan sat thuc nghiem 2026-08-31
 # — 4 request lien tiep (~3.5 req/phut) cham `Throttling.RateQuota`; nhip 30s
@@ -55,15 +63,18 @@ def load_bible():
     return {entity["id"]: entity for entity in data["nhan_vat"]}
 
 
-def load_panels(chapter):
-    files = ["ch1", "ch2"] if chapter == "all" else [chapter]
-    panels = []
-    for name in files:
-        data = yaml.safe_load((MVP0 / f"panel-script-{name}.yaml").read_text(encoding="utf-8"))
-        for page in data["pages"]:
-            for panel in page["panels"]:
-                panels.append({**panel, "page_no": page["page_no"]})
-    return panels
+def load_pages(only_ids=None):
+    """Doc mvp0/pages/<page_id>.yaml, sap xep theo ten file. Bo qua README."""
+    if not PAGES_DIR.exists():
+        return []
+    pages = []
+    for path in sorted(PAGES_DIR.glob("*.yaml")):
+        page_id = path.stem
+        if only_ids and page_id not in only_ids:
+            continue
+        doc = yaml.safe_load(path.read_text(encoding="utf-8"))
+        pages.append((page_id, doc))
+    return pages
 
 
 def make_run_dir(stage):
@@ -85,12 +96,10 @@ def character_sheet_prompt(entity):
     parts = [
         compile_prompt.BASE_STYLE,
         "2D anime character design model sheet, multiple angle views, clean neutral background, front view and three-quarter view, pure 2D anime drawing, flat cel shading",
-        f"{entity['ten']}: {strip(ref['khuon_mat'])} {strip(ref['toc'])} {strip(ref['trang_phuc'])}",
+        f"{entity['ten']}: {strip(ref['khuon_mat'])} {strip(ref['mat'])} {strip(ref['toc'])} {strip(ref['trang_phuc'])}",
     ]
-    if "vat_pham" in ref:
-        parts.append(strip(ref["vat_pham"]))
-    if "dac_diem_khong_doi" in ref:
-        parts.append(strip(ref["dac_diem_khong_doi"]))
+    if "dac_diem_rieng" in ref:
+        parts.append(strip(ref["dac_diem_rieng"]))
     return ". ".join(p.replace("\n", " ").strip() for p in parts if p)
 
 
@@ -129,11 +138,11 @@ def run_refs(is_dry_run, only_character=None):
     return run_dir
 
 
-def load_reference_images(panel):
+def load_reference_images(conditioning_set):
     """Doc anh reference DA CHON. ⛔ Thieu anh la loi cung — ⛔ khong chay tiep."""
     images = []
-    for char_id in panel.get("characters", []):
-        path = REFS_DIR / f"{char_id}.png"
+    for ref_path in conditioning_set:
+        path = ROOT / ref_path
         if not path.exists():
             raise FileNotFoundError(
                 f"Thieu reference {path}. Chay stage `refs` truoc, roi chon tay 1 anh/nhan vat."
@@ -142,33 +151,31 @@ def load_reference_images(panel):
     return images
 
 
-def run_panels(chapter, is_dry_run, only, n_candidates=N_CANDIDATES):
-    bible = load_bible()
-    panels = load_panels(chapter)
-    if only:
-        wanted = set(only)
-        panels = [p for p in panels if p["panel_index"] in wanted]
+def _panel_indices(page_doc):
+    return [panel["panel_index"] for panel in page_doc.get("panels", []) if "panel_index" in panel]
 
-    run_dir = make_run_dir(f"panels-{chapter}")
-    print(f"Stage panels — {len(panels)} panel x N={n_candidates} = "
-          f"{len(panels) * n_candidates} anh\n")
 
-    for panel in panels:
-        index = panel["panel_index"]
-        text_prompt, conditioning_set, dropped = compile_prompt.compile_panel(panel, bible)
-        (run_dir / "prompts" / f"panel-{index:03d}.txt").write_text(text_prompt, encoding="utf-8")
+def run_pages(only_ids, is_dry_run, n_candidates=N_CANDIDATES):
+    pages = load_pages(only_ids)
+    run_dir = make_run_dir("pages")
+    print(f"Stage pages — {len(pages)} trang x N={n_candidates} = "
+          f"{len(pages) * n_candidates} anh\n")
 
+    for page_id, page_doc in pages:
+        text_prompt, conditioning_set, dropped = compile_prompt.compile_page(page_doc)
+        (run_dir / "prompts" / f"{page_id}.txt").write_text(text_prompt, encoding="utf-8")
+
+        panel_indices = _panel_indices(page_doc)
         if dropped:
             append_jsonl(run_dir / "dropped_constraints.jsonl",
-                         {"panel_index": index, "dropped": dropped})
+                         {"page_id": page_id, "dropped": dropped})
 
-        desc = panel.get("action_en") or panel.get("action")
-        print(f"  panel {index:2d}  {len(conditioning_set)} ref  "
-              f"{len(dropped)} drop  [{len(text_prompt)}c] {desc[:50]}...")
+        print(f"  {page_id}  {len(page_doc.get('panels', []))} panel  "
+              f"{len(conditioning_set)} ref  {len(dropped)} drop  [{len(text_prompt)}c]")
         if is_dry_run:
             continue
 
-        references = load_reference_images(panel)
+        references = load_reference_images(conditioning_set)
         candidates, refused = [], 0
         for candidate_index in range(n_candidates):
             try:
@@ -176,24 +183,24 @@ def run_panels(chapter, is_dry_run, only, n_candidates=N_CANDIDATES):
             except providers.ProviderRefusal as refusal:
                 refused += 1
                 append_jsonl(run_dir / "refusals.jsonl",
-                             {"panel_index": index, "candidate_index": candidate_index,
+                             {"page_id": page_id, "candidate_index": candidate_index,
                               "reason": str(refusal)})
                 time.sleep(SECONDS_BETWEEN_IMAGE_CALLS)
                 continue
-            path = run_dir / "candidates" / f"panel-{index:03d}-c{candidate_index}.png"
+            path = run_dir / "candidates" / f"{page_id}-c{candidate_index}.png"
             path.write_bytes(result["image_bytes"])
             candidates.append(result)
             # ⭐ Ghi usage NGAY sau khi sinh — ⛔ KHONG doi ket qua VLM.
             # Nguon: Story-Usage-Event AC — "usage_event cua ca 3 candidate VAN
-            # duoc ghi truoc khi biet ket qua select".
+            # duoc ghi truoc khi biet ket qua select". panel_indices o day cho
+            # regen_ratio.py cong don ve tung panel (D-1 giu G1 per-panel).
             append_jsonl(run_dir / "usage.jsonl",
                          {k: v for k, v in result.items() if k != "image_bytes"} |
-                         {"stage": "panels", "panel_index": index})
+                         {"stage": "pages", "page_id": page_id, "panel_indices": panel_indices})
             time.sleep(SECONDS_BETWEEN_IMAGE_CALLS)
 
-        record = {"panel_index": index, "page_no": panel["page_no"],
-                  "character_count": panel["character_count"],
-                  "characters": panel.get("characters", []),
+        record = {"page_id": page_id, "panel_indices": panel_indices,
+                  "characters": [c.get("id") for c in page_doc.get("characters", [])],
                   "candidates_generated": len(candidates), "candidates_refused": refused,
                   "dropped_constraints": dropped}
 
@@ -211,27 +218,28 @@ def run_panels(chapter, is_dry_run, only, n_candidates=N_CANDIDATES):
 
     print(f"\n-> {run_dir}")
     if not is_dry_run:
-        print("⭐ Buoc NGUOI lam: cham pass/fail tung panel SAU khi VLM chon "
-              "(day chinh la phep do `G1-c`), va cham `G1-a`/`G1-d` bang mat.")
+        print("⭐ Buoc NGUOI lam: chay `crop_page.py` de cat anh trang thanh "
+              "tung panel, roi cham pass/fail TUNG PANEL (`G1-c`) bang mat "
+              "(`G1-a`/`G1-d`).")
     return run_dir
 
 
 def main():
-    parser = argparse.ArgumentParser(description="MVP0 — reference + N=3 + VLM select")
-    parser.add_argument("stage", choices=["refs", "panels"])
-    parser.add_argument("--chapter", default="ch1", choices=["ch1", "ch2", "all"])
+    parser = argparse.ArgumentParser(description="MVP0 — reference + N=3 + VLM select (page-level, D-1)")
+    parser.add_argument("stage", choices=["refs", "pages"])
     parser.add_argument("--dry-run", action="store_true",
                         help="Chi compile va in prompt — ⛔ khong goi API, ⛔ khong ton tien")
     parser.add_argument("--character", help="Chi sinh reference cho 1 character_id")
-    parser.add_argument("--panels", type=int, nargs="*", help="Chi chay vai panel_index")
+    parser.add_argument("--page", dest="pages", nargs="*",
+                         help="Chi chay vai page_id (vi du ch01_page001)")
     parser.add_argument("-n", "--candidates", type=int, default=N_CANDIDATES,
-                        help=f"So luong candidate moi panel (mac dinh: {N_CANDIDATES})")
+                        help=f"So luong candidate moi trang (mac dinh: {N_CANDIDATES})")
     args = parser.parse_args()
 
     if args.stage == "refs":
         run_refs(args.dry_run, args.character)
     else:
-        run_panels(args.chapter, args.dry_run, args.panels, args.candidates)
+        run_pages(args.pages, args.dry_run, args.candidates)
     return 0
 
 

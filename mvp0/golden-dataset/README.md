@@ -37,9 +37,9 @@ Ba lý do độc lập, mỗi lý do tự đủ:
 
 | # | Trường | Ở đâu |
 |:-:|---|---|
-| 1 | **Panel Specification** | ⛔ Không copy — trỏ tới `panel_index` trong [`panel-script-ch1.yaml`](../panel-script-ch1.yaml) / [`ch2`](../panel-script-ch2.yaml). Một nguồn sự thật, ⛔ không nhân bản |
+| 1 | **Panel Specification** | ⛔ Không copy — trỏ tới `panel_index` của panel tương ứng trong [`mvp0/pages/<page_id>.yaml`](../pages/). Một nguồn sự thật, ⛔ không nhân bản. `panel_index` là chỉ số toàn cục xuyên suốt chương, gán tại page-plan time |
 | 2 | **Ảnh reference** | `mvp0/refs/<char_id>.png` — canonical reference **đã chọn tay** (thư mục do người tạo ở [Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md)) |
-| 3 | **Ảnh output** | `panels/panel-NNN/approved.png` — copy từ `run-*/candidates/` **ngay sau khi chấm**, vì thư mục nguồn sẽ mất |
+| 3 | **Ảnh output** | `panels/panel-NNN/approved.png` — copy từ output của [`crop_page.py`](../../scripts/mvp0/crop_page.py) (crop ảnh **trang** candidate theo `layout.rows`) **ngay sau khi chấm**, vì thư mục nguồn (`run-pages-*/`) sẽ mất |
 | 4 | ⭐ **Bảng chấm** | [`scoring-sheet.csv`](./scoring-sheet.csv) — file này |
 
 ⚠️ **Copy ảnh output là một bước NGƯỜI làm, ⛔ không có script nào tự làm.** Ảnh đã duyệt nằm trong `run-*/` là ảnh đang **chờ bị xoá**.
@@ -63,10 +63,10 @@ mvp0/golden-dataset/
 | # | Cột | Giá trị hợp lệ | Ý nghĩa |
 |:-:|---|---|---|
 | 1 | `scored_at` | ISO 8601, ví dụ `2026-09-02T21:30+07:00` | Thời điểm chấm. ⭐ Cột quyết định **bản ghi nào còn hiệu lực** — xem [mục 4](#4-luật-ghi--append-only-⛔-không-ghi-đè) |
-| 2 | `panel_index` | `1`–`42` | Neo tới panel script. ⛔ Không dùng số trang |
-| 3 | `run_dir` | ví dụ `run-panels-ch1-20260902-213000` | Thư mục sinh ra ảnh. Giữ lại **dù thư mục đã bị xoá** — đó là dấu vết truy nguyên duy nhất còn lại |
-| 4 | `n_used` | số nguyên ≥1 | Số candidate **thực có** ở vòng đó. ⭐ Đây là dữ liệu chấm `G1-b` (so tỉ lệ đạt ở `N=2` với `N=3`) |
-| 5 | `approved_candidate_index` | `0`–`n_used-1`, hoặc `none` | Candidate **người** chọn. `none` = ⛔ không candidate nào dùng được ⇒ panel này chưa có ảnh duyệt |
+| 2 | `panel_index` | số nguyên ≥1 | Neo tới panel tương ứng trong `mvp0/pages/<page_id>.yaml` — chỉ số **toàn cục** xuyên suốt chương. ⛔ Không dùng số trang |
+| 3 | `run_dir` | ví dụ `run-pages-ch1-20260902-213000` | Thư mục sinh ra ảnh **trang** (nguồn của panel này sau khi crop). Giữ lại **dù thư mục đã bị xoá** — đó là dấu vết truy nguyên duy nhất còn lại |
+| 4 | `n_used` | số nguyên ≥1 | Số candidate **trang** thực có ở vòng đó (mỗi candidate trang chứa panel này). ⭐ Đây là dữ liệu chấm `G1-b` (so tỉ lệ đạt ở `N=2` với `N=3`) |
+| 5 | `approved_candidate_index` | `0`–`n_used-1`, hoặc `none` | Candidate **trang** mà **người** chọn (panel này được crop từ đó). `none` = ⛔ không candidate nào dùng được ⇒ panel này chưa có ảnh duyệt |
 | 6 | `g1a_consistency` | `consistent` · `inconsistent` · `na` | *"Nhận ra cùng một người mà ⛔ không cần được nhắc không?"* · `na` = panel ⛔ không có nhân vật |
 | 7 | `g1c_human_verdict` | `pass` · `fail` | Người chấm **SAU KHI** VLM đã xếp hạng. ⚠️ Đây là **phép đo `G1-c`**, ⛔ không phải điểm của VLM |
 | 8 | `g1d_identity` | `ok` · `wrong` · `na` | Trục 1 của `G1-d`: **đúng người** |
@@ -107,7 +107,7 @@ mvp0/golden-dataset/
 
 ## 6. Quy trình chấm một panel
 
-1. Mở cả `n_used` candidate của panel trong `run-*/candidates/`. ⛔ **Đừng xoá cái nào** — cả ba là dữ liệu chấm `G1-c`.
+1. Mở cả `n_used` candidate **trang** trong `run-pages-*/candidates/`, xem panel này ở mỗi candidate. ⛔ **Đừng xoá cái nào** — cả ba là dữ liệu chấm `G1-c`.
 2. Xem xếp hạng VLM trong `results.jsonl`. ⚠️ VLM **chỉ xếp hạng**; lựa chọn cuối là của người — và **chính lựa chọn đó là phép đo `G1-c`**.
 3. Chọn một candidate (hoặc `none`), copy thành `panels/panel-NNN/approved.png`.
 4. **Thêm một dòng** vào [`scoring-sheet.csv`](./scoring-sheet.csv). Đủ 13 cột.
@@ -116,12 +116,12 @@ mvp0/golden-dataset/
 **Ví dụ một dòng** (panel nhiều nhân vật — ca khó có attribute binding):
 
 ```csv
-2026-09-04T21:30+07:00,10,run-panels-ch1-20260904-213000,3,1,consistent,pass,ok,wrong,na,readable,0,"Vat pham gan sai nguoi: vu khi cua nhan vat chinh sang nhan vat ben canh"
+2026-09-04T21:30+07:00,10,run-pages-ch1-20260904-213000,3,1,consistent,pass,ok,wrong,na,readable,0,"Vat pham gan sai nguoi: vu khi cua nhan vat chinh sang nhan vat ben canh"
 ```
 
 ⭐ Đọc dòng trên: panel này `g1c_human_verdict=pass` nhưng `g1d_attribute_binding=wrong` — **hai trục độc lập**, và đó là lý do `G1-d` chấm riêng khỏi `G1-c`.
 
-⚠️ Sau khi chấm xong, tính regen ratio `p50`/`p90` — ⛔ **thiếu nó thì `G2` KHÔNG CHẠY ĐƯỢC**, ⛔ không PASS mặc định:
+⚠️ Sau khi chấm xong, tính regen ratio `p50`/`p90` — ⛔ **thiếu nó thì `G2` KHÔNG CHẠY ĐƯỢC**, ⛔ không PASS mặc định. Script đếm theo **candidate trang** trong `run-pages-*/usage.jsonl`: một trang phải regen ⇒ **mọi panel thuộc trang đó** cùng cộng thêm một lượt regen — ⛔ không tính riêng từng panel:
 
 ```bash
 python3 scripts/mvp0/regen_ratio.py

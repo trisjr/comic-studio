@@ -142,6 +142,7 @@ panels:
 
   # ---------------------------------------------------------- PANEL 01
   - id: "panel_01"
+    panel_index: 1
     row: 1
     column: 1
     relative_width: 1.0
@@ -207,6 +208,7 @@ panels:
 
   # ---------------------------------------------------------- PANEL 02
   - id: "panel_02"
+    panel_index: 2
     row: 2
     column: 1
     relative_width: 0.5
@@ -259,6 +261,7 @@ panels:
 
   # ---------------------------------------------------------- PANEL 03
   - id: "panel_03"
+    panel_index: 3
     row: 2
     column: 2
     relative_width: 0.5
@@ -311,6 +314,7 @@ panels:
 
   # ---------------------------------------------------------- PANEL 04
   - id: "panel_04"
+    panel_index: 4
     row: 3
     column: 1
     relative_width: 0.35
@@ -362,6 +366,7 @@ panels:
 
   # ---------------------------------------------------------- PANEL 05
   - id: "panel_05"
+    panel_index: 5
     row: 3
     column: 2
     relative_width: 0.65
