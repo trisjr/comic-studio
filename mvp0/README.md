@@ -89,6 +89,12 @@ python3 scripts/mvp0/run_mvp0.py refs
 * Ghi nhận quyết định vào `mvp0/refs/selection-log.md`.
 
 ### 6. Sinh Trang (Stage `pages`)
+
+> [!CAUTION]
+> ⛔ **CHẶN — ⛔ không chạy bước này cho cả chương.** Probe `ch01_page001` ngày `2026-09-05` cho thấy `qwen-image-edit` đang coi ảnh ref là **ảnh gốc cần edit**, nên trả về **một tấm minh họa cảnh đơn** theo đúng tỉ lệ ảnh ref (`1.79`), ⛔ **không phải** trang nhiều panel dọc `2:3`.
+>
+> ⇒ Đọc [`pages-stage-probe.md`](./pages-stage-probe.md) trước. Bước này chỉ mở lại sau khi mục 1 ở §6 của báo cáo đó được Founder chốt.
+
 Thăm dò trước một vài trang rủi ro:
 ```bash
 python3 scripts/mvp0/run_mvp0.py pages --dry-run
