@@ -3,19 +3,21 @@
 # Nhật ký chọn canonical reference — MVP0
 
 > [!IMPORTANT]
-> ⚠️ **Trạng thái: ĐÃ ĐỀ XUẤT ĐỦ 8/8 — chương 1 (`ch01`) · CHỜ FOUNDER XÁC NHẬN** · Ngày `2026-09-05`
+> ✅ **Trạng thái: ĐÃ DUYỆT TẠM 8/8 — chương 1 (`ch01`)** · Ngày `2026-09-05`
 >
 > | | |
 > |---|---|
 > | **Tiêu chí chọn** | Founder chốt — **Hướng A** (xem [§2](#2-tiêu-chí-chọn-đã-dùng)) |
 > | **Áp tiêu chí & đề xuất** | TNMCORE-OS |
-> | **Founder đã xem ảnh?** | ⛔ **Chưa** — phải xác nhận **trước khi** chạy `run_mvp0.py pages` |
+> | **Founder duyệt?** | ✅ **Duyệt tạm** theo chỉ đạo trực tiếp trong phiên — xem [§0](#0-biên-bản-duyệt-tạm--ch01) |
+> | **Hệ quả** | Mở khóa stage `pages`; ⚠️ sai lệch tồn đọng **vẫn ⛔ không chấm vào `G1-a`** |
 >
-> [Chay-MVP0 Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md): Chọn canonical reference là *"việc của con người — ⛔ không giao cho máy"*. ⇒ Máy chỉ được **đề xuất**; ⛔ dòng nào chưa có mắt người nhìn qua thì ⛔ không được ghi là đã duyệt.
+> [Chay-MVP0 Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md): Chọn canonical reference là *"việc của con người — ⛔ không giao cho máy"*. ⇒ Máy chỉ được **đề xuất**; quyết định duyệt dưới đây là của Founder.
 > Sau khi chạy `python3 scripts/mvp0/run_mvp0.py refs`, người vận hành/Founder duyệt ảnh candidate trong `mvp0/run-refs-<timestamp>/candidates/`, lưu thành `mvp0/refs/<char_id>.png` và ghi log vào bảng dưới đây.
 
 ## Mục lục
 
+- [0. Biên bản duyệt tạm — `ch01`](#0-biên-bản-duyệt-tạm--ch01)
 - [1. Bảng ghi nhận Canonical References — `ch01`](#1-bảng-ghi-nhận-canonical-references--ch01)
 - [2. Tiêu chí chọn đã dùng](#2-tiêu-chí-chọn-đã-dùng)
 - [3. Ứng viên bị loại — lý do](#3-ứng-viên-bị-loại--lý-do)
@@ -24,18 +26,39 @@
 
 ---
 
+## 0. Biên bản duyệt tạm — `ch01`
+
+| | |
+|---|---|
+| **Ngày duyệt** | `2026-09-05` |
+| **Người duyệt** | **TrisJr (Founder)** — ghi nhận bởi TNMCORE-OS theo chỉ đạo trực tiếp trong phiên làm việc |
+| **Phạm vi** | Cả **8/8** file `mvp0/refs/*.png` ở [§1](#1-bảng-ghi-nhận-canonical-references--ch01) |
+| **Hình thức** | ⚠️ **Duyệt TẠM** — ⛔ không phải duyệt cuối |
+| **Lý do chấp nhận sai lệch** | Founder kết luận nguyên nhân nằm ở **năng lực model**, ⛔ không phải ở khâu chọn ảnh. Kết luận này khớp đúng phân loại **lỗi loại 2** đã ghi tại [`g1-verdict.md` §4.1](../golden-dataset/g1-verdict.md) — *"model cưỡng lại trong khung model sheet […] dữ kiện ĐÃ nằm đúng khóa mà vẫn bị bỏ qua"* |
+
+### "Tạm" nghĩa là gì — ba ràng buộc đi kèm
+
+1. ⭐ **Mở khóa stage `pages`.** Điều kiện *"Founder xác nhận trước khi chạy `run_mvp0.py pages`"* ở [Chay-MVP0 Bước 2](../../docs/060-Manuals/User-Guide/Chay-MVP0.md) đã **thỏa**.
+2. ⛔ **KHÔNG xóa nghĩa vụ loại trừ khi chấm.** Mọi dòng có `⚠️` ở [§1](#1-bảng-ghi-nhận-canonical-references--ch01) vẫn ⛔ **không được chấm vào `G1-a`** — duyệt tạm là chấp nhận **dùng** ảnh, ⛔ không phải tuyên bố ảnh **đúng bible**.
+3. 🔁 **Phải xét lại sau khi có ảnh trang.** Bảng [`g1-verdict.md` §4.3](../golden-dataset/g1-verdict.md) (*"`pages` có sửa được loại 2 ⛔ không?"*) hiện còn trống. Điền xong bảng đó rồi mới kết luận: hoặc nâng lên **duyệt chính thức** (khối `NEGATIVE_CONSTRAINTS` ở tầng page bù được), hoặc ghi nhận **nợ kỹ thuật** phải sửa `character_sheet_prompt` ở MVP1.
+
+> [!WARNING]
+> ⚠️ **⛔ Không dùng biên bản này để nới ngưỡng `G1`.** [`threshold-signoff.md`](../threshold-signoff.md) đã ký `2026-09-05` và ⛔ **không đổi** — *"⛔ không sửa ngưỡng sau khi nhìn thấy kết quả"*. Duyệt tạm chỉ tác động đến **đầu vào** (ảnh ref được phép dùng), ⛔ tuyệt đối không tác động đến **thước đo**.
+
+---
+
 ## 1. Bảng ghi nhận Canonical References — `ch01`
 
 | char_id | File nguồn (provenance) | Lý do đề xuất / phê chuẩn | Trạng thái |
 |---|---|---|---|
-| `tu_ba_ba` | `run-refs-20260905-152001/candidates/tu_ba_ba-c2.png` | Nhất quán nhất giữa 4 góc nhìn; đúng mặt, áo chàm, tạp dề xám, túi kim, khăn bịt đầu | ⭐ Đề xuất · ⚠️ thiếu lưng gù (xem [`g1-verdict.md` §4](../golden-dataset/g1-verdict.md)) |
-| `ma_lao` | `run-refs-20260905-154113/candidates/ma_lao-c0.png` (run sửa) | Giữ đúng phong cách 2D manhwa; ⛔ hết mảnh xương rời của bản gốc | ⭐ Đề xuất · ⚠️ vẫn đủ hai tay |
-| `gia_gia_que` | `run-refs-20260905-154256/candidates/gia_gia_que-c2.png` (run sửa) | Góc lưng đọc rõ **cả** đao bản rộng đeo chéo **lẫn** gậy gỗ — đúng `silhouette_cue` cần cho `ch01_page011` | ⭐ Đề xuất · ⚠️ vẫn đủ hai chân |
-| `truong_thon` | `run-refs-20260905-153930/candidates/truong_thon-c2.png` (run sửa) | Bố cục sạch, đúng tư thế nằm trên cáng tre, áo trắng và tóc/râu bạc dài; ⛔ hết mảnh xương rời | ⭐ Đề xuất · ⚠️ vẫn đủ tay chân |
-| `tan_muc_so_sinh` | `run-refs-20260905-152001/candidates/tan_muc_so_sinh-c0.png` | Đúng trẻ sơ sinh quấn tã, ngọc bội phát sáng xanh nhạt | ⭐ Đề xuất |
-| `tan_muc_thieu_nien` | `run-refs-20260905-172723/candidates/tan_muc_thieu_nien-c2.png` (run sửa tuổi) | ⛔ Không còn là thanh niên 18–20 như bản gốc; ⛔ không có chữ cháy vào ảnh; nhất quán 4 góc nhìn | ⭐ Đề xuất · ⚠️ lệch tuổi (~7–9 thay vì 11) là **loại 2**, ⛔ không sửa được bằng chữ ở tầng `refs` |
-| `yeu_phu_nguoi` | `run-refs-20260905-152001/candidates/yeu_phu_nguoi-c1.png` | Tóc rối che nửa mặt ✓ · vệt liền da đỏ quanh đùi rõ ✓ · áo lụa rách ẩm bết ✓ | ⭐ Đề xuất |
-| `yeu_phu_bo` | `run-refs-20260905-154439/candidates/yeu_phu_bo-c0.png` (run sửa) | Đúng con bò bốn chân nhìn nghiêng, da trần, dây thừng mũi bện; ánh mắt mang nét người | ⭐ Đề xuất |
+| `tu_ba_ba` | `run-refs-20260905-152001/candidates/tu_ba_ba-c2.png` | Nhất quán nhất giữa 4 góc nhìn; đúng mặt, áo chàm, tạp dề xám, túi kim, khăn bịt đầu | ✅ Duyệt tạm · ⚠️ thiếu lưng gù (xem [`g1-verdict.md` §4](../golden-dataset/g1-verdict.md)) |
+| `ma_lao` | `run-refs-20260905-154113/candidates/ma_lao-c0.png` (run sửa) | Giữ đúng phong cách 2D manhwa; ⛔ hết mảnh xương rời của bản gốc | ✅ Duyệt tạm · ⚠️ vẫn đủ hai tay |
+| `gia_gia_que` | `run-refs-20260905-154256/candidates/gia_gia_que-c2.png` (run sửa) | Góc lưng đọc rõ **cả** đao bản rộng đeo chéo **lẫn** gậy gỗ — đúng `silhouette_cue` cần cho `ch01_page011` | ✅ Duyệt tạm · ⚠️ vẫn đủ hai chân |
+| `truong_thon` | `run-refs-20260905-153930/candidates/truong_thon-c2.png` (run sửa) | Bố cục sạch, đúng tư thế nằm trên cáng tre, áo trắng và tóc/râu bạc dài; ⛔ hết mảnh xương rời | ✅ Duyệt tạm · ⚠️ vẫn đủ tay chân |
+| `tan_muc_so_sinh` | `run-refs-20260905-152001/candidates/tan_muc_so_sinh-c0.png` | Đúng trẻ sơ sinh quấn tã, ngọc bội phát sáng xanh nhạt | ✅ Duyệt tạm |
+| `tan_muc_thieu_nien` | `run-refs-20260905-172723/candidates/tan_muc_thieu_nien-c2.png` (run sửa tuổi) | ⛔ Không còn là thanh niên 18–20 như bản gốc; ⛔ không có chữ cháy vào ảnh; nhất quán 4 góc nhìn | ✅ Duyệt tạm · ⚠️ lệch tuổi (~7–9 thay vì 11) là **loại 2**, ⛔ không sửa được bằng chữ ở tầng `refs` |
+| `yeu_phu_nguoi` | `run-refs-20260905-152001/candidates/yeu_phu_nguoi-c1.png` | Tóc rối che nửa mặt ✓ · vệt liền da đỏ quanh đùi rõ ✓ · áo lụa rách ẩm bết ✓ | ✅ Duyệt tạm |
+| `yeu_phu_bo` | `run-refs-20260905-154439/candidates/yeu_phu_bo-c0.png` (run sửa) | Đúng con bò bốn chân nhìn nghiêng, da trần, dây thừng mũi bện; ánh mắt mang nét người | ✅ Duyệt tạm |
 
 > [!WARNING]
 > ⚠️ **Mọi dòng có `⚠️` ⛔ KHÔNG được chấm vào `G1-a`.** Đó là hạn chế đã có sẵn trong ảnh reference lúc chọn, ⛔ không phải lỗi nhất quán của model ở tầng page. Phân loại đầy đủ nằm ở [`g1-verdict.md` §4](../golden-dataset/g1-verdict.md).
