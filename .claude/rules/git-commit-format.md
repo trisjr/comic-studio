@@ -84,6 +84,24 @@ Diff đã nói *cái gì*. Body dùng để ghi lại **lý do quyết định**
 | Bỏ dấu tiếng Việt | Xem mục 1 — mất thông tin ⛔ không khôi phục được |
 | Secret trong commit message | `security.md` §2 |
 
-## 6. Nợ đã biết
+## 6. Push code từ worktree — đi qua `/opsx:submit`
+
+> [!IMPORTANT]
+> Khi đang làm việc trong một git worktree (`.claude/worktrees/...`) và cần đưa code lên remote, ⛔ **không `git push` trực tiếp**. Thay vào đó chạy **`/opsx:submit`** để branch, commit, push và PR đi cùng một chuẩn.
+
+Tham số cố định khi gọi từ worktree:
+
+| Tham số `/opsx:submit` | Giá trị | Hệ quả |
+|---|---|---|
+| Task/Ticket Link | `[N/A]` | ⛔ Không pause hỏi link · Bỏ qua **Step 5** (comment ClickUp/GitHub Issue) |
+| Logwork | **Không** | Bỏ qua **Step 6** (`tnm task log`) |
+
+Các bước còn lại (Step 1–4) giữ nguyên: branch đúng mục 3, commit đúng mục 2, PR title đúng mục 4, `--base` là branch gốc của worktree, `--assignee @me`.
+
+⭐ **Lý do**: worktree được tạo cho job nền hoặc phiên song song, thường ⛔ không gắn ticket và ⛔ không cần logwork. Nhưng branch name, commit và PR body vẫn phải chuẩn, và `/opsx:submit` là nơi duy nhất bảo đảm điều đó. Push tay bỏ qua toàn bộ kiểm tra này.
+
+Nếu branch của worktree **đã được push** trước khi rule này có hiệu lực, vẫn chạy `/opsx:submit` cho phần PR (Step 4), ⛔ không tạo PR bằng `gh pr create` tay ngoài workflow.
+
+## 7. Nợ đã biết
 
 ⚠️ **Lịch sử commit trước ngày `2026-08-30` ⛔ KHÔNG tuân thủ rule này** — phần lớn là tiếng Việt không dấu, một số ít tiếng Anh. ⛔ **Không rewrite lịch sử để sửa**: các commit đó đã nằm trong PR đã merge, viết lại sẽ phá checkout của mọi bản sao. Rule này áp cho **commit từ nay về sau**.
