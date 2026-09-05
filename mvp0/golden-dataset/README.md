@@ -7,6 +7,15 @@
 > [!CAUTION]
 > ⭐ **Golden dataset ⛔ KHÔNG bị vứt cùng code MVP0.** `H6` là `✅` ở **mọi** mốc MVP0–MVP4 và là **đầu vào của eval kit `M1-6`** ([MVP-Scope §3](../../docs/010-Planning/MVP-Scope.md) · [Roadmap §6.2](../../docs/010-Planning/Roadmap.md)). Script sinh ảnh thì vứt; **kết luận và dữ liệu thì giữ**.
 
+> [!IMPORTANT]
+> ⛔ **TRẠNG THÁI `2026-09-05` — bảng chấm này RỖNG, và nó sẽ ở nguyên như vậy.**
+>
+> MVP0 đã **khép theo quyết định Founder** trước khi vòng chấm điểm bắt đầu: `scoring-sheet.csv` có **0 dòng**, `panels/` **rỗng**, `P-6` chỉ đạt **một nửa** (có spec + ref, ⛔ không có ảnh + bảng chấm). Biên bản: [`g1-verdict.md` §5.1](./g1-verdict.md).
+>
+> ⚠️ ⇒ **Eval kit `M1-6` ở MVP1 ⛔ KHÔNG có baseline hồi quy để so.** Khi tới `M1-6`, phải **cấp lại ngân sách API** dựng bộ ảnh chuẩn — đúng cái giá *"dựng lại tốn tiền API lần hai"* mà [Roadmap mục 6](../../docs/010-Planning/Roadmap.md) đã ghi.
+>
+> ⭐ Toàn bộ mục 1–7 dưới đây **vẫn đúng và vẫn dùng được** — đây là **quy trình chấm đã kiểm chứng**, dùng lại nguyên vẹn khi MVP1 dựng golden dataset.
+
 ## Mục lục
 
 - [1. Vì sao bảng chấm phải tồn tại TRƯỚC tấm ảnh đầu tiên](#1-vì-sao-bảng-chấm-phải-tồn-tại-trước-tấm-ảnh-đầu-tiên)
