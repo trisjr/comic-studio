@@ -48,7 +48,10 @@ __pycache__/
 dev/
 data/
 .agent/.DS_Store
-src/
+
+# Chi ignore thu muc `src/` o ROOT repo (di san tu giai doan chua co code).
+# ⛔ KHONG duoc bo dau `/` — mau khong neo se nuot luon `apps/backend/src/`.
+/src/
 
 .opencode
 /.antigravitycli/
@@ -59,3 +62,12 @@ src/
 # ⚠️ NGOAI LE: mvp0/refs/*.png la canonical reference DA CHON — chung la DU
 # LIEU duoc giu lai, ⛔ khong phai output tam. Xem mvp0/README.md.
 mvp0/run-*/
+
+# Monorepo — build output va cache cua workspace
+.turbo/
+*.tsbuildinfo
+apps/*/dist/
+packages/*/dist/
+
+# Docker Compose — du lieu ben cua stack dev (postgres, minio)
+infra/docker/.data/

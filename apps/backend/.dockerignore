@@ -1,0 +1,10 @@
+# AI Coding
+# Loai khoi build context nhung thu khong duoc phep di vao image.
+
+node_modules
+dist
+coverage
+test
+*.tsbuildinfo
+.env
+.env.*

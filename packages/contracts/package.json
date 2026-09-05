@@ -1,0 +1,26 @@
+{
+  "name": "@comic-studio/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Nguon su that duy nhat cua hop dong API: zod schema dung chung cho backend va web",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "echo \"@comic-studio/contracts: chua co test\" && exit 0"
+  },
+  "dependencies": {
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@comic-studio/tsconfig": "workspace:*",
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.0"
+  }
+}
