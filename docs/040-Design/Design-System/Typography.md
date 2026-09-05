@@ -65,7 +65,7 @@ updated: 2026-08-30
 
 | | **Hệ 1 — Font UI** | **Hệ 2 — Font render** |
 |---|---|---|
-| Phát biểu ở đâu | **CSS variable** trong `apps/web/src/index.css`, Tailwind `theme.extend` **trỏ vào** `var(--…)` — [Foundations](./Foundations.md) `HĐ-1`, `HĐ-2` | ⭐ **Tham số config của `apps/api`** — cùng runtime với compositor |
+| Phát biểu ở đâu | **CSS variable** trong `apps/web/src/index.css`, Tailwind `theme.extend` **trỏ vào** `var(--…)` — [Foundations](./Foundations.md) `HĐ-1`, `HĐ-2` | ⭐ **Tham số config của `apps/backend`** — cùng runtime với compositor |
 | ⛔ Cấm | ⛔ Hardcode `font-family` thẳng trong component | ⛔ **Khai thành CSS variable** · ⛔ **đưa vào Tailwind theme** · ⛔ nạp bằng webfont ở browser |
 
 ⚠️ **Vì sao lệnh cấm bên phải là lệnh cấm cứng, ⛔ không phải sở thích tổ chức file:**
@@ -210,7 +210,7 @@ theme: {
 > ⛔ **Run này KHÔNG chốt.** Viết một tên font vào ô này là **đóng thay người khác** và **đóng trước khi có số đo** — đúng thứ [ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) từ chối làm với thư viện compositor: *"⛔ không dán tên kèm con số khi chưa đo"*.
 > ⭐ Đây **đúng khuôn** mà [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) `## Decision` điều **6** đã dùng cho `D-30` (*"⛔ Không chọn lại thư viện ở đây — xem `ADR-001` điều 8"*). Design System **kế thừa nguyên khuôn đó**.
 
-**Phạm vi:** chữ **bên trong bubble của trang truyện thành phẩm**. Render bởi **compositor server-side**, cùng runtime với bước wrap, trong `apps/api`.
+**Phạm vi:** chữ **bên trong bubble của trang truyện thành phẩm**. Render bởi **compositor server-side**, cùng runtime với bước wrap, trong `apps/backend`.
 
 | Hạng mục | Trạng thái | Chủ | Thời điểm |
 |---|---|---|---|
@@ -218,13 +218,13 @@ theme: {
 | **Glyph coverage tiếng Việt** của font đó | ⛔ **`TBD`** — ⚠️ ⛔ **không có benchmark định lượng nào**, chỉ phát hiện được bằng **kiểm thủ công từng panel** | **Architect + Founder** | Cùng lúc trên |
 | **Line-height / leading của bubble** | ⛔ **`TBD`** — là **dẫn xuất từ metric của font thật**, ⛔ không chọn trước được | **Architect + Founder** | Sau khi hai hàng trên đóng |
 
-### ⭐ Nó ⛔ KHÔNG phải CSS variable — nó là **tham số config của `apps/api`**
+### ⭐ Nó ⛔ KHÔNG phải CSS variable — nó là **tham số config của `apps/backend`**
 
 | | |
 |---|---|
-| **Sống ở đâu** | Config của **`apps/api`** — cùng image, cùng runtime với compositor ([ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Decision` điều **2**: *một image, hai command*) |
-| **File font sống ở đâu** | Đóng gói **cùng image của `apps/api`**, ⛔ không tải qua mạng lúc composite |
-| ⛔ **Cấm** | ⛔ Khai thành CSS variable · ⛔ đưa vào Tailwind theme · ⛔ nạp bằng webfont ở `apps/web` · ⛔ để `apps/web` và `apps/api` khai hai nguồn font khác nhau |
+| **Sống ở đâu** | Config của **`apps/backend`** — cùng image, cùng runtime với compositor ([ADR-001](../../030-Specs/Architecture/ADR-001-Backend-And-Frontend-Tech-Stack.md) `## Decision` điều **2**: *một image, hai command*) |
+| **File font sống ở đâu** | Đóng gói **cùng image của `apps/backend`**, ⛔ không tải qua mạng lúc composite |
+| ⛔ **Cấm** | ⛔ Khai thành CSS variable · ⛔ đưa vào Tailwind theme · ⛔ nạp bằng webfont ở `apps/web` · ⛔ để `apps/web` và `apps/backend` khai hai nguồn font khác nhau |
 
 ⚠️ **Vì sao lệnh cấm này quan trọng hơn nó trông:** Tailwind theme là **bề mặt mà một dev tương lai đọc để biết "font của sản phẩm là gì"**. Đặt font render ở đó là **mời họ vẽ bubble ngay tại client** — đường mà [ADR-013](../../030-Specs/Architecture/ADR-013-Typeset-Layer-Separate-From-Art.md) §Alternatives **(f)** đã **LOẠI tường minh**, với lý do nguyên văn: preview client-side *"không thể là compositor của export"*.
 

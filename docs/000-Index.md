@@ -117,7 +117,7 @@ Thư mục con: `Sprints/` · `Estimates/` · `Implementation-Plans/` — *(chư
 | [Foundations](./040-Design/Design-System/Foundations.md) | ⭐ **Đọc trước tiên.** Hợp đồng phát biểu token — **CSS variable là NGUỒN, Tailwind THAM CHIẾU**, một chiều. Kèm **checklist 14 mục `grep`** dùng nghiệm thu cơ học 5 file kia |
 | [Brand-Guidelines](./040-Design/Design-System/Brand-Guidelines.md) | Tone, hướng màu, 4 actor có căn cứ. ⚠️ **Tên hiển thị vẫn `TBD`** (chủ: Founder) — `comic-studio` là project name, ⛔ không phải tên sản phẩm |
 | [Color-Tokens](./040-Design/Design-System/Color-Tokens.md) | 17 cặp semantic nền/chữ đủ 2 cột light/dark · **27 hàng audit contrast có số — cả 27 đều ĐẠT**; 3 màu cố ý không đạt 3:1 nằm ở **bảng tách biệt** kèm phạm vi hẹp |
-| [Typography](./040-Design/Design-System/Typography.md) | ⭐ **HAI hệ font, token ⛔ KHÔNG chung namespace**: font UI là CSS variable ở `apps/web`; font render vào ảnh là **tham số config của `apps/api`**, phải **đơn trị** |
+| [Typography](./040-Design/Design-System/Typography.md) | ⭐ **HAI hệ font, token ⛔ KHÔNG chung namespace**: font UI là CSS variable ở `apps/web`; font render vào ảnh là **tham số config của `apps/backend`**, phải **đơn trị** |
 | [Spacing-And-Layout](./040-Design/Design-System/Spacing-And-Layout.md) | Thang spacing, radius, elevation, breakpoint, z-index đặt tên + ranh giới với hệ toạ độ **0–1** của `ADR-013` |
 | [Components](./040-Design/Design-System/Components.md) | 16 component không hoãn được `C-01`…`C-16` + ma trận state + **mục CẤM 8 hàng** |
 

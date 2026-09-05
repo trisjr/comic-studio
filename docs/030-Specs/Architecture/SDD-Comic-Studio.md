@@ -490,7 +490,7 @@ flowchart LR
 
 | Điều | Nội dung | Neo |
 |---|---|---|
-| **Một image** | `apps/api` build ra **đúng một** image; hai command khác nhau; **cả hai process deploy cùng một image digest** | [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) tầng CHỐT #2 · [ADR-002](./ADR-002-Hosting-Platform-And-Region.md) tầng CHỐT #2 |
+| **Một image** | `apps/backend` build ra **đúng một** image; hai command khác nhau; **cả hai process deploy cùng một image digest** | [ADR-001](./ADR-001-Backend-And-Frontend-Tech-Stack.md) tầng CHỐT #2 · [ADR-002](./ADR-002-Hosting-Platform-And-Region.md) tầng CHỐT #2 |
 | **Cùng codebase** | Worker là **process triển khai riêng, CÙNG codebase** — ⛔ không phải service thứ hai, ⛔ không repo thứ hai | `SRS-NFR-03` (`D-02`) |
 | **Giao tiếp** | **CHỈ** qua `public.job` trong Postgres. ⛔ Không HTTP nội bộ, ⛔ không broker | ranh giới `B-2` ([§4.1](#41-bốn-đường-không-được-vượt)) |
 | **Scheduled job** | Chỉ được **GỌI một subcommand** của chính image đó. ⛔ Không một dòng logic nghiệp vụ nào sống trong cấu hình cron của platform | [ADR-002](./ADR-002-Hosting-Platform-And-Region.md) điều 3 |
