@@ -166,14 +166,28 @@ def _panel_indices(page_doc):
     return [panel["panel_index"] for panel in page_doc.get("panels", []) if "panel_index" in panel]
 
 
-def run_pages(only_ids, is_dry_run, n_candidates=N_CANDIDATES):
+def _requested_size(page_doc):
+    """Doi `target_resolution` cua page YAML sang dinh dang `size` DashScope.
+
+    Page YAML viet `"1024x1536"`; API doi `"1024*1536"`. ⛔ Khong co gia tri
+    mac dinh — thieu `target_resolution` la loi cua page YAML, ⛔ khong phai
+    thu de script tu bia (`SRS §5.2`).
+    """
+    raw = page_doc.get("page", {}).get("target_resolution", "").strip()
+    if not raw:
+        raise ValueError("page YAML ⛔ thieu `page.target_resolution`")
+    return raw.replace("x", "*")
+
+
+def run_pages(only_ids, is_dry_run, n_candidates=N_CANDIDATES, use_refs=True):
     pages = load_pages(only_ids)
     run_dir = make_run_dir("pages")
     print(f"Stage pages — {len(pages)} trang x N={n_candidates} = "
           f"{len(pages) * n_candidates} anh\n")
 
     for page_id, page_doc in pages:
-        text_prompt, conditioning_set, dropped = compile_prompt.compile_page(page_doc)
+        text_prompt, conditioning_set, dropped = compile_prompt.compile_page(
+            page_doc, attach_references=use_refs)
         (run_dir / "prompts" / f"{page_id}.txt").write_text(text_prompt, encoding="utf-8")
 
         panel_indices = _panel_indices(page_doc)
@@ -181,16 +195,19 @@ def run_pages(only_ids, is_dry_run, n_candidates=N_CANDIDATES):
             append_jsonl(run_dir / "dropped_constraints.jsonl",
                          {"page_id": page_id, "dropped": dropped})
 
+        size = _requested_size(page_doc)
+        ref_note = f"{len(conditioning_set)} ref" if use_refs else "0 ref (--no-refs)"
         print(f"  {page_id}  {len(page_doc.get('panels', []))} panel  "
-              f"{len(conditioning_set)} ref  {len(dropped)} drop  [{len(text_prompt)}c]")
+              f"{ref_note}  {len(dropped)} drop  {size}  [{len(text_prompt)}c]")
         if is_dry_run:
             continue
 
-        references = load_reference_images(conditioning_set)
+        references = load_reference_images(conditioning_set) if use_refs else []
         candidates, refused = [], 0
         for candidate_index in range(n_candidates):
             try:
-                result = providers.generate_candidate(text_prompt, references, candidate_index)
+                result = providers.generate_candidate(
+                    text_prompt, references, candidate_index, size=size)
             except providers.ProviderRefusal as refusal:
                 refused += 1
                 append_jsonl(run_dir / "refusals.jsonl",
@@ -245,12 +262,16 @@ def main():
                          help="Chi chay vai page_id (vi du ch01_page001)")
     parser.add_argument("-n", "--candidates", type=int, default=N_CANDIDATES,
                         help=f"So luong candidate moi trang (mac dinh: {N_CANDIDATES})")
+    parser.add_argument("--no-refs", dest="use_refs", action="store_false",
+                        help="Stage pages: ⛔ KHONG dinh kem anh ref ⇒ goi model "
+                             "t2i thay vi model edit. Dung khi model edit coi "
+                             "ref la anh-can-sua nen ⛔ khong dung duoc trang")
     args = parser.parse_args()
 
     if args.stage == "refs":
         run_refs(args.dry_run, args.character)
     else:
-        run_pages(args.pages, args.dry_run, args.candidates)
+        run_pages(args.pages, args.dry_run, args.candidates, args.use_refs)
     return 0
 
 

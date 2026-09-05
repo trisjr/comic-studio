@@ -163,13 +163,44 @@ def _page_section(page):
         _field("overall_mood", page.get("overall_mood")),
     ]
     layout = page.get("layout") or {}
+    rows = layout.get("rows", [])
+
+    # ⭐ Dem TUONG MINH thay vi de model dem lay danh sach ten panel. Probe
+    # `ch01_page001` tren `qwen-image-2.0-pro` ra 8 panel thay vi 5: dung 4
+    # row nhung row 2 ve 3 panel (dac ta 2) va row 4 ve 3 panel (dac ta 1).
+    # Danh sach `panel_02, panel_03` la thu model phai DEM; mot con so thi
+    # ⛔ khong phai. Chi tiet: `mvp0/pages-stage-probe.md`.
+    total_panels = sum(len(row.get("panels", [])) for row in rows)
+    if total_panels:
+        lines.append(f"panel_count: exactly {total_panels} panels on this page, "
+                     f"laid out in exactly {len(rows)} horizontal rows.")
     if layout.get("dominant_panel"):
         lines.append(_field("dominant_panel", layout["dominant_panel"]))
-    for row in layout.get("rows", []):
-        panel_list = ", ".join(row.get("panels", []))
-        lines.append(f"row {row.get('row')}: y {row.get('y')} to "
-                     f"{round(row.get('y', 0) + row.get('h', 0), 3)}, panels: {panel_list}")
+
+    # ⚠️⚠️ ⛔ TUYET DOI KHONG phat ra so thap phan tran o day. Ban cu ghi
+    # "row 1: y 0.0 to 0.22" va model VE LUON cac so do len le trang
+    # (`qwen-image-3.0`, do 2026-09-06). Model ⛔ khong phan biet toa do dieu
+    # khien voi chu can ve — cung co che da lam no chep bo cuc character
+    # sheet. Chieu cao vi the mo ta bang TU, ⛔ khong bang so.
+    #
+    # `crop_page.py` van cat theo `layout.rows` doc THANG tu page YAML, nen
+    # bo so o day ⛔ KHONG lam mat do chinh xac cua buoc cat.
+    for row in rows:
+        panels = row.get("panels", [])
+        lines.append(f"row {row.get('row')} (from the top): "
+                     f"a {_band_height_word(row.get('h', 0))} band holding "
+                     f"exactly {len(panels)} panel(s): {', '.join(panels)}")
     return _join_lines(["PAGE:", *lines])
+
+
+def _band_height_word(height_fraction):
+    """Doi chieu cao row thanh TU, ⛔ khong de lot so ra prompt. Xem ly do o
+    `_page_section`."""
+    if height_fraction >= 0.30:
+        return "tall"
+    if height_fraction >= 0.20:
+        return "medium-height"
+    return "short"
 
 
 def _continuity_section(continuity):
@@ -216,11 +247,28 @@ def _panel_characters_clause(panel_characters, characters_by_id):
     return "; ".join(clauses)
 
 
+def _panel_width_word(relative_width):
+    """Doi be ngang panel thanh TU. Xem ly do o `_page_section`."""
+    try:
+        fraction = float(relative_width)
+    except (TypeError, ValueError):
+        return "spanning its row"
+    if fraction >= 0.95:
+        return "spanning the full width of its row"
+    if fraction >= 0.6:
+        return "taking up most of the width of its row"
+    if fraction >= 0.4:
+        return "sharing its row evenly with the panel beside it"
+    return "a narrow panel within its row"
+
+
 def _panel_section(panel, characters_by_id):
     lines = [f"panel {panel.get('id')}:"]
+    # ⛔ KHONG phat `relative_width` / `relative_height` dang so — xem ly do o
+    # `_page_section`. Be ngang mo ta bang tu; `shape` von da noc du hinh dang.
     geometry = (f"row {panel.get('row')}, column {panel.get('column')}, "
-                f"width {panel.get('relative_width')}, height {panel.get('relative_height')}, "
-                f"{panel.get('shape', '')}").strip()
+                f"{_panel_width_word(panel.get('relative_width'))}, "
+                f"{panel.get('shape', '')}").strip().rstrip(",")
     lines.append(f"  position/size: {geometry}")
     scene_delta = _field("scene_delta", panel.get("scene_delta"))
     if scene_delta:
@@ -266,7 +314,48 @@ def _negative_section(negative_constraints):
     return _join_lines(["NEGATIVE_CONSTRAINTS:", *lines]), dropped
 
 
-def compile_page(page_doc):
+def _reference_usage_section(conditioning_set, characters):
+    """Noi cho model biet anh dinh kem LA CAI GI va ⛔ KHONG duoc chep gi.
+
+    ⭐ Ly do khoi nay ton tai: API chi co MOT kenh anh, ⛔ khong co truong nao
+    khai bao vai tro cua anh. Do do vai tro phai duoc noi bang CHU. Do bang
+    anh that (`pages-stage-probe.md`): khi ⛔ khong noi gi, model chep ca bo
+    cuc cua character sheet — `qwen-image-edit-plus` dan nguyen 4 pose cua
+    hai sheet len row 2, ke ca pose nhin tu sau lung va nen gradient den.
+
+    ⚠️⚠️ VIET KHANG DINH, ⛔ TUYET DOI KHONG MO TA THU MINH KHONG MUON.
+    Ban dau khoi nay co mot cau ta tam sheet ("a single character drawn
+    several times from different angles, side by side on a plain empty
+    backdrop") kem menh de "do_not_copy". Ket qua do duoc: model ve DUNG cai
+    vua duoc ta — dan nguyen ca hai tam sheet vao hai panel. Model ⛔ khong
+    phan biet "thu can ve" voi "thu dung ve"; moi thu duoc ta deu la vat lieu.
+    Cung bai hoc da ghi o `selection-log.md` §3 khi sua prompt refs tu loi
+    phu dinh sang loi khang dinh.
+
+    Khoi nay dat NGAY SAU `STYLE:` — truoc moi mo ta noi dung — de vai tro
+    cua anh duoc xac lap truoc khi model doc den phan can ve.
+    """
+    if not conditioning_set:
+        return ""
+
+    named = [c.get("name") or c.get("id") for c in characters
+             if c.get("canonical_reference")]
+    order = "; ".join(f"image {i + 1} = {name}" for i, name in enumerate(named))
+
+    return _join_lines([
+        "REFERENCE_IMAGES:",
+        f"count: {len(conditioning_set)} attached image(s), in order: {order}.",
+        "use_them_for: the facial features, hairstyle, costume and colours of "
+        "that one character, wherever that character appears below.",
+        "every_panel_is_a_new_drawing: draw each character freshly, in the "
+        "pose, the shot size and the setting that the PANELS section gives "
+        "for that panel. Each character appears once per panel, integrated "
+        "into the scene, lit by the scene's own light.",
+        "the_page_layout_comes_from: the PAGE and PANELS sections below.",
+    ])
+
+
+def compile_page(page_doc, attach_references=True):
     """Serialize MOT page YAML (structure = mvp0/prompt-example.yaml) thanh
     (text_prompt, conditioning_set, dropped). ⛔ Khong LLM, ⛔ khong ngau nhien.
     """
@@ -280,8 +369,19 @@ def compile_page(page_doc):
     characters_by_id = {c["id"]: c for c in characters if c.get("id")}
 
     negative_section, dropped = _negative_section(negative_constraints)
+
+    # conditioning_set — thu tu THEO characters, identity reference ⛔ KHONG
+    # BAO GIO bi drop theo budget (`ADR-014`/`SRS-FR-18`).
+    conditioning_set = [c["canonical_reference"] for c in characters if c.get("canonical_reference")]
+    if not attach_references:
+        # ⭐ Chay `--no-refs`: ⛔ KHONG anh nao duoc dinh kem ⇒ khoi
+        # REFERENCE_IMAGES phai bien mat. Mo ta "2 anh dinh kem" khi thuc te
+        # ⛔ khong co anh nao la noi doi voi model — te hon la ⛔ khong noi gi.
+        conditioning_set = []
+
     sections = [
         _style_section(style),
+        _reference_usage_section(conditioning_set, characters),
         _page_section(page),
         _continuity_section(page.get("continuity", {})),
         _characters_section(characters),
@@ -290,9 +390,5 @@ def compile_page(page_doc):
         negative_section,
     ]
     text_prompt = "\n\n".join(s for s in sections if s)
-
-    # conditioning_set — thu tu THEO characters, identity reference ⛔ KHONG
-    # BAO GIO bi drop theo budget (`ADR-014`/`SRS-FR-18`).
-    conditioning_set = [c["canonical_reference"] for c in characters if c.get("canonical_reference")]
 
     return text_prompt, conditioning_set, dropped
