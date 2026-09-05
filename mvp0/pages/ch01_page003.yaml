@@ -120,9 +120,9 @@ characters:
       eyes: "narrow dark eyes under heavy white brows"
       face: "square weathered old man's face with a patchy white stubble beard"
       distinctive_features:
-        - "left arm missing entirely at the shoulder"
-        - "the empty left sleeve knotted up at the shoulder"
-        - "the remaining right arm unusually thick and muscular"
+        - "a single right arm, unusually thick and heavily muscled"
+        - "on the left side the tunic shoulder is a smooth rounded seam"
+        - "the empty left sleeve knotted shut flat against that shoulder"
 
     outfit:
       - "earth-brown coarse work tunic"

@@ -14,8 +14,9 @@
 - [1. Năm tiêu chí — số đo và cỡ mẫu](#1-năm-tiêu-chí--số-đo-và-cỡ-mẫu)
 - [2. Đo thêm — regen ratio `p50`/`p90`](#2-đo-thêm--regen-ratio-p50p90)
 - [3. Readability — dữ liệu song song](#3-readability--dữ-liệu-song-song)
-- [4. Verdict](#4-verdict)
-- [5. Tài liệu tham khảo](#5-tài-liệu-tham-khảo)
+- [4. Hạn chế đã biết ở tầng canonical reference](#4-hạn-chế-đã-biết-ở-tầng-canonical-reference)
+- [5. Verdict](#5-verdict)
+- [6. Tài liệu tham khảo](#6-tài-liệu-tham-khảo)
 
 ---
 
@@ -72,7 +73,62 @@ python3 scripts/mvp0/regen_ratio.py
 | `unscored` | `______` ⚠️ ⛔ không được ngầm coi là `readable` |
 | ⭐ **Panel `pass` kỹ thuật nhưng `not_readable`** | `______` — đây là con số `CF-10.10` tồn tại để bắt |
 
-## 4. Verdict
+## 4. Hạn chế đã biết ở tầng canonical reference
+
+> [!CAUTION]
+> ⭐ **Đọc mục này TRƯỚC khi chấm `G1-a`.** Các sai lệch dưới đây đã có sẵn **trong chính ảnh reference** khi chọn (`2026-09-05`), ⛔ **không phải** lỗi nhất quán của model ở tầng page. Chấm chúng vào `G1-a` là **đo nhầm** — nó biến một giới hạn đã biết của `refs` thành một tuyên bố sai về năng lực giữ nhân vật của model.
+
+### 4.1. Hai loại lỗi — ⛔ không gộp
+
+| Loại | Bản chất | Sửa được bằng chữ? | Bằng chứng |
+|---|---|---|---|
+| **Loại 1 — dữ kiện ⛔ không tới được prompt** | `character_sheet_prompt` chỉ đọc **5 khóa** `canonical_reference_en` (`khuon_mat`, `mat`, `toc`, `trang_phuc`, `dac_diem_rieng`) + `ten_en`. Nó ⛔ **không** đọc `tuoi`, `gioi_tinh`, `body_type_relative_en`, `silhouette_cue_en`, `personality_en`, và gửi **0 negative constraint** | ✅ **Có** — chuyển dữ kiện vào 5 khóa đó | `yeu_phu_bo` vẽ ra chân dung nửa người có vai áo cho tới khi hình dạng bốn chân được đưa vào `dac_diem_rieng`; `tan_muc_thieu_nien` ra thanh niên 18–20 cho tới khi tuổi được đưa vào `khuon_mat` |
+| **Loại 2 — model cưỡng lại trong khung model sheet** | Prompt `refs` mở đầu bằng *"2D anime character design model sheet, multiple angle views"*. Convention này kéo mọi thứ về **giải phẫu người tiêu chuẩn** | ⛔ **Không** — dữ kiện ĐÃ nằm đúng khóa mà vẫn bị bỏ qua | `tu_ba_ba` có *"pronounced hunched back"* trong `dac_diem_rieng` nhưng 3/3 candidate vẽ lưng thẳng |
+
+### 4.2. Sai lệch tồn đọng trong `mvp0/refs/*.png` đã chọn
+
+| char_id | Bible yêu cầu | Ref thực tế | Loại | Hệ quả khi chấm |
+|---|---|---|---|---|
+| `ma_lao` | Chỉ còn **tay phải**; vai trái là đường may tròn, tay áo rỗng thắt nút | Đủ **hai tay** | 2 | ⛔ Không tính vào `G1-a` |
+| `gia_gia_que` | **Cụt chân phải** trên gối, chống gậy gỗ | Đủ **hai chân** | 2 | ⛔ Không tính vào `G1-a` |
+| `truong_thon` | **Chỉ còn thân mình** — hai vai cụt tròn, thân hết dưới hông | Đủ **tay, chân, bàn chân** | 2 | ⛔ Không tính vào `G1-a` |
+| `tu_ba_ba` | **Lưng gù rõ** (`silhouette_cue` chính) | Lưng thẳng | 2 | ⚠️ `silhouette_cue` của nhân vật này ⛔ **không đo được** ở chương 1 |
+| `tan_muc_thieu_nien` | **11 tuổi** | ⛔ Không còn là người lớn 18–20, nhưng **vẫn lệch — đọc ra ~7–9 tuổi** | **1 → 2** (xem §4.2b) | ⚠️ Ghi rõ khi đọc mọi số đo tỉ lệ chiều cao — cả dàn nhân vật lấy `Qin Mu at eleven` làm thước đo |
+| `tan_muc_thieu_nien` | Tóc **buộc hờ sau gáy** · ⛔ không có quần | Búi tó **trên đỉnh đầu** · có **quần đen** | 2 | ⛔ Không tính vào `G1-a`. ⚠️ Có ở **cả** run gốc lẫn run sửa ⇒ ⛔ không phải hồi quy do sửa chữ |
+
+### 4.2b. Tuổi `tan_muc_thieu_nien` — hai giả thuyết đã thử, kết quả thật
+
+⭐ Ghi lại đầy đủ vì đây là **kết luận** mà kỷ luật MVP0 đòi giữ lại sau khi vứt code — ⛔ không phải nhật ký thao tác.
+
+| Vòng | Giả thuyết | Chữ đã dùng | Kết quả thật |
+|:-:|---|---|---|
+| **0** | — | `khuon_mat: "Delicate handsome boyish face..."` | ⛔ **Thanh niên 18–20**, 3/3 |
+| **1** | Loại 1 — tuổi ⛔ không tới được prompt vì nằm ở `tuoi` / `body_type_relative_en` | ⚠️ Đổi **4 thứ cùng lúc**: tuổi vào `khuon_mat` · bỏ `"handsome"` · `"child-sized"` vào `trang_phuc` · `"head large relative to a short slim body"` vào `dac_diem_rieng` | ✅ **Hết người lớn** — giả thuyết loại 1 **đúng**. ⚠️ Nhưng quá đà, ra ~7–8. *Lúc đó nghi mệnh đề tỉ lệ đầu là thủ phạm* |
+| **2** | Còn dư loại 1 — thay tính từ tỉ lệ bằng **neo chiều cao đo được** lấy từ `chieu_cao_the_trang` | `"a slim eleven-year-old standing about shoulder-high to an adult"` (bỏ hẳn mệnh đề tỉ lệ đầu) | ⛔ **Thất bại.** Tỉ lệ đầu/thân ⛔ **không đổi** (~1:4.5, vẫn ~7–9 tuổi), 3/3. ⚠️ Lại còn sinh thêm **băng vải quấn tay** — món ⛔ không có trong bible |
+
+> [!WARNING]
+> ⚠️ **Vòng 2 BÁC BỎ nghi vấn của vòng 1.** Vòng 1 đổi 4 thứ cùng lúc nên ⛔ không tách được nguyên nhân. Vòng 2 cô lập đúng một biến — bỏ hẳn mệnh đề `"head large..."` — và tỉ lệ **⛔ không nhúc nhích**. ⇒ Mệnh đề đó **⛔ KHÔNG phải thủ phạm**. Nét trẻ con cách điệu đến từ chính chữ `"eleven-year-old boy"` gặp khung model sheet.
+
+> [!IMPORTANT]
+> ⭐ **Kết luận: mốc 11 tuổi là lỗi LOẠI 2, ⛔ không phải loại 1 còn sót.**
+>
+> Loại 1 **có thật và đã đóng** ở vòng 1 — bằng chứng là *"người lớn → trẻ con"*. Nhưng khoảng cách còn lại (*trẻ con ~7–9* → *đúng 11*) **⛔ không nhúc nhích** trước một neo chiều cao cụ thể, đo được, lấy thẳng từ bible. ⇒ Khung *"2D anime character design model sheet"* áp một **tỉ lệ trẻ em cách điệu** mà chữ trong 5 khóa ⛔ không điều khiển được.
+>
+> ⇒ ⛔ **Không chi thêm call cho hướng "viết chữ khác đi"** ở tầng `refs`. Nếu cần đúng 11 tuổi, đòn bẩy còn lại nằm **ngoài** 5 khóa: sửa `character_sheet_prompt` để gửi `body_type_relative_en`, hoặc bỏ cụm *"character model sheet"* khỏi prompt `refs` — cả hai đều là **sửa script**, ⛔ ngoài phạm vi MVP0 hiện tại.
+
+**Ref giữ lại là vòng 1 (`172723/c2`), ⛔ không phải vòng 2** — cùng độ lệch tuổi, nhưng vòng 2 có thêm băng vải quấn tay, tức là **nhiều sai lệch hơn**.
+
+### 4.3. Điều mục này ⛔ CHƯA kết luận
+
+⚠️ `refs` gửi **0 negative constraint**; tầng `pages` thì **có** khối `NEGATIVE_CONSTRAINTS`. ⇒ ⛔ **Chưa thể kết luận** rằng loại 2 cũng hỏng ở tầng page. Sau khi chạy `pages`, quay lại đây và ghi kết quả thật:
+
+| Sai lệch | `pages` có sửa được ⛔ không? | Ghi chú |
+|---|---|---|
+| Cụt tay/chân (`ma_lao`, `gia_gia_que`, `truong_thon`) | ☐ có ☐ không | |
+| Lưng gù (`tu_ba_ba`) | ☐ có ☐ không | |
+| Tuổi `tan_muc_thieu_nien` | ☐ có ☐ không | |
+
+## 5. Verdict
 
 | Kết quả | Điều kiện | Chọn |
 |---|---|:-:|
@@ -96,7 +152,7 @@ ______________________________________________________________
 > [!WARNING]
 > ⚠️ Nếu dừng giữa chừng vì vượt ngân sách mà chưa đủ 15 panel: ghi **số thực tế** và **lý do dừng** ở trên. ⛔ **Không làm tròn lên 15** *"cho đủ"*.
 
-## 5. Tài liệu tham khảo
+## 6. Tài liệu tham khảo
 
 | Tài liệu | Dùng khi |
 |---|---|

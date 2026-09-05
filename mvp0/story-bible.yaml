@@ -123,11 +123,28 @@ nhan_vat:
       dac_diem_rieng: "Ngọc bội chữ Tần đeo trước ngực trần, luôn nhìn thấy"
     canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
     canonical_reference_en:
-      khuon_mat: "Delicate handsome boyish face, clear brows, fair skin"
+      # ⭐ Tuổi phải nằm TRONG 5 khóa này. `character_sheet_prompt` chỉ đọc
+      # khuon_mat/mat/toc/trang_phuc/dac_diem_rieng — nó KHÔNG đọc `tuoi` hay
+      # `body_type_relative_en`. Bản cũ chỉ có chữ "boyish" và model vẽ ra thanh
+      # niên 18–20 ở cả 3/3 candidate; `tan_muc_so_sinh` ra đúng vì khuon_mat của
+      # nó viết thẳng "newborn". Bỏ "handsome" vì đó là từ mã hoá người lớn trong
+      # khung anime model sheet — "Mi thanh mục tú" vốn nghĩa là nét thanh tú.
+      # ⭐ Vòng 1 sửa xong thì quá đà: ra ~7–8 tuổi. Lúc đó NGHI mệnh đề "head large
+      # relative to a short slim body" là thủ phạm, nên vòng 2 thay nó bằng NEO CHIỀU
+      # CAO lấy từ `chieu_cao_the_trang` ("cao ngang vai người lớn").
+      # ⛔ VÒNG 2 BÁC BỎ NGHI VẤN ĐÓ: bỏ hẳn mệnh đề tỉ lệ đầu mà tỉ lệ không đổi
+      # (g1-verdict.md §4.2b) ⇒ mốc 11 tuổi là lỗi LOẠI 2. Vẫn GIỮ chữ này vì tầng
+      # `pages` vẽ cảnh nhiều nhân vật, ở đó một mốc so sánh chiều cao có ích, còn
+      # "head large" sẽ đẩy nét chibi vào trang truyện.
+      # ⚠️ `mvp0/refs/tan_muc_thieu_nien.png` sinh ra từ chữ VÒNG 1, không phải chữ
+      # dưới đây — chạy lại `refs` sẽ KHÔNG cho ra đúng tấm ảnh đó. Khác biệt chỉ ở
+      # mệnh đề tỉ lệ; mặt/tóc/trang phục (thứ `reference_instruction` ràng buộc)
+      # giống nhau ở cả hai vòng.
+      khuon_mat: "Face of an eleven-year-old boy, soft rounded cheeks, small chin, fine delicate features, clear brows, fair skin"
       mat: "Bright dark eyes with clean thin eyebrows"
       toc: "Black hair loosely tied at the nape, several strands falling over the forehead"
-      trang_phuc: "Pale brown coarse hemp tunic worn half-open, cloth waist belt, bare feet"
-      dac_diem_rieng: "Pale jade pendant on a cord, worn openly on the bare chest"
+      trang_phuc: "Child-sized pale brown coarse hemp tunic worn half-open, cloth waist belt, bare feet"
+      dac_diem_rieng: "Pale jade pendant on a cord, worn openly on the slight narrow-shouldered bare chest of an eleven-year-old boy, a slim child standing about shoulder-high to an adult"
     silhouette_cue_en:
       "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
        hair loosely tied at the nape"
@@ -160,7 +177,9 @@ nhan_vat:
       mat: "Narrow dark eyes under heavy white brows"
       toc: "Short cropped white hair under a brown cloth headband"
       trang_phuc: "Earth-brown coarse work tunic, the empty left sleeve knotted up at the shoulder"
-      dac_diem_rieng: "Left arm missing entirely at the shoulder, the remaining right arm unusually thick and muscular"
+      # ⭐ Viết theo lối KHẲNG ĐỊNH — tả cái CÓ, không tả cái thiếu. Bản cũ dùng
+      # "Left arm missing entirely" và model vẽ ra đủ hai tay kèm khúc xương rời.
+      dac_diem_rieng: "A single right arm, unusually thick and heavily muscled; on his left side the tunic shoulder is a smooth rounded seam with the empty sleeve knotted shut flat against it"
     silhouette_cue_en:
       "empty left sleeve knotted at the shoulder, one thick right arm,
        earth-brown work tunic"
@@ -193,7 +212,7 @@ nhan_vat:
       mat: "Warm crinkled eyes"
       toc: "Salt-and-pepper hair gathered into a small topknot"
       trang_phuc: "Dark moss-green cloth robe, wide trousers with the right leg tied off below the knee"
-      dac_diem_rieng: "Right leg missing below the knee, plain wooden walking staff, a single broad saber slung across the back"
+      dac_diem_rieng: "His right trouser leg is folded up at the knee and tied shut with cord, ending in a smooth rounded stump; he carries his weight on a plain wooden walking staff, a single broad saber slung across his back"
     silhouette_cue_en:
       "right trouser leg tied off below the knee, plain wooden staff,
        broad saber slung across the back"
@@ -226,7 +245,7 @@ nhan_vat:
       mat: "Half-closed pale eyes with a steady gaze"
       toc: "Long loose white hair spread across the stretcher"
       trang_phuc: "Wide bone-white cloth robe draped over the whole torso"
-      dac_diem_rieng: "Both arms and both legs missing; always lying on a carried bamboo stretcher"
+      dac_diem_rieng: "A torso alone: both shoulders end in smooth rounded stumps and the body ends just below the hips, the empty sleeves and the robe hem folded flat and tucked beneath him as he lies full length on a carried bamboo stretcher"
     silhouette_cue_en:
       "limbless torso in a bone-white robe lying on a carried bamboo stretcher"
     body_type_relative_en:
@@ -256,9 +275,12 @@ nhan_vat:
     canonical_reference_en:
       khuon_mat: "Bovine head with a broad muzzle and an unnaturally human, tearful expression"
       mat: "Large wet dark cow eyes carrying visible human sorrow"
-      toc: "Short dull tan-and-cream hide, a coarse tuft running along the neck"
-      trang_phuc: "No garment; only a braided cloth nose rope"
-      dac_diem_rieng: "Short blunt horns; the hide hangs slightly loose, as if hollow underneath"
+      toc: "Short hide in dull tan and dirty cream patches only, a coarse tuft running along the neck"
+      trang_phuc: "Bare hide, wearing only a braided cloth nose rope through the muzzle"
+      # ⭐ `character_sheet_prompt` chỉ đọc 5 khóa canonical_reference_en — nó KHÔNG
+      # đọc `body_type_relative_en`, nên hình dạng bốn chân phải nằm ở ĐÂY, nếu
+      # không model sẽ vẽ chân dung nửa người có vai áo.
+      dac_diem_rieng: "A full-bodied four-legged cow standing on all fours in profile; short blunt horns; the hide hangs slightly loose over the frame, as if hollow underneath"
     silhouette_cue_en:
       "dull tan-and-cream cow with short blunt horns and a braided cloth nose rope,
        hide hanging slightly loose"
