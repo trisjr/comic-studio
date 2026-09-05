@@ -1,0 +1,9 @@
+# AI Coding
+# pnpm-workspace.yaml
+# Khai bao pham vi workspace cua monorepo comic-studio (ADR-001 tang MAC DINH,
+# hang "Repo"): mot workspace pnpm, mot ngon ngu TypeScript cho ca api, worker
+# va web.
+
+packages:
+  - 'apps/*'
+  - 'packages/*'

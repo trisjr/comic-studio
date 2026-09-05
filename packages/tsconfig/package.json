@@ -1,0 +1,11 @@
+{
+  "name": "@comic-studio/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Cau hinh TypeScript dung chung cho moi package cua workspace",
+  "license": "UNLICENSED",
+  "files": [
+    "base.json",
+    "node.json"
+  ]
+}

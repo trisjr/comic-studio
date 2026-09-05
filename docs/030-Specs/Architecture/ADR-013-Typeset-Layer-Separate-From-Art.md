@@ -110,7 +110,7 @@ Hệ quả ràng buộc — ⚠️ **phải giữ đúng biên**: preview **read
 ### ⭐ Bốn ràng buộc mà font render phải thoả (khi `TBD` này đóng)
 
 > [!IMPORTANT]
-> ⛔ **Bảng này ⛔ KHÔNG chọn font.** Nó ghi **điều kiện nghiệm thu** mà bất kỳ font nào cũng phải vượt qua trước khi được ghi vào config của `apps/api`.
+> ⛔ **Bảng này ⛔ KHÔNG chọn font.** Nó ghi **điều kiện nghiệm thu** mà bất kỳ font nào cũng phải vượt qua trước khi được ghi vào config của `apps/backend`.
 > ⚠️ Trước bản `2026-08-30`, ADR này chỉ nêu **hai** hạng mục (họ font + glyph coverage) trong khi tầng 040 đã ghi **bốn** ⇒ `R-3` và `R-4` **chỉ tồn tại ở tầng 040**, nơi lô DB Schema và lô API ⛔ **không đọc tới**. Đưa đủ bốn về đây là để hợp đồng nằm ở **tầng mà người implement đọc**.
 
 | # | Ràng buộc | Suy ra từ đâu |

@@ -42,7 +42,7 @@ ADR này là **nền của mọi ADR sau**: ADR-005 (vị trí schema bảng pla
 ### Tầng CHỐT — bất biến kiến trúc, ⛔ không đổi mà không viết ADR mới
 
 1. **Một ngôn ngữ duy nhất cho API, worker và frontend: TypeScript trên Node.js LTS.**
-2. **`apps/api` build ra ĐÚNG MỘT image**, hai command: `node dist/main.js api` và `node dist/main.js worker`. Image được **build một lần, push lên registry, và cả hai process deploy cùng một image digest** — đây là cách thoả `R2` mà không phụ thuộc platform nào.
+2. **`apps/backend` build ra ĐÚNG MỘT image**, hai command: `node dist/main.js api` và `node dist/main.js worker`. Image được **build một lần, push lên registry, và cả hai process deploy cùng một image digest** — đây là cách thoả `R2` mà không phụ thuộc platform nào.
 3. **Migration là file SQL thô, đánh số, append-only — và nó là NGUỒN SỰ THẬT của schema.** Không công cụ nào được sinh migration rồi apply mà không có người đọc. Lý do: RLS policy, CHECK constraint, partial index, trigger guardrail (`D-10`, `D-21`, `D-51`, `D-60`) **không biểu diễn được** trong DSL của ORM.
 4. **⛔ KHÔNG dùng ORM sở hữu schema (schema-first / active-record).** Tầng truy cập DB là **typed query builder** trên driver `pg`, luôn để lộ connection và transaction ra ngoài.
 5. **Frontend là SPA thuần, ⛔ không SSR, ⛔ không server action.** API là **hợp đồng duy nhất** giữa web và dữ liệu — vì tenant context (ADR-006) chỉ được bơm ở **một** chỗ.
@@ -57,7 +57,7 @@ ADR này là **nền của mọi ADR sau**: ADR-005 (vị trí schema bảng pla
 | Backend framework | **NestJS** | Module system ánh xạ **1-1** vào ba module của `D-01`; `createApplicationContext()` là entrypoint worker **không mở HTTP** ⇒ `R2` là một file ngắn, không phải một composition root tự viết. Với `R1` (1 dev, ⛔ không code review), cấu trúc do framework cưỡng chế đáng giá hơn cấu trúc do kỷ luật |
 | Tầng DB | **Drizzle ORM** dùng như **query builder**, trên `node-postgres` | Giữ nguyên quyền viết SQL thô cho câu CLAIM; không che connection — điều kiện cần của ADR-006 |
 | Frontend & UI | **Vite + React + TypeScript**, **TanStack Query**, **shadcn/ui + Tailwind CSS** | Editor là ứng dụng trạng thái nặng (kéo bubble, so sánh side-by-side, layout 0–1); TanStack Query cho polling 2 s (`D-45`) là cấu hình, không phải code hạ tầng. `shadcn/ui` (Radix Primitives) + Tailwind CSS quản lý toàn bộ UI Shell, Form (tích hợp Zod contracts), Modal, Review Gates; component code nằm trực tiếp trong repo, không vendor lock-in và tối ưu cho AI assist (`R1`) |
-| Repo | **pnpm workspace**: `apps/api` · `apps/web` · `packages/contracts` | Một Dockerfile cho `apps/api`; `apps/web` là bundle tĩnh |
+| Repo | **pnpm workspace**: `apps/backend` · `apps/web` · `packages/contracts` (+ `packages/tsconfig`, `packages/eslint-config`) | Một Dockerfile cho `apps/backend`; `apps/web` là bundle tĩnh |
 | Guardrail import | **ESLint boundary rule** (hoặc `dependency-cruiser`), fail build ở CI | Hiện thực trực tiếp của `D-04` |
 
 ### `TBD` — chưa có căn cứ, ⛔ không tự gán

@@ -1,0 +1,33 @@
+{
+  "name": "comic-studio",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Nen tang SaaS multi-tenant chuyen truyen chu thanh comic pages",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22.22.0 <23"
+  },
+  "scripts": {
+    "backend": "pnpm --filter @comic-studio/backend",
+    "build": "pnpm --filter @comic-studio/contracts build && pnpm --filter @comic-studio/backend build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "pnpm -r test",
+    "db:up": "docker compose -f infra/docker/compose.yaml up -d",
+    "db:down": "docker compose -f infra/docker/compose.yaml down",
+    "db:reset": "docker compose -f infra/docker/compose.yaml down -v && pnpm db:up"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@comic-studio/eslint-config": "workspace:*",
+    "eslint": "^9.39.0",
+    "prettier": "^3.6.0",
+    "typescript": "^5.9.0"
+  }
+}
