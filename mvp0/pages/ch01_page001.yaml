@@ -1,0 +1,448 @@
+# AI Coding
+# ch01_page001.yaml
+# Chương 1 — trang 1/11. Mốc 11 năm trước, hoàng hôn tắt trên Tàn Lão thôn.
+# panel_index 1–5 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page001"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Open the chapter on its single law — when night falls, do not go outside.
+     The last light dies, the darkness swallows the village, and the four
+     corner statues answer by lighting up."
+
+  overall_mood:
+    "hushed, ominous, folkloric dread held just under the surface"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_04"
+    rows:
+      - { row: 1, y: 0.00, h: 0.22, panels: ["panel_01"] }
+      - { row: 2, y: 0.22, h: 0.24, panels: ["panel_02", "panel_03"] }
+      - { row: 3, y: 0.46, h: 0.34, panels: ["panel_04"] }
+      - { row: 4, y: 0.80, h: 0.20, panels: ["panel_05"] }
+
+  continuity:
+    setting:
+      "A tiny remote mountain village of low mud-and-thatch houses, ringed by four
+       ancient weathered stone statues standing one at each corner of the settlement.
+       Bare packed-earth paths, a few crooked trees, mountains closing in on all sides."
+    time_span:
+      "The five panels cover the few minutes between the last sliver of sunset
+       and full darkness."
+    spatial:
+      "Granny Si stays on the left / near side of the frame, Elder Ma on the
+       right / far side. This relationship is never reversed."
+    environment:
+      "The scene runs from the last sliver of sunset behind the mountains into full
+       darkness: as the final light dies the world falls completely silent and the four
+       corner statues begin to give off a faint pale glow. Beyond the statues' reach the
+       darkness is absolute and something moves inside it."
+    wardrobe:
+      "Both characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_01: establishing. Last orange sliver of sun behind the mountains, statues dark."
+      - "panel_02: reaction. Granny Si watches the light die, impatient and uneasy."
+      - "panel_03: establishing. The darkness rolls in from the west and swallows the valley."
+      - "panel_04: suspense. Full night. All four corner statues glow faintly; the village is an island of pale light."
+      - "panel_05: reaction. Granny Si's ear twitches — a sound from outside the statues' reach."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "ma_lao"
+    name: "Elder Ma"
+    canonical_reference: "mvp0/refs/ma_lao.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "empty left sleeve knotted at the shoulder, one thick right arm,
+       earth-brown work tunic"
+
+    role: "village elder who carries the stone statue out to the river at night"
+
+    identity:
+      gender: "male"
+      age: 65
+      body_type:
+        "tall and broad for an old man, a head and a half taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "short cropped white hair under a brown cloth headband"
+      eyes: "narrow dark eyes under heavy white brows"
+      face: "square weathered old man's face with a patchy white stubble beard"
+      distinctive_features:
+        - "left arm missing entirely at the shoulder"
+        - "the empty left sleeve knotted up at the shoulder"
+        - "the remaining right arm unusually thick and muscular"
+
+    outfit:
+      - "earth-brown coarse work tunic"
+      - "brown cloth headband"
+
+    personality: "gruff, loyal, quick to bicker but first to volunteer"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 01
+  - id: "panel_01"
+    panel_index: 1
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide cinematic horizontal panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Full village visible from a distance. A last orange sliver of sun behind
+       the mountain ridge. The corner statues are still dark stone."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "small figure, lower left third"
+        pose: "standing hunched, one hand shading her eyes"
+        action: "watching the sun drop behind the ridge"
+        facial_expression: "not readable at this distance"
+        gaze: "toward the mountain ridge"
+        emotion: "impatience"
+
+    camera:
+      shot_type: "extreme wide establishing shot"
+      camera_angle: "slightly high angle"
+      camera_position: "on the slope above the village, looking down across the rooftops"
+      perspective: "deep perspective, mountains layered behind the village"
+      composition:
+        "Village rooftops across the lower band, mountain ridge and dying sun
+         across the upper band, Granny Si a small hunched shape at lower left."
+
+    lighting:
+      source: "last low orange sunlight from behind the mountain ridge"
+      direction: "raking from the far left"
+      intensity: "low and falling"
+      shadow: "very long shadows stretching across the packed earth"
+
+    effects:
+      atmosphere: "cold blue shadow already filling the valley floor"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.05, w: 0.40, h: 0.28 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Establish the village, its ring of statues, and the fact that the light
+       is running out. The hunched silhouette must read even at this distance."
+
+
+  # ---------------------------------------------------------- PANEL 02
+  - id: "panel_02"
+    panel_index: 2
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.24
+    shape: "medium vertical panel"
+    beat_type: "reaction"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Simplified background: a mud wall and one crooked tree behind her."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "center, slightly left"
+        pose: "hunched forward, both hands gripping her apron"
+        action: "staring at the last of the light"
+        facial_expression: "tight-lipped, deep lines around the eyes"
+        gaze: "toward the ridge, off-panel left"
+        emotion: "anxious impatience"
+
+    camera:
+      shot_type: "medium close-up"
+      camera_angle: "eye level"
+      camera_position: "in front of Granny Si, slightly to her right"
+      perspective: "shallow, background compressed"
+      composition: "Her face fills the right two thirds; the wall is flat behind her."
+
+    lighting:
+      source: "the last orange sunlight, almost gone"
+      direction: "hard from the left"
+      intensity: "low"
+      shadow: "half her face already in shadow"
+
+    effects:
+      atmosphere: "dust motes hanging dead still in the air"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.05, w: 0.35, h: 0.25 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Put a face on the dread — the elder who knows exactly what nightfall means."
+
+
+  # ---------------------------------------------------------- PANEL 03
+  - id: "panel_03"
+    panel_index: 3
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.24
+    shape: "medium vertical panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 0
+
+    scene_delta:
+      "No characters. The wall of darkness rolls in from the west and swallows
+       the mountains, the road and the trees, one after another."
+
+    characters: []
+
+    camera:
+      shot_type: "wide landscape shot"
+      camera_angle: "eye level"
+      camera_position: "looking west along the empty road out of the village"
+      perspective: "strong one-point perspective down the road"
+      composition:
+        "The road runs from the bottom edge into a mass of black that has already
+         taken the upper two thirds of the frame."
+
+    lighting:
+      source: "the last dying daylight, losing to the advancing dark"
+      direction: "from the vanishing point"
+      intensity: "collapsing to nothing"
+      shadow: "no separate shadows — everything is being absorbed"
+
+    effects:
+      atmosphere: "the darkness reads as a solid moving mass, not as absence of light"
+
+    text_safe_zone:
+      - { x: 0.10, y: 0.60, w: 0.80, h: 0.30 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Make the darkness a physical thing that arrives, not a time of day."
+
+
+  # ---------------------------------------------------------- PANEL 04
+  - id: "panel_04"
+    panel_index: 4
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.34
+    shape: "large dominant wide panel"
+    beat_type: "suspense"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "Full night. All four corner statues glow faintly, turning the village into
+       a small island of pale light with hard black pressing against its edge."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "foreground left, at the base of the nearest statue"
+        pose: "standing hunched, head tilted back toward the statue"
+        action: "checking that the statue has lit"
+        facial_expression: "relief loosening her jaw"
+        gaze: "up at the glowing statue"
+        emotion: "relief"
+
+      - character_id: "ma_lao"
+        position: "middle ground right, a few paces behind her"
+        pose: "standing square, single right arm hanging loose"
+        action: "letting out a held breath"
+        facial_expression: "grim, mouth slightly open"
+        gaze: "out past the statue into the black"
+        emotion: "wary relief"
+
+    camera:
+      shot_type: "wide shot"
+      camera_angle: "slightly low angle"
+      camera_position: "at ground level inside the village, near the corner statue"
+      perspective: "the statue looms in the foreground, houses receding behind"
+      composition:
+        "The glowing statue anchors the left third, Granny Si beneath it,
+         Elder Ma at right, and a hard black wall closing the frame behind them."
+      focal_point: "the pale glow spreading out from the statue"
+
+    lighting:
+      source: "faint pale glow from the four corner stone statues"
+      direction: "radiating outward and downward from each statue"
+      intensity: "weak and short-reaching"
+      shadow: "everything beyond the statues in flat black with no gradient"
+
+    effects:
+      glow: "soft pale halo clinging to the weathered stone"
+      atmosphere: "absolute silence rendered as perfectly still air"
+
+    text_safe_zone:
+      - { x: 0.30, y: 0.04, w: 0.40, h: 0.22 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's visual thesis: the statues are the only thing between
+       the village and whatever is out there."
+
+
+  # ---------------------------------------------------------- PANEL 05
+  - id: "panel_05"
+    panel_index: 5
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal close-up"
+    beat_type: "reaction"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "No background detail — only black behind her, lit at the edge by statue glow."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "right of center, head and shoulders only"
+        pose: "head snapped toward the darkness, ear turned out"
+        action: "catching a sound that should not exist"
+        facial_expression: "eyes wide, mouth half open"
+        gaze: "sharply off-panel right, toward the dark"
+        emotion: "alarm"
+
+    camera:
+      shot_type: "close-up"
+      camera_angle: "eye level"
+      camera_position: "close to her turned head, slightly behind her shoulder"
+      perspective: "flat, no depth cues"
+      composition:
+        "Her ear and profile occupy the right half; the left half is empty black
+         for the sound to come from."
+
+    lighting:
+      source: "pale statue glow from behind and below"
+      direction: "rim light along the jaw and ear"
+      intensity: "low"
+      shadow: "the front of her face mostly in shadow"
+
+    effects:
+      atmosphere: "a single thin line of tension in the composition, no visible sound effect"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.10, w: 0.40, h: 0.55 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "End the page on the hook — something is crying outside the safe ring."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "detailed vernacular mud-and-thatch architecture with cinematic atmospheric perspective"
+  lighting: "dramatic cinematic lighting driven by a single weak supernatural glow"
+  effects: "restrained 2D fantasy glow effects, no particle spam"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    elder_ma: "earth brown and rust, warm dull tones"
+    statues: "cold pale stone glow"
+  panel_language:
+    "cinematic composition with strong variation in shot size,
+     wide establishing shots against tight reaction close-ups"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Granny Si has the hunched back and indigo tunic, only Elder Ma has the knotted empty left sleeve."
+  - "Do not give Elder Ma a left arm or a visible left hand in any panel."
+  - "Do not introduce additional villagers, animals, or creatures into any panel."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."
+  - "Do not render anything visible inside the darkness beyond the statue glow."

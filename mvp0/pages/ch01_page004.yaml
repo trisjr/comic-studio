@@ -1,0 +1,549 @@
+# AI Coding
+# ch01_page004.yaml
+# Chương 1 — trang 4/11. Cái giỏ ở bờ sông và cánh tay người chết đỡ nó lên.
+# panel_index 15–20 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page004"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Find the source of the crying — and find that the basket is being held out
+     of the water by a drowned woman who will not let go until she is told the
+     child is safe."
+
+  overall_mood:
+    "eerie, mournful, a quiet supernatural grief under the horror"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 6
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_18"
+    rows:
+      - { row: 1, y: 0.00, h: 0.20, panels: ["panel_15"] }
+      - { row: 2, y: 0.20, h: 0.18, panels: ["panel_16", "panel_17"] }
+      - { row: 3, y: 0.38, h: 0.34, panels: ["panel_18"] }
+      - { row: 4, y: 0.72, h: 0.28, panels: ["panel_19", "panel_20"] }
+
+  continuity:
+    setting:
+      "The bank of a wide slow river about a hundred paces from Canlao Village, with
+       reeds and wet stones at the waterline and the far bank invisible in the dark."
+    time_span:
+      "A few minutes at the waterline, from arrival to the moment the body lets go."
+    spatial:
+      "The river runs across the lower right of every wide panel. Granny Si works
+       at the waterline on the left / near side, Elder Ma stands further up the
+       bank on the right / far side. This relationship is never reversed."
+    environment:
+      "Darkness broken by two weak light sources: the carried stone statue set down
+       on the bank and a faint green fluorescence coming from a woven basket at the
+       water's edge. The river runs black and carries away whatever it takes."
+    wardrobe:
+      "All characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_15: establishing. The two reach the waterline and see a small green light among the reeds."
+      - "panel_16: reaction. Granny Si's eyes catch the green fluorescence."
+      - "panel_17: detail. The woven basket sits upright at the waterline, glowing faintly from inside."
+      - "panel_18: reveal. She pulls at the basket and it will not come — a drowned woman's pale arm is holding it up."
+      - "panel_19: dialogue. She tells the body the child is safe, and the hand opens."
+      - "panel_20: reveal. Inside the swaddle: a newborn boy beside a glowing jade pendant."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "ma_lao"
+    name: "Elder Ma"
+    canonical_reference: "mvp0/refs/ma_lao.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "empty left sleeve knotted at the shoulder, one thick right arm,
+       earth-brown work tunic"
+
+    role: "village elder who carries the stone statue out to the river at night"
+
+    identity:
+      gender: "male"
+      age: 65
+      body_type:
+        "tall and broad for an old man, a head and a half taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "short cropped white hair under a brown cloth headband"
+      eyes: "narrow dark eyes under heavy white brows"
+      face: "square weathered old man's face with a patchy white stubble beard"
+      distinctive_features:
+        - "left arm missing entirely at the shoulder"
+        - "the empty left sleeve knotted up at the shoulder"
+        - "the remaining right arm unusually thick and muscular"
+
+    outfit:
+      - "earth-brown coarse work tunic"
+      - "brown cloth headband"
+
+    personality: "gruff, loyal, quick to bicker but first to volunteer"
+
+
+  - id: "tan_muc_so_sinh"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_so_sinh.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "newborn wrapped in coarse white swaddling inside a woven river basket,
+       faintly glowing jade pendant lying beside him"
+
+    role: "protagonist as a newborn, found in a basket at the river"
+
+    identity:
+      gender: "male"
+      age: 0
+      body_type: "newborn infant, small enough for Granny Si to carry in one basket"
+
+    appearance:
+      hair: "sparse fine black baby hair"
+      eyes: "large dark newborn eyes still wet with tears"
+      face: "round newborn face, cheeks flushed from crying, mouth open in a toothless laugh"
+      distinctive_features:
+        - "pale jade pendant carved with a single character"
+        - "the pendant gives off a faint green glow beside the swaddle"
+
+    outfit:
+      - "coarse undyed white swaddling cloth, no other garment"
+
+    personality: "unafraid, laughs instead of crying when held"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 15
+  - id: "panel_15"
+    panel_index: 15
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide cinematic horizontal panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "The bank opens out: wet stones, a stand of reeds, and the black river
+       filling the lower right. A pinprick of green light sits among the reeds."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "left of center, at the top of the bank"
+        pose: "stopped mid-step, head turning toward the water"
+        action: "picking the crying out of the sound of the river"
+        facial_expression: "alert, three-quarter view"
+        gaze: "toward the reeds at frame right"
+        emotion: "sharpening focus"
+
+      - character_id: "ma_lao"
+        position: "right of center, behind her"
+        pose: "lowering the roped statue onto the bank with his single arm"
+        action: "setting the statue down on the stones"
+        facial_expression: "grimacing with effort"
+        gaze: "down at the statue"
+        emotion: "exhaustion"
+
+    camera:
+      shot_type: "wide establishing shot"
+      camera_angle: "eye level"
+      camera_position: "on the bank above the waterline, looking downstream"
+      perspective: "moderate depth, the far bank absent in black"
+      composition:
+        "Bank and figures across the upper left, black water across the lower
+         right, the single green pinprick placed on the diagonal between them."
+      focal_point: "the green pinprick among the reeds"
+
+    lighting:
+      source:
+        "weak pale statue glow from one side, faint green fluorescence rising from
+         the basket at the waterline"
+      direction: "statue glow from the left, green glow from low right"
+      intensity: "both low, neither reaching the far bank"
+      shadow: "the river surface reads as flat black with almost no reflection"
+
+    effects:
+      atmosphere: "thin river mist clinging to the reed stems"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.05, w: 0.34, h: 0.28 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Establish the riverbank and put the green light on stage before anyone
+       identifies it."
+
+
+  # ---------------------------------------------------------- PANEL 16
+  - id: "panel_16"
+    panel_index: 16
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.18
+    shape: "small horizontal close-up"
+    beat_type: "reaction"
+    emphasis: "small"
+    character_count: 1
+
+    scene_delta:
+      "No background detail — only black, and green light rising onto her face
+       from below."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "center, head and shoulders"
+        pose: "head tipped forward, eyes wide"
+        action: "catching the green light with her eyes"
+        facial_expression: "eyes suddenly wide and bright, deep creases pulling open"
+        gaze: "down toward the waterline"
+        emotion: "recognition"
+
+    camera:
+      shot_type: "close-up"
+      camera_angle: "slightly low angle"
+      camera_position: "just below her face, at the height of the green glow"
+      perspective: "flat, no background"
+      composition:
+        "Her face fills the frame from the brow down; the top strip stays empty
+         black."
+
+    lighting:
+      source: "faint green fluorescence from below"
+      direction: "hard uplight"
+      intensity: "low but very close"
+      shadow: "eye sockets and the underside of the headwrap in deep shadow"
+
+    effects:
+      glow: "green catchlights in both eyes"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.90, h: 0.18 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Give the discovery a human reaction before showing the object."
+
+
+  # ---------------------------------------------------------- PANEL 17
+  - id: "panel_17"
+    panel_index: 17
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.18
+    shape: "small horizontal detail panel"
+    beat_type: "detail"
+    emphasis: "small"
+    character_count: 0
+
+    scene_delta:
+      "No characters. A woven river basket standing upright at the waterline,
+       wet reeds around it, a faint green glow leaking out from under the lid
+       of cloth."
+
+    characters: []
+
+    camera:
+      shot_type: "detail insert"
+      camera_angle: "eye level"
+      camera_position: "close to the water, level with the basket rim"
+      perspective: "shallow depth of field feel, background reduced to black"
+      composition:
+        "The basket centered and isolated, water line cutting across the bottom
+         quarter."
+      focal_point: "the glow escaping the basket"
+
+    lighting:
+      source: "faint green fluorescence from inside the basket"
+      direction: "outward from the basket itself"
+      intensity: "low"
+      shadow: "the weave pattern thrown outward onto the wet stones"
+
+    effects:
+      glow: "soft green bloom on the wet stones immediately around the basket"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.05, w: 0.30, h: 0.35 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Isolate the basket so the next panel's reveal lands on something the
+       reader already recognizes."
+
+
+  # ---------------------------------------------------------- PANEL 18
+  - id: "panel_18"
+    panel_index: 18
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.34
+    shape: "large dominant reveal panel"
+    beat_type: "reveal"
+    emphasis: "large"
+    character_count: 1
+
+    scene_delta:
+      "Granny Si has both hands on the basket and it will not lift. Beneath it,
+       rising out of the black water, is a drowned woman's pale waterlogged arm
+       holding the basket upright, long black hair drifting on the surface around it."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "upper left, crouched at the waterline"
+        pose: "crouched low, both hands gripping the basket rim, arms locked"
+        action: "pulling at a basket that refuses to come free"
+        facial_expression: "shock draining into something quieter"
+        gaze: "down at the arm in the water"
+        emotion: "startled, then steady"
+
+    camera:
+      shot_type: "wide reveal shot"
+      camera_angle: "high angle, looking down at the water"
+      camera_position: "above and slightly behind Granny Si's shoulder"
+      perspective: "the water plane fills most of the frame"
+      composition:
+        "Granny Si and the basket in the upper left; the pale arm runs on a
+         diagonal down into the lower right, the drifting hair fanning out from
+         where the body stays submerged and unseen."
+      focal_point: "the pale hand locked around the basket's underside"
+
+    lighting:
+      source: "green glow from the basket above, pale statue glow from up the bank"
+      direction: "green from directly above the arm, statue light raking from the left"
+      intensity: "low, with the arm the brightest thing in frame"
+      shadow: "the body below the surface stays entirely unlit and unreadable"
+
+    effects:
+      water: "slow black ripples spreading from where the arm breaks the surface"
+      glow: "green light picking out the waterlogged skin"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.72, w: 0.36, h: 0.24 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Deliver the page's horror image and reframe it instantly as devotion —
+       the mother is still holding her child above the water."
+
+
+  # ---------------------------------------------------------- PANEL 19
+  - id: "panel_19"
+    panel_index: 19
+    row: 4
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.28
+    shape: "medium vertical panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "The pale hand has opened. The arm is sinking back and the drifting hair is
+       already being pulled downstream into black."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "right of center, crouched, basket now in her arms"
+        pose: "kneeling on the wet stones, basket held against her chest"
+        action: "speaking quietly down at the water"
+        facial_expression: "unexpectedly gentle, eyes lowered"
+        gaze: "down at the sinking arm"
+        emotion: "solemn respect"
+
+    camera:
+      shot_type: "medium shot"
+      camera_angle: "eye level"
+      camera_position: "at the waterline beside her"
+      perspective: "moderate, the river receding into black at the top"
+      composition:
+        "Granny Si and the basket fill the right; the empty water and the sinking
+         hand occupy the left third."
+
+    lighting:
+      source: "green glow from the basket in her arms"
+      direction: "uplight onto her face and the underside of her chin"
+      intensity: "low"
+      shadow: "the water beyond the glow fully black"
+
+    effects:
+      water: "widening rings where the arm went under"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.06, w: 0.34, h: 0.30 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "Rest now. The child is safe."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Close the mother's story in one line, and let the reader see a side of
+       Granny Si that the rest of the chapter contradicts."
+
+
+  # ---------------------------------------------------------- PANEL 20
+  - id: "panel_20"
+    panel_index: 20
+    row: 4
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.28
+    shape: "medium vertical panel"
+    beat_type: "reveal"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Looking straight down into the opened basket: coarse white swaddling, and
+       beside it a pale jade pendant carved with a single character, glowing green."
+
+    characters:
+      - character_id: "tan_muc_so_sinh"
+        position: "center, filling the basket"
+        pose: "lying on his back in the swaddle, one small fist free"
+        action: "stopping his crying and breaking into a toothless laugh"
+        facial_expression: "cheeks wet and flushed, mouth open in a laugh"
+        gaze: "straight up at the viewer"
+        emotion: "complete fearlessness"
+
+    camera:
+      shot_type: "close-up, overhead"
+      camera_angle: "directly overhead, looking down"
+      camera_position: "above the open basket"
+      perspective: "flat overhead framing, no horizon"
+      composition:
+        "The basket rim frames the panel; the infant fills the center, the pendant
+         placed just beside his shoulder."
+      focal_point: "the newborn's face and the pendant together"
+
+    lighting:
+      source: "the jade pendant's own green fluorescence"
+      direction: "from beside the infant, low and close"
+      intensity: "low but the only light in frame"
+      shadow: "the basket weave throwing soft shadow across the swaddle"
+
+    effects:
+      glow: "steady green light from the pendant, no particles, no rays"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.72, w: 0.90, h: 0.22 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Introduce the protagonist and his one inherited object in a single frame,
+       and set the pendant glow as his identity color for the whole chapter."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "nocturnal river landscape, far bank intentionally absent in black"
+  lighting: "two weak competing light sources, cold stone pale against jade green"
+  effects: "restrained 2D fantasy glow effects, no particle spam"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    elder_ma: "earth brown and rust, warm dull tones"
+    qin_mu_newborn: "pale jade-green pendant glow against undyed white cloth"
+  panel_language:
+    "small detail inserts feeding into one large high-angle reveal, then two
+     quiet closing beats"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Granny Si has the hunched back and indigo tunic, only Elder Ma has the knotted empty left sleeve."
+  - "Do not show the drowned woman's face, torso, or any part of her except one pale arm and drifting hair."
+  - "Do not draw blood, wounds, decay, or gore on the arm — it reads as waterlogged, not mutilated."
+  - "Do not give Elder Ma a left arm, and do not place him at the waterline in panel_18 through panel_20."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."

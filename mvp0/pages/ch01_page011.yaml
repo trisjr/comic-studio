@@ -1,0 +1,523 @@
+# AI Coding
+# ch01_page011.yaml
+# Chương 1 — trang 11/11. Đuôi con hổ bị bóng tối gặm trơ xương; đóng chương bằng câu hỏi mở.
+# panel_index 52–56 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page011"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Lame Grandpa strolls back in a heartbeat ahead of the dark, carrying a live
+     tiger. The darkness clips its tail on the way past and strips it to bare
+     bone — and the chapter ends on the question nobody answers."
+
+  overall_mood:
+    "wry, then abruptly horrifying, closing on unresolved dread"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_55"
+    rows:
+      - { row: 1, y: 0.00, h: 0.20, panels: ["panel_52"] }
+      - { row: 2, y: 0.20, h: 0.22, panels: ["panel_53", "panel_54"] }
+      - { row: 3, y: 0.42, h: 0.36, panels: ["panel_55"] }
+      - { row: 4, y: 0.78, h: 0.22, panels: ["panel_56"] }
+
+  continuity:
+    setting:
+      "A tiny remote mountain village of low mud-and-thatch houses, ringed by four
+       ancient weathered stone statues standing one at each corner of the settlement.
+       Bare packed-earth paths, a few crooked trees, mountains closing in on all sides."
+    time_span:
+      "Under a minute at the village edge, in the last seconds before the dark
+       reaches the statue line."
+    spatial:
+      "Granny Si and Qin Mu wait inside the village on the left / near side; Lame
+       Grandpa comes in from the right / far side, out of the dark. This
+       relationship is never reversed."
+    environment:
+      "Full night inside the ring, with the four corner statues glowing faintly and
+       the darkness pressing right up against the edge of that glow. The dark moves
+       like a tide rather than sitting still."
+    wardrobe:
+      "All characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_52: entrance. Lame Grandpa limps up the path out of the black with a live tiger across his back."
+      - "panel_53: dialogue. Granny Si shouts at him to hurry; he does not."
+      - "panel_54: action. He crosses the statue line exactly as the dark floods in behind him."
+      - "panel_55: shock. The tiger screams — its tail has been stripped to bare white vertebrae."
+      - "panel_56: closing. Qin Mu stares out into the black and finds nothing to look at."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "tan_muc_thieu_nien"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+
+    role: "protagonist at eleven, the village cowherd boy"
+
+    identity:
+      gender: "male"
+      age: 11
+      body_type:
+        "eleven-year-old boy, slim, the height reference every other character is
+         measured against"
+
+    appearance:
+      hair: "black hair loosely tied at the nape, several strands falling over the forehead"
+      eyes: "bright dark eyes with clean thin eyebrows"
+      face: "delicate handsome boyish face, clear brows, fair skin"
+      distinctive_features:
+        - "pale jade pendant on a cord, worn openly on the bare chest"
+        - "always barefoot"
+
+    outfit:
+      - "pale brown coarse hemp tunic worn half-open"
+      - "cloth waist belt"
+      - "bare feet"
+
+    personality: "curious, gentle, easily shaken but quick to obey his elders"
+
+
+  - id: "gia_gia_que"
+    name: "Lame Grandpa"
+    canonical_reference: "mvp0/refs/gia_gia_que.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "right trouser leg tied off below the knee, plain wooden staff,
+       broad saber slung across the back"
+
+    role: "village elder and hunter who teaches Qin Mu kicking techniques"
+
+    identity:
+      gender: "male"
+      age: 68
+      body_type:
+        "lean and wiry, roughly two heads taller than Qin Mu at eleven even while
+         leaning on his staff"
+
+    appearance:
+      hair: "salt-and-pepper hair gathered into a small topknot"
+      eyes: "warm crinkled eyes"
+      face: "plain kindly old man's face with a broad easy smile and deep laugh lines"
+      distinctive_features:
+        - "right leg missing below the knee"
+        - "plain wooden walking staff"
+        - "a single broad saber slung across the back"
+
+    outfit:
+      - "dark moss-green cloth robe"
+      - "wide trousers with the right leg tied off below the knee"
+
+    personality: "cheerful, unshakeable, kills without changing expression"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 52
+  - id: "panel_52"
+    panel_index: 52
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal panel"
+    beat_type: "entrance"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "The path in from outside. A large live tiger with vivid striped fur is
+       slung across the old man's shoulders, still breathing, head lolling."
+
+    characters:
+      - character_id: "gia_gia_que"
+        position: "center right, limping in toward the viewer"
+        pose: "staff in one hand, the other hand holding the tiger across his shoulders"
+        action: "walking back into the village at his own pace"
+        facial_expression: "broad easy smile, entirely unhurried"
+        gaze: "ahead toward the village"
+        emotion: "contentment"
+
+    camera:
+      shot_type: "wide shot"
+      camera_angle: "eye level"
+      camera_position: "just inside the statue line, looking out along the path"
+      perspective: "one-point perspective down the path into black"
+      composition:
+        "The old man and his load centered in the last of the statue glow; solid
+         black closes the frame directly behind him."
+      focal_point: "the striped mass across his shoulders"
+
+    lighting:
+      source: "faint pale glow from the nearest corner stone statue"
+      direction: "from the viewer's side, front-lighting him"
+      intensity: "low"
+      shadow: "his own long shadow thrown backward into the dark he came from"
+
+    effects:
+      atmosphere: "the tiger's flank rising and falling — it is not dead"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.06, w: 0.32, h: 0.40 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Establish the absurd scale of what this village considers a normal
+       evening's hunting."
+
+
+  # ---------------------------------------------------------- PANEL 53
+  - id: "panel_53"
+    panel_index: 53
+    row: 2
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical panel"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Granny Si at the statue's base in the near foreground, the old man still
+       out on the path behind her."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "foreground left, large"
+        pose: "hunched forward, both hands cupped around her mouth"
+        action: "shouting at him to move faster"
+        facial_expression: "gap-toothed shout, brows down"
+        gaze: "out at Lame Grandpa"
+        emotion: "genuine alarm"
+
+      - character_id: "gia_gia_que"
+        position: "background right, small on the path"
+        pose: "still limping at the same steady pace"
+        action: "declining to hurry"
+        facial_expression: "smile unchanged, seen small"
+        gaze: "ahead, not at her"
+        emotion: "unbothered"
+
+    camera:
+      shot_type: "deep two-shot"
+      camera_angle: "eye level"
+      camera_position: "beside Granny Si at the statue base"
+      perspective: "strong depth, the old man much smaller in the background"
+      composition:
+        "Her shouting profile fills the near left; he is a small lit figure in the
+         far right, with black between them."
+
+    lighting:
+      source: "faint pale statue glow spreading forward along the path"
+      direction: "from the left, falling off sharply with distance"
+      intensity: "low"
+      shadow: "the gap between them reading darker than either figure"
+
+    text_safe_zone:
+      - { x: 0.50, y: 0.04, w: 0.46, h: 0.22 }
+
+    typeset:
+      dialogue:
+        - speaker: "tu_ba_ba"
+          text: "You damned cripple — faster. Move faster!"
+          bubble_type: "speech"
+        - speaker: "gia_gia_que"
+          text: "What's the rush?"
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Score the comedy beat right before the page turns cruel."
+
+
+  # ---------------------------------------------------------- PANEL 54
+  - id: "panel_54"
+    panel_index: 54
+    row: 2
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.22
+    shape: "medium vertical action panel"
+    beat_type: "action"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "The darkness comes in behind him like a tide, closing the path the instant
+       his staff crosses the statue line."
+
+    characters:
+      - character_id: "gia_gia_que"
+        position: "center, mid-step across the line"
+        pose: "staff planted just inside the glow, tiger still across his shoulders"
+        action: "crossing into the village a half-second ahead of the dark"
+        facial_expression: "unchanged, still smiling"
+        gaze: "ahead"
+        emotion: "complete indifference"
+
+      - character_id: "tu_ba_ba"
+        position: "left edge, partly cropped"
+        pose: "reaching out with one hand, body already turning away"
+        action: "hauling him the last step in"
+        facial_expression: "cropped — only the set of her jaw is visible"
+        gaze: "past him at the incoming dark"
+        emotion: "relief and fury together"
+
+    camera:
+      shot_type: "medium action shot"
+      camera_angle: "slightly low angle"
+      camera_position: "at the statue line, low"
+      perspective: "the wall of dark rushing forward on a strong diagonal"
+      composition:
+        "A hard vertical boundary of light down the center; the old man crosses it
+         left, the black mass fills everything right of it."
+      focal_point: "the boundary itself"
+
+    lighting:
+      source: "faint pale statue glow from frame left"
+      direction: "hard from the left, stopping dead at the boundary"
+      intensity: "low"
+      shadow: "no falloff — the right half of the panel is pure flat black"
+
+    effects:
+      motion: "sweeping horizontal streaks in the incoming darkness"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.02, w: 0.42, h: 0.18 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Make the margin of safety visible and physical — a line on the ground."
+
+
+  # ---------------------------------------------------------- PANEL 55
+  - id: "panel_55"
+    panel_index: 55
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.36
+    shape: "large dominant shock panel"
+    beat_type: "shock"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "The tiger's head is thrown back mid-scream. The last third of its tail is
+       gone — stripped clean to a string of bare white vertebrae, no fur, no
+       flesh, no blood, the cut end perfectly smooth."
+
+    characters:
+      - character_id: "gia_gia_que"
+        position: "center right, standing under the thrashing animal"
+        pose: "braced on the staff, shoulders taking the tiger's convulsion"
+        action: "holding the animal steady without looking at it"
+        facial_expression: "smile unchanged, eyes still crinkled"
+        gaze: "forward, not at the tail"
+        emotion: "total indifference"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "foreground left, low"
+        pose: "half risen from the step, one hand still on the stone"
+        action: "whipping around toward the sound"
+        facial_expression: "eyes enormous, colour gone from his face"
+        gaze: "fixed on the stripped tail"
+        emotion: "horror"
+
+    camera:
+      shot_type: "wide dramatic shot"
+      camera_angle: "low angle"
+      camera_position: "on the ground beside Qin Mu, looking up past him"
+      perspective: "strong perspective, the tiger's bared tail thrust toward the camera"
+      composition:
+        "The tiger's body forms a horizontal mass across the upper frame with the
+         stripped tail hanging into the middle of the panel; Qin Mu's small figure
+         anchors the lower left and directs the reader's eye to it."
+      focal_point: "the bare white vertebrae of the tail"
+
+    lighting:
+      source: "faint pale glow from the corner stone statues"
+      direction: "from both sides, low"
+      intensity: "low"
+      shadow: "the exposed bone reading as the brightest object in the panel"
+
+    effects:
+      atmosphere: "the stripped section perfectly clean and dry, as if something ate it without spilling anything"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.03, w: 0.30, h: 0.22 }
+
+    typeset:
+      dialogue: []
+      sfx:
+        - "GRAAAH"
+
+    panel_purpose:
+      "Deliver the chapter's final horror image and prove what the darkness does
+       to anything it touches."
+
+
+  # ---------------------------------------------------------- PANEL 56
+  - id: "panel_56"
+    panel_index: 56
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide closing panel"
+    beat_type: "closing"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "The boy from behind, small at the bottom of the frame, facing a wall of
+       featureless black that fills almost the entire panel."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "bottom center, small, back to the viewer"
+        pose: "standing still at the statue line, arms at his sides"
+        action: "staring out into the darkness"
+        facial_expression: "not visible — seen entirely from behind"
+        gaze: "away from the viewer, into the black"
+        emotion: "reads through posture only"
+
+    camera:
+      shot_type: "wide static shot"
+      camera_angle: "slightly high angle"
+      camera_position: "behind and above Qin Mu"
+      perspective: "no depth cues at all beyond him — the black has no distance"
+      composition:
+        "Qin Mu occupies a small strip along the bottom edge; the upper four fifths
+         of the panel is unbroken black."
+      focal_point: "the emptiness itself"
+
+    lighting:
+      source: "faint pale statue glow from behind the viewer"
+      direction: "from behind camera, catching only his shoulders and the back of his head"
+      intensity: "very low"
+      shadow: "his outline the only readable shape in the frame"
+
+    effects:
+      atmosphere: "absolutely nothing visible in the dark — the panel refuses to answer"
+
+    text_safe_zone:
+      - { x: 0.10, y: 0.08, w: 0.80, h: 0.45 }
+
+    typeset:
+      dialogue:
+        - speaker: "tan_muc_thieu_nien"
+          text: "What is out there, in the dark?"
+          bubble_type: "thought"
+      sfx: []
+
+    panel_purpose:
+      "Close the chapter on the question, with the largest empty space on the
+       page reserved for the thing that never gets shown."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "night village edge, large areas intentionally left as unbroken black"
+  lighting: "single weak supernatural glow with a hard, unnatural falloff edge"
+  effects: "restrained 2D fantasy effects; the darkness rendered as a moving mass"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    qin_mu: "pale jade-green pendant over warm hemp brown"
+    lame_grandpa: "dark moss green and worn leather brown"
+    the_tiger: "vivid orange-black stripes, the one saturated color in the night scenes"
+  panel_language:
+    "comic beat panels collapsing into one large low-angle shock panel, then a
+     wide silent closing frame"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Granny Si has the hunched back, only Lame Grandpa has the staff and tied trouser leg, only Qin Mu has the jade pendant."
+  - "Do not draw blood, torn flesh, ragged skin, or a wound on the tiger's tail — the stripped section is clean dry bone with a smooth edge."
+  - "Do not draw any fully resolved creature: no readable eyes, teeth, limbs, or body plan on the things in the dark."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."
+  - "Do not render the tiger as dead, skeletal, or decayed anywhere except the stripped tail section."

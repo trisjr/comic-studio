@@ -8,6 +8,21 @@
 # - Cần tối đa 2-3 nhân vật chính xuất hiện lặp lại để đo Consistency (G1-a, G1-d).
 # - Mỗi nhân vật bắt buộc có `id` viết liền không dấu (dùng làm tên file ref:
 #   mvp0/refs/<id>.png, đúng bằng `canonical_reference`).
+# - BIẾN THỂ NHÂN VẬT (variant) — một nhân vật có nhiều hình dạng theo thời gian
+#   (độ tuổi, timeline) hoặc theo biến thân: MỖI hình dạng là MỘT entry riêng ở
+#   cấp `nhan_vat`, KHÔNG lồng vào nhau. Lý do: đơn vị mà pipeline tiêu thụ là
+#   "thứ có reference image riêng" — scripts/mvp0/run_mvp0.py stage `refs` duyệt
+#   phẳng `nhan_vat` và sinh đúng một character sheet cho mỗi entry.
+#   Hai trường metadata `nhan_vat_goc` (id nhân vật gốc, dùng để nhóm các biến
+#   thể) và `bien_the` (mô tả hình dạng) chỉ dành cho người đọc — script bỏ qua.
+#   HỆ QUẢ: mỗi variant tính riêng như một nhân vật độc lập trong giới hạn
+#   ≤ 3 `characters` mỗi page (lint L08 báo ERROR nếu vượt) và trong ngân sách
+#   2-3 nhân vật lặp lại của G1-d. Các variant có thể cùng xuất hiện một trang
+#   BẮT BUỘC có `silhouette_cue_en` khác nhau (lint L08 bắt trùng cue).
+# - `canonical_reference_en` PHẢI đủ bốn khóa `khuon_mat`, `mat`, `toc`,
+#   `trang_phuc` cho MỌI entry — kể cả biến thân phi nhân (dạng thú) — vì
+#   scripts/mvp0/run_mvp0.py::character_sheet_prompt truy cập trực tiếp, thiếu
+#   khóa sẽ KeyError.
 # - Các trường tiếng Anh (`silhouette_cue_en`, `body_type_relative_en`,
 #   `color_language_en`, `personality_en`, và toàn bộ `canonical_reference_en.*`,
 #   `setting_en`, `environment_en`, `lighting_default_en`, `props_en`) được skill
@@ -20,12 +35,279 @@
 #   (characters[].id, panels[].characters[].character_id, typeset.dialogue[].speaker)
 #   BẮT BUỘC dùng `id` (character_id), không được dùng tên.
 
-nhan_vat: []
+nhan_vat:
+
+  # ---------------------------------------------------------- Tư bà bà
+  - id: "tu_ba_ba"
+    nhan_vat_goc: "tu_ba_ba"
+    bien_the: "Hình dạng duy nhất — xuất hiện ở cả hai mốc thời gian của chương"
+    ten: "Tư bà bà"
+    ten_en: "Granny Si"
+    vai_tro: "Người nhặt và nuôi Tần Mục, thợ may của thôn, cao thủ ẩn danh"
+    vai_tro_en: "the village seamstress who found and raised Qin Mu, a hidden master"
+    tuoi: 70
+    gioi_tinh: "Nữ"
+    dien_mao:
+      khuon_mat: "Nhăn nheo, mắt sắc và tỉnh, cười lộ hàm răng thưa"
+      toc: "Tóc bạc thưa búi thấp, quấn khăn vải sẫm"
+      chieu_cao_the_trang: "Lưng gù rõ rệt, người thấp bé, bàn chân nhỏ"
+    trang_phuc:
+      chinh: "Áo vải chàm bạc màu tay rộng, ngoài khoác tạp dề thợ may xám"
+    dau_an:
+      dac_diem_rieng: "Lưng gù, hàm răng thưa, túi kim chỉ đeo bên hông"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    canonical_reference_en:
+      khuon_mat: "Deeply wrinkled old woman's face with a gap-toothed grin"
+      mat: "Small dark eyes sunk under heavy lids, unusually alert"
+      toc: "Thin white hair in a low bun under a faded dark headwrap"
+      trang_phuc: "Faded indigo peasant tunic with wide sleeves over a grey seamstress apron"
+      dac_diem_rieng: "Pronounced hunched back, gap-toothed smile, small needle-and-thread pouch at the hip"
+    silhouette_cue_en:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+    body_type_relative_en:
+      "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+    color_language_en: "faded indigo and dull grey, never any glow of her own"
+    personality_en: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+  # ---------------------------------------------------------- Tần Mục (sơ sinh)
+  - id: "tan_muc_so_sinh"
+    nhan_vat_goc: "tan_muc"
+    bien_the: "Sơ sinh — nửa đầu chương, mốc 11 năm trước"
+    ten: "Tần Mục"
+    ten_en: "Qin Mu"
+    vai_tro: "Nhân vật chính (hình dạng sơ sinh)"
+    vai_tro_en: "protagonist as a newborn, found in a basket at the river"
+    tuoi: 0
+    gioi_tinh: "Nam"
+    dien_mao:
+      khuon_mat: "Mặt trẻ sơ sinh tròn trịa, đang khóc rồi bật cười"
+      toc: "Tóc tơ đen thưa"
+      chieu_cao_the_trang: "Sơ sinh, nằm gọn trong một cái giỏ đan"
+    trang_phuc:
+      chinh: "Tã lót vải trắng thô"
+    dau_an:
+      dac_diem_rieng: "Ngọc bội khắc chữ Tần đặt cạnh tã, tỏa huỳnh quang xanh nhạt"
+    canonical_reference: "mvp0/refs/tan_muc_so_sinh.png"
+    canonical_reference_en:
+      khuon_mat: "Round newborn face, cheeks flushed from crying, mouth open in a toothless laugh"
+      mat: "Large dark newborn eyes still wet with tears"
+      toc: "Sparse fine black baby hair"
+      trang_phuc: "Coarse undyed white swaddling cloth, no other garment"
+      dac_diem_rieng: "Pale jade pendant carved with a single character, giving off a faint green glow beside the swaddle"
+    silhouette_cue_en:
+      "newborn wrapped in coarse white swaddling inside a woven river basket,
+       faintly glowing jade pendant lying beside him"
+    body_type_relative_en:
+      "newborn infant, small enough for Granny Si to carry in one basket"
+    color_language_en: "pale jade-green pendant glow against undyed white cloth"
+    personality_en: "unafraid, laughs instead of crying when held"
+
+  # ---------------------------------------------------------- Tần Mục (11 tuổi)
+  - id: "tan_muc_thieu_nien"
+    nhan_vat_goc: "tan_muc"
+    bien_the: "Thiếu niên 11 tuổi — nửa sau chương, mốc hiện tại"
+    ten: "Tần Mục"
+    ten_en: "Qin Mu"
+    vai_tro: "Nhân vật chính (hình dạng thiếu niên), mục đồng của thôn"
+    vai_tro_en: "protagonist at eleven, the village cowherd boy"
+    tuoi: 11
+    gioi_tinh: "Nam"
+    dien_mao:
+      khuon_mat: "Mi thanh mục tú, môi hồng răng trắng"
+      toc: "Tóc đen buộc hờ sau gáy, mấy lọn rủ trước trán"
+      chieu_cao_the_trang: "Thiếu niên gầy, cao ngang vai người lớn"
+    trang_phuc:
+      chinh: "Áo vải thô nâu nhạt mặc nửa mở, thắt lưng vải, chân đất"
+    dau_an:
+      dac_diem_rieng: "Ngọc bội chữ Tần đeo trước ngực trần, luôn nhìn thấy"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    canonical_reference_en:
+      khuon_mat: "Delicate handsome boyish face, clear brows, fair skin"
+      mat: "Bright dark eyes with clean thin eyebrows"
+      toc: "Black hair loosely tied at the nape, several strands falling over the forehead"
+      trang_phuc: "Pale brown coarse hemp tunic worn half-open, cloth waist belt, bare feet"
+      dac_diem_rieng: "Pale jade pendant on a cord, worn openly on the bare chest"
+    silhouette_cue_en:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+    body_type_relative_en:
+      "eleven-year-old boy, slim, the height reference every other character is measured against"
+    color_language_en: "pale jade-green pendant glow over warm hemp brown"
+    personality_en: "curious, gentle, easily shaken but quick to obey his elders"
+
+  # ---------------------------------------------------------- Mã lão
+  - id: "ma_lao"
+    nhan_vat_goc: "ma_lao"
+    bien_the: "Hình dạng duy nhất"
+    ten: "Mã lão"
+    ten_en: "Elder Ma"
+    vai_tro: "Lão nhân trong thôn, cùng Tư bà bà vác tượng đá ra sông trong đêm"
+    vai_tro_en: "village elder who carries the stone statue out to the river at night"
+    tuoi: 65
+    gioi_tinh: "Nam"
+    dien_mao:
+      khuon_mat: "Mặt vuông rám nắng, râu cằm bạc lởm chởm"
+      toc: "Tóc bạc cắt ngắn, buộc khăn vải nâu"
+      chieu_cao_the_trang: "Cao lớn vai rộng, chỉ còn cánh tay phải, bắp tay to khác thường"
+    trang_phuc:
+      chinh: "Áo vải nâu đất, ống tay áo trái buộc gọn ở vai vì rỗng"
+    dau_an:
+      dac_diem_rieng: "Cụt hẳn cánh tay trái từ vai; cánh tay phải có sức mạnh phi thường"
+    canonical_reference: "mvp0/refs/ma_lao.png"
+    canonical_reference_en:
+      khuon_mat: "Square weathered old man's face with a patchy white stubble beard"
+      mat: "Narrow dark eyes under heavy white brows"
+      toc: "Short cropped white hair under a brown cloth headband"
+      trang_phuc: "Earth-brown coarse work tunic, the empty left sleeve knotted up at the shoulder"
+      dac_diem_rieng: "Left arm missing entirely at the shoulder, the remaining right arm unusually thick and muscular"
+    silhouette_cue_en:
+      "empty left sleeve knotted at the shoulder, one thick right arm,
+       earth-brown work tunic"
+    body_type_relative_en:
+      "tall and broad for an old man, a head and a half taller than Qin Mu at eleven"
+    color_language_en: "earth brown and rust, warm dull tones"
+    personality_en: "gruff, loyal, quick to bicker but first to volunteer"
+
+  # ---------------------------------------------------------- Gia gia què
+  - id: "gia_gia_que"
+    nhan_vat_goc: "gia_gia_que"
+    bien_the: "Hình dạng duy nhất"
+    ten: "Gia gia què"
+    ten_en: "Lame Grandpa"
+    vai_tro: "Lão nhân trong thôn, thợ săn, dạy Tần Mục cước pháp"
+    vai_tro_en: "village elder and hunter who teaches Qin Mu kicking techniques"
+    tuoi: 68
+    gioi_tinh: "Nam"
+    dien_mao:
+      khuon_mat: "Mặt hiền lành chất phác, hay cười, nhiều nếp nhăn quanh mắt"
+      toc: "Tóc muối tiêu búi gọn thành búi nhỏ trên đỉnh đầu"
+      chieu_cao_the_trang: "Gầy rắn, mất chân phải từ dưới đầu gối, chống gậy gỗ"
+    trang_phuc:
+      chinh: "Áo vải xanh rêu sẫm, quần ống rộng, ống quần phải buộc gọn dưới gối"
+    dau_an:
+      dac_diem_rieng: "Mất chân phải dưới đầu gối; gậy gỗ mộc; một thanh đao bản rộng đeo sau lưng"
+    canonical_reference: "mvp0/refs/gia_gia_que.png"
+    canonical_reference_en:
+      khuon_mat: "Plain kindly old man's face with a broad easy smile and deep laugh lines"
+      mat: "Warm crinkled eyes"
+      toc: "Salt-and-pepper hair gathered into a small topknot"
+      trang_phuc: "Dark moss-green cloth robe, wide trousers with the right leg tied off below the knee"
+      dac_diem_rieng: "Right leg missing below the knee, plain wooden walking staff, a single broad saber slung across the back"
+    silhouette_cue_en:
+      "right trouser leg tied off below the knee, plain wooden staff,
+       broad saber slung across the back"
+    body_type_relative_en:
+      "lean and wiry, roughly two heads taller than Qin Mu at eleven even while leaning on his staff"
+    color_language_en: "dark moss green and worn leather brown"
+    personality_en: "cheerful, unshakeable, kills without changing expression"
+
+  # ---------------------------------------------------------- Trưởng thôn
+  - id: "truong_thon"
+    nhan_vat_goc: "truong_thon"
+    bien_the: "Hình dạng duy nhất"
+    ten: "Trưởng thôn"
+    ten_en: "Village Chief"
+    vai_tro: "Trưởng thôn Tàn Lão, người đặt tên Tần Mục, dạy Tần Mục thuật hít thở"
+    vai_tro_en: "chief of Canlao Village, the one who named Qin Mu and taught him breathing"
+    tuoi: 75
+    gioi_tinh: "Nam"
+    dien_mao:
+      khuon_mat: "Mặt gầy trơ xương, thần thái trầm tĩnh"
+      toc: "Tóc bạc dài xõa trên cáng"
+      chieu_cao_the_trang: "Mất cả hai tay hai chân, thân người nằm trên cáng tre"
+    trang_phuc:
+      chinh: "Áo choàng vải trắng ngà rộng phủ kín thân"
+    dau_an:
+      dac_diem_rieng: "Không tay không chân; luôn nằm trên cáng tre do người khác khiêng"
+    canonical_reference: "mvp0/refs/truong_thon.png"
+    canonical_reference_en:
+      khuon_mat: "Gaunt hollow-cheeked old face, calm and composed"
+      mat: "Half-closed pale eyes with a steady gaze"
+      toc: "Long loose white hair spread across the stretcher"
+      trang_phuc: "Wide bone-white cloth robe draped over the whole torso"
+      dac_diem_rieng: "Both arms and both legs missing; always lying on a carried bamboo stretcher"
+    silhouette_cue_en:
+      "limbless torso in a bone-white robe lying on a carried bamboo stretcher"
+    body_type_relative_en:
+      "limbless torso, always carried at the waist height of standing villagers, never upright"
+    color_language_en: "bone white and pale bamboo, no saturated color"
+    personality_en: "quiet, respected without effort, settles what no one else dares to"
+
+  # ---------------------------------------------------------- Yêu phụ (dạng bò)
+  - id: "yeu_phu_bo"
+    nhan_vat_goc: "yeu_phu"
+    bien_the: "Dạng bò cái — bị phong ấn 11 năm, làm nhũ mẫu của Tần Mục"
+    ten: "Bò cái"
+    ten_en: "The Cow"
+    vai_tro: "Phu nhân Tương Long thành chủ bị Tư bà bà phong ấn thành bò, nhũ mẫu của Tần Mục"
+    vai_tro_en: "a noblewoman sealed into the body of a cow, wet nurse to Qin Mu"
+    tuoi: 11
+    gioi_tinh: "Cái"
+    dien_mao:
+      khuon_mat: "Đầu bò cái mõm rộng, ánh mắt ướt như người biết khóc"
+      toc: "Lông vàng nâu ngắn, túm lông thô dọc gáy"
+      chieu_cao_the_trang: "Bò cái trưởng thành, lưng đủ rộng cho một thiếu niên ngồi"
+    trang_phuc:
+      chinh: "Không mặc gì — chỉ có dây thừng xỏ mũi bện bằng vải"
+    dau_an:
+      dac_diem_rieng: "Da bò rỗng bên trong, không máu thịt không khung xương; mắt bò rưng rưng như người"
+    canonical_reference: "mvp0/refs/yeu_phu_bo.png"
+    canonical_reference_en:
+      khuon_mat: "Bovine head with a broad muzzle and an unnaturally human, tearful expression"
+      mat: "Large wet dark cow eyes carrying visible human sorrow"
+      toc: "Short dull tan-and-cream hide, a coarse tuft running along the neck"
+      trang_phuc: "No garment; only a braided cloth nose rope"
+      dac_diem_rieng: "Short blunt horns; the hide hangs slightly loose, as if hollow underneath"
+    silhouette_cue_en:
+      "dull tan-and-cream cow with short blunt horns and a braided cloth nose rope,
+       hide hanging slightly loose"
+    body_type_relative_en:
+      "adult cow, back tall enough for Qin Mu at eleven to sit on comfortably"
+    color_language_en: "dull tan hide and dirty cream, no glow"
+    personality_en: "pleading, manipulative, carrying eleven years of stored resentment"
+
+  # ---------------------------------------------------------- Yêu phụ (dạng người)
+  - id: "yeu_phu_nguoi"
+    nhan_vat_goc: "yeu_phu"
+    bien_the: "Dạng người — sau khi tấm da bò bị lột ra"
+    ten: "Yêu phụ"
+    ten_en: "The Freed Woman"
+    vai_tro: "Phu nhân Tương Long thành chủ sau khi thoát khỏi phong ấn, phản diện dạng người"
+    vai_tro_en: "the same noblewoman freed from the seal, antagonist in human form"
+    tuoi: 28
+    gioi_tinh: "Nữ"
+    dien_mao:
+      khuon_mat: "Mặt đàn bà hai, ba mươi tuổi, tái nhợt, méo đi vì hận"
+      toc: "Tóc đen dài bù xù rối tung, che nửa mặt"
+      chieu_cao_the_trang: "Người lớn gầy, da tái xanh vì mười một năm không thấy nắng"
+    trang_phuc:
+      chinh: "Áo lụa lót rách bạc màu, ẩm và bết vào người"
+    dau_an:
+      dac_diem_rieng: "Vệt liền da đỏ tấy quanh hai đùi, nơi thịt từng dính vào tấm da bò"
+    canonical_reference: "mvp0/refs/yeu_phu_nguoi.png"
+    canonical_reference_en:
+      khuon_mat: "Pale gaunt woman's face in her late twenties, twisted with hatred"
+      mat: "Bloodshot dark eyes, wide and unblinking"
+      toc: "Long black hair in a wild matted tangle covering half the face"
+      trang_phuc: "Ragged faded silk inner robe, damp and clinging"
+      dac_diem_rieng: "Sickly pale skin from eleven years without sunlight; raw red seam-marks around both thighs where the hide was joined"
+    silhouette_cue_en:
+      "wild matted long black hair covering half the face, ragged damp silk robe,
+       raw red seam-marks around both thighs"
+    body_type_relative_en:
+      "adult woman, roughly two heads taller than Qin Mu at eleven"
+    color_language_en: "sickly grey-green skin with dried-blood red on the ragged silk"
+    personality_en: "vengeful, theatrical, snaps from pleading to murderous without warning"
+
 # Ví dụ mẫu cấu trúc nhân vật (Bỏ comment và chỉnh sửa khi có chương truyện mới):
 # - id: "nhan_vat_1"
+#   nhan_vat_goc: "nhan_vat_1"   # nhóm biến thể; nhân vật một hình dạng thì để trùng `id`
+#   bien_the: "Hình dạng mặc định — hiện tại"
 #   ten: "Tên Nhân Vật 1"
 #   ten_en: "Character Name 1"
 #   vai_tro: "Nhân vật chính"
+#   vai_tro_en: "young cultivator / protagonist"   # -> CHARACTERS.role (page YAML là tiếng Anh)
 #   tuoi: 20
 #   gioi_tinh: "Nam"
 #   dien_mao:
@@ -49,8 +331,118 @@ nhan_vat: []
 #     "average height, lean build, slightly shorter than the antagonist"
 #   color_language_en: "cool grey and black accents, no bright energy color"
 #   personality_en: "calm, decisive, protective of allies"
+#
+# Ví dụ BIẾN THỂ của chính nhân vật trên (khác độ tuổi ⇒ entry riêng, ref riêng):
+# - id: "nhan_vat_1_thieu_nien"
+#   nhan_vat_goc: "nhan_vat_1"
+#   bien_the: "Thiếu niên 11 tuổi — 9 năm trước"
+#   ten: "Tên Nhân Vật 1"
+#   ten_en: "Character Name 1"
+#   vai_tro: "Nhân vật chính"
+#   tuoi: 11
+#   gioi_tinh: "Nam"
+#   canonical_reference: "mvp0/refs/nhan_vat_1_thieu_nien.png"
+#   canonical_reference_en:
+#     khuon_mat: "Rounder childlike face, softer jawline"
+#     mat: "Large dark eyes, soft eyebrows"
+#     toc: "Short black hair with an untidy fringe"
+#     trang_phuc: "Plain hemp tunic worn half-open"
+#     dac_diem_rieng: "Jade pendant on a cord around the neck"
+#   silhouette_cue_en:
+#     "small childlike frame, half-open hemp tunic, jade pendant on the chest"
+#   body_type_relative_en:
+#     "child height, slight build, a head shorter than any adult in the scene"
+#   color_language_en: "cool grey and black accents, no bright energy color"
+#   personality_en: "curious, stubborn, quick to trust"
 
-boi_canh: []
+boi_canh:
+
+  # ---------------------------------------------------------- Tàn Lão thôn về đêm
+  - id: "tan_lao_thon_dem"
+    ten: "Tàn Lão thôn về đêm"
+    ten_en: "Canlao Village at Nightfall"
+    setting_en:
+      "A tiny remote mountain village of low mud-and-thatch houses, ringed by four
+       ancient weathered stone statues standing one at each corner of the settlement.
+       Bare packed-earth paths, a few crooked trees, mountains closing in on all sides."
+    environment_en:
+      "The scene runs from the last sliver of sunset behind the mountains into full
+       darkness: as the final light dies the world falls completely silent and the four
+       corner statues begin to give off a faint pale glow. Beyond the statues' reach the
+       darkness is absolute and something moves inside it. The statue glow is the
+       dominant state of this setting."
+    lighting_default_en:
+      "faint pale glow from the four corner stone statues, weak and short-reaching,
+       everything beyond them in flat black"
+    props_en:
+      - "four ancient weathered stone statues, one at each corner of the village, mottled with age"
+      - "low mud-and-thatch houses with sagging roofs"
+      - "a carried bamboo stretcher for the village chief"
+      - "bare packed-earth village paths"
+      - "a wall of absolute darkness pressing in just beyond the statue glow"
+
+  # ---------------------------------------------------------- Ngoài thôn trong bóng tối
+  - id: "ngoai_thon_bong_toi"
+    ten: "Ngoài thôn trong bóng tối"
+    ten_en: "Outside the Village, in the Dark"
+    setting_en:
+      "The open ground between Canlao Village and the river at night — a rough dirt
+       track, scattered rocks and low scrub, with no landmark visible beyond a few paces."
+    environment_en:
+      "Total darkness in every direction. The only light travels with the characters:
+       an ancient stone statue carried out of the village. Unseen things circle just
+       outside that light and retreat with a shrill chittering whenever the glow
+       touches them."
+    lighting_default_en:
+      "a single moving pool of pale glow from the carried stone statue, reaching only
+       a few paces, hard black beyond it"
+    props_en:
+      - "an ancient stone statue carried on a man's back, glowing faintly"
+      - "rough dirt track with scattered rocks and low scrub"
+      - "half-seen shapes retreating at the very edge of the glow"
+      - "absolute black void filling the rest of the frame"
+
+  # ---------------------------------------------------------- Bờ sông về đêm
+  - id: "bo_song_dem"
+    ten: "Bờ sông về đêm"
+    ten_en: "Riverbank at Night"
+    setting_en:
+      "The bank of a wide slow river about a hundred paces from Canlao Village, with
+       reeds and wet stones at the waterline and the far bank invisible in the dark."
+    environment_en:
+      "Darkness broken by two weak light sources: the carried stone statue and a faint
+       green fluorescence coming from a woven basket at the water's edge. A newborn is
+       crying inside the basket. The river runs black and carries away whatever it takes."
+    lighting_default_en:
+      "weak pale statue glow from one side, faint green fluorescence rising from the
+       basket at the waterline"
+    props_en:
+      - "a woven river basket at the waterline with a faint green glow inside"
+      - "a drowned woman's pale waterlogged arm rising from the river, holding the basket upright"
+      - "long black hair drifting on the black water surface"
+      - "wet stones and reeds along the waterline"
+      - "an ancient stone statue set down on the bank, glowing faintly"
+
+  # ---------------------------------------------------------- Bờ sông ban ngày
+  - id: "bo_song_ngay"
+    ten: "Bờ sông ban ngày"
+    ten_en: "Riverbank by Day"
+    setting_en:
+      "The same riverbank in broad daylight — a green grazing meadow along the water,
+       blue-green mountains layered into the distance, clear sky with high white clouds."
+    environment_en:
+      "Bright open daylight, the exact opposite of every night scene in the chapter.
+       The air is clear, the grass moves in a light breeze, the river runs bright.
+       Nothing threatening is visible anywhere in frame."
+    lighting_default_en:
+      "high clear midday sunlight, warm and even, short soft shadows on the grass"
+    props_en:
+      - "a bamboo flute"
+      - "a short curved harvesting sickle"
+      - "an empty cowhide lying flat on the grass, cut open and completely bloodless"
+      - "layered blue-green mountains under high white clouds"
+      - "grazing meadow grass running down to the water"
+
 # Ví dụ mẫu cấu trúc bối cảnh (Bỏ comment và chỉnh sửa khi có chương truyện mới):
 # - id: "boi_canh_1"
 #   ten: "Sân thượng cổ thành"

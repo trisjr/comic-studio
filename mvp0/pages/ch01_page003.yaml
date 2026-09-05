@@ -1,0 +1,419 @@
+# AI Coding
+# ch01_page003.yaml
+# Chương 1 — trang 3/11. Ra khỏi vùng bảo hộ; bóng tối có thứ sống trong đó.
+# panel_index 11–14 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page003"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Step outside the ring of statues and prove the rule true — the dark is
+     inhabited, and the only reason the two elders survive it is the stone on
+     Elder Ma's back."
+
+  overall_mood:
+    "claustrophobic, predatory, a single fragile bubble of light in total black"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 4
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_13"
+    rows:
+      - { row: 1, y: 0.00, h: 0.24, panels: ["panel_11"] }
+      - { row: 2, y: 0.24, h: 0.22, panels: ["panel_12"] }
+      - { row: 3, y: 0.46, h: 0.34, panels: ["panel_13"] }
+      - { row: 4, y: 0.80, h: 0.20, panels: ["panel_14"] }
+
+  continuity:
+    setting:
+      "The open ground between Canlao Village and the river at night — a rough dirt
+       track, scattered rocks and low scrub, with no landmark visible beyond a few paces."
+    time_span:
+      "A few minutes of walking, covering roughly a hundred paces from the village
+       gate toward the river."
+    spatial:
+      "Granny Si walks on the left / near side, Elder Ma on the right / far side
+       with the statue on his back. This relationship is never reversed."
+    environment:
+      "Total darkness in every direction. The only light travels with the characters:
+       an ancient stone statue carried out of the village. Unseen things circle just
+       outside that light and retreat whenever the glow touches them."
+    wardrobe:
+      "Both characters keep identical hairstyle, outfit, and accessories in every panel."
+    progression:
+      - "panel_11: establishing. The two step past the last house and the village light is gone behind them."
+      - "panel_12: suspense. Half-seen shapes crowd the outer edge of the moving pool of glow."
+      - "panel_13: action. The glow sweeps across one of them and it recoils out of the light."
+      - "panel_14: transition. The two press on toward the sound of crying, backs to the viewer."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tu_ba_ba"
+    name: "Granny Si"
+    canonical_reference: "mvp0/refs/tu_ba_ba.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "pronounced hunched back, faded indigo tunic with wide sleeves,
+       needle-and-thread pouch at the hip"
+
+    role: "the village seamstress who found and raised Qin Mu, a hidden master"
+
+    identity:
+      gender: "female"
+      age: 70
+      body_type:
+        "very short and hunched, barely taller than Qin Mu at eleven, notably small feet"
+
+    appearance:
+      hair: "thin white hair in a low bun under a faded dark headwrap"
+      eyes: "small dark eyes sunk under heavy lids, unusually alert"
+      face: "deeply wrinkled old woman's face with a gap-toothed grin"
+      distinctive_features:
+        - "pronounced hunched back"
+        - "gap-toothed smile"
+        - "small needle-and-thread pouch at the hip"
+
+    outfit:
+      - "faded indigo peasant tunic with wide sleeves"
+      - "grey seamstress apron"
+      - "faded dark cloth headwrap"
+
+    personality: "fierce, possessive, sharp-tongued, hides lethal skill behind an old seamstress"
+
+
+  - id: "ma_lao"
+    name: "Elder Ma"
+    canonical_reference: "mvp0/refs/ma_lao.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "empty left sleeve knotted at the shoulder, one thick right arm,
+       earth-brown work tunic"
+
+    role: "village elder who carries the stone statue out to the river at night"
+
+    identity:
+      gender: "male"
+      age: 65
+      body_type:
+        "tall and broad for an old man, a head and a half taller than Qin Mu at eleven"
+
+    appearance:
+      hair: "short cropped white hair under a brown cloth headband"
+      eyes: "narrow dark eyes under heavy white brows"
+      face: "square weathered old man's face with a patchy white stubble beard"
+      distinctive_features:
+        - "left arm missing entirely at the shoulder"
+        - "the empty left sleeve knotted up at the shoulder"
+        - "the remaining right arm unusually thick and muscular"
+
+    outfit:
+      - "earth-brown coarse work tunic"
+      - "brown cloth headband"
+
+    personality: "gruff, loyal, quick to bicker but first to volunteer"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 11
+  - id: "panel_11"
+    panel_index: 11
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.24
+    shape: "wide cinematic horizontal panel"
+    beat_type: "establishing"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "The last mud wall of the village slides past at the extreme left edge.
+       Everything to the right of the two figures is undifferentiated black."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "left of center, walking"
+        pose: "hunched forward, small quick steps"
+        action: "leading the way out of the village"
+        facial_expression: "set and grim, three-quarter view"
+        gaze: "straight ahead into the dark"
+        emotion: "determination"
+
+      - character_id: "ma_lao"
+        position: "right of center, half a pace behind"
+        pose: "leaning forward under the weight, statue roped across his back"
+        action: "carrying the glowing statue out past the boundary"
+        facial_expression: "jaw locked, breathing hard"
+        gaze: "down at the track"
+        emotion: "strain"
+
+    camera:
+      shot_type: "wide tracking shot"
+      camera_angle: "eye level"
+      camera_position: "level with the track, slightly ahead of the pair"
+      perspective: "shallow — nothing is visible far enough away to give depth"
+      composition:
+        "Both figures held in the lower left half inside a small oval of light;
+         the right half of the panel is solid black."
+      focal_point: "the edge where the glow stops"
+
+    lighting:
+      source: "a single moving pool of pale glow from the carried stone statue"
+      direction: "radiating from Elder Ma's back"
+      intensity: "low, reaching only a few paces"
+      shadow: "hard black beyond the pool, with no falloff gradient"
+
+    effects:
+      atmosphere: "the black reads as opaque and close, like a wall rather than distance"
+
+    text_safe_zone:
+      - { x: 0.60, y: 0.08, w: 0.36, h: 0.55 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Sell the scale of the risk: the safe zone is now behind them and the light
+       they have is the size of a room."
+
+
+  # ---------------------------------------------------------- PANEL 12
+  - id: "panel_12"
+    panel_index: 12
+    row: 2
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide horizontal panel"
+    beat_type: "suspense"
+    emphasis: "medium"
+    character_count: 0
+
+    scene_delta:
+      "No characters in frame. Only the outer rim of the moving pool of light on
+       the dirt track, and half-seen shapes crowding just outside it — suggested
+       by wet highlights and broken contours, never fully drawn."
+
+    characters: []
+
+    camera:
+      shot_type: "wide detail shot"
+      camera_angle: "low angle, close to the ground"
+      camera_position: "at the outer edge of the light pool, looking outward into the dark"
+      perspective: "flattened, no horizon"
+      composition:
+        "A curved band of dim ground across the bottom third, the rest black with
+         only fragmentary highlights implying bodies."
+      focal_point: "the boundary line where light stops"
+
+    lighting:
+      source: "the receding pale statue glow, from behind the camera"
+      direction: "from behind, raking away"
+      intensity: "very low at this distance"
+      shadow: "everything past the band unreadable"
+
+    effects:
+      atmosphere: "scattered scrub and rocks partly lit, shapes between them left ambiguous"
+
+    text_safe_zone:
+      - { x: 0.10, y: 0.05, w: 0.80, h: 0.30 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Let the reader's eye do the work — imply a crowd of watchers without
+       committing to a monster design."
+
+
+  # ---------------------------------------------------------- PANEL 13
+  - id: "panel_13"
+    panel_index: 13
+    row: 3
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.34
+    shape: "large dominant action panel"
+    beat_type: "action"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "Elder Ma turns and the statue swings with him, sweeping the pool of light
+       sideways across the scrub. One of the shapes is caught in the glow and
+       flinches backward out of frame, leaving only a blurred contour."
+
+    characters:
+      - character_id: "ma_lao"
+        position: "center right, mid-turn"
+        pose: "twisting his torso, single right arm bracing the statue on his back"
+        action: "swinging the statue's light toward the thing beside the track"
+        facial_expression: "snarling, eyes wide"
+        gaze: "toward the fleeing shape at frame left"
+        emotion: "aggression over fear"
+
+      - character_id: "tu_ba_ba"
+        position: "foreground left, low"
+        pose: "dropped into a crouch, one hand out toward the ground"
+        action: "flinching down and away as the light sweeps past her"
+        facial_expression: "eyes narrowed, lips pulled back"
+        gaze: "at the retreating shape"
+        emotion: "cold readiness rather than panic"
+
+    camera:
+      shot_type: "dynamic wide shot"
+      camera_angle: "low angle"
+      camera_position: "on the track just ahead of the pair, tilted"
+      perspective: "strong perspective distortion along the swinging light"
+      composition:
+        "A diagonal wedge of pale light cuts from Elder Ma at upper right down to
+         the lower left corner, where the caught shape is dissolving back into black."
+      focal_point: "the leading edge of the swung light"
+
+    lighting:
+      source: "the carried stone statue, swung hard to one side"
+      direction: "sweeping diagonally from upper right to lower left"
+      intensity: "low but sharply directional"
+      shadow: "long moving shadows thrown by both elders across the scrub"
+
+    effects:
+      motion: "arc-shaped motion smear following the statue's swing"
+      creature: "a single retreating contour at the light's edge, deliberately unresolved"
+
+    text_safe_zone:
+      - { x: 0.62, y: 0.04, w: 0.34, h: 0.22 }
+
+    typeset:
+      dialogue: []
+      sfx:
+        - "SKREE"
+
+    panel_purpose:
+      "Prove the folk rule is literal — the statue light is a weapon, and things
+       out here are afraid of it."
+
+
+  # ---------------------------------------------------------- PANEL 14
+  - id: "panel_14"
+    panel_index: 14
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.20
+    shape: "wide horizontal panel"
+    beat_type: "transition"
+    emphasis: "small"
+    character_count: 2
+
+    scene_delta:
+      "Both figures seen from behind, walking away down the track. The pool of
+       light goes with them and the foreground falls back into black."
+
+    characters:
+      - character_id: "tu_ba_ba"
+        position: "left of center, small, back to the viewer"
+        pose: "hunched, walking away"
+        action: "following the crying toward the river"
+        facial_expression: "not visible — seen entirely from behind"
+        gaze: "away from the viewer"
+        emotion: "reads through posture only"
+
+      - character_id: "ma_lao"
+        position: "right of center, back to the viewer"
+        pose: "bent under the roped statue, walking away"
+        action: "carrying the light forward"
+        facial_expression: "not visible — seen entirely from behind"
+        gaze: "away from the viewer"
+        emotion: "reads through posture only"
+
+    camera:
+      shot_type: "wide following shot"
+      camera_angle: "eye level"
+      camera_position: "behind and slightly above the pair, on the track"
+      perspective: "one-point perspective down the dirt track"
+      composition:
+        "The two backs centered small in a shrinking oval of light, surrounded on
+         all four sides by black."
+      focal_point: "the glow on the statue between Elder Ma's shoulders"
+
+    lighting:
+      source: "the carried stone statue, now facing away from the viewer"
+      direction: "away from camera"
+      intensity: "low and shrinking"
+      shadow: "the two figures read as dark cut-outs against their own light"
+
+    effects:
+      atmosphere: "the darkness closing behind them across the foreground"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.55, w: 0.35, h: 0.35 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Hand the page off to the riverbank, and reinforce that the camera does not
+       get to see faces out here."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "sparse nocturnal landscape, most of the frame intentionally empty black"
+  lighting: "single-source supernatural glow with a hard, unnatural falloff edge"
+  effects: "restrained 2D fantasy glow effects, creature forms left unresolved"
+  color_language:
+    granny_si: "faded indigo and dull grey, never any glow of her own"
+    elder_ma: "earth brown and rust, warm dull tones"
+    statues: "cold pale stone glow"
+  panel_language:
+    "vertical stack of widening shots, building from a walk to one large
+     low-angle action beat"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not swap the silhouette cues: only Granny Si has the hunched back and indigo tunic, only Elder Ma has the knotted empty left sleeve."
+  - "Do not give Elder Ma a left arm or a visible left hand in any panel."
+  - "Do not draw any fully resolved creature: no readable eyes, teeth, limbs, or body plan on the things in the dark."
+  - "Do not show any moon, stars, lanterns, torches, or campfires as a light source."
+  - "Do not draw the village, its houses, or any other statue after panel_11."

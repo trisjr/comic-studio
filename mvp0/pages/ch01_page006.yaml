@@ -1,0 +1,481 @@
+# AI Coding
+# ch01_page006.yaml
+# Chương 1 — trang 6/11. Nhảy 11 năm; ánh sáng ban ngày; con bò cái mở miệng nói tiếng người.
+# panel_index 27–31 (tuần tự toàn chương).
+
+page:
+  page_id: "ch01_page006"
+  aspect_ratio: "2:3"
+  target_resolution: "1024x1536"
+  reading_direction: "left_to_right"
+
+  purpose:
+    "Jump eleven years and open the shutters — the first daylight in the chapter,
+     a boy on a cow playing a flute. Then the cow says his name."
+
+  overall_mood:
+    "bright and idyllic for three panels, then wrong in a way daylight cannot fix"
+
+  layout:
+    type: "multi_panel"
+    panel_count: 5
+    gutter: "thin white gutters with clean black panel borders"
+    dominant_panel: "panel_27"
+    rows:
+      - { row: 1, y: 0.00, h: 0.40, panels: ["panel_27"] }
+      - { row: 2, y: 0.40, h: 0.22, panels: ["panel_28"] }
+      - { row: 3, y: 0.62, h: 0.20, panels: ["panel_29", "panel_30"] }
+      - { row: 4, y: 0.82, h: 0.18, panels: ["panel_31"] }
+
+  continuity:
+    setting:
+      "The same riverbank in broad daylight — a green grazing meadow along the water,
+       blue-green mountains layered into the distance, clear sky with high white clouds."
+    time_span:
+      "A single unbroken midday, from a quiet grazing hour to the moment the cow speaks."
+    spatial:
+      "The river runs along the right / far side of the meadow. Qin Mu stays on the
+       left / near side of the cow. This relationship is never reversed."
+    environment:
+      "Bright open daylight, the exact opposite of every night scene so far. The air is
+       clear, the grass moves in a light breeze, the river runs bright. Nothing
+       threatening is visible anywhere in frame."
+    wardrobe:
+      "Qin Mu keeps the same half-open hemp tunic, cloth belt, bare feet and jade
+       pendant in every panel; the cow keeps the same braided cloth nose rope."
+    progression:
+      - "panel_27: establishing. Qin Mu rides the cow across the meadow, playing a bamboo flute."
+      - "panel_28: detail. The flute at his lips and the jade pendant on his bare chest."
+      - "panel_29: shock. The cow's mouth moves and forms his name."
+      - "panel_30: action. He throws himself off the cow's back and lands in the grass."
+      - "panel_31: dialogue. The cow turns its head, eyes brimming, and asks him to save it."
+
+text_policy:
+  render_text_in_image: false
+  rule:
+    "Do not draw any letters, words, speech bubbles, captions, or sound-effect
+     lettering. Dialogue and SFX are typeset later in a separate overlay stage.
+     Keep each panel's text_safe_zone visually calm: no faces, no focal detail."
+
+
+# ============================================================
+# CHARACTER BIBLE
+# ============================================================
+
+characters:
+
+  - id: "tan_muc_thieu_nien"
+    name: "Qin Mu"
+    canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
+       hair loosely tied at the nape"
+
+    role: "protagonist at eleven, the village cowherd boy"
+
+    identity:
+      gender: "male"
+      age: 11
+      body_type:
+        "eleven-year-old boy, slim, the height reference every other character is
+         measured against"
+
+    appearance:
+      hair: "black hair loosely tied at the nape, several strands falling over the forehead"
+      eyes: "bright dark eyes with clean thin eyebrows"
+      face: "delicate handsome boyish face, clear brows, fair skin"
+      distinctive_features:
+        - "pale jade pendant on a cord, worn openly on the bare chest"
+        - "always barefoot"
+
+    outfit:
+      - "pale brown coarse hemp tunic worn half-open"
+      - "cloth waist belt"
+      - "bare feet"
+
+    personality: "curious, gentle, easily shaken but quick to obey his elders"
+
+
+  - id: "yeu_phu_bo"
+    name: "The Cow"
+    canonical_reference: "mvp0/refs/yeu_phu_bo.png"
+    reference_instruction:
+      "Match the face, hairstyle, and outfit of the attached reference image exactly."
+    silhouette_cue:
+      "dull tan-and-cream cow with short blunt horns and a braided cloth nose rope,
+       hide hanging slightly loose"
+
+    role: "a noblewoman sealed into the body of a cow, wet nurse to Qin Mu"
+
+    identity:
+      gender: "female"
+      age: 11
+      body_type: "adult cow, back tall enough for Qin Mu at eleven to sit on comfortably"
+
+    appearance:
+      hair: "short dull tan-and-cream hide, a coarse tuft running along the neck"
+      eyes: "large wet dark cow eyes carrying visible human sorrow"
+      face: "bovine head with a broad muzzle and an unnaturally human, tearful expression"
+      distinctive_features:
+        - "short blunt horns"
+        - "the hide hangs slightly loose, as if hollow underneath"
+
+    outfit:
+      - "no garment; only a braided cloth nose rope"
+
+    personality: "pleading, manipulative, carrying eleven years of stored resentment"
+
+
+# ============================================================
+# PANELS
+# ============================================================
+
+panels:
+
+  # ---------------------------------------------------------- PANEL 27
+  - id: "panel_27"
+    panel_index: 27
+    row: 1
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.40
+    shape: "large dominant establishing panel"
+    beat_type: "establishing"
+    emphasis: "large"
+    character_count: 2
+
+    scene_delta:
+      "Wide open meadow at midday. Layered blue-green mountains under high white
+       clouds, the bright river running along the right edge of the grass."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "center, sitting on the cow's back"
+        pose: "sitting sideways on the cow's back, one bare leg swinging, bamboo flute at his lips"
+        action: "playing the flute while the cow walks"
+        facial_expression: "eyes half closed, absorbed in the tune"
+        gaze: "unfocused, toward the mountains"
+        emotion: "contentment"
+
+      - character_id: "yeu_phu_bo"
+        position: "center, beneath him, walking left to right"
+        pose: "walking slowly with its head down"
+        action: "grazing forward through the grass"
+        facial_expression: "head lowered, eyes not visible from this angle"
+        gaze: "down at the grass"
+        emotion: "reads as placid from this distance"
+
+    camera:
+      shot_type: "extreme wide establishing shot"
+      camera_angle: "slightly low angle"
+      camera_position: "in the meadow grass, level with the cow's legs"
+      perspective: "deep atmospheric perspective, mountains receding in flattened layers"
+      composition:
+        "Boy and cow as a single silhouette on the lower third horizon line, sky
+         and mountains filling the upper two thirds."
+      focal_point: "the boy's outline against the bright sky"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from high and slightly behind camera"
+      intensity: "high and even"
+      shadow: "short soft shadows directly beneath boy and cow on the grass"
+
+    effects:
+      wind: "grass and the loose ends of his tunic moving in a light breeze"
+      atmosphere: "clean warm haze on the distant ridges"
+
+    text_safe_zone:
+      - { x: 0.05, y: 0.04, w: 0.35, h: 0.24 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Reset the reader completely — full daylight, no threat, so the next four
+       panels have something to break."
+
+
+  # ---------------------------------------------------------- PANEL 28
+  - id: "panel_28"
+    panel_index: 28
+    row: 2
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.22
+    shape: "wide horizontal close-up"
+    beat_type: "detail"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Close on his upper body: the bamboo flute held to his lips and the jade
+       pendant hanging on its cord against his bare chest."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "right of center, chest and face"
+        pose: "both hands on the flute, elbows lifted"
+        action: "holding a long note"
+        facial_expression: "calm, eyes closed"
+        gaze: "eyes closed"
+        emotion: "absorption"
+
+    camera:
+      shot_type: "close-up"
+      camera_angle: "eye level"
+      camera_position: "close in front of him, slightly to his left"
+      perspective: "shallow, meadow reduced to a soft green field behind"
+      composition:
+        "The flute runs across the frame on a diagonal, the pendant sitting on the
+         opposite diagonal below it."
+      focal_point: "the pendant against his skin"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and slightly right"
+      intensity: "high"
+      shadow: "short crisp shadow of the flute across his cheek"
+
+    effects:
+      glow: "no glow — in daylight the pendant reads as plain pale jade"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.06, w: 0.32, h: 0.60 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Confirm this is the same child from the basket by the one object he still
+       carries."
+
+
+  # ---------------------------------------------------------- PANEL 29
+  - id: "panel_29"
+    panel_index: 29
+    row: 3
+    column: 1
+    relative_width: 0.5
+    relative_height: 0.20
+    shape: "small horizontal panel"
+    beat_type: "shock"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "Tight on the cow's head from the side, with the boy's startled face behind
+       and above it. The flute has dropped away from his mouth."
+
+    characters:
+      - character_id: "yeu_phu_bo"
+        position: "foreground, head in profile filling the lower frame"
+        pose: "head lifting, jaw moving in a shape no cow's jaw makes"
+        action: "speaking his name"
+        facial_expression: "muzzle working, one visible eye brimming"
+        gaze: "rolled back and up toward the boy"
+        emotion: "desperate appeal"
+
+      - character_id: "tan_muc_thieu_nien"
+        position: "upper right, above the cow's neck"
+        pose: "jolted upright, flute frozen halfway down"
+        action: "freezing on the cow's back"
+        facial_expression: "eyes blown wide, mouth open"
+        gaze: "down at the cow's head"
+        emotion: "shock"
+
+    camera:
+      shot_type: "medium close-up"
+      camera_angle: "low angle"
+      camera_position: "beside the cow's shoulder, looking up along its neck"
+      perspective: "the cow's head exaggerated in the foreground"
+      composition:
+        "The cow's head takes the lower left two thirds; the boy's face is small
+         and high in the upper right."
+      focal_point: "the cow's moving jaw"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above"
+      intensity: "high"
+      shadow: "hard shadow under the muzzle, the wet eye catching a bright highlight"
+
+    effects:
+      motion: "a small startle burst behind the boy's head"
+
+    text_safe_zone:
+      - { x: 0.55, y: 0.62, w: 0.42, h: 0.32 }
+
+    typeset:
+      dialogue:
+        - speaker: "yeu_phu_bo"
+          text: "Qin Mu. Qin Mu, save me."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "Break the idyll on a talking animal without making the cow monstrous —
+       the horror is that it looks exactly like a cow."
+
+
+  # ---------------------------------------------------------- PANEL 30
+  - id: "panel_30"
+    panel_index: 30
+    row: 3
+    column: 2
+    relative_width: 0.5
+    relative_height: 0.20
+    shape: "small horizontal action panel"
+    beat_type: "action"
+    emphasis: "medium"
+    character_count: 2
+
+    scene_delta:
+      "The boy is in mid-air off the cow's back, grass rushing up beneath him."
+
+    characters:
+      - character_id: "tan_muc_thieu_nien"
+        position: "center left, airborne"
+        pose: "twisting in mid-air, one hand pushing off the cow's spine, flute clutched in the other"
+        action: "throwing himself off the cow's back"
+        facial_expression: "teeth clenched, eyes still on the animal"
+        gaze: "back at the cow"
+        emotion: "panic"
+
+      - character_id: "yeu_phu_bo"
+        position: "right, standing still"
+        pose: "standing motionless, head turned to follow him"
+        action: "watching him bail out without moving a step"
+        facial_expression: "head turned, one wet eye tracking him"
+        gaze: "following the boy"
+        emotion: "patient calculation"
+
+    camera:
+      shot_type: "dynamic medium shot"
+      camera_angle: "slightly high angle"
+      camera_position: "above and behind the cow's hindquarters"
+      perspective: "moderate distortion along the boy's arc"
+      composition:
+        "A diagonal from the cow's back at upper right down to the boy's landing
+         point at lower left."
+      focal_point: "the gap opening between boy and animal"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above"
+      intensity: "high"
+      shadow: "the boy's shadow already separated from the cow's on the grass"
+
+    effects:
+      motion: "speed lines behind the boy, a spray of loose grass at the push-off"
+
+    text_safe_zone:
+      - { x: 0.04, y: 0.04, w: 0.40, h: 0.26 }
+
+    typeset:
+      dialogue: []
+      sfx: []
+
+    panel_purpose:
+      "Put physical distance between them so the conversation that follows is a
+       negotiation, not a ride."
+
+
+  # ---------------------------------------------------------- PANEL 31
+  - id: "panel_31"
+    panel_index: 31
+    row: 4
+    column: 1
+    relative_width: 1.0
+    relative_height: 0.18
+    shape: "wide horizontal close-up"
+    beat_type: "dialogue"
+    emphasis: "medium"
+    character_count: 1
+
+    scene_delta:
+      "Extreme close on the cow's face across the width of the panel, meadow
+       blurred behind it. A single tear track runs down through the hide."
+
+    characters:
+      - character_id: "yeu_phu_bo"
+        position: "center, head filling the panel"
+        pose: "head held level, turned three-quarters toward the viewer"
+        action: "pressing its claim on him"
+        facial_expression: "unmistakably human sorrow on a bovine face"
+        gaze: "directly at the boy, off-panel left"
+        emotion: "grief weaponized into obligation"
+
+    camera:
+      shot_type: "extreme close-up"
+      camera_angle: "eye level"
+      camera_position: "directly in front of the cow's head"
+      perspective: "flat, background thrown out of focus"
+      composition:
+        "The muzzle and both eyes span the panel; the horns are cropped by the
+         top edge."
+      focal_point: "the wet human sorrow in the animal's eye"
+
+    lighting:
+      source: "high clear midday sunlight"
+      direction: "from above and front"
+      intensity: "high"
+      shadow: "soft under the jaw, the wet eyes carrying the brightest highlight"
+
+    effects:
+      atmosphere: "a single tear track darkening the hide beneath one eye"
+
+    text_safe_zone:
+      - { x: 0.03, y: 0.62, w: 0.40, h: 0.32 }
+
+    typeset:
+      dialogue:
+        - speaker: "yeu_phu_bo"
+          text: "You grew up on my milk. I am half your mother. You have to save me."
+          bubble_type: "speech"
+      sfx: []
+
+    panel_purpose:
+      "End the page on the emotional lever the cow will use, so the reader
+       understands why an eleven-year-old picks up the sickle."
+
+
+# ============================================================
+# GLOBAL VISUAL STYLE
+# ============================================================
+
+style:
+  medium: "full-color 2D anime / manhwa webtoon page"
+  line_art: "clean 2D anime lineart with controlled variable line weight"
+  rendering: "flat cel shading with one or two shadow tones, no painterly blending"
+  character_design: "stylized East Asian rural fantasy aesthetic, 2D anime proportions"
+  background: "sunlit pastoral river meadow with layered blue-green mountains"
+  lighting: "high-key natural midday sunlight, no supernatural light source anywhere"
+  effects: "minimal — motion lines and wind only, no glow effects"
+  color_language:
+    qin_mu: "pale jade-green pendant over warm hemp brown"
+    the_cow: "dull tan hide and dirty cream, no glow"
+    setting: "saturated meadow green against blue-green ridges"
+  panel_language:
+    "one large open establishing panel collapsing into progressively tighter
+     shots as the scene goes wrong"
+  detail_level: "high"
+
+
+# ============================================================
+# NEGATIVE CONSTRAINTS
+# ============================================================
+
+negative_constraints:
+  - "Do not render any letters, words, speech bubbles, captions, or sound-effect lettering."
+  - "Do not place faces or focal detail inside any text_safe_zone."
+  - "Do not change character identity, hairstyle, outfit, or accessories between panels."
+  - "Do not give the cow human limbs, human teeth, a human face, or any anthropomorphic posture — it stays anatomically a cow."
+  - "Do not draw the sickle, the cut hide, blood, or the woman anywhere on this page."
+  - "Do not make the pendant glow, and do not add any supernatural light in daylight."
+  - "Do not add other cattle, villagers, birds, or any second animal to the meadow."
+  - "Do not darken the sky, add storm clouds, or hint at night on this page."
