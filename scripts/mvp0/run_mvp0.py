@@ -186,7 +186,8 @@ def run_pages(only_ids, is_dry_run, n_candidates=N_CANDIDATES, use_refs=True):
           f"{len(pages) * n_candidates} anh\n")
 
     for page_id, page_doc in pages:
-        text_prompt, conditioning_set, dropped = compile_prompt.compile_page(page_doc)
+        text_prompt, conditioning_set, dropped = compile_prompt.compile_page(
+            page_doc, attach_references=use_refs)
         (run_dir / "prompts" / f"{page_id}.txt").write_text(text_prompt, encoding="utf-8")
 
         panel_indices = _panel_indices(page_doc)

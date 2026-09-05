@@ -239,6 +239,72 @@ Kết quả trên `ch01_page001`: **8 panel → 6 panel** (đặc tả 5). ⇒ C
 
 ⭐ **Bước người làm tiếp theo**: soi 33 ảnh bằng mắt, chọn candidate mỗi trang, `crop_page.py`, rồi mới chấm `scoring-sheet.csv`. ⛔ Máy ⛔ không làm thay bước này.
 
+## 8.6. Điều tra kênh reference — vì sao ⛔ không lấy lại được ref
+
+> [!IMPORTANT]
+> Founder chốt ngày `2026-09-06`: ⛔ **TUYỆT ĐỐI không dùng crop ref.** Mục này ghi lại mọi đường đã thử để lấy ref về **mà ⛔ không crop**, và kết quả thật của từng đường.
+
+### a. Model nào nhận được ref — đo cả 12 model
+
+| Nhận ref (9) | Từ chối ref (3) |
+|---|---|
+| `qwen-image-2.0` · `qwen-image-2.0-pro-2026-06-22` · `qwen-image-3.0` · `qwen-image-3.0-pro` · `qwen-image-edit` · `qwen-image-edit-max-2026-01-16` · `qwen-image-edit-plus-2025-12-15` · `wan2.7-image` · `wan2.7-image-pro` | `qwen-image-max-2025-12-30` · `qwen-image-plus-2026-01-09` · `z-image-turbo` |
+
+⭐ **Chỉ mình `qwen-image-edit`** echo tỉ lệ ảnh ref (`1376x768`). Tám model còn lại đều tôn trọng `size`. ⇒ Echo hình học là **lỗi riêng của model cũ**, ⛔ không phải bản chất của kênh ảnh — đây là **đính chính** cho suy đoán ban đầu ở [§2.2](#22-lỗi-b--tỉ-lệ-khung-sai-và--không-ai-gửi-nó-lên-api).
+
+⚠️ Nhưng **"nhận được ref" ⛔ KHÔNG bằng "dùng được ref"**: model càng bám ref giỏi thì trang càng hỏng. `qwen-image-edit-plus` bám mạnh nhất ⇒ dán nguyên 4 pose của hai sheet lên row 2, kể cả pose nhìn từ sau lưng và nền gradient đen.
+
+### b. `ImageSynthesis` — có kênh đúng, nhưng ⛔ không nạp được ảnh
+
+API `ImageSynthesis` (khác `MultiModalConversation`) **có đủ tham số mà bài toán cần**: `ref_img` tách khỏi `base_image_url`, cộng `ref_mode`, `ref_strength`, và `negative_prompt` **riêng**.
+
+⛔ Nhưng ⛔ không nạp được ảnh local vào đó:
+
+| Cách thử | Kết quả |
+|---|---|
+| `ref_img="file://<abs>"` | `InvalidParameter: url error` |
+| `images=["file://<abs>"]` | `InvalidParameter: url error` |
+| `ref_img` + `ref_mode="repaint"` | `InvalidParameter: url error` |
+| Upload qua `oss_utils.upload_file` rồi truyền `oss://...` | Upload ✅ thành công, nhưng call vẫn `InvalidParameter: url error` |
+
+⇒ Kênh reference đúng nghĩa **có tồn tại**, nhưng cần **URL công khai HTTP**. ⛔ Chưa thử: host ảnh ref ở nơi DashScope fetch được. Đó là đường còn mở.
+
+### c. Nói bằng chữ — ⛔ THẤT BẠI, và thất bại có ích
+
+Vì API ⛔ không có trường khai báo vai trò ảnh, đường còn lại là **nói bằng chữ**. Đã thêm khối `REFERENCE_IMAGES:` vào compiler, đặt ngay sau `STYLE:`.
+
+⛔ **Bản đầu tiên phản tác dụng.** Nó có một câu **tả tấm sheet** — *"a single character drawn several times from different angles, side by side on a plain empty backdrop"* — kèm mệnh đề `do_not_copy`. Kết quả trên `qwen-image-3.0-pro`: model **dán nguyên cả hai tấm sheet vào hai panel**, ba bản sao Bà Tư và ba bản sao Ma Lão trên nền gradient.
+
+> [!CAUTION]
+> ⭐ **Bài học: ⛔ TUYỆT ĐỐI không mô tả thứ mình ⛔ không muốn.** Model ⛔ không phân biệt *"thứ cần vẽ"* với *"thứ đừng vẽ"* — mọi thứ được tả đều là **vật liệu**. Em tả tấm sheet, model vẽ tấm sheet.
+>
+> Đây **đúng bài học đã ghi** ở [`refs/selection-log.md` §4](./refs/selection-log.md), khi prompt stage `refs` phải sửa từ lối phủ định sang lối khẳng định. Nó lặp lại ở tầng page.
+
+✅ **Có một thứ được cải thiện thật**: bản có khối `REFERENCE_IMAGES` ⛔ **hết chữ cháy vào ảnh**. Lần chạy `3.0-pro` trước đó vẽ luôn tọa độ `y` (`0.22`, `0.46`) thành caption trên trang; lần này sạch.
+
+**Bản thứ hai — viết thuần khẳng định, bỏ hết phần mô tả sheet — ⚠️ ⛔ CHƯA ĐO ĐƯỢC**: hết quota free tier giữa chừng (xem [§8.7](#87-chặn-hiện-tại--hết-quota)). Code đã vào, kết quả ⛔ chưa biết.
+
+### d. Còn lại gì
+
+| Đường | Trạng thái |
+|---|---|
+| Crop ref | ⛔ **Founder cấm** |
+| Tách panel sinh riêng | ⛔ **Founder cấm** (giữ `D-1`) |
+| Khối `REFERENCE_IMAGES` thuần khẳng định | ⚠️ Code đã có, ⛔ **chưa đo** |
+| `ImageSynthesis` + `ref_img` qua URL công khai | ⛔ Chưa thử — cần chỗ host ảnh |
+| Giữ `--no-refs` | ✅ Đang dùng, chương 1 đã sinh xong bằng đường này |
+
+## 8.7. Chặn hiện tại — hết quota
+
+> [!CAUTION]
+> ⛔ **`403 AllocationQuota.FreeTierOnly` — hết quota free tier ngày `2026-09-06`.**
+>
+> Nguyên văn: *"The free quota has been exhausted. To continue accessing the model on a paid basis, please complete your payment information (or disable the 'use free tier only' mode in the management console)."*
+>
+> ⇒ ⛔ **Không gọi thêm được API image nào** cho tới khi Founder xử lý ở Model Studio console. Mọi mục ⚠️ *"chưa đo"* ở trên bị chặn bởi đúng một việc này.
+
+⭐ Ghi chú đi kèm: toàn bộ số đo của MVP0 tới giờ chạy trên **free tier**, và `cost_usd` luôn là `null` vì `.env` thiếu `MVP0_IMAGE_PRICE_*`. Khi chuyển sang trả tiền, ⭐ **nên điền hai biến giá đó trước** — lúc đó `cost_status` mới ra `reference_price` và `E_hitl` mới hiệu chỉnh được bằng số thật.
+
 ## 9. Tài liệu tham khảo
 
 | Tài liệu | Liên quan gì |

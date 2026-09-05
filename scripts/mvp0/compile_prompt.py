@@ -279,7 +279,48 @@ def _negative_section(negative_constraints):
     return _join_lines(["NEGATIVE_CONSTRAINTS:", *lines]), dropped
 
 
-def compile_page(page_doc):
+def _reference_usage_section(conditioning_set, characters):
+    """Noi cho model biet anh dinh kem LA CAI GI va ⛔ KHONG duoc chep gi.
+
+    ⭐ Ly do khoi nay ton tai: API chi co MOT kenh anh, ⛔ khong co truong nao
+    khai bao vai tro cua anh. Do do vai tro phai duoc noi bang CHU. Do bang
+    anh that (`pages-stage-probe.md`): khi ⛔ khong noi gi, model chep ca bo
+    cuc cua character sheet — `qwen-image-edit-plus` dan nguyen 4 pose cua
+    hai sheet len row 2, ke ca pose nhin tu sau lung va nen gradient den.
+
+    ⚠️⚠️ VIET KHANG DINH, ⛔ TUYET DOI KHONG MO TA THU MINH KHONG MUON.
+    Ban dau khoi nay co mot cau ta tam sheet ("a single character drawn
+    several times from different angles, side by side on a plain empty
+    backdrop") kem menh de "do_not_copy". Ket qua do duoc: model ve DUNG cai
+    vua duoc ta — dan nguyen ca hai tam sheet vao hai panel. Model ⛔ khong
+    phan biet "thu can ve" voi "thu dung ve"; moi thu duoc ta deu la vat lieu.
+    Cung bai hoc da ghi o `selection-log.md` §3 khi sua prompt refs tu loi
+    phu dinh sang loi khang dinh.
+
+    Khoi nay dat NGAY SAU `STYLE:` — truoc moi mo ta noi dung — de vai tro
+    cua anh duoc xac lap truoc khi model doc den phan can ve.
+    """
+    if not conditioning_set:
+        return ""
+
+    named = [c.get("name") or c.get("id") for c in characters
+             if c.get("canonical_reference")]
+    order = "; ".join(f"image {i + 1} = {name}" for i, name in enumerate(named))
+
+    return _join_lines([
+        "REFERENCE_IMAGES:",
+        f"count: {len(conditioning_set)} attached image(s), in order: {order}.",
+        "use_them_for: the facial features, hairstyle, costume and colours of "
+        "that one character, wherever that character appears below.",
+        "every_panel_is_a_new_drawing: draw each character freshly, in the "
+        "pose, the shot size and the setting that the PANELS section gives "
+        "for that panel. Each character appears once per panel, integrated "
+        "into the scene, lit by the scene's own light.",
+        "the_page_layout_comes_from: the PAGE and PANELS sections below.",
+    ])
+
+
+def compile_page(page_doc, attach_references=True):
     """Serialize MOT page YAML (structure = mvp0/prompt-example.yaml) thanh
     (text_prompt, conditioning_set, dropped). ⛔ Khong LLM, ⛔ khong ngau nhien.
     """
@@ -293,8 +334,19 @@ def compile_page(page_doc):
     characters_by_id = {c["id"]: c for c in characters if c.get("id")}
 
     negative_section, dropped = _negative_section(negative_constraints)
+
+    # conditioning_set — thu tu THEO characters, identity reference ⛔ KHONG
+    # BAO GIO bi drop theo budget (`ADR-014`/`SRS-FR-18`).
+    conditioning_set = [c["canonical_reference"] for c in characters if c.get("canonical_reference")]
+    if not attach_references:
+        # ⭐ Chay `--no-refs`: ⛔ KHONG anh nao duoc dinh kem ⇒ khoi
+        # REFERENCE_IMAGES phai bien mat. Mo ta "2 anh dinh kem" khi thuc te
+        # ⛔ khong co anh nao la noi doi voi model — te hon la ⛔ khong noi gi.
+        conditioning_set = []
+
     sections = [
         _style_section(style),
+        _reference_usage_section(conditioning_set, characters),
         _page_section(page),
         _continuity_section(page.get("continuity", {})),
         _characters_section(characters),
@@ -303,9 +355,5 @@ def compile_page(page_doc):
         negative_section,
     ]
     text_prompt = "\n\n".join(s for s in sections if s)
-
-    # conditioning_set — thu tu THEO characters, identity reference ⛔ KHONG
-    # BAO GIO bi drop theo budget (`ADR-014`/`SRS-FR-18`).
-    conditioning_set = [c["canonical_reference"] for c in characters if c.get("canonical_reference")]
 
     return text_prompt, conditioning_set, dropped
