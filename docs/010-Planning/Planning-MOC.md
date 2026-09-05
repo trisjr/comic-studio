@@ -24,13 +24,39 @@ Tầng **010-Planning** chứa chiến lược, lịch trình và quản trị r
 
 > **Vì sao cả năm đều là `draft`, không phải `approved`.** Thẩm định ở [Analysis-Comic-Studio-Concept](../050-Research/Analysis-Comic-Studio-Concept.md) kết luận **ba việc phải làm trước dòng code đầu tiên**, trong đó có việc mang ba câu hỏi pháp lý tới luật sư SHTT Việt Nam. Một Charter `approved` khi các điều kiện chặn chưa được gỡ là tự tuyên bố sai. Chúng chuyển `approved` khi anh ra quyết định Go/No-Go, không phải khi chúng được viết xong.
 
+## Kế hoạch thực thi MVP1
+
+Ba tài liệu dưới đây biến cột *Effort ước tính: `TBD`* của [Roadmap](./Roadmap.md) mốc MVP1 thành một lịch có giờ, có thứ tự và có DoD.
+
+| # | Tài liệu | Nội dung | Trạng thái |
+|---|---|---|---|
+| 1 | [Plan-MVP1-Story-Intelligence](./Implementation-Plans/Plan-MVP1-Story-Intelligence.md) | Kế hoạch master `10/2026 – 12/2026`: phạm vi 26 story, ba nợ thừa kế, đường găng, van xả xếp sẵn, ánh xạ `M1-1`…`M1-7`. ⚠️ Kết luận: tải **386h / 384h capacity** — **⛔ không có đệm** | `draft` |
+| 2 | [WBS-MVP1](./Estimates/WBS-MVP1.md) | Phân rã giờ theo sprint, căn cứ của **7 ước lượng do PM đặt**, ba khoảng trống backlog, burn-down dự kiến | `draft` |
+| 3 | [Sprint-001](./Sprints/Sprint-001.md) … [Sprint-006](./Sprints/Sprint-006.md) | Mục tiêu, story, thứ tự, DoD và retro checklist từng sprint | `draft` |
+
+> ⚠️ **Hai điều phải biết trước khi đọc ba tài liệu trên.**
+>
+> 1. **`G1` chưa từng được đo.** MVP0 khép theo quyết định Founder `2026-09-05` với **0/5** tiêu chí có số ([`g1-verdict.md`](../../mvp0/golden-dataset/g1-verdict.md)) ⇒ MVP1 chạy trên một tiền đề **chưa kiểm chứng**, và nợ đó chuyển sang MVP3.
+> 2. **`G2` cuối Q4/2026 sẽ ra verdict `KHÔNG CHẠY ĐƯỢC`** — biết trước, ⛔ không phải rủi ro. Cả bốn tiêu chí `G2-a`…`G2-d` đòi dữ liệu image generation, mà MVP1 có `A1 = ⛔`.
+
+### Sprint MVP1
+
+| Sprint | Ngày | Chủ đề | Exit criteria trả |
+|---|---|---|---|
+| [001](./Sprints/Sprint-001.md) | `05/10` – `16/10` | Nền tenancy ⛔ không retrofit được | ⭐ `M1-1` |
+| [002](./Sprints/Sprint-002.md) | `19/10` – `30/10` | Cửa pháp lý & đường vào của dữ liệu | ⭐ `M1-4` |
+| [003](./Sprints/Sprint-003.md) | `02/11` – `13/11` | Provenance — bằng chứng ⛔ không thiếu ngẫu nhiên | `M1-5` (phần tồn tại) |
+| [004](./Sprints/Sprint-004.md) | `16/11` – `27/11` | Sổ cái sử dụng & ranh giới transaction | ⭐ `M1-5` (trọn vẹn) |
+| [005](./Sprints/Sprint-005.md) | `30/11` – `11/12` | Story Intelligence — ingest → extraction → timeline | ⭐ `M1-2` |
+| [006](./Sprints/Sprint-006.md) | `14/12` – `31/12` | Editor & eval kit + tuần gate `G2` | ⭐ `M1-3` · ⭐ `M1-6` |
+
 ## Thư mục con
 
 | Thư mục | Nội dung | Trạng thái |
 |---|---|---|
-| [Sprints/](./Sprints/) | `Sprint-{NNN}.md`, `Retro-Sprint-{NNN}.md` | *(chưa có tài liệu)* |
-| [Estimates/](./Estimates/) | WBS, ETA, Budget | *(chưa có tài liệu)* |
-| [Implementation-Plans/](./Implementation-Plans/) | `Plan-{Feature}.md` | *(chưa có tài liệu)* |
+| [Sprints/](./Sprints/) | `Sprint-{NNN}.md`, `Retro-Sprint-{NNN}.md` | 6 sprint MVP1 · *(chưa có retro)* |
+| [Estimates/](./Estimates/) | WBS, ETA, Budget | [WBS-MVP1](./Estimates/WBS-MVP1.md) · *(chưa có Budget)* |
+| [Implementation-Plans/](./Implementation-Plans/) | `Plan-{Feature}.md` | [Plan-MVP1-Story-Intelligence](./Implementation-Plans/Plan-MVP1-Story-Intelligence.md) |
 
 ## Run-state của PM
 
