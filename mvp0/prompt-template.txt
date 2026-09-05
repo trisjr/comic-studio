@@ -71,11 +71,21 @@ PAGE
     characters[].id · panels[].characters[].character_id ·
     typeset.dialogue[].speaker
 
+- Biến thể nhân vật (variant): trong story-bible.yaml, mỗi hình dạng của một
+  nhân vật (theo độ tuổi / timeline / biến thân) là MỘT entry `nhan_vat` riêng,
+  có `canonical_reference` riêng, gắn nhóm bằng `nhan_vat_goc`. Khi soạn page
+  YAML, CHARACTERS.id nhận VARIANT ID chứ không phải id nhân vật gốc.
+  Variant tính riêng như một nhân vật độc lập vào giới hạn <= 3 characters/page
+  (lint L08) và vào ngân sách 2-3 nhân vật lặp lại của G1-d; hai variant cùng
+  xuất hiện một trang phải có silhouette_cue khác nhau.
+
 - Mapping story-bible.yaml -> template (skill /mvp0-page-prompt chiếu 1:1,
   không qua LLM enhance trong script):
     nhan_vat[].id                              -> CHARACTERS.id
     nhan_vat[].ten_en                          -> CHARACTERS.name (prose dùng ten/ten_en)
-    nhan_vat[].vai_tro                          -> CHARACTERS.role
+    nhan_vat[].vai_tro_en                       -> CHARACTERS.role
+                                                  (vai_tro tiếng Việt chỉ dành cho
+                                                   người đọc bible, KHÔNG vào page YAML)
     nhan_vat[].canonical_reference               -> CHARACTERS.canonical_reference
     nhan_vat[].silhouette_cue_en                 -> CHARACTERS.silhouette_cue
     nhan_vat[].gioi_tinh / tuoi                  -> CHARACTERS.identity.gender / age
