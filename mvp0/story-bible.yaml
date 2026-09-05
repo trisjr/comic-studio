@@ -123,11 +123,28 @@ nhan_vat:
       dac_diem_rieng: "Ngọc bội chữ Tần đeo trước ngực trần, luôn nhìn thấy"
     canonical_reference: "mvp0/refs/tan_muc_thieu_nien.png"
     canonical_reference_en:
-      khuon_mat: "Delicate handsome boyish face, clear brows, fair skin"
+      # ⭐ Tuổi phải nằm TRONG 5 khóa này. `character_sheet_prompt` chỉ đọc
+      # khuon_mat/mat/toc/trang_phuc/dac_diem_rieng — nó KHÔNG đọc `tuoi` hay
+      # `body_type_relative_en`. Bản cũ chỉ có chữ "boyish" và model vẽ ra thanh
+      # niên 18–20 ở cả 3/3 candidate; `tan_muc_so_sinh` ra đúng vì khuon_mat của
+      # nó viết thẳng "newborn". Bỏ "handsome" vì đó là từ mã hoá người lớn trong
+      # khung anime model sheet — "Mi thanh mục tú" vốn nghĩa là nét thanh tú.
+      # ⭐ Vòng 1 sửa xong thì quá đà: ra ~7–8 tuổi. Lúc đó NGHI mệnh đề "head large
+      # relative to a short slim body" là thủ phạm, nên vòng 2 thay nó bằng NEO CHIỀU
+      # CAO lấy từ `chieu_cao_the_trang` ("cao ngang vai người lớn").
+      # ⛔ VÒNG 2 BÁC BỎ NGHI VẤN ĐÓ: bỏ hẳn mệnh đề tỉ lệ đầu mà tỉ lệ không đổi
+      # (g1-verdict.md §4.2b) ⇒ mốc 11 tuổi là lỗi LOẠI 2. Vẫn GIỮ chữ này vì tầng
+      # `pages` vẽ cảnh nhiều nhân vật, ở đó một mốc so sánh chiều cao có ích, còn
+      # "head large" sẽ đẩy nét chibi vào trang truyện.
+      # ⚠️ `mvp0/refs/tan_muc_thieu_nien.png` sinh ra từ chữ VÒNG 1, không phải chữ
+      # dưới đây — chạy lại `refs` sẽ KHÔNG cho ra đúng tấm ảnh đó. Khác biệt chỉ ở
+      # mệnh đề tỉ lệ; mặt/tóc/trang phục (thứ `reference_instruction` ràng buộc)
+      # giống nhau ở cả hai vòng.
+      khuon_mat: "Face of an eleven-year-old boy, soft rounded cheeks, small chin, fine delicate features, clear brows, fair skin"
       mat: "Bright dark eyes with clean thin eyebrows"
       toc: "Black hair loosely tied at the nape, several strands falling over the forehead"
-      trang_phuc: "Pale brown coarse hemp tunic worn half-open, cloth waist belt, bare feet"
-      dac_diem_rieng: "Pale jade pendant on a cord, worn openly on the bare chest"
+      trang_phuc: "Child-sized pale brown coarse hemp tunic worn half-open, cloth waist belt, bare feet"
+      dac_diem_rieng: "Pale jade pendant on a cord, worn openly on the slight narrow-shouldered bare chest of an eleven-year-old boy, a slim child standing about shoulder-high to an adult"
     silhouette_cue_en:
       "half-open pale brown hemp tunic over a bare chest, jade pendant on a cord,
        hair loosely tied at the nape"
