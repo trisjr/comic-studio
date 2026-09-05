@@ -90,13 +90,24 @@ def append_jsonl(path, record):
 
 
 def character_sheet_prompt(entity):
-    """Prompt sinh character sheet — deterministic, ⛔ khong LLM."""
+    """Prompt sinh character sheet — deterministic, ⛔ khong LLM.
+
+    Dung `BASE_STYLE_CORE` chu ⛔ KHONG dung `BASE_STYLE` (= BASE_STYLE_CHARACTER):
+    ban CHARACTER duoc soan cho panel truyen nen ket thuc bang "NOT a character
+    model sheet, NOT multiple angle views, NOT standing on blank white background"
+    — dung nguyen van o day thi prompt tu phu dinh dong model-sheet ngay ke tiep.
+    CORE chi mang art direction, ⛔ khong mang rang buoc khung hinh.
+
+    Ten nhan vat lay `ten_en`: prompt gui cho image model la tieng Anh, ten tieng
+    Viet co dau lot vao lam nhieu token.
+    """
     ref = entity.get("canonical_reference_en") or entity["canonical_reference"]
     strip = compile_prompt.strip_meta
+    name = entity.get("ten_en") or entity["ten"]
     parts = [
-        compile_prompt.BASE_STYLE,
+        compile_prompt.BASE_STYLE_CORE,
         "2D anime character design model sheet, multiple angle views, clean neutral background, front view and three-quarter view, pure 2D anime drawing, flat cel shading",
-        f"{entity['ten']}: {strip(ref['khuon_mat'])} {strip(ref['mat'])} {strip(ref['toc'])} {strip(ref['trang_phuc'])}",
+        f"{name}: {strip(ref['khuon_mat'])} {strip(ref['mat'])} {strip(ref['toc'])} {strip(ref['trang_phuc'])}",
     ]
     if "dac_diem_rieng" in ref:
         parts.append(strip(ref["dac_diem_rieng"]))
