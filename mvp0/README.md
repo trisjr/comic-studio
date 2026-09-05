@@ -90,19 +90,21 @@ python3 scripts/mvp0/run_mvp0.py refs
 
 ### 6. Sinh Trang (Stage `pages`)
 
-> [!CAUTION]
-> ⛔ **CHẶN — ⛔ không chạy bước này cho cả chương.** Probe `ch01_page001` ngày `2026-09-05` cho thấy `qwen-image-edit` đang coi ảnh ref là **ảnh gốc cần edit**, nên trả về **một tấm minh họa cảnh đơn** theo đúng tỉ lệ ảnh ref (`1.79`), ⛔ **không phải** trang nhiều panel dọc `2:3`.
+> [!IMPORTANT]
+> ⭐ **Chạy stage này với `--no-refs`.** Founder chốt ngày `2026-09-05`: model là `qwen-image-2.0-pro-2026-06-22`, và **các panel PHẢI nằm trong MỘT ảnh**.
 >
-> ⇒ Đọc [`pages-stage-probe.md`](./pages-stage-probe.md) trước. Bước này chỉ mở lại sau khi mục 1 ở §6 của báo cáo đó được Founder chốt.
+> Khi **có** đính ref, model nhân bản chủ thể trong ảnh ref và sinh thừa panel (6 row / 11 panel thay vì 4 row / 5 panel). Khi **⛔ không** đính ref, nó dựng đúng khổ trang. Số đo đối chứng ở [`pages-stage-probe.md` §8.2](./pages-stage-probe.md).
+>
+> ⚠️ Hệ quả đã biết: `mvp0/refs/*.png` ⛔ **không** được dùng ở stage này ⇒ nhân vật chỉ neo bằng chữ, và trang phục có thể đổi giữa các panel. Đó là **số đo `G1-a`**, ⛔ không phải lỗi.
 
 Thăm dò trước một vài trang rủi ro:
 ```bash
-python3 scripts/mvp0/run_mvp0.py pages --dry-run
-python3 scripts/mvp0/run_mvp0.py pages --page ch01_page001 -n 3
+python3 scripts/mvp0/run_mvp0.py pages --dry-run --no-refs
+python3 scripts/mvp0/run_mvp0.py pages --no-refs --page ch01_page001 -n 3
 ```
 Sau đó chạy toàn bộ chương:
 ```bash
-python3 scripts/mvp0/run_mvp0.py pages -n 3
+python3 scripts/mvp0/run_mvp0.py pages --no-refs -n 3
 ```
 Output nằm ở `mvp0/run-pages-<timestamp>/`: `prompts/<page_id>.txt` (prompt tiếng Anh **paste-ready**, cũng dùng tay được để thử trong Gemini), `candidates/<page_id>-c<k>.png`, `usage.jsonl` (mỗi dòng là 1 candidate trang, có `page_id` + `panel_indices`), `results.jsonl`, `refusals.jsonl`, `dropped_constraints.jsonl`.
 

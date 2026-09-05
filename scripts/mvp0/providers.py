@@ -65,8 +65,17 @@ import urllib.request
 # Singapore — moi dong san pham pin snapshot MOI NHAT dang liet ke. Cac run
 # truoc ngay nay (refs + probe) chay tren ALIAS — usage.jsonl cua chung ghi
 # alias, ⛔ khong sua hoi to.
-IMAGE_T2I_MODEL_ID = "qwen-image"
-IMAGE_EDIT_MODEL_ID = "qwen-image-edit"
+# ⭐ `qwen-image-2.0-pro-2026-06-22` — Founder chi dinh 2026-09-05, thay cho
+# alias `qwen-image`. Da VERIFY co that tren account: GET /compatible-mode/v1
+# /models region Singapore liet ke dung id nay. Snapshot dated ⇒ thoa `IP-C3`.
+#
+# ⭐ Model nay NHAN duoc anh dau vao — da verify bang mot loi goi that
+# (`status_code 200`, tra ve `image`). ⇒ dung CHUNG mot model cho ca hai
+# duong, ⛔ khong con tach t2i/edit. Ly do giu hai hang so: `generate_candidate`
+# van route theo "co ref hay ⛔ khong", va `IMAGE_PRICE_ENV_BY_MODEL` van tra
+# ve dung bien gia cho model dang chay.
+IMAGE_T2I_MODEL_ID = "qwen-image-2.0-pro-2026-06-22"
+IMAGE_EDIT_MODEL_ID = "qwen-image-2.0-pro-2026-06-22"
 VLM_MODEL_ID = "qwen3-vl-plus-2025-12-19"
 
 # Region Singapore — key Bac Kinh ⛔ KHONG dung duoc voi hai endpoint nay
@@ -82,6 +91,14 @@ IMAGE_PRICE_ENV_BY_MODEL = {
     IMAGE_T2I_MODEL_ID: "MVP0_IMAGE_PRICE_T2I_USD",
     IMAGE_EDIT_MODEL_ID: "MVP0_IMAGE_PRICE_EDIT_USD",
 }
+
+
+def _price_env_name(model_id):
+    """⭐ `.get` chu ⛔ khong `[]`: khi hai hang so model TRUNG nhau, dict tren
+    chi con MOT khoa. Doi model ma quen sua dict ⇒ tra None, ⛔ khong crash va
+    ⛔ khong bao gio bia gia. `cost_status` se danh dau thieu, dung `SRS §5.2`.
+    """
+    return IMAGE_PRICE_ENV_BY_MODEL.get(model_id)
 
 
 class ProviderRefusal(Exception):
@@ -101,7 +118,8 @@ def _reference_price_usd(model_id):
     `cost_usd` ghi lai phai la THUC DO khi co (`D-59`). Thieu gia thi tra
     null — "chua biet" ⛔ khong phai "mien phi", ⛔ KHONG BAO GIO tra 0.
     """
-    raw = os.environ.get(IMAGE_PRICE_ENV_BY_MODEL[model_id], "").strip()
+    env_name = _price_env_name(model_id)
+    raw = os.environ.get(env_name, "").strip() if env_name else ""
     return float(raw) if raw else None
 
 
@@ -135,17 +153,24 @@ def _download(url):
         return handle.read()
 
 
-def _call_image_api(model_id, content):
+def _call_image_api(model_id, content, size=None):
     """Mot loi goi native DashScope, ⛔ khong retry ben trong.
 
     prompt_extend=False: mac dinh provider bat LLM viet lai prompt — tat de
     `G1` do prompt cua compiler TA, dung tinh than deterministic `D-34`.
     watermark=False: anh vao golden dataset phai sach watermark.
+
+    ⭐ `size` PHAI gui tuong minh. Probe `ch01_page001` ngay 2026-09-05 chung
+    minh: khi ⛔ khong gui `size`, output echo dung ti le ANH REF dau vao
+    (ref 1664x928 = 1.793 → output 1376x768 = 1.792) trong khi page YAML doi
+    2:3. Hai truong `aspect_ratio`/`target_resolution` nam trong prompt duoi
+    dang CHU ⇒ model ⛔ khong tuan theo. Chi tiet: `mvp0/pages-stage-probe.md`.
     """
     import dashscope
     from dashscope import MultiModalConversation
 
     dashscope.base_http_api_url = DASHSCOPE_NATIVE_BASE_URL
+    optional = {"size": size} if size else {}
     return MultiModalConversation.call(
         api_key=_api_key(),
         model=model_id,
@@ -154,10 +179,11 @@ def _call_image_api(model_id, content):
         n=1,
         prompt_extend=False,
         watermark=False,
+        **optional,
     )
 
 
-def generate_candidate(text_prompt, reference_images, candidate_index):
+def generate_candidate(text_prompt, reference_images, candidate_index, size=None):
     """Adapter ANH — sinh DUNG MOT candidate. Goi N lan de co N candidate.
 
     Tra ve dict: bytes anh + metadata bat buoc cua `D-40`/`D-59`.
@@ -168,7 +194,7 @@ def generate_candidate(text_prompt, reference_images, candidate_index):
     model_id = IMAGE_EDIT_MODEL_ID if reference_images else IMAGE_T2I_MODEL_ID
 
     started = time.time()
-    response = _call_image_api(model_id, content)
+    response = _call_image_api(model_id, content, size=size)
     _raise_unless_ok(response)
 
     image_url = _first_image_url(response)
@@ -182,6 +208,8 @@ def generate_candidate(text_prompt, reference_images, candidate_index):
         "image_bytes": image_bytes,
         "model_id": model_id,
         "model_version": None,
+        "requested_size": size,
+        "reference_count": len(reference_images),
         "request_id": getattr(response, "request_id", None),
         "latency_s": round(time.time() - started, 2),
         "cost_usd": price_usd,
@@ -189,25 +217,48 @@ def generate_candidate(text_prompt, reference_images, candidate_index):
     }
 
 
-VLM_RUBRIC = """Bạn đang chấm {n} ứng viên ảnh cho CÙNG một panel truyện tranh.
+VLM_RUBRIC = """Bạn đang chấm {n} ứng viên ảnh cho CÙNG một TRANG truyện tranh
+(một trang gồm NHIỀU panel, xếp thành các row ngang).
 Ứng viên đánh số 0-based THEO THỨ TỰ ảnh đưa vào: ảnh đầu tiên là candidate 0,
 ảnh cuối cùng là candidate {n_minus_1}. Mọi chỉ số trong JSON trả về PHẢI dùng
 đúng hệ đánh số này.
 
-Đặc tả panel:
+Đặc tả trang:
 {spec}
 
-Với MỖI ứng viên, chấm hai trục ĐỘC LẬP:
-1. identity — có đúng (các) nhân vật theo mô tả không?
-2. attribute_binding — trang phục và vật phẩm có gắn ĐÚNG người không?
+Với MỖI ứng viên, chấm NĂM trục ĐỘC LẬP. Chấm từng trục riêng, KHÔNG gộp:
+
+1. layout — ảnh có đúng số panel và đúng số row như khối `PAGE` ghi không?
+   ĐẾM panel thực tế trong ảnh rồi so với con số ở `panel_count`. Lệch một
+   panel cũng là `false`. Một tấm minh họa cảnh đơn KHÔNG có khung panel là
+   `false` tuyệt đối.
+2. aspect_ratio — khung ảnh có đúng `aspect_ratio` trong đặc tả không?
+3. no_text — trong ảnh có BẤT KỲ chữ, ký tự, bong bóng thoại, caption hay
+   chữ tượng thanh nào không? Chữ Hán, chữ Latin, chữ trên biển hiệu, nhãn
+   hàng hóa đều tính. Chỉ `true` khi ảnh SẠCH chữ hoàn toàn.
+4. identity — có đúng (các) nhân vật theo mô tả không, và có GIỮ NGUYÊN
+   qua mọi panel họ xuất hiện không (tóc, trang phục, phụ kiện)?
+5. constraints — có vi phạm bất kỳ dòng nào trong khối `NEGATIVE_CONSTRAINTS`
+   không? ĐỌC LẠI từng dòng của khối đó rồi soi ảnh. Chỉ `true` khi KHÔNG
+   vi phạm dòng nào.
+
+Kèm theo: attribute_binding — trang phục và vật phẩm có gắn ĐÚNG người không?
 
 Trả về JSON: {{"ranking": [chỉ số ứng viên, tốt nhất trước],
 "verdicts": [{{"candidate_index": int, "verdict": "pass"|"fail"|"unclear",
-"identity_ok": bool, "attribute_binding_ok": bool, "reason": "một câu",
-"confidence": 0.0-1.0}}]}}
+"layout_ok": bool, "panel_count_seen": int, "aspect_ratio_ok": bool,
+"no_text_ok": bool, "identity_ok": bool, "attribute_binding_ok": bool,
+"constraints_ok": bool, "violations": ["dòng constraint bị vi phạm"],
+"reason": "một câu", "confidence": 0.0-1.0}}]}}
+
+`verdict` chỉ được là "pass" khi CẢ `layout_ok`, `no_text_ok` và
+`constraints_ok` đều `true`. Một ảnh sai layout hoặc có chữ thì KHÔNG BAO GIỜ
+là "pass", dù nhân vật vẽ đẹp đến đâu.
 
 QUAN TRỌNG: "unclear" là giá trị HẠNG NHẤT. Khi không chắc, hãy trả "unclear" —
-TUYỆT ĐỐI KHÔNG ép nó thành "pass" hay "fail"."""
+TUYỆT ĐỐI KHÔNG ép nó thành "pass" hay "fail". Và ĐỪNG khẳng định một chi tiết
+bạn không thực sự nhìn thấy trong ảnh: nếu không soi rõ tay/vật phẩm của một
+nhân vật, hãy nói "unclear", KHÔNG suy ra từ đặc tả."""
 
 
 def score_candidates(candidate_images, panel_spec_text):

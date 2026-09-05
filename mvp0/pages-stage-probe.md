@@ -2,12 +2,13 @@
 
 # Probe stage `pages` — `ch01_page001` · Báo cáo chặn
 
-> [!CAUTION]
-> ⛔ **KHÔNG chạy `run_mvp0.py pages` cho cả chương cho tới khi hai lỗi ở [§2](#2-hai-lỗi-chặn) được đóng.**
+> [!NOTE]
+> ✅ **Lỗi chặn ĐÃ ĐÓNG ngày `2026-09-05`** bằng cách đổi model — xem [§7](#7-quyết-định-của-founder--đổi-model) và [§8](#8-kết-quả-sau-khi-đổi-model--qwen-image-20-pro-2026-06-22). Chương 1 đã sinh xong **33/33 ảnh** đúng khổ trang.
 >
-> Probe 3 ảnh đã chứng minh: stage `pages` hiện ⛔ **không sinh ra trang truyện**. Chi 33 call còn lại sẽ mua về 33 tấm minh họa đơn sai tỉ lệ — ⛔ không dùng chấm `G1` được.
+> §1–§6 dưới đây giữ nguyên làm **hồ sơ chẩn đoán**: chúng ghi lại vì sao cấu hình cũ hỏng và bằng chứng nào dẫn tới quyết định đổi model. ⛔ Không đọc §1–§6 như trạng thái hiện tại.
 
-**Ngày probe**: `2026-09-05` · **Run**: `mvp0/run-pages-20260905-223242` · **Chi phí**: 3 image call + 1 VLM call · **Refusal**: 0
+**Probe chẩn đoán**: `2026-09-05` · run `mvp0/run-pages-20260905-223242` · 3 image call · 0 refusal
+**Run chương 1**: `2026-09-05` · run `mvp0/run-pages-20260905-231040` · 33 image call · 0 refusal
 
 ## Mục lục
 
@@ -18,7 +19,12 @@
 - [5. Hệ quả cho `g1-verdict.md` §4.3](#5-hệ-quả-cho-g1-verdictmd-43)
 - [6. Việc phải làm trước khi chạy lại](#6-việc-phải-làm-trước-khi-chạy-lại)
   - [6.1. Ba hướng cho mục 1](#61-ba-hướng-cho-mục-1)
-- [7. Tài liệu tham khảo](#7-tài-liệu-tham-khảo)
+- [7. Quyết định của Founder — đổi model](#7-quyết-định-của-founder--đổi-model)
+- [8. Kết quả sau khi đổi model](#8-kết-quả-sau-khi-đổi-model--qwen-image-20-pro-2026-06-22)
+  - [8.2. Vì sao chốt `--no-refs`](#82-vì-sao-chốt---no-refs--số-đo--không-phải-cảm-tính)
+  - [8.4. Số đo run chương 1](#84-số-đo-run-chương-1--mvp0run-pages-20260905-231040)
+  - [8.5. Ba việc còn lại](#85-ba-việc-còn-lại-xếp-theo-mức-nặng)
+- [9. Tài liệu tham khảo](#9-tài-liệu-tham-khảo)
 
 ---
 
@@ -152,7 +158,88 @@ Bảng §4.3 hỏi *"tầng `pages` có sửa được lỗi loại 2 ⛔ không
 > [!NOTE]
 > ⛔ **Ngưỡng `G1` ⛔ KHÔNG đổi.** [`threshold-signoff.md`](./threshold-signoff.md) đã ký `2026-09-05` và probe này ⛔ không chạm vào. Đây là lỗi **đường ống**, ⛔ không phải kết quả đo.
 
-## 7. Tài liệu tham khảo
+## 7. Quyết định của Founder — đổi model
+
+| | |
+|---|---|
+| **Ngày** | `2026-09-05` |
+| **Người quyết** | **TrisJr (Founder)** — chỉ đạo trực tiếp trong phiên, ghi nhận bởi TNMCORE-OS |
+| **Nội dung** | Đổi sang **`qwen-image-2.0-pro-2026-06-22`** và sinh lại chương 1 |
+| **Ràng buộc kèm theo** | ⭐ **Các panel PHẢI nằm trong MỘT ảnh** — ⛔ tuyệt đối không tách từng panel sinh riêng lẻ |
+
+⇒ Ràng buộc này **loại hướng B** ở [§6.1](#61-ba-hướng-cho-mục-1) và **giữ nguyên `D-1`** (đơn vị sinh ảnh cấp trang). Kết quả thực thi ở [§8](#8-kết-quả-sau-khi-đổi-model--qwen-image-20-pro-2026-06-22).
+
+## 8. Kết quả sau khi đổi model — `qwen-image-2.0-pro-2026-06-22`
+
+> [!IMPORTANT]
+> ✅ **Lỗi chặn ở [§2](#2-hai-lỗi-chặn) ĐÃ ĐÓNG.** Founder chỉ định đổi model ngày `2026-09-05`. Chương 1 đã sinh xong: **33/33 ảnh, đúng `1024x1536`, 0 refusal**, và ⛔ **không còn tấm minh họa cảnh đơn nào** — mọi ảnh đều là trang có khung panel.
+>
+> ⇒ Hướng **D** ở [§6.1](#61-ba-hướng-cho-mục-1) trở thành **vô nghĩa** — ⛔ không cần canvas kẻ sẵn nữa. Hướng **A/B/C** cũng khép lại: đường thắng là *model mới + `size` tường minh + ⛔ không đính ref*.
+
+### 8.1. Ba thay đổi đã làm
+
+| # | Thay đổi | Vì sao |
+|:-:|---|---|
+| 1 | `IMAGE_T2I_MODEL_ID` và `IMAGE_EDIT_MODEL_ID` → `qwen-image-2.0-pro-2026-06-22` | Founder chỉ định. ✅ **Đã verify id có thật** trên account qua `GET /compatible-mode/v1/models` (165 model) — snapshot có ngày ⇒ thỏa `IP-C3` |
+| 2 | Gửi `size` tường minh lên API, lấy từ `page.target_resolution` | Đóng lỗi B. Ảnh ra `1024x1536` thay vì `1376x768` |
+| 3 | Cờ `--no-refs` cho stage `pages` | Để **đo được** cả hai cách nối ref thay vì đoán |
+
+### 8.2. Vì sao chốt `--no-refs` — số đo, ⛔ không phải cảm tính
+
+Model mới ✅ **có** nhận ảnh đầu vào (verify bằng 1 call thật, `status_code 200`). Nên cả hai cấu hình đều chạy được, và cả hai đã được probe với cùng `size`, cùng prompt, mỗi bên 1 call:
+
+| | `--no-refs` (run `230610`) | Có ref (run `230813`) | Đặc tả |
+|---|---|---|---|
+| Row / panel | **4 row / 8 panel** | 6 row / 11 panel | 4 row / 5 panel |
+| Khung hình | ✅ `1024x1536` | ✅ `1024x1536` | `1024x1536` |
+| Lỗi riêng | Trang phục `tu_ba_ba` đổi màu (tím → cam) | ⛔ **Row 3–4 lặp lại gần y hệt nhau** | — |
+
+⭐ **Cấu hình có ref thua ở chính tiêu chí Founder đặt ra.** Việc row 3–4 nhân đôi là dấu vết còn lại của hành vi *edit*: model vẫn nhân bản chủ thể trong ảnh ref thay vì dựng cảnh mới. Trang phục nhất quán hơn ⛔ không bù được 6 panel thừa.
+
+> [!WARNING]
+> ⚠️ **Cái giá đã biết của `--no-refs`: `mvp0/refs/*.png` ⛔ KHÔNG còn được dùng ở stage `pages`.** Nhân vật chỉ còn neo bằng chữ. Trang phục `tu_ba_ba` đổi tím → cam ngay trong một trang là biểu hiện trực tiếp.
+>
+> ⇒ Đây sẽ là **số đo `G1-a`**, ⛔ **không phải** lỗi đường ống — và nó ⛔ không được lẫn với các sai lệch tầng ref ở [`g1-verdict.md` §4.2](./golden-dataset/g1-verdict.md), vốn giờ đã **⛔ không còn liên quan** tới ảnh trang.
+
+### 8.3. Hai thay đổi phụ, làm TRƯỚC khi bắn 33 call
+
+**a. Compiler đếm hộ, ⛔ không bắt model đếm.** Khối `PAGE` cũ liệt kê `panels: panel_02, panel_03` — một **danh sách phải đếm**. Giờ ghi thẳng con số:
+
+```
+panel_count: exactly 5 panels on this page, laid out in exactly 4 horizontal rows.
+row 2: y 0.22 to 0.46, exactly 2 panel(s): panel_02, panel_03
+```
+
+Kết quả trên `ch01_page001`: **8 panel → 6 panel** (đặc tả 5). ⇒ Có tác dụng, ⛔ **chưa đủ**.
+
+**b. `VLM_RUBRIC` viết lại sang cấp page.** Rubric cũ hỏi 2 trục và mở đầu bằng *"chấm ứng viên cho CÙNG một **panel**"*. Rubric mới hỏi **5 trục** — `layout` (bắt **đếm** panel thực tế), `aspect_ratio`, `no_text`, `identity`, `constraints` (bắt **đọc lại từng dòng** `NEGATIVE_CONSTRAINTS`) — và chặn cứng: `verdict` ⛔ **không được** là `pass` nếu sai layout hoặc có chữ.
+
+### 8.4. Số đo run chương 1 — `mvp0/run-pages-20260905-231040`
+
+| Đại lượng | Giá trị |
+|---|---|
+| Ảnh sinh | **33/33** · 0 refusal · 0 dropped constraint |
+| Kích thước | **33/33** đúng `1024x1536` |
+| Verdict VLM | `pass` **7** · `fail` **10** · `unclear` **16** |
+| `layout_ok` | **12/33** candidate · **6/11** trang có ít nhất 1 candidate đạt |
+| `no_text_ok` | **30/33** — chỉ `ch01_page005` dính, cả 3/3 |
+| `constraints_ok` | **12/33** |
+| `identity_ok` | **25/33** |
+
+> [!CAUTION]
+> ⚠️ **⛔ KHÔNG chép bảng này vào `scoring-sheet.csv`.** Đây là **số của máy**, và VLM vẫn sai: trang `ch01_page001` được chấm `layout_ok` với `panel_count_seen: 5`, nhưng soi mắt thấy **6 panel** (row 4 ra 2 panel, đặc tả 1). ⇒ Rubric mới **tốt hơn nhiều** nhưng ⛔ **chưa phải** thước đo thay được người. `G1` vẫn chấm bằng mắt.
+
+### 8.5. Ba việc còn lại, xếp theo mức nặng
+
+| # | Vấn đề | Bằng chứng | Ghi chú |
+|:-:|---|---|---|
+| 1 | ⛔ **Model vẽ text của prompt vào ảnh** | `ch01_page005` **3/3** candidate có caption kiểu *"Panel 21: Granny…"*, thậm chí cả đoạn spec *"age 70; body_type…"* | ⚠️ Vi phạm `G1-e` nặng nhất từ trước tới nay. Nghi vấn: prompt trang này dài nhất nhóm và nhãn `panel_NN` bị đọc thành **chữ cần vẽ** |
+| 2 | ⚠️ Layout vẫn lệch | 12/33 candidate đạt; `page001` ra 6 panel thay vì 5 | Đã cải thiện lớn nhờ [§8.3a](#83-hai-thay-đổi-phụ-làm-trước-khi-bắn-33-call), ⛔ chưa đóng |
+| 3 | ⚠️ Trang phục đổi giữa các panel | `tu_ba_ba` tím → cam ngay trong `page001` | Hệ quả đã biết của `--no-refs` — là **số đo `G1-a`**, ⛔ không phải bug |
+
+⭐ **Bước người làm tiếp theo**: soi 33 ảnh bằng mắt, chọn candidate mỗi trang, `crop_page.py`, rồi mới chấm `scoring-sheet.csv`. ⛔ Máy ⛔ không làm thay bước này.
+
+## 9. Tài liệu tham khảo
 
 | Tài liệu | Liên quan gì |
 |---|---|

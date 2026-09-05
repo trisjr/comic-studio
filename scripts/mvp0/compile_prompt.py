@@ -163,12 +163,25 @@ def _page_section(page):
         _field("overall_mood", page.get("overall_mood")),
     ]
     layout = page.get("layout") or {}
+    rows = layout.get("rows", [])
+
+    # ⭐ Dem TUONG MINH thay vi de model dem lay danh sach ten panel. Probe
+    # `ch01_page001` tren `qwen-image-2.0-pro` ra 8 panel thay vi 5: dung 4
+    # row nhung row 2 ve 3 panel (dac ta 2) va row 4 ve 3 panel (dac ta 1).
+    # Danh sach `panel_02, panel_03` la thu model phai DEM; mot con so thi
+    # ⛔ khong phai. Chi tiet: `mvp0/pages-stage-probe.md`.
+    total_panels = sum(len(row.get("panels", [])) for row in rows)
+    if total_panels:
+        lines.append(f"panel_count: exactly {total_panels} panels on this page, "
+                     f"laid out in exactly {len(rows)} horizontal rows.")
     if layout.get("dominant_panel"):
         lines.append(_field("dominant_panel", layout["dominant_panel"]))
-    for row in layout.get("rows", []):
-        panel_list = ", ".join(row.get("panels", []))
+    for row in rows:
+        panels = row.get("panels", [])
+        panel_list = ", ".join(panels)
         lines.append(f"row {row.get('row')}: y {row.get('y')} to "
-                     f"{round(row.get('y', 0) + row.get('h', 0), 3)}, panels: {panel_list}")
+                     f"{round(row.get('y', 0) + row.get('h', 0), 3)}, "
+                     f"exactly {len(panels)} panel(s): {panel_list}")
     return _join_lines(["PAGE:", *lines])
 
 
