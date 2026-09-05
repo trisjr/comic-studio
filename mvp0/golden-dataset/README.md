@@ -113,10 +113,10 @@ mvp0/golden-dataset/
 4. **Thêm một dòng** vào [`scoring-sheet.csv`](./scoring-sheet.csv). Đủ 13 cột.
 5. Trả lời câu readability **ngay lúc này**, ⛔ không hoãn — xem [mục 1](#1-vì-sao-bảng-chấm-phải-tồn-tại-trước-tấm-ảnh-đầu-tiên) lý do 2.
 
-**Ví dụ một dòng** (panel 16 — 3 nhân vật, ca khó nhất):
+**Ví dụ một dòng** (panel nhiều nhân vật — ca khó có attribute binding):
 
 ```csv
-2026-09-02T21:30+07:00,16,run-panels-ch1-20260902-213000,3,1,consistent,pass,ok,wrong,na,readable,0,"Vat pham gan sai nguoi: chuoi hat cua lam_uyen sang nhan vat ben canh"
+2026-09-04T21:30+07:00,10,run-panels-ch1-20260904-213000,3,1,consistent,pass,ok,wrong,na,readable,0,"Vat pham gan sai nguoi: vu khi cua nhan vat chinh sang nhan vat ben canh"
 ```
 
 ⭐ Đọc dòng trên: panel này `g1c_human_verdict=pass` nhưng `g1d_attribute_binding=wrong` — **hai trục độc lập**, và đó là lý do `G1-d` chấm riêng khỏi `G1-c`.
