@@ -115,15 +115,16 @@ characters:
       body_type: "adult cow, back tall enough for Qin Mu at eleven to sit on comfortably"
 
     appearance:
-      hair: "short dull tan-and-cream hide, a coarse tuft running along the neck"
+      hair: "short hide in dull tan and dirty cream patches only, a coarse tuft running along the neck"
       eyes: "large wet dark cow eyes carrying visible human sorrow"
       face: "bovine head with a broad muzzle and an unnaturally human, tearful expression"
       distinctive_features:
+        - "a full-bodied four-legged cow standing on all fours"
         - "short blunt horns"
-        - "the hide hangs slightly loose, as if hollow underneath"
+        - "the hide hangs slightly loose over the frame, as if hollow underneath"
 
     outfit:
-      - "no garment; only a braided cloth nose rope"
+      - "bare hide, wearing only a braided cloth nose rope through the muzzle"
 
     personality: "pleading, manipulative, carrying eleven years of stored resentment"
 

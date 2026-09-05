@@ -160,7 +160,9 @@ nhan_vat:
       mat: "Narrow dark eyes under heavy white brows"
       toc: "Short cropped white hair under a brown cloth headband"
       trang_phuc: "Earth-brown coarse work tunic, the empty left sleeve knotted up at the shoulder"
-      dac_diem_rieng: "Left arm missing entirely at the shoulder, the remaining right arm unusually thick and muscular"
+      # ⭐ Viết theo lối KHẲNG ĐỊNH — tả cái CÓ, không tả cái thiếu. Bản cũ dùng
+      # "Left arm missing entirely" và model vẽ ra đủ hai tay kèm khúc xương rời.
+      dac_diem_rieng: "A single right arm, unusually thick and heavily muscled; on his left side the tunic shoulder is a smooth rounded seam with the empty sleeve knotted shut flat against it"
     silhouette_cue_en:
       "empty left sleeve knotted at the shoulder, one thick right arm,
        earth-brown work tunic"
@@ -193,7 +195,7 @@ nhan_vat:
       mat: "Warm crinkled eyes"
       toc: "Salt-and-pepper hair gathered into a small topknot"
       trang_phuc: "Dark moss-green cloth robe, wide trousers with the right leg tied off below the knee"
-      dac_diem_rieng: "Right leg missing below the knee, plain wooden walking staff, a single broad saber slung across the back"
+      dac_diem_rieng: "His right trouser leg is folded up at the knee and tied shut with cord, ending in a smooth rounded stump; he carries his weight on a plain wooden walking staff, a single broad saber slung across his back"
     silhouette_cue_en:
       "right trouser leg tied off below the knee, plain wooden staff,
        broad saber slung across the back"
@@ -226,7 +228,7 @@ nhan_vat:
       mat: "Half-closed pale eyes with a steady gaze"
       toc: "Long loose white hair spread across the stretcher"
       trang_phuc: "Wide bone-white cloth robe draped over the whole torso"
-      dac_diem_rieng: "Both arms and both legs missing; always lying on a carried bamboo stretcher"
+      dac_diem_rieng: "A torso alone: both shoulders end in smooth rounded stumps and the body ends just below the hips, the empty sleeves and the robe hem folded flat and tucked beneath him as he lies full length on a carried bamboo stretcher"
     silhouette_cue_en:
       "limbless torso in a bone-white robe lying on a carried bamboo stretcher"
     body_type_relative_en:
@@ -256,9 +258,12 @@ nhan_vat:
     canonical_reference_en:
       khuon_mat: "Bovine head with a broad muzzle and an unnaturally human, tearful expression"
       mat: "Large wet dark cow eyes carrying visible human sorrow"
-      toc: "Short dull tan-and-cream hide, a coarse tuft running along the neck"
-      trang_phuc: "No garment; only a braided cloth nose rope"
-      dac_diem_rieng: "Short blunt horns; the hide hangs slightly loose, as if hollow underneath"
+      toc: "Short hide in dull tan and dirty cream patches only, a coarse tuft running along the neck"
+      trang_phuc: "Bare hide, wearing only a braided cloth nose rope through the muzzle"
+      # ⭐ `character_sheet_prompt` chỉ đọc 5 khóa canonical_reference_en — nó KHÔNG
+      # đọc `body_type_relative_en`, nên hình dạng bốn chân phải nằm ở ĐÂY, nếu
+      # không model sẽ vẽ chân dung nửa người có vai áo.
+      dac_diem_rieng: "A full-bodied four-legged cow standing on all fours in profile; short blunt horns; the hide hangs slightly loose over the frame, as if hollow underneath"
     silhouette_cue_en:
       "dull tan-and-cream cow with short blunt horns and a braided cloth nose rope,
        hide hanging slightly loose"

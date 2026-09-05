@@ -123,8 +123,9 @@ characters:
       eyes: "half-closed pale eyes with a steady gaze"
       face: "gaunt hollow-cheeked old face, calm and composed"
       distinctive_features:
-        - "both arms and both legs missing"
-        - "always lying on a carried bamboo stretcher"
+        - "a torso alone: both shoulders end in smooth rounded stumps, the body ends just below the hips"
+        - "the empty sleeves and the robe hem folded flat and tucked beneath him"
+        - "lying full length on a carried bamboo stretcher"
 
     outfit:
       - "wide bone-white cloth robe draped over the whole torso"
@@ -182,8 +183,8 @@ panels:
 
     scene_delta:
       "The village square. A ring of village elders closes in from both edges as
-       unlit background silhouettes — bent backs, missing limbs, crutches — none
-       of them with a readable face."
+       unlit background silhouettes — bent backs, empty knotted sleeves, tied-off
+       trouser legs, crutches and walking staffs — none with a readable face."
 
     characters:
       - character_id: "tu_ba_ba"
